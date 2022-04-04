@@ -8,13 +8,18 @@ public class FontAttributes extends Attributes{
     public Font font;
     public Color fontColor;
 
+    public FontAttributes(){
+        this.font = new Font("TimesRoman", Font.PLAIN, 20);
+        this.fontColor = Color.BLACK;
+    }
+
+
     @Override
     public String getId() {
         return "FontAttributes";
     }
 
     public Rectangle getBounds(String s){
-        //TODO demander Thomas font obligatoire ?
         FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);
         int width = (int)(font.getStringBounds(s, frc).getWidth());
         int height = (int)(font.getStringBounds(s, frc).getHeight());
