@@ -45,9 +45,12 @@ public class SCollection extends Shape{
 
     @Override
     public Rectangle getBounds() {
-        Rectangle bounds = new Rectangle();
-        for (Shape shape : this.shapes) {
-            bounds = new Rectangle(bounds.union(shape.getBounds()));
+        Rectangle bounds = new Rectangle();;
+        if (this.shapes.size() != 0){
+            bounds = shapes.get(0).getBounds();
+            for (Shape shape : this.shapes) {
+                bounds = bounds.union(shape.getBounds());
+            }
         }
         return bounds;
     }
