@@ -1,6 +1,8 @@
 package graphics.shapes;
 
+import graphics.Constantes;
 import graphics.shapes.attributes.Attributes;
+import graphics.shapes.attributes.SelectionAttributes;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ public abstract class Shape {
     private ArrayList<Attributes> attributes;
 
     Shape(){
-        this.attributes = new ArrayList<Attributes>();
+        this.attributes = new ArrayList<>();
     }
 
     public abstract Point getLoc();
@@ -35,5 +37,11 @@ public abstract class Shape {
         return null;
     }
 
+    public void unselect() {
+        ((SelectionAttributes) this.getAttributes(Constantes.SELECTION_ATTRIBUTE)).unselect();
+    }
 
+    public void select() {
+        ((SelectionAttributes) this.getAttributes(Constantes.SELECTION_ATTRIBUTE)).select();
+    }
 }

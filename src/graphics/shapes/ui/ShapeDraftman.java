@@ -1,5 +1,6 @@
 package graphics.shapes.ui;
 
+import graphics.Constantes;
 import graphics.shapes.*;
 import graphics.shapes.Shape;
 import graphics.shapes.attributes.ColorAttributes;
@@ -10,67 +11,93 @@ import java.awt.*;
 import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor{
-    public static ColorAttributes DEFAULTCOLORATTRIBUTES = new ColorAttributes(true, true, Color.BLACK, Color.BLACK);
     private Graphics graphics;
 
     public void setGraphics(Graphics g){
         this.graphics = g;
     }
 
+    public Graphics getGraphics() {
+        return graphics;
+    }
+
+    private  void drawRectangle(Rectangle rectangle, ColorAttributes color){
+        if(color.filled) {
+            this.graphics.setColor(color.filledColor);
+            this.graphics.fillRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+        }
+        if(color.stroked) {
+            this.graphics.setColor(color.strokedColor);
+            this.graphics.drawRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+        }
+    }
+
     @Override
     public void visitRectangle(SRectangle rectangle) {
         Rectangle r = rectangle.getBounds();
-        ColorAttributes colorAttributes = (ColorAttributes)rectangle.getAttributes("ColorAttributes");
-        if (colorAttributes.filled){
-            this.graphics.setColor(colorAttributes.filledColor);
-            this.graphics.fillRect(r.x, r.y, r.width, r.height);
-        }
-        if (colorAttributes.stroked){
-            this.graphics.setColor(colorAttributes.strokedColor);
-            this.graphics.drawRect(r.x, r.y, r.width, r.height);
-        }
-        this.drawSelected(rectangle);
+        ColorAttributes colorAttributes = (ColorAttributes)rectangle.getAttributes(Constantes.COLOR_ATTRIBUTE);
+
+        if (colorAttributes == null)
+            colorAttributes = Constantes.DEFAULT_COLOR_ATTRIBUTES;
+        drawRectangle(r, colorAttributes);
+
+        SelectionAttributes selection = (SelectionAttributes) rectangle.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+        if(selection != null && selection.isSelected())
+            drawSelection(r);
     }
 
     @Override
     public void visitCircle(SCircle circle) {
-        Rectangle r = circle.getBounds();
-        ColorAttributes colorAttributes = (ColorAttributes)circle.getAttributes("ColorAttributes");
-        if (colorAttributes.filled){
-            this.graphics.setColor(colorAttributes.filledColor);
-            this.graphics.fillOval(r.x, r.y, r.width, r.height);
+        Rectangle rectangle = circle.getBounds();
+        ColorAttributes color= (ColorAttributes)circle.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        SelectionAttributes selection = (SelectionAttributes) circle.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+
+        if (color == null)
+            color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
+        if(color.filled) {
+            this.graphics.setColor(color.filledColor);
+            this.graphics.fillOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
         }
-        if (colorAttributes.stroked){
-            this.graphics.setColor(colorAttributes.strokedColor);
-            this.graphics.drawOval(r.x, r.y, r.width, r.height);
+        if(color.stroked) {
+            this.graphics.setColor(color.strokedColor);
+            this.graphics.drawOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
         }
-        this.drawSelected(circle);
+        if(selection != null && selection.isSelected())
+            drawSelection(rectangle);
     }
 
     @Override
     public void visitText(SText text) {
-        /*
-        Rectangle r = text.getBounds();
-        ColorAttributes colorAttributes = (ColorAttributes)text.getAttributes("ColorAttributes");
-        this.graphics.setColor(colorAttributes.filledColor);
-        this.graphics.fillRect(r.x, r.y, r.width, r.height);
-        this.graphics.setColor(colorAttributes.strokedColor);
-        this.graphics.drawRect(r.x, r.y, r.width, r.height);
-         */
-        FontAttributes fontAttributes = (FontAttributes)text.getAttributes(("FontAttributes"));
-        this.graphics.setColor(fontAttributes.fontColor);
-        this.graphics.setFont(fontAttributes.font);
+        SelectionAttributes selection = (SelectionAttributes) text.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+        ColorAttributes color= (ColorAttributes)text.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        FontAttributes font= (FontAttributes) text.getAttributes(Constantes.FONT_ATTRIBUTE);
+        Rectangle rectangle = text.getBounds();
+
+        if(font ==null)
+            font = Constantes.DEFAULT_FONT_ATTRIBUTES;
+        this.graphics.setFont(font.font);
+
+        if (color == null)
+            color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
+        drawRectangle(rectangle,color);
+
+        this.graphics.setColor(font.fontColor);
         this.graphics.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
-        this.drawSelected(text);
+        this.graphics.setFont(Constantes.DEFAULT_FONT_ATTRIBUTES.font);
+
+        if(selection != null && selection.isSelected())
+            drawSelection(rectangle);
     }
 
     @Override
     public void visitCollection(SCollection collection) {
-        Iterator<Shape> shapeIterator = collection.iterator();
-        while(shapeIterator.hasNext()) {
-            shapeIterator.next().accept(this);
-        }
-        this.drawSelected(collection);
+        Iterator<Shape> i = collection.iterator();
+        SelectionAttributes selection = (SelectionAttributes) collection.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+        while (i.hasNext())
+            i.next().accept(this);
+
+        if(selection != null && selection.isSelected())
+            drawSelection(collection.getBounds());
     }
 
     @Override
@@ -81,11 +108,20 @@ public class ShapeDraftman implements ShapeVisitor{
     }
 
     public void drawSelected(Shape shape){
-        SelectionAttributes selectionAttributes = (SelectionAttributes)shape.getAttributes("SelectionAttributes");
+        SelectionAttributes selectionAttributes = (SelectionAttributes)shape.getAttributes(Constantes.SELECTION_ATTRIBUTE);
         if (selectionAttributes.isSelected()){
             Rectangle r = shape.getBounds();
             this.graphics.setColor(Color.BLACK);
             this.graphics.drawRect(r.x,r.y,r.width,r.height);
+            if (Constantes.COLOR_SHAPE_SELECTED.filled){
+                this.graphics.setColor(Constantes.COLOR_SHAPE_SELECTED.filledColor);
+
+            }
         }
+    }
+
+    private void drawSelection(Rectangle rectangle) {
+        this.graphics.drawRect((int) rectangle.getX() - Constantes.SIZE_SHAPE_SELECTED, (int) rectangle.getY() - Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
+        this.graphics.drawRect((int) (rectangle.getX() + rectangle.width), (int) rectangle.getY() + rectangle.height, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
     }
 }

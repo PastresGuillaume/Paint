@@ -1,5 +1,7 @@
 package graphics.shapes.attributes;
 
+import graphics.Constantes;
+
 import java.awt.*;
 
 public class ColorAttributes extends Attributes{
@@ -28,7 +30,7 @@ public class ColorAttributes extends Attributes{
 
     @Override
     public String getId() {
-        return "ColorAttributes";
+        return Constantes.COLOR_ATTRIBUTE;
     }
 
 }

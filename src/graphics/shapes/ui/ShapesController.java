@@ -1,5 +1,6 @@
 package graphics.shapes.ui;
 
+import graphics.Constantes;
 import graphics.shapes.SCollection;
 import graphics.shapes.attributes.SelectionAttributes;
 import graphics.ui.Controller;
@@ -13,25 +14,62 @@ import graphics.shapes.Shape;
 public class ShapesController extends Controller {
     private boolean shiftPressed = false;
     private Point lastClick;
+    private boolean selectionDragged=false;
 
     public ShapesController(Object newModel) {
         super(newModel);
     }
 
     public void mousePressed(MouseEvent e) {
+        this.selectionDragged=false;
         this.lastClick = new Point(e.getX(), e.getY());
+
+        if (!this.shiftPressed) {
+            ((Shape)super.getModel()).unselect();
+        }
+        for (Shape s:((SCollection) super.getModel()).getElement()){
+            if (s.getBounds().contains(e.getPoint())){
+                s.select();
+                super.getView().invalidate();
+                return;
+            }
+        }
+        this.selectionDragged = true;
     }
 
     public void mouseReleased(MouseEvent e) {
+        if (selectionDragged) {
+            Rectangle selection = new Rectangle(this.lastClick.x, this.lastClick.y, e.getX() - this.lastClick.x, e.getY() - this.lastClick.y);
+            ((Shape) super.getModel()).unselect();
+            for (Shape s : ((SCollection) super.getModel()).getElement()) {
+                if (s.getBounds().intersection(selection).height>=0 && s.getBounds().intersection(selection).width>=0) {
+                    s.select();
+                }
+            }
+        }
+        selectionDragged = false;
+        super.getView().invalidate();
     }
 
     public void mouseClicked(MouseEvent e) {
         int xCursor = e.getX();
         int yCursor = e.getY();
         Shape target = this.getTarget(xCursor, yCursor);
-        if (this.shiftPressed){
-            if (target != null){
-                ((SelectionAttributes)target.getAttributes("SelectionAttributes")).toggleSelection();
+//        if (this.shiftPressed){
+//            if (target != null){
+//                ((SelectionAttributes)target.getAttributes(Constantes.SELECTION_ATTRIBUTE)).toggleSelection();
+//            }
+//        }
+//        else{
+//            this.unSelectAll();
+//        }
+        if (target!=null){
+            if (this.shiftPressed){
+                ((SelectionAttributes)target.getAttributes(Constantes.SELECTION_ATTRIBUTE)).toggleSelection();
+            }
+            else {
+                this.unSelectAll();
+                ((SelectionAttributes)target.getAttributes(Constantes.SELECTION_ATTRIBUTE)).select();
             }
         }
         else{
@@ -44,30 +82,29 @@ public class ShapesController extends Controller {
     public void mouseEntered(MouseEvent e) {
     }
 
-    public void mouseExited(MouseEvent e)
-    {
+    public void mouseExited(MouseEvent e) {
     }
 
-    public void mouseMoved(MouseEvent evt)
-    {
+    public void mouseMoved(MouseEvent evt) {
     }
 
     public void mouseDragged(MouseEvent evt) {
-        int lx = lastClick.x;
-        int ly = lastClick.y;
-        Iterator<Shape> iterator = ((SCollection)this.getModel()).iterator();
-        while (iterator.hasNext()){
-            Shape shape = iterator.next();
-            if (((SelectionAttributes)shape.getAttributes("SelectionAttributes")).isSelected()){
-                shape.translate(evt.getX() - lx, evt.getY() - ly);
+        if (!this.selectionDragged) {
+            int dx = evt.getX()-lastClick.x;
+            int dy = evt.getY()-lastClick.y;
+            Iterator<Shape> iterator = ((SCollection) this.getModel()).iterator();
+            while (iterator.hasNext()) {
+                Shape shape = iterator.next();
+                if (((SelectionAttributes) shape.getAttributes(Constantes.SELECTION_ATTRIBUTE)).isSelected()) {
+                    shape.translate(dx, dy);
+                }
             }
+            this.lastClick = new Point(evt.getX(), evt.getY());
+            getView().invalidate();
         }
-        this.lastClick = new Point(evt.getX(), evt.getY());
-        getView().invalidate();
     }
 
-    public void keyTyped(KeyEvent evt)
-    {
+    public void keyTyped(KeyEvent evt) {
     }
 
     public void keyPressed(KeyEvent evt) {
@@ -77,7 +114,9 @@ public class ShapesController extends Controller {
     }
 
     public void keyReleased(KeyEvent evt) {
-        this.shiftPressed = false;
+        if (!evt.isShiftDown()) {
+            this.shiftPressed = false;
+        }
     }
 
     public Shape getTarget(int x, int y){
@@ -94,7 +133,7 @@ public class ShapesController extends Controller {
     public void unSelectAll(){
         Iterator<Shape> iterator = ((SCollection)this.getModel()).iterator();
         while (iterator.hasNext()){
-            ((SelectionAttributes)iterator.next().getAttributes("SelectionAttributes")).unselect();
+            ((SelectionAttributes)iterator.next().getAttributes(Constantes.SELECTION_ATTRIBUTE)).unselect();
         }
     }
 }

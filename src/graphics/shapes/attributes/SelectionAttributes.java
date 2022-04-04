@@ -1,11 +1,13 @@
 package graphics.shapes.attributes;
 
+import graphics.Constantes;
+
 public class SelectionAttributes extends Attributes{
     private boolean selected = false;
 
     @Override
     public String getId() {
-        return "SelectionAttributes";
+        return Constantes.SELECTION_ATTRIBUTE;
     }
 
     public boolean isSelected(){
@@ -21,11 +23,6 @@ public class SelectionAttributes extends Attributes{
     }
 
     public void toggleSelection(){
-        if (this.isSelected()){
-            this.unselect();
-        }
-        else{
-            this.select();
-        }
+        this.selected = !this.selected;
     }
 }

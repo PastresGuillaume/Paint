@@ -1,5 +1,6 @@
 package graphics.shapes;
 
+import graphics.Constantes;
 import graphics.shapes.attributes.FontAttributes;
 
 import java.awt.*;
@@ -32,7 +33,7 @@ public class SText extends Shape{
 
     @Override
     public Rectangle getBounds() {
-        FontAttributes fontAttributes = (FontAttributes) this.getAttributes("FontAttributes");
+        FontAttributes fontAttributes = (FontAttributes) this.getAttributes(Constantes.FONT_ATTRIBUTE);
         Rectangle rect = fontAttributes.getBounds(this.text);
         rect.translate(this.loc.x,this.loc.y);
         return rect;
@@ -50,6 +51,4 @@ public class SText extends Shape{
     public void setText(String t){
         this.text = t;
     }
-
-
 }

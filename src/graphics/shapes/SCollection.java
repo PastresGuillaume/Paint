@@ -8,52 +8,46 @@ public class SCollection extends Shape{
     private ArrayList<Shape> shapes;
 
     public SCollection(){
-        this.shapes = new ArrayList<Shape>();
-    
+        this.shapes = new ArrayList<>();
     }
 
     @Override
     public Point getLoc() {
-        Point point = new Point(-1, -1);
         Iterator<Shape> shapes = this.iterator();
+        if (!shapes.hasNext()) return null;
+
+        Point point = shapes.next().getLoc();
         while(shapes.hasNext()) {
-            Shape shape = shapes.next();
-            Point point2 = shape.getLoc();
-            if (point.x ==-1 ){
-                point.x = point2.x;
-                point.y = point2.y;
-            }
-            else if (point.x > point2.x){
+            Point point2 = shapes.next().getLoc();
+            if (point.x > point2.x){
                 point.x = point2.x;
             }
-            else if (point.y > point2.y){
+            if (point.y > point2.y){
                 point.y = point2.y;
             }
         }
         return point;
     }
 
-
     @Override
     public void setLoc(Point point) {
+        for (Shape s: this.shapes){
+            s.setLoc(point);
+        }
     }
 
     @Override
     public void translate(int x, int y) {
-        Iterator<Shape> iterator = this.iterator();
-        while (iterator.hasNext()){
-            iterator.next().translate(x, y);
+        for (Shape s: this.shapes){
+            s.translate(x, y);
         }
     }
 
     @Override
     public Rectangle getBounds() {
-        Rectangle bounds = new Rectangle();;
-        if (this.shapes.size() != 0){
-            bounds = shapes.get(0).getBounds();
-            for (Shape shape : this.shapes) {
-                bounds = new Rectangle(bounds.union(shape.getBounds()));
-            }
+        Rectangle bounds = new Rectangle();
+        for (Shape shape : this.shapes) {
+            bounds = new Rectangle(bounds.union(shape.getBounds()));
         }
         return bounds;
     }
@@ -69,5 +63,25 @@ public class SCollection extends Shape{
 
     public void add(Shape shape){
         this.shapes.add(shape);
+    }
+
+    public ArrayList<Shape> getElement() {
+        return this.shapes;
+    }
+
+    @Override
+    public void unselect(){
+        super.unselect();
+        for (Shape s: this.shapes){
+            s.unselect();
+        }
+    }
+
+    @Override
+    public void select(){
+        super.unselect();
+        for (Shape s: this.shapes){
+            s.select();
+        }
     }
 }

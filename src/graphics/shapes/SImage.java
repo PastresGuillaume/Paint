@@ -42,18 +42,17 @@ public class SImage extends Shape{
 
     @Override
     public Point getLoc() {
-        return new Point(this.rect.x, this.rect.y);
+        return this.rect.getLocation();
     }
 
     @Override
     public void setLoc(Point point) {
-        this.rect = new Rectangle(point.x, point.y);
+        this.rect.setLocation(point);
     }
 
     @Override
     public void translate(int x, int y) {
-        this.rect.x += x;
-        this.rect.y += y;
+        this.rect.translate(x, y);
     }
 
     @Override

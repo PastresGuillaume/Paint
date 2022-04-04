@@ -1,5 +1,7 @@
 package graphics.shapes.attributes;
 
+import graphics.Constantes;
+
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
@@ -16,7 +18,7 @@ public class FontAttributes extends Attributes{
 
     @Override
     public String getId() {
-        return "FontAttributes";
+        return Constantes.FONT_ATTRIBUTE;
     }
 
     public Rectangle getBounds(String s){

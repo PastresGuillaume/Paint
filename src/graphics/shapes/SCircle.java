@@ -13,7 +13,7 @@ public class SCircle extends Shape{
 
     @Override
     public Point getLoc() {
-        return new Point(this.loc.x, this.loc.y);
+        return this.loc;
     }
 
     @Override
@@ -24,13 +24,12 @@ public class SCircle extends Shape{
 
     @Override
     public void translate(int x, int y) {
-        this.loc.x += x;
-        this.loc.y += y;
+        this.loc.translate(x, y);
     }
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(this.loc.x, this.loc.y, 2*this.radius, 2*this.radius).getBounds();
+        return new Rectangle(this.loc.x, this.loc.y, 2*this.radius, 2*this.radius);
     }
 
     @Override
