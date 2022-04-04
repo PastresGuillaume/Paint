@@ -7,7 +7,7 @@ import graphics.shapes.attributes.SelectionAttributes;
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class Shape {
+public abstract class Shape implements Runnable{
     private ArrayList<Attributes> attributes;
 
     Shape(){
@@ -43,5 +43,9 @@ public abstract class Shape {
 
     public void select() {
         ((SelectionAttributes) this.getAttributes(Constantes.SELECTION_ATTRIBUTE)).select();
+    }
+
+    @Override
+    public void run(){
     }
 }

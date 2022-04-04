@@ -5,6 +5,7 @@ import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class Constantes {
     public final static String FONT_ATTRIBUTE = "FontAttributes";
@@ -23,4 +24,7 @@ public class Constantes {
 
     public final static ColorAttributes COLOR_SHAPE_SELECTED = new ColorAttributes(false, true, Color.BLACK, Color.BLACK);
 
+    public final static int DELTA_REFRESH = 50;
+
+    public final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
 }
