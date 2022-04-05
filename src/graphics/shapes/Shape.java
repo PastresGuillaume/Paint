@@ -46,6 +46,5 @@ public abstract class Shape implements Runnable{
     }
 
     @Override
-    public void run(){
-    }
+    public void run(){}
 }

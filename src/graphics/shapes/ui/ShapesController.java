@@ -20,9 +20,10 @@ public class ShapesController extends Controller {
         super(newModel);
     }
 
+    @Override
     public void mousePressed(MouseEvent e) {
         this.selectionDragged=false;
-        this.lastClick = new Point(e.getX(), e.getY());
+        this.lastClick = e.getPoint();
 
         if (!this.shiftPressed) {
             ((Shape)super.getModel()).unselect();
@@ -37,6 +38,7 @@ public class ShapesController extends Controller {
         this.selectionDragged = true;
     }
 
+    @Override
     public void mouseReleased(MouseEvent e) {
         if (selectionDragged) {
             Rectangle selection = new Rectangle(this.lastClick.x, this.lastClick.y, e.getX() - this.lastClick.x, e.getY() - this.lastClick.y);
@@ -51,6 +53,7 @@ public class ShapesController extends Controller {
         super.getView().invalidate();
     }
 
+    @Override
     public void mouseClicked(MouseEvent e) {
         int xCursor = e.getX();
         int yCursor = e.getY();
@@ -79,15 +82,19 @@ public class ShapesController extends Controller {
 
     }
 
+    @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    @Override
     public void mouseExited(MouseEvent e) {
     }
 
+    @Override
     public void mouseMoved(MouseEvent evt) {
     }
 
+    @Override
     public void mouseDragged(MouseEvent evt) {
         if (!this.selectionDragged) {
             int dx = evt.getX()-lastClick.x;
@@ -104,15 +111,18 @@ public class ShapesController extends Controller {
         }
     }
 
+    @Override
     public void keyTyped(KeyEvent evt) {
     }
 
+    @Override
     public void keyPressed(KeyEvent evt) {
         if (evt.isShiftDown()){
             this.shiftPressed = true;
         }
     }
 
+    @Override
     public void keyReleased(KeyEvent evt) {
         if (!evt.isShiftDown()) {
             this.shiftPressed = false;

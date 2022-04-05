@@ -1,14 +1,14 @@
 package graphics.shapes;
 
 import graphics.Constantes;
+import graphics.shapes.ui.ShapesController;
+import graphics.shapes.ui.ShapesView;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class SCalque extends Shape{
+public class SCalque implements Runnable{
     public static int nb_Calque=0;
 
     private ArrayList<Shape> content;
@@ -26,11 +26,11 @@ public class SCalque extends Shape{
         executor.scheduleAtFixedRate(this, 0, Constantes.DELTA_REFRESH, Constantes.TIME_UNIT);
     }
 
-    public void used(){
+    public void use(){
         this.isUsed = true;
     }
 
-    public void notUsed(){
+    public void notUse(){
         this.isUsed = false;
     }
 
@@ -65,39 +65,13 @@ public class SCalque extends Shape{
         return content;
     }
 
-    @Override
-    public Point getLoc() {
-        return new Point(0, 0);
-    }
-
-    @Override
-    public void setLoc(Point point) {
-    }
-
-    @Override
-    public void translate(int x, int y) {
-        for (Shape s: this.content){
-            s.translate(x, y);
-        }
-    }
-
-    @Override
-    public Rectangle getBounds() {
-        Iterator<Shape> i = this.content.iterator();
-        if (i.hasNext()) {
-            Rectangle retour = i.next().getBounds();
-            while (i.hasNext()){
-                retour = retour.union(i.next().getBounds());
-            }
-            return retour;
-        }
-        return null;
-    }
-
-    @Override
     public void accept(ShapeVisitor visitor) {
         for (Shape s: this.content){
             s.accept(visitor);
         }
+    }
+
+    public void add(Shape s){
+        this.content.add(s);
     }
 }

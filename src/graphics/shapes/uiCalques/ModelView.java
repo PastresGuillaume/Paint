@@ -1,30 +1,33 @@
-package graphics.shapes.ui;
+package graphics.shapes.uiCalques;
 
-import graphics.shapes.SCollection;
-import graphics.shapes.ui.ShapeDraftman;
+import graphics.shapes.SModel;
 import graphics.shapes.ui.ShapesController;
+import graphics.shapes.ui.ShapesView;
 import graphics.ui.Controller;
 import graphics.ui.View;
 
 import java.awt.*;
+import java.util.ArrayList;
 
-public class ShapesView extends View {
-    private ShapeDraftman draftman;
+public class ModelView extends View {
+    private ModelDraftman draftman;
+    private ArrayList<ShapesView> views;
 
-    public ShapesView(Object model) {
+    public ModelView(Object model) {
         super(model);
-        this.draftman = new ShapeDraftman();
+        this.draftman = new ModelDraftman();
+        this.views = new ArrayList<>();
     }
 
     @Override
     public Controller defaultController(Object model) {
-        return new ShapesController(model);
+        return new ModelController(model);
     }
 
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        SCollection model = (SCollection)this.getModel();
+        SModel model = (SModel) this.getModel();
         if (model == null){
             return;
         }
