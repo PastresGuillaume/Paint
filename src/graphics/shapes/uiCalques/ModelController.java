@@ -8,62 +8,92 @@ import graphics.ui.Controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
 
 public class ModelController extends Controller {
-    private ArrayList<ShapesController> controllers;
+    private ShapesController controller;
 
     public ModelController(Object newModel) {
         super(newModel);
-        controllers = new ArrayList<>();
+        this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent());
     }
 
-    @Override
-    public void mousePressed(MouseEvent e) {
+    private void setControllers(){
+        this.controller.setView(this.getView());
+        for (SCalque calque:((SModel)this.getModel()).getCalques()){
+            if (calque.isUsed()){
+                this.controller.setModel(calque.getContent());
+                return;
+            }
+        }
     }
 
     private void unSelectAll() {
         SModel model = (SModel) this.getModel();
         for (SCalque c:model.getCalques()){
-            for (Shape s:c.getContent()){
+            for (Shape s:c.getContent().getElement()){
                 s.unselect();
             }
         }
     }
 
     @Override
+    public void mousePressed(MouseEvent e) {
+        setControllers();
+        this.controller.mousePressed(e);
+    }
+
+
+    @Override
     public void mouseReleased(MouseEvent e) {
+        setControllers();
+        this.controller.mouseReleased(e);
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
+        setControllers();
+        this.controller.mouseClicked(e);
     }
 
     @Override
     public void mouseEntered(MouseEvent e) {
+        setControllers();
+        this.controller.mouseEntered(e);
     }
 
     @Override
     public void mouseExited(MouseEvent e) {
+        setControllers();
+        this.controller.mouseExited(e);
     }
 
     @Override
-    public void mouseMoved(MouseEvent evt) {
+    public void mouseMoved(MouseEvent e) {
+        setControllers();
+        this.controller.mouseMoved(e);
     }
 
     @Override
-    public void mouseDragged(MouseEvent evt) {
+    public void mouseDragged(MouseEvent e) {
+        setControllers();
+        this.controller.mouseDragged(e);
     }
 
     @Override
-    public void keyTyped(KeyEvent evt) {
+    public void keyTyped(KeyEvent e) {
+        setControllers();
+        this.controller.keyTyped(e);
     }
 
     @Override
-    public void keyPressed(KeyEvent evt) {
+    public void keyPressed(KeyEvent e) {
+        setControllers();
+        this.controller.keyPressed(e);
     }
 
     @Override
-    public void keyReleased(KeyEvent evt) {
+    public void keyReleased(KeyEvent e) {
+        setControllers();
+        this.controller.keyReleased(e);
     }
 }

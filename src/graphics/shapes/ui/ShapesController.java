@@ -31,7 +31,7 @@ public class ShapesController extends Controller {
         for (Shape s:((SCollection) super.getModel()).getElement()){
             if (s.getBounds().contains(e.getPoint())){
                 s.select();
-                super.getView().invalidate();
+                this.getView().invalidate();
                 return;
             }
         }

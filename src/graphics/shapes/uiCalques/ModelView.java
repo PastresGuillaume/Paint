@@ -11,12 +11,10 @@ import java.util.ArrayList;
 
 public class ModelView extends View {
     private ModelDraftman draftman;
-    private ArrayList<ShapesView> views;
 
     public ModelView(Object model) {
         super(model);
         this.draftman = new ModelDraftman();
-        this.views = new ArrayList<>();
     }
 
     @Override

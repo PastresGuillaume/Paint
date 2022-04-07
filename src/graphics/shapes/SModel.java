@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class SModel implements Runnable {
+public class SModel {
     ArrayList<SCalque> calques;
 
     public SModel(){
         this.calques = new ArrayList<>();
-        addCalque(new SCalque());
+        SCalque c1 = new SCalque();
+        c1.use();
+        c1.setPaint(true);
+        addCalque(c1);
     }
 
     public void addCalque(SCalque calque){
@@ -142,11 +145,6 @@ public class SModel implements Runnable {
     }
 
     public void accept(ModelDraftman draftman) {
-        //TODO make accept SMODEL
-    }
-
-    @Override
-    public void run() {
-        //TODO make run
+        draftman.visitModel(this);
     }
 }
