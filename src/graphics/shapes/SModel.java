@@ -222,6 +222,15 @@ public class SModel {
         }
     }
 
+    public SCollection getModel(){
+        for (SCalque calque : this.calques) {
+            if (calque.isUsed()){
+                return calque.getContent();
+            }
+        }
+        return null;
+    }
+
     public void accept(ModelDraftman draftman) {
         draftman.visitModel(this);
     }

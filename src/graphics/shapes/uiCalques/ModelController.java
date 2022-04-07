@@ -5,6 +5,7 @@ import graphics.shapes.SModel;
 import graphics.shapes.Shape;
 import graphics.shapes.ui.ShapesController;
 import graphics.ui.Controller;
+import graphics.ui.View;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -12,13 +13,13 @@ import java.awt.event.MouseEvent;
 public class ModelController extends Controller {
     private ShapesController controller;
 
-    public ModelController(Object newModel) {
+    public ModelController(Object newModel, View v) {
         super(newModel);
         this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent());
+        this.controller.setView(v);
     }
 
     private void setControllers() {
-        this.controller.setView(this.getView());
         for (SCalque calque : ((SModel) this.getModel()).getCalques()) {
             if (calque.isUsed()) {
                 this.controller.setModel(calque.getContent());

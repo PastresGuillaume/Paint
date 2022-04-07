@@ -19,7 +19,7 @@ public class ModelView extends View {
 
     @Override
     public Controller defaultController(Object model) {
-        return new ModelController(model);
+        return new ModelController(model, this);
     }
 
     @Override
