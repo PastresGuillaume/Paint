@@ -4,7 +4,6 @@ import graphics.shapes.uiCalques.ModelDraftman;
 
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 public class SModel {
     ArrayList<SCalque> calques;
@@ -23,6 +22,85 @@ public class SModel {
 
     public void delCalque(SCalque calque){
         this.calques.remove(calque);
+    }
+
+    public void exchangeCalques(int c1, int c2){
+        if (c1!=c2 && c1<this.calques.size() && c2<this.calques.size() && c1>=0 && c2>=0){
+            SCalque move = this.calques.get(c1);
+            this.calques.set(c1, this.calques.get(c2));
+            this.calques.set(c2, move);
+        }
+    }
+
+    public void exchangeCalques(int c1, String name2){
+        for (int c2=0; c2<this.calques.size(); c2++){
+            if (this.calques.get(c2).getName().equals(name2)){
+                exchangeCalques(c1, c2);
+                return;
+            }
+        }
+    }
+
+    public void exchangeCalques(String name1, int c2){
+        for (int c1=0; c1<this.calques.size(); c1++){
+            if (this.calques.get(c1).getName().equals(name1)){
+                exchangeCalques(c1, c2);
+                return;
+            }
+        }
+    }
+
+    public void exchangeCalques(String name1, String name2){
+        if (name1.equals(name2)){
+            return;
+        }
+        int c1 = -1;
+        for (int i=0; i<this.calques.size(); i++){
+            if (this.calques.get(i).getName().equals(name1) || this.calques.get(i).getName().equals(name2)){
+                if (c1==-1){
+                    c1 = i;
+                }
+                else{
+                    exchangeCalques(c1, i);
+                    return;
+                }
+            }
+        }
+    }
+
+    public void moveCalque(int nbCalque, int newPlace){
+        /**
+        /* insert between SCalques newPlace-1 and newPlace
+        */
+        if (nbCalque<0 || nbCalque>=this.calques.size() || newPlace<0 || newPlace>=this.calques.size() || nbCalque==newPlace || nbCalque+1==newPlace){
+//            nbCalque==newPlace                -> cela ne sert à rien de bouger un calque jusqu'à soi
+//            nbCalque+1==newPlace              -> cela ne sert à rien d'insérer un calque entre lui et son voisin de droite
+            return;
+        }
+        SCalque calque = this.calques.get(nbCalque);
+        int increment;
+        if (nbCalque<newPlace){
+            increment = 1;
+        }
+        else {
+            increment = -1;
+        }
+        for (int i=nbCalque; i<newPlace; i+=increment){
+            this.calques.set(i, this.calques.get(i+increment));
+        }
+        this.calques.set(newPlace, calque);
+    }
+
+    public void moveCalque(String nameCalque, int newPlace){
+        /**
+        /* insert between SCalques newPlace-1 and newPlace
+        */
+        for (int i=0; i<this.calques.size(); i++){
+            if (this.calques.get(i).getName().equals(nameCalque)){
+                moveCalque(i, newPlace);
+                return;
+            }
+        }
     }
 
     public ArrayList<SCalque> getCalques(){

@@ -27,6 +27,4 @@ public class Constantes {
     public final static int DELTA_REFRESH = 50;
 
     public final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
-
-    //Salut c'est moi
 }

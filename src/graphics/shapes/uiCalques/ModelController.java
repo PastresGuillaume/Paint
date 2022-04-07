@@ -17,10 +17,10 @@ public class ModelController extends Controller {
         this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent());
     }
 
-    private void setControllers(){
+    private void setControllers() {
         this.controller.setView(this.getView());
-        for (SCalque calque:((SModel)this.getModel()).getCalques()){
-            if (calque.isUsed()){
+        for (SCalque calque : ((SModel) this.getModel()).getCalques()) {
+            if (calque.isUsed()) {
                 this.controller.setModel(calque.getContent());
                 return;
             }
@@ -41,7 +41,6 @@ public class ModelController extends Controller {
         setControllers();
         this.controller.mousePressed(e);
     }
-
 
     @Override
     public void mouseReleased(MouseEvent e) {

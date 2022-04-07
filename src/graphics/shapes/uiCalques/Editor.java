@@ -73,8 +73,6 @@ public class Editor  extends JFrame {
         this.model.add(sc);
 
 //
-//
-//
 //        SRectangle r = new SRectangle(new Point(150,150),20,30);
 //        r.addAttributes(new ColorAttributes(true,false,Color.RED,Color.RED));
 //        r.addAttributes(new SelectionAttributes());
@@ -92,7 +90,6 @@ public class Editor  extends JFrame {
 
         SCalque c3 = new SCalque();
 
-        c3.notUse();
         SRectangle ajout2 = new SRectangle(new Point(200, 200), 100, 100);
         ajout2.addAttributes(new SelectionAttributes());
         ajout2.addAttributes(new ColorAttributes(true, true, Color.GREEN, Color.BLUE));
