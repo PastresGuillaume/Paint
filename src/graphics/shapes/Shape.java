@@ -47,4 +47,6 @@ public abstract class Shape implements Runnable{
 
     @Override
     public void run(){}
+
+    public abstract void setSize(int i, int p);
 }

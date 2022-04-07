@@ -65,6 +65,11 @@ public class SImage extends Shape{
         visitor.visitImage(this);
     }
 
+    @Override
+    public void setSize(int i, int p) {
+
+    }
+
     public BufferedImage getImage(){
         return this.image;
     }

@@ -1,8 +1,10 @@
-package graphics.shapes.ui;
+package graphics.shapes.ui.controllers;
 
 import graphics.Constantes;
 import graphics.shapes.SCollection;
 import graphics.shapes.attributes.SelectionAttributes;
+import graphics.shapes.ui.ShapesView;
+import graphics.shapes.uiCalques.ModelView;
 import graphics.ui.Controller;
 
 import java.awt.*;
@@ -10,15 +12,24 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
 import graphics.shapes.Shape;
+import graphics.ui.View;
 
-public class ShapesController extends Controller {
+public class ShapesController extends AbstractController {
+
+    private Shape model;
+    private ShapesView view;
     private boolean shiftPressed = false;
     private Point lastClick;
     private boolean selectionDragged=false;
 
-    public ShapesController(Object newModel) {
+    public ShapesController(Shape newModel, View view) {
         super(newModel);
+        this.model = newModel;
+        this.lastClick = new Point();
+        this.view = (ShapesView) view;
     }
+
+    public void setView(ShapesView view){this.view = view;}
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -26,12 +37,12 @@ public class ShapesController extends Controller {
         this.lastClick = e.getPoint();
 
         if (!this.shiftPressed) {
-            ((Shape)super.getModel()).unselect();
+            model.unselect();
         }
-        for (Shape s:((SCollection) super.getModel()).getElement()){
+        for (Shape s:((SCollection) model).getElement()){
             if (s.getBounds().contains(e.getPoint())){
                 s.select();
-                this.getView().invalidate();
+                view.invalidate();
                 return;
             }
         }
@@ -42,15 +53,15 @@ public class ShapesController extends Controller {
     public void mouseReleased(MouseEvent e) {
         if (selectionDragged) {
             Rectangle selection = new Rectangle(this.lastClick.x, this.lastClick.y, e.getX() - this.lastClick.x, e.getY() - this.lastClick.y);
-            ((Shape) super.getModel()).unselect();
-            for (Shape s : ((SCollection) super.getModel()).getElement()) {
+            model.unselect();
+            for (Shape s : ((SCollection) model).getElement()) {
                 if (s.getBounds().intersection(selection).height>=0 && s.getBounds().intersection(selection).width>=0) {
                     s.select();
                 }
             }
         }
         selectionDragged = false;
-        super.getView().invalidate();
+        view.invalidate();
     }
 
     @Override
@@ -78,7 +89,7 @@ public class ShapesController extends Controller {
         else{
             this.unSelectAll();
         }
-        getView().repaint();
+        view.repaint();
 
     }
 
@@ -99,7 +110,7 @@ public class ShapesController extends Controller {
         if (!this.selectionDragged) {
             int dx = evt.getX()-lastClick.x;
             int dy = evt.getY()-lastClick.y;
-            Iterator<Shape> iterator = ((SCollection) this.getModel()).iterator();
+            Iterator<Shape> iterator = ((SCollection) model).iterator();
             while (iterator.hasNext()) {
                 Shape shape = iterator.next();
                 if (((SelectionAttributes) shape.getAttributes(Constantes.SELECTION_ATTRIBUTE)).isSelected()) {
@@ -107,7 +118,7 @@ public class ShapesController extends Controller {
                 }
             }
             this.lastClick = new Point(evt.getX(), evt.getY());
-            getView().invalidate();
+            view.invalidate();
         }
     }
 
@@ -130,7 +141,7 @@ public class ShapesController extends Controller {
     }
 
     public Shape getTarget(int x, int y){
-        Iterator<Shape> iterator = ((SCollection)this.getModel()).iterator();
+        Iterator<Shape> iterator = ((SCollection)model).iterator();
         while(iterator.hasNext()) {
             Shape shape = iterator.next();
             if (shape.getBounds().contains(x, y)){
@@ -141,7 +152,7 @@ public class ShapesController extends Controller {
     }
 
     public void unSelectAll(){
-        Iterator<Shape> iterator = ((SCollection)this.getModel()).iterator();
+        Iterator<Shape> iterator = ((SCollection)model).iterator();
         while (iterator.hasNext()){
             ((SelectionAttributes)iterator.next().getAttributes(Constantes.SELECTION_ATTRIBUTE)).unselect();
         }

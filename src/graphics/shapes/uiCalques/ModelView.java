@@ -1,7 +1,6 @@
 package graphics.shapes.uiCalques;
 
 import graphics.shapes.SModel;
-import graphics.shapes.ui.ShapesController;
 import graphics.shapes.ui.ShapesView;
 import graphics.ui.Controller;
 import graphics.ui.View;
@@ -18,8 +17,8 @@ public class ModelView extends View {
     }
 
     @Override
-    public Controller defaultController(Object model) {
-        return new ModelController(model, this);
+    public ModelController defaultController(graphics.shapes.Shape model) {
+        return new ModelController(model);
     }
 
     @Override

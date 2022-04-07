@@ -34,6 +34,9 @@ public class SRectangle extends Shape{
         visitor.visitRectangle(this);
     }
 
+    @Override
+    public void setSize(int i, int p) {this.rect = new Rectangle(this.rect.getLocation(), new Dimension(i,p));}
+
     public Rectangle getRect(){
         return this.rect;
     }

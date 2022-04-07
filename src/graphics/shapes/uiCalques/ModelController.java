@@ -3,20 +3,19 @@ package graphics.shapes.uiCalques;
 import graphics.shapes.SCalque;
 import graphics.shapes.SModel;
 import graphics.shapes.Shape;
-import graphics.shapes.ui.ShapesController;
+import graphics.shapes.ui.controllers.AbstractController;
+import graphics.shapes.ui.controllers.ShapesController;
 import graphics.ui.Controller;
-import graphics.ui.View;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class ModelController extends Controller {
-    private ShapesController controller;
+    private AbstractController controller;
 
-    public ModelController(Object newModel, View v) {
+    public ModelController(Object newModel) {
         super(newModel);
-        this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent());
-        this.controller.setView(v);
+        this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent(),this.getView());
     }
 
     private void setControllers() {

@@ -5,9 +5,8 @@ import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.FontAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Point;
+import java.awt.*;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 
@@ -16,8 +15,7 @@ public class Editor extends JFrame
     ShapesView sview;
     SCollection model;
 
-    public Editor()
-    {
+    public Editor() throws IOException {
         super("Shapes Editor");
 
         this.addWindowListener(new java.awt.event.WindowAdapter()
@@ -33,6 +31,8 @@ public class Editor extends JFrame
         this.sview = new ShapesView(this.model);
         this.sview.setPreferredSize(new Dimension(300,300));
         this.getContentPane().add(this.sview, java.awt.BorderLayout.CENTER);
+
+        this.add( new ShapeToolBar(this.sview).createToolBar(), BorderLayout.SOUTH );
     }
 
 
@@ -79,8 +79,7 @@ public class Editor extends JFrame
 
     }
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
         Editor self = new Editor();
         self.pack();
         self.setVisible(true);

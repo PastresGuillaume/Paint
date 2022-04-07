@@ -87,4 +87,9 @@ public class SCollection extends Shape{
             s.select();
         }
     }
+
+    @Override
+    public void setSize(int i, int p) {
+
+    }
 }

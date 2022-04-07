@@ -37,6 +37,11 @@ public class SCircle extends Shape{
         visitor.visitCircle(this);
     }
 
+    @Override
+    public void setSize(int i, int p) {
+
+    }
+
     public int getRadius(){
         return this.radius;
     }

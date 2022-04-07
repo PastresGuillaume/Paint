@@ -44,6 +44,11 @@ public class SText extends Shape{
         visitor.visitText(this);
     }
 
+    @Override
+    public void setSize(int i, int p) {
+
+    }
+
     public String getText(){
         return this.text;
     }

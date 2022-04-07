@@ -19,7 +19,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
         this.view = view;
     }
 
-    final public View getView() {
+    public View getView() {
         return this.view;
     }
 

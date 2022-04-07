@@ -3,11 +3,8 @@ package graphics.shapes;
 import graphics.Constantes;
 import graphics.shapes.attributes.ColorAttributes;
 import graphics.shapes.attributes.SelectionAttributes;
-import graphics.shapes.ui.ShapesController;
-import graphics.shapes.ui.ShapesView;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
