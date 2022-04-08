@@ -1,8 +1,8 @@
 package graphics;
 
-import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.FontAttributes;
-import graphics.shapes.attributes.SelectionAttributes;
+import graphics.attributes.ColorAttributes;
+import graphics.attributes.FontAttributes;
+import graphics.attributes.SelectionAttributes;
 
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
@@ -24,7 +24,19 @@ public class Constantes {
 
     public final static ColorAttributes COLOR_SHAPE_SELECTED = new ColorAttributes(false, true, Color.BLACK, Color.BLACK);
 
-    public final static int DELTA_REFRESH = 50;
+    public final static int DELTA_REFRESH = 25;
 
     public final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
+
+    public final static String TEXTE_POLICE = "TimesRoman";
+
+    public final static int TEXTE_STYLE = Font.PLAIN;
+
+    public final static int TEXTE_TAILLE = 20;
+
+    public final static Color TEXT_COLOR = Color.BLACK;
+
+    public final static Color COLOR_INVISIBLE = new Color(0, 0, 0, 1);
+
+    public final static Color DEFAULT_COLOR_ADD_RECTANGLE = Color.BLACK;
 }

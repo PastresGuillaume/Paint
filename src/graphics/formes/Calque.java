@@ -1,32 +1,41 @@
-package graphics.shapes;
+package graphics.formes;
 
 import graphics.Constantes;
-import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.SelectionAttributes;
+import graphics.attributes.ColorAttributes;
+import graphics.attributes.SelectionAttributes;
+import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class SCalque implements Runnable{
+public class Calque implements Runnable{
     public static int nb_Calque=0;
 
-//    private ArrayList<Shape> content;
     private SCollection content;
     private String name;
     private boolean isPaint;
     private boolean isUsed;
+    private ScheduledExecutorService thread;
 
-    public SCalque(){
+    public Calque(){
         this.content = new SCollection();
         this.content.addAttributes(new SelectionAttributes());
         this.content.addAttributes(new ColorAttributes(false, false, Color.BLACK, Color.BLACK));
         this.name = "Calque "+nb_Calque;
         this.isPaint = true;
         this.isUsed = false;
-        SCalque.nb_Calque++;
+        Calque.nb_Calque++;
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleAtFixedRate(this, 0, Constantes.DELTA_REFRESH, Constantes.TIME_UNIT);
+    }
+
+    public void setThread(ScheduledExecutorService thread) {
+        this.thread = thread;
+    }
+
+    public void kill(){
+        this.thread.shutdown();
     }
 
     public void use(){
@@ -51,7 +60,7 @@ public class SCalque implements Runnable{
 
     @Override
     public void run(){
-        for (Shape s: this.content.getElement()){
+        for (graphics.formes.Shape s: this.content.getElement()){
             s.run();
         }
     }
@@ -69,9 +78,6 @@ public class SCalque implements Runnable{
     }
 
     public void accept(ShapeVisitor visitor) {
-//        for (Shape s: this.content){
-//            s.accept(visitor);
-//        }
         this.content.accept(visitor);
     }
 

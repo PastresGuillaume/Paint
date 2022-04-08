@@ -1,8 +1,10 @@
-package graphics.shapes;
+package graphics.formes;
+
+import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
 
-public class SCircle extends Shape{
+public class SCircle extends Shape {
     private int radius;
     private Point loc;
 
@@ -18,8 +20,7 @@ public class SCircle extends Shape{
 
     @Override
     public void setLoc(Point point) {
-        this.loc.x = point.x;
-        this.loc.y = point.y;
+        this.loc.setLocation(point);
     }
 
     @Override
@@ -35,11 +36,6 @@ public class SCircle extends Shape{
     @Override
     public void accept(ShapeVisitor visitor) {
         visitor.visitCircle(this);
-    }
-
-    @Override
-    public void setSize(int i, int p) {
-
     }
 
     public int getRadius(){

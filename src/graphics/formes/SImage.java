@@ -1,4 +1,6 @@
-package graphics.shapes;
+package graphics.formes;
+
+import graphics.ui.Visitor.ShapeVisitor;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -63,11 +65,6 @@ public class SImage extends Shape{
     @Override
     public void accept(ShapeVisitor visitor) {
         visitor.visitImage(this);
-    }
-
-    @Override
-    public void setSize(int i, int p) {
-
     }
 
     public BufferedImage getImage(){

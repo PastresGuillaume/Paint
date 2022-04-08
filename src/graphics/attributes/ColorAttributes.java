@@ -1,4 +1,4 @@
-package graphics.shapes.attributes;
+package graphics.attributes;
 
 import graphics.Constantes;
 

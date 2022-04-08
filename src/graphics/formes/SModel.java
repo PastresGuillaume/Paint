@@ -1,32 +1,78 @@
-package graphics.shapes;
+package graphics.formes;
 
-import graphics.shapes.uiCalques.ModelDraftman;
+import graphics.Constantes;
+import graphics.ui.Visitor.ModelDraftman;
+import graphics.ui.Visitor.ShapeVisitor;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
-public class SModel {
-    ArrayList<SCalque> calques;
+public class SModel extends Shape{
+    ArrayList<Calque> calques;
 
-    public SModel(){
+    public SModel() {
         this.calques = new ArrayList<>();
-        SCalque c1 = new SCalque();
+        Calque c1 = new Calque();
         c1.use();
         c1.setPaint(true);
         addCalque(c1);
     }
 
-    public void addCalque(SCalque calque){
+    @Override
+    public Point getLoc() {
+        return null;
+    }
+
+    @Override
+    public void setLoc(Point point) {
+
+    }
+
+    @Override
+    public void translate(int x, int y) {
+
+    }
+
+    @Override
+    public Rectangle getBounds() {
+        return null;
+    }
+
+    @Override
+    public void unselect(){
+    }
+
+    @Override
+    public void accept(ShapeVisitor visitor) {
+
+    }
+
+    public void addCalque(Calque calque){
+        for (Calque calque1 : this.calques) {
+            if (calque1.getName().equals(calque.getName())){
+                return;
+            }
+        }
+        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+        executor.scheduleAtFixedRate(calque, 0, Constantes.DELTA_REFRESH, Constantes.TIME_UNIT);
+        calque.setThread(executor);
         this.calques.add(calque);
     }
 
-    public void delCalque(SCalque calque){
+    public void addCalque(){
+        this.addCalque(new Calque());
+    }
+
+    public void delCalque(Calque calque){
         this.calques.remove(calque);
     }
 
     public void exchangeCalques(int c1, int c2){
         if (c1!=c2 && c1<this.calques.size() && c2<this.calques.size() && c1>=0 && c2>=0){
-            SCalque move = this.calques.get(c1);
+            Calque move = this.calques.get(c1);
             this.calques.set(c1, this.calques.get(c2));
             this.calques.set(c2, move);
         }
@@ -77,7 +123,7 @@ public class SModel {
 //            nbCalque+1==newPlace              -> cela ne sert à rien d'insérer un calque entre lui et son voisin de droite
             return;
         }
-        SCalque calque = this.calques.get(nbCalque);
+        Calque calque = this.calques.get(nbCalque);
         int increment;
         if (nbCalque<newPlace){
             increment = 1;
@@ -103,12 +149,12 @@ public class SModel {
         }
     }
 
-    public ArrayList<SCalque> getCalques(){
+    public ArrayList<Calque> getCalques(){
         return this.calques;
     }
 
-    public void setName(SCalque calque, String newName){
-        for (SCalque c:this.calques){
+    public void setName(Calque calque, String newName){
+        for (Calque c:this.calques){
             if (Objects.equals(c.getName(), newName)){
                 return;
             }
@@ -117,8 +163,8 @@ public class SModel {
     }
 
     public void setName(String oldName, String newName){
-        SCalque calque = null;
-        for (SCalque c:this.calques){
+        Calque calque = null;
+        for (Calque c:this.calques){
             if (Objects.equals(c.getName(), newName)){
                 return;
             }
@@ -133,19 +179,12 @@ public class SModel {
     }
 
     public void setName(int n, String newName){
-        if (n<this.calques.size()) {
-            for (SCalque c : this.calques) {
-                if (Objects.equals(c.getName(), newName)) {
-                    return;
-                }
-            }
-            this.calques.get(n).setName(newName);
-        }
+        this.setName(this.getCalques().get(n), newName);
     }
 
-    public void setUse(SCalque c){
+    public void setUse(Calque c){
         if (this.calques.contains(c)){
-            for (SCalque calque: this.calques){
+            for (Calque calque: this.calques){
                 calque.notUse();
             }
             c.use();
@@ -153,31 +192,29 @@ public class SModel {
     }
 
     public void setUse(String s){
-        SCalque calque=null;
-        for (SCalque c: this.calques){
+        Calque calque=null;
+        for (Calque c: this.calques){
             if (Objects.equals(c.getName(), s)){
                 calque = c;
             }
         }
         if (calque!=null){
-            this.setUse(calque);
+            calque.use();
         }
     }
 
     public void setUse(int n){
-        if (n<this.calques.size()){
+        if (n>=0 && n<this.calques.size()){
             this.setUse(this.calques.get(n));
         }
     }
 
-    public void setPaint(SCalque c){
-        if (this.calques.contains(c)){
-            c.setPaint(true);
-        }
+    public void setPaint(Calque c){
+        c.setPaint(true);
     }
 
     public void setPaint(String name){
-        for (SCalque c:this.calques){
+        for (Calque c:this.calques){
             if (Objects.equals(c.getName(), name)){
                 c.setPaint(true);
             }
@@ -185,19 +222,17 @@ public class SModel {
     }
 
     public void setPaint(int n){
-        if (n < this.calques.size()){
+        if (n>=0 && n<this.calques.size()){
             this.calques.get(n).setPaint(true);
         }
     }
 
-    public void setNotPaint(SCalque c){
-        if (this.calques.contains(c)){
-            c.setPaint(false);
-        }
+    public void setNotPaint(Calque c){
+        c.setPaint(false);
     }
 
     public void setNotPaint(String name){
-        for (SCalque c:this.calques){
+        for (Calque c:this.calques){
             if (Objects.equals(c.getName(), name)){
                 c.setPaint(false);
             }
@@ -205,17 +240,17 @@ public class SModel {
     }
 
     public void setNotPaint(int n){
-        if (n < this.calques.size()){
+        if (n>=0 && n < this.calques.size()){
             this.calques.get(n).setPaint(false);
         }
     }
 
     public void add(Shape s){
         if (this.calques.size()==0){
-            this.calques.add(new SCalque());
+            this.calques.add(new Calque());
             this.calques.get(0).use();
         }
-        for (SCalque c: this.calques){
+        for (Calque c: this.calques){
             if (c.isUsed()){
                 c.add(s);
             }
@@ -223,7 +258,7 @@ public class SModel {
     }
 
     public SCollection getModel(){
-        for (SCalque calque : this.calques) {
+        for (Calque calque : this.calques) {
             if (calque.isUsed()){
                 return calque.getContent();
             }

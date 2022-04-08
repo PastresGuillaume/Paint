@@ -1,21 +1,20 @@
-package graphics.shapes.ui;
+package graphics.ui;
 
-import graphics.shapes.*;
-import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.FontAttributes;
-import graphics.shapes.attributes.SelectionAttributes;
+import graphics.attributes.ColorAttributes;
+import graphics.attributes.FontAttributes;
+import graphics.attributes.SelectionAttributes;
+import graphics.formes.*;
+import graphics.ui.View.ModelView;
 
+import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
-import javax.swing.JFrame;
+public class Editor  extends JFrame {
+    ModelView mview;
+    SModel model;
 
-public class Editor extends JFrame
-{
-    ShapesView sview;
-    SCollection model;
-
-    public Editor() throws IOException {
+    public Editor()
+    {
         super("Shapes Editor");
 
         this.addWindowListener(new java.awt.event.WindowAdapter()
@@ -28,18 +27,17 @@ public class Editor extends JFrame
 
         this.buildModel();
 
-        this.sview = new ShapesView(this.model);
-        this.sview.setPreferredSize(new Dimension(300,300));
-        this.getContentPane().add(this.sview, java.awt.BorderLayout.CENTER);
+        this.mview = new ModelView(this.model);
+        this.mview.setPreferredSize(new Dimension(300,300));
+        this.getContentPane().add(this.mview, java.awt.BorderLayout.CENTER);
 
-        this.add( new ShapeToolBar(this.sview).createToolBar(), BorderLayout.SOUTH );
+        this.add( new ShapeToolBar(this.mview).createToolBar(), BorderLayout.EAST );
     }
 
 
     private void buildModel()
     {
-        this.model = new SCollection();
-        this.model.addAttributes(new SelectionAttributes());
+        this.model = new SModel();
 
         SImage i1 = new SImage(new Point(50,50), 250, 250,"mini.jpg");
         i1.addAttributes(new SelectionAttributes());
@@ -77,14 +75,20 @@ public class Editor extends JFrame
         sc.add(c);
         this.model.add(sc);
 
+        Calque c3 = new Calque();
+
+        SRectangle ajout2 = new SRectangle(new Point(200, 200), 100, 100);
+        ajout2.addAttributes(new SelectionAttributes());
+        ajout2.addAttributes(new ColorAttributes(true, true, Color.GREEN, Color.BLUE));
+        c3.add(ajout2);
+
+        this.model.addCalque(c3);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)
+    {
         Editor self = new Editor();
         self.pack();
         self.setVisible(true);
-
     }
 }
-
-

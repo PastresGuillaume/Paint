@@ -1,23 +1,23 @@
-package graphics.shapes.ui.controllers;
+package graphics.ui.controllers;
 
+import graphics.attributes.SelectionAttributes;
 import graphics.Constantes;
-import graphics.shapes.SCollection;
-import graphics.shapes.attributes.SelectionAttributes;
-import graphics.shapes.ui.ShapesView;
-import graphics.shapes.uiCalques.ModelView;
-import graphics.ui.Controller;
+import graphics.formes.SCollection;
+import graphics.formes.SModel;
+import graphics.ui.View.ModelView;
+import graphics.formes.Shape;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.Iterator;
-import graphics.shapes.Shape;
-import graphics.ui.View;
+
+import graphics.ui.View.View;
 
 public class ShapesController extends AbstractController {
 
     private Shape model;
-    private ShapesView view;
+    private ModelView view;
     private boolean shiftPressed = false;
     private Point lastClick;
     private boolean selectionDragged=false;
@@ -26,10 +26,13 @@ public class ShapesController extends AbstractController {
         super(newModel);
         this.model = newModel;
         this.lastClick = new Point();
-        this.view = (ShapesView) view;
+        this.view = (ModelView) view;
     }
 
-    public void setView(ShapesView view){this.view = view;}
+    @Override
+    public void setView(ModelView view){
+        this.view = view;
+    }
 
     @Override
     public void mousePressed(MouseEvent e) {
@@ -39,12 +42,10 @@ public class ShapesController extends AbstractController {
         if (!this.shiftPressed) {
             model.unselect();
         }
-        for (Shape s:((SCollection) model).getElement()){
-            if (s.getBounds().contains(e.getPoint())){
-                s.select();
-                view.invalidate();
-                return;
-            }
+        Shape shapeSelec = getTarget(e.getX(), e.getY());
+        if (shapeSelec!=null){
+            shapeSelec.select();
+            return;
         }
         this.selectionDragged = true;
     }
@@ -54,14 +55,21 @@ public class ShapesController extends AbstractController {
         if (selectionDragged) {
             Rectangle selection = new Rectangle(this.lastClick.x, this.lastClick.y, e.getX() - this.lastClick.x, e.getY() - this.lastClick.y);
             model.unselect();
-            for (Shape s : ((SCollection) model).getElement()) {
-                if (s.getBounds().intersection(selection).height>=0 && s.getBounds().intersection(selection).width>=0) {
-                    s.select();
+            SCollection model;
+            try{
+                model = (SCollection) this.model;
+            }
+            catch (ClassCastException ex){
+                model = ((SModel) this.model).getModel();
+            }
+
+            for (Shape shape : model.getElement()) {
+                if (shape.getBounds().intersection(selection).height >= 0 && shape.getBounds().intersection(selection).width >= 0){
+                    shape.select();
                 }
             }
         }
         selectionDragged = false;
-        view.invalidate();
     }
 
     @Override
@@ -69,14 +77,6 @@ public class ShapesController extends AbstractController {
         int xCursor = e.getX();
         int yCursor = e.getY();
         Shape target = this.getTarget(xCursor, yCursor);
-//        if (this.shiftPressed){
-//            if (target != null){
-//                ((SelectionAttributes)target.getAttributes(Constantes.SELECTION_ATTRIBUTE)).toggleSelection();
-//            }
-//        }
-//        else{
-//            this.unSelectAll();
-//        }
         if (target!=null){
             if (this.shiftPressed){
                 ((SelectionAttributes)target.getAttributes(Constantes.SELECTION_ATTRIBUTE)).toggleSelection();
@@ -89,8 +89,6 @@ public class ShapesController extends AbstractController {
         else{
             this.unSelectAll();
         }
-        view.repaint();
-
     }
 
     @Override
@@ -110,7 +108,13 @@ public class ShapesController extends AbstractController {
         if (!this.selectionDragged) {
             int dx = evt.getX()-lastClick.x;
             int dy = evt.getY()-lastClick.y;
-            Iterator<Shape> iterator = ((SCollection) model).iterator();
+            Iterator<Shape> iterator;
+            try {
+                iterator = ((SCollection) model).iterator();
+            }
+            catch (ClassCastException e){
+                iterator = ((SModel) model).getModel().iterator();
+            }
             while (iterator.hasNext()) {
                 Shape shape = iterator.next();
                 if (((SelectionAttributes) shape.getAttributes(Constantes.SELECTION_ATTRIBUTE)).isSelected()) {
@@ -118,7 +122,6 @@ public class ShapesController extends AbstractController {
                 }
             }
             this.lastClick = new Point(evt.getX(), evt.getY());
-            view.invalidate();
         }
     }
 
@@ -141,14 +144,22 @@ public class ShapesController extends AbstractController {
     }
 
     public Shape getTarget(int x, int y){
-        Iterator<Shape> iterator = ((SCollection)model).iterator();
+        SCollection model;
+        try{
+            model = (SCollection) this.model;
+        }
+        catch (ClassCastException ex){
+            model = ((SModel) this.model).getModel();
+        }
+        Iterator<Shape> iterator = model.iterator();
+        Shape retour = null;
         while(iterator.hasNext()) {
             Shape shape = iterator.next();
             if (shape.getBounds().contains(x, y)){
-                return shape;
+                retour = shape;
             }
         }
-        return null;
+        return retour;
     }
 
     public void unSelectAll(){

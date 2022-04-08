@@ -1,12 +1,13 @@
-package graphics.shapes.ui.controllers;
+package graphics.ui.controllers;
 
+import graphics.attributes.ColorAttributes;
+import graphics.attributes.SelectionAttributes;
 import graphics.Constantes;
-import graphics.shapes.SCollection;
-import graphics.shapes.SRectangle;
-import graphics.shapes.Shape;
-import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.SelectionAttributes;
-import graphics.shapes.ui.ShapesView;
+import graphics.formes.SCollection;
+import graphics.formes.SModel;
+import graphics.formes.SRectangle;
+import graphics.formes.Shape;
+import graphics.ui.View.ModelView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,16 +17,15 @@ import java.awt.event.MouseEvent;
 public class RectangleCreator extends AbstractController {
 
     private Shape model;
-    private ShapesView view;
     private Point locCreation ;
-    private Color filledColor = new Color(0,0,0,1);
-    private Color strokedColor = Color.black;
+    private Color filledColor = Constantes.COLOR_INVISIBLE;
+    private Color strokedColor = Constantes.DEFAULT_COLOR_ADD_RECTANGLE;
     final JPopupMenu menu = new JPopupMenu("Color Menu");
 
-    public RectangleCreator(Shape newModel, ShapesView view) {
+    public RectangleCreator(Shape newModel, ModelView view) {
         super(newModel);
         this.model = newModel;
-        this.view = view;
+        this.setView(view);
         this.locCreation = new Point();
         unselectedAll();
 
@@ -58,28 +58,21 @@ public class RectangleCreator extends AbstractController {
         menu.add(color);
     }
 
-    public void setView(ShapesView view)
-    {
-        this.view = view;
-    }
-
-    public ShapesView getView()
-    {
-        return this.view;
-    }
-
+    @Override
     public void setModel(Shape model)
     {
         this.model = model;
     }
 
+    @Override
     public Shape getModel() {return this.model;}
 
+    @Override
     public void mousePressed(MouseEvent e) {
         unselectedAll();
         if(SwingUtilities.isRightMouseButton(e))
         {
-            menu.show(view , e.getX(), e.getY());
+            menu.show(this.getView() , e.getX(), e.getY());
         }
         else {
             this.locCreation = e.getPoint();
@@ -88,35 +81,32 @@ public class RectangleCreator extends AbstractController {
             rect.addAttributes(new SelectionAttributes());
             ((SelectionAttributes) rect.getAttributes(Constantes.SELECTION_ATTRIBUTE)).select();
             ((SCollection) this.model).add(rect);
-            view.invalidate();
         }
     }
 
+    @Override
     public void mouseReleased(MouseEvent e) {
         this.locCreation = new Point();
         unselectedAll();
-        view.invalidate();
     }
 
-    public void mouseClicked(MouseEvent e)
-    {
+    @Override
+    public void mouseClicked(MouseEvent e) {
         this.locCreation = new Point();
         unselectedAll();
-        view.invalidate();
     }
 
+    @Override
     public void mouseDragged(MouseEvent e) {
         {
             int width = (int) (e.getPoint().getX() - this.locCreation.getX());
             int height = (int) (e.getPoint().getY() - this.locCreation.getY());
             this.changeSize(width, height);
-            System.out.println("Dragged");
-            view.invalidate();
         }
     }
 
-    public void keyPressed(KeyEvent evt)
-    {
+    @Override
+    public void keyPressed(KeyEvent evt) {
         int keyCode = evt.getKeyCode();
         if(keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_CONTROL) {
             JFrame myFrame = new JFrame();
@@ -136,13 +126,19 @@ public class RectangleCreator extends AbstractController {
         }
     }
 
-    public void keyReleased(KeyEvent evt)
-    {
+    @Override
+    public void keyReleased(KeyEvent evt) {
     }
 
     private void unselectedAll(){
-        for (Shape s : ((SCollection) this.model).getElement())
-            s.unselect();
+        try {
+            for (Shape s : ((SModel) this.model).getModel().getElement())
+                s.unselect();
+        }
+        catch (ClassCastException e){
+            for (Shape s : ((SCollection) this.model).getElement())
+                s.unselect();
+        }
     }
 
     private void changeSize(int i,int p) {

@@ -1,4 +1,6 @@
-package graphics.shapes;
+package graphics.formes;
+
+import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,9 +33,8 @@ public class SCollection extends Shape{
 
     @Override
     public void setLoc(Point point) {
-        for (Shape s: this.shapes){
-            s.setLoc(point);
-        }
+        Point actual = this.getLoc();
+        this.translate(point.x-actual.x, point.y-actual.y);
     }
 
     @Override
@@ -45,7 +46,7 @@ public class SCollection extends Shape{
 
     @Override
     public Rectangle getBounds() {
-        Rectangle bounds = new Rectangle();;
+        Rectangle bounds = new Rectangle();
         if (this.shapes.size() != 0){
             bounds = shapes.get(0).getBounds();
             for (Shape shape : this.shapes) {
@@ -78,18 +79,5 @@ public class SCollection extends Shape{
         for (Shape s: this.shapes){
             s.unselect();
         }
-    }
-
-    @Override
-    public void select(){
-        super.unselect();
-        for (Shape s: this.shapes){
-            s.select();
-        }
-    }
-
-    @Override
-    public void setSize(int i, int p) {
-
     }
 }

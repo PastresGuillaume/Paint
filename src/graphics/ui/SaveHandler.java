@@ -1,16 +1,12 @@
-package graphics.shapes.ui;
+package graphics.ui;
 
-import graphics.shapes.SCollection;
+import graphics.formes.SCollection;
 
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class SaveHandler {
-
-
-
-
 
     public void createSave(){
         try{

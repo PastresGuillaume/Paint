@@ -1,6 +1,6 @@
-package graphics.ui;
+package graphics.ui.View;
 
-import graphics.shapes.Shape;
+import graphics.ui.controllers.Controller;
 
 import javax.swing.JPanel;
 
@@ -23,8 +23,7 @@ public abstract class View extends JPanel {
         this.controller.setModel(model);
     }
 
-    public Object getModel()
-    {
+    public Object getModel() {
         return this.model;
     }
 
@@ -38,7 +37,6 @@ public abstract class View extends JPanel {
         return this.controller;
     }
 
-    public abstract Controller defaultController(Shape model);
 }
 
 

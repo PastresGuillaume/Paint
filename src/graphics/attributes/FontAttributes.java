@@ -1,4 +1,4 @@
-package graphics.shapes.attributes;
+package graphics.attributes;
 
 import graphics.Constantes;
 
@@ -11,8 +11,8 @@ public class FontAttributes extends Attributes{
     public Color fontColor;
 
     public FontAttributes(){
-        this.font = new Font("TimesRoman", Font.PLAIN, 20);
-        this.fontColor = Color.BLACK;
+        this.font = new Font(Constantes.TEXTE_POLICE, Constantes.TEXTE_STYLE, Constantes.TEXTE_TAILLE);
+        this.fontColor = Constantes.TEXT_COLOR;
     }
 
 
@@ -26,5 +26,6 @@ public class FontAttributes extends Attributes{
         int width = (int)(font.getStringBounds(s, frc).getWidth());
         int height = (int)(font.getStringBounds(s, frc).getHeight());
         return new Rectangle(-2,-height+(int)(this.font.getSize()*0.25),width+4,height);
+//        ca marche donc touche pas stp
     }
 }

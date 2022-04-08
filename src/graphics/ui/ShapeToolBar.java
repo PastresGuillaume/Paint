@@ -1,29 +1,28 @@
-package graphics.shapes.ui;
+package graphics.ui;
 
 
-import graphics.shapes.Shape;
-import graphics.shapes.ui.controllers.RectangleCreator;
-import graphics.shapes.ui.controllers.ShapesController;
-import graphics.shapes.uiCalques.ModelController;
-import graphics.shapes.uiCalques.ModelView;
+import graphics.formes.SModel;
+import graphics.formes.Shape;
+import graphics.ui.controllers.RectangleCreator;
+import graphics.ui.controllers.ShapesController;
+import graphics.ui.View.ModelView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.IOException;
 
 public class ShapeToolBar extends JFrame{
 
-    private ShapesView view;
+    private ModelView view;
     private final Dimension dimension;
 
-    public ShapeToolBar(ShapesView view){
+    public ShapeToolBar(ModelView view){
         super( "JToolBar sample" );
         this.view = view;
         this.dimension = new Dimension(25,25);
         this.setSize(300,25);
     }
 
-    public ShapesView getView(){
+    public ModelView getView(){
         return this.view;
     }
 
@@ -34,8 +33,7 @@ public class ShapeToolBar extends JFrame{
         btnNew.setToolTipText( "Everyday i'm drinking" );
         btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> {
-            view.setController( new ShapesController((Shape) view.getModel(),view));
-            view.invalidate();
+            view.setController(new ShapesController(((SModel)view.getModel()).getModel(), this.getView()));
         });
         toolBar.add( btnNew );
 
@@ -43,10 +41,9 @@ public class ShapeToolBar extends JFrame{
         btnDrawRectangle.setToolTipText( "Everyday i'm drinking" );
         btnDrawRectangle.setSize(this.dimension);
         btnDrawRectangle.addActionListener(e -> {
-            view.setController(new RectangleCreator((Shape) view.getModel(),view));
-            view.invalidate();
+            view.setController(new RectangleCreator((Shape) view.getModel(), this.view));
         });
-        toolBar.add( btnDrawRectangle);
+        toolBar.add(btnDrawRectangle);
 
         return toolBar;
     }

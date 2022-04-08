@@ -1,4 +1,6 @@
-package graphics.shapes;
+package graphics.formes;
+
+import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
 
@@ -34,10 +36,12 @@ public class SRectangle extends Shape{
         visitor.visitRectangle(this);
     }
 
-    @Override
-    public void setSize(int i, int p) {this.rect = new Rectangle(this.rect.getLocation(), new Dimension(i,p));}
-
     public Rectangle getRect(){
         return this.rect;
+    }
+
+    @Override
+    public void setSize(int i, int p) {
+        this.rect.setSize(i, p);
     }
 }

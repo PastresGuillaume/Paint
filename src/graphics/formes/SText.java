@@ -1,7 +1,8 @@
-package graphics.shapes;
+package graphics.formes;
 
 import graphics.Constantes;
-import graphics.shapes.attributes.FontAttributes;
+import graphics.attributes.FontAttributes;
+import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
 
@@ -11,7 +12,7 @@ public class SText extends Shape{
 
     public SText(Point point, String text){
         this.text = text;
-        this.loc = new Point(point.x, point.y);
+        this.loc = new Point(point);
     }
 
     @Override
@@ -21,19 +22,20 @@ public class SText extends Shape{
 
     @Override
     public void setLoc(Point point) {
-        this.loc.x = point.x;
-        this.loc.y = point.y;
+        this.loc.setLocation(point);
     }
 
     @Override
     public void translate(int x, int y) {
-        this.loc.x += x;
-        this.loc.y += y;
+        this.loc.translate(x, y);
     }
 
     @Override
     public Rectangle getBounds() {
         FontAttributes fontAttributes = (FontAttributes) this.getAttributes(Constantes.FONT_ATTRIBUTE);
+        if (fontAttributes==null){
+            fontAttributes = Constantes.DEFAULT_FONT_ATTRIBUTES;
+        }
         Rectangle rect = fontAttributes.getBounds(this.text);
         rect.translate(this.loc.x,this.loc.y);
         return rect;
@@ -42,11 +44,6 @@ public class SText extends Shape{
     @Override
     public void accept(ShapeVisitor visitor) {
         visitor.visitText(this);
-    }
-
-    @Override
-    public void setSize(int i, int p) {
-
     }
 
     public String getText(){

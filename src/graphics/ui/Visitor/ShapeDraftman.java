@@ -1,11 +1,11 @@
-package graphics.shapes.ui;
+package graphics.ui.Visitor;
 
 import graphics.Constantes;
-import graphics.shapes.*;
-import graphics.shapes.Shape;
-import graphics.shapes.attributes.ColorAttributes;
-import graphics.shapes.attributes.FontAttributes;
-import graphics.shapes.attributes.SelectionAttributes;
+import graphics.attributes.ColorAttributes;
+import graphics.attributes.FontAttributes;
+import graphics.attributes.SelectionAttributes;
+import graphics.formes.*;
+import graphics.formes.Shape;
 
 import java.awt.*;
 import java.util.Iterator;
@@ -69,7 +69,7 @@ public class ShapeDraftman implements ShapeVisitor{
     @Override
     public void visitText(SText text) {
         SelectionAttributes selection = (SelectionAttributes) text.getAttributes(Constantes.SELECTION_ATTRIBUTE);
-        ColorAttributes color= (ColorAttributes)text.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        ColorAttributes color= (ColorAttributes) text.getAttributes(Constantes.COLOR_ATTRIBUTE);
         FontAttributes font= (FontAttributes) text.getAttributes(Constantes.FONT_ATTRIBUTE);
         Rectangle rectangle = text.getBounds();
 
@@ -83,7 +83,6 @@ public class ShapeDraftman implements ShapeVisitor{
 
         this.graphics.setColor(font.fontColor);
         this.graphics.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
-        this.graphics.setFont(Constantes.DEFAULT_FONT_ATTRIBUTES.font);
 
         if(selection != null && selection.isSelected())
             drawSelection(rectangle);
@@ -104,10 +103,10 @@ public class ShapeDraftman implements ShapeVisitor{
     public void visitImage(SImage image) {
         Rectangle r = image.getBounds();
         this.graphics.drawImage(image.getImage(), r.x, r.y, r.width, r.height, null);
-        this.drawSelected(image);
+        this.drawSelectedImage(image);
     }
 
-    public void drawSelected(Shape shape){
+    public void drawSelectedImage(SImage shape){
         SelectionAttributes selectionAttributes = (SelectionAttributes)shape.getAttributes(Constantes.SELECTION_ATTRIBUTE);
         if (selectionAttributes.isSelected()){
             Rectangle r = shape.getBounds();
@@ -115,7 +114,6 @@ public class ShapeDraftman implements ShapeVisitor{
             this.graphics.drawRect(r.x,r.y,r.width,r.height);
             if (Constantes.COLOR_SHAPE_SELECTED.filled){
                 this.graphics.setColor(Constantes.COLOR_SHAPE_SELECTED.filledColor);
-
             }
         }
     }
