@@ -45,4 +45,14 @@ public class SCircle extends Shape {
     public void setRadius(int r){
         this.radius = r;
     }
+
+    @Override
+    public Point parcourt(double distance){
+        return new Point((int)(this.loc.x+(1+Math.cos(distance))*this.radius), (int)(this.loc.y+(1+Math.sin(distance))*this.radius));
+    }
+
+    @Override
+    public double getPerimetre(){
+        return 2*Math.PI*this.radius;
+    }
 }

@@ -75,4 +75,12 @@ public abstract class Shape implements Runnable{
             return false;
         }
     }
+
+    public Point parcourt(double distance){
+        return null;
+    }
+
+    public double getPerimetre(){
+        return 0;
+    }
 }

@@ -118,6 +118,20 @@ public class ShapeDraftman implements ShapeVisitor{
         }
     }
 
+    @Override
+    public void visitStack(SStack stack){
+        stack.getShape().accept(this);
+        if (stack.isChangeShape()){
+//            on est sur le premier element
+            if (stack.isSelected()){
+                drawSelection(stack.getBounds());
+            }
+        }
+        if (stack.getNextSStack()!=null){
+            stack.getNextSStack().accept(this);
+        }
+    }
+
     private void drawSelection(Rectangle rectangle) {
         this.graphics.drawRect((int) rectangle.getX() - Constantes.SIZE_SHAPE_SELECTED, (int) rectangle.getY() - Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
         this.graphics.drawRect((int) (rectangle.getX() + rectangle.width), (int) rectangle.getY() + rectangle.height, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);

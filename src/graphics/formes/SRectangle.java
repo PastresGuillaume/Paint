@@ -44,4 +44,48 @@ public class SRectangle extends Shape{
     public void setSize(int i, int p) {
         this.rect.setSize(i, p);
     }
+
+    @Override
+    public Point parcourt(double distance){
+        Point retour = this.getLoc();
+        int delta_x = this.rect.width;
+        int delta_y = this.rect.height;
+        if (distance>delta_x){
+            retour.translate(delta_x, 0);
+            distance-=delta_x;
+        }
+        else{
+            retour.translate((int) distance, 0);
+            return retour;
+        }
+        if (distance>delta_y){
+            retour.translate(0, delta_y);
+            distance-=delta_y;
+        }
+        else{
+            retour.translate(0, (int) distance);
+            return retour;
+        }
+        if (distance>delta_x){
+            retour.translate(-delta_x, 0);
+            distance-=delta_x;
+        }
+        else{
+            retour.translate((int) -distance, 0);
+            return retour;
+        }
+        if (distance>delta_y){
+            retour.translate(0, -delta_y);
+            distance-=delta_y;
+        }
+        else{
+            retour.translate(0, (int) -distance);
+        }
+        return retour;
+    }
+
+    @Override
+    public double getPerimetre(){
+        return 2*(this.rect.width+this.rect.height);
+    }
 }

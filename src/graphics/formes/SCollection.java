@@ -80,4 +80,11 @@ public class SCollection extends Shape{
             s.unselect();
         }
     }
+    
+    @Override
+    public void run(){
+        for (Shape shape : this.shapes) {
+            shape.run();
+        }
+    }
 }
