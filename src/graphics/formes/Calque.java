@@ -84,4 +84,6 @@ public class Calque implements Runnable{
     public void add(Shape s){
         this.content.add(s);
     }
+
+
 }

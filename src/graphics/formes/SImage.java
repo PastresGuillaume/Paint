@@ -70,4 +70,9 @@ public class SImage extends Shape{
     public BufferedImage getImage(){
         return this.image;
     }
+    @Override
+    public float perimetre() {
+        Rectangle rect1 = getBounds() ;
+        return(2*rect1.height+2*rect1.width);
+    }
 }

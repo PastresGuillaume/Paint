@@ -55,4 +55,9 @@ public class SCircle extends Shape {
     public double getPerimetre(){
         return 2*Math.PI*this.radius;
     }
+
+    @Override
+    public float perimetre() {
+    return (float) (2*3.14159*radius);
+    }
 }

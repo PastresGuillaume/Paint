@@ -53,4 +53,11 @@ public class SText extends Shape{
     public void setText(String t){
         this.text = t;
     }
+
+
+    @Override
+    public float perimetre(){
+        Rectangle rect1 = getBounds() ;
+        return(2*rect1.height+2*rect1.width);
+    }
 }

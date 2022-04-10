@@ -2,6 +2,7 @@ package graphics.ui;
 
 import graphics.attributes.ColorAttributes;
 import graphics.attributes.FontAttributes;
+import graphics.attributes.RotationAttributes;
 import graphics.attributes.SelectionAttributes;
 import graphics.formes.*;
 import graphics.ui.View.ModelView;
@@ -50,6 +51,7 @@ public class Editor  extends JFrame {
         SRectangle r = new SRectangle(new Point(10,10),20,30);
         r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
         r.addAttributes(new SelectionAttributes());
+        r.addAttributes(new RotationAttributes(0.2));
         this.model.add(r);
 
         SCircle c = new SCircle(new Point(100,100),10);

@@ -9,6 +9,8 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public abstract class Shape implements Runnable{
+
+
     private ArrayList<Attributes> attributes;
 
     Shape(){
@@ -24,6 +26,8 @@ public abstract class Shape implements Runnable{
     public abstract Rectangle getBounds();
 
     public abstract void accept(ShapeVisitor visitor);
+
+    public abstract float perimetre();
 
     public void addAttributes(Attributes attributes){
         this.attributes.add(attributes);
@@ -83,4 +87,5 @@ public abstract class Shape implements Runnable{
     public double getPerimetre(){
         return 0;
     }
+
 }

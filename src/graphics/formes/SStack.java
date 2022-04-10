@@ -94,4 +94,10 @@ public class SStack extends Shape{
             this.nextSStack.setLoc(this.shape.parcourt(this.distanceNext));
         }
     }
+
+    @Override
+    public float perimetre() {
+        Rectangle rect1 = getBounds() ;
+        return(2*rect1.height+2*rect1.width);
+    }
 }

@@ -3,11 +3,13 @@ package graphics.ui.Visitor;
 import graphics.Constantes;
 import graphics.attributes.ColorAttributes;
 import graphics.attributes.FontAttributes;
+import graphics.attributes.RotationAttributes;
 import graphics.attributes.SelectionAttributes;
 import graphics.formes.*;
 import graphics.formes.Shape;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor{
@@ -22,13 +24,16 @@ public class ShapeDraftman implements ShapeVisitor{
     }
 
     private  void drawRectangle(Rectangle rectangle, ColorAttributes color){
+
         if(color.filled) {
             this.graphics.setColor(color.filledColor);
             this.graphics.fillRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+
         }
         if(color.stroked) {
             this.graphics.setColor(color.strokedColor);
             this.graphics.drawRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+
         }
     }
 
@@ -39,12 +44,28 @@ public class ShapeDraftman implements ShapeVisitor{
 
         if (colorAttributes == null)
             colorAttributes = Constantes.DEFAULT_COLOR_ATTRIBUTES;
-        drawRectangle(r, colorAttributes);
+        /*drawRectangle(r, colorAttributes);*/
 
         SelectionAttributes selection = (SelectionAttributes) rectangle.getAttributes(Constantes.SELECTION_ATTRIBUTE);
-        if(selection != null && selection.isSelected())
+        if(selection != null && selection.isSelected()){
             drawSelection(r);
+        }
+
+        RotationAttributes Rotation = (RotationAttributes)rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES);
+        if (rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES) == null){
+            Rotation = new RotationAttributes(0.0);
+            }
+        else{ Rotation.ModifAngle(Rotation.angle);   }
+
+        if (Rotation.angle != 0.0) { ((Graphics2D)this.graphics).rotate(-Rotation.angle) ;   }
+        drawRectangle(r,colorAttributes);
+        if (Rotation.angle != 0) {((Graphics2D)this.graphics).rotate(Rotation.angle) ;   }
+
+
+
+
     }
+
 
     @Override
     public void visitCircle(SCircle circle) {
@@ -135,5 +156,14 @@ public class ShapeDraftman implements ShapeVisitor{
     private void drawSelection(Rectangle rectangle) {
         this.graphics.drawRect((int) rectangle.getX() - Constantes.SIZE_SHAPE_SELECTED, (int) rectangle.getY() - Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
         this.graphics.drawRect((int) (rectangle.getX() + rectangle.width), (int) rectangle.getY() + rectangle.height, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
+    }
+
+
+    private void drawRotation(Rectangle rectangle) {
+        Graphics2D g2d = (Graphics2D) this.graphics;
+        AffineTransform oldTransform = g2d.getTransform();
+        g2d.setTransform(AffineTransform.getRotateInstance(0.2));
+        g2d.draw(rectangle);
+        g2d.setTransform(oldTransform);
     }
 }

@@ -269,4 +269,9 @@ public class SModel extends Shape{
     public void accept(ModelDraftman draftman) {
         draftman.visitModel(this);
     }
+    @Override
+    public float perimetre() {
+        Rectangle rect1 = getBounds() ;
+        return(2*rect1.height+2*rect1.width);
+    }
 }

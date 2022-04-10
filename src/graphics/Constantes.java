@@ -2,6 +2,7 @@ package graphics;
 
 import graphics.attributes.ColorAttributes;
 import graphics.attributes.FontAttributes;
+import graphics.attributes.RotationAttributes;
 import graphics.attributes.SelectionAttributes;
 
 import java.awt.*;
@@ -39,4 +40,8 @@ public class Constantes {
     public final static Color COLOR_INVISIBLE = new Color(0, 0, 0, 1);
 
     public final static Color DEFAULT_COLOR_ADD_RECTANGLE = Color.BLACK;
+
+    public static final String ROTATION_ATTRIBUTES = "RotationAttributes";
+
+    public final static RotationAttributes DEFAULT_ROTATION_ATTRIBUTES = new RotationAttributes(0.01);
 }

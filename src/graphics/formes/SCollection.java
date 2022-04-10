@@ -87,4 +87,10 @@ public class SCollection extends Shape{
             shape.run();
         }
     }
+
+    @Override
+    public float perimetre() {
+        Rectangle rect1 = getBounds() ;
+        return(2*rect1.height+2*rect1.width);
+    }
 }

@@ -7,7 +7,19 @@ import java.awt.*;
 public class SRectangle extends Shape{
     private Rectangle rect;
 
-    public SRectangle(Point point, int x, int y){
+
+    /*
+   @Override
+   public static Double Angle(){
+       return (this.angle);
+   }
+
+   @Override
+   public void ModifAngle (Double angle){
+       this.angle = angle;
+   }*/
+
+    public SRectangle(Point point, int x, int y ){
         this.rect = new Rectangle(point.x, point.y, x, y);
     }
 
@@ -88,4 +100,9 @@ public class SRectangle extends Shape{
     public double getPerimetre(){
         return 2*(this.rect.width+this.rect.height);
     }
+
+    @Override
+    public float perimetre(){
+        return(2*rect.height+2*rect.width);
+    };
 }
