@@ -43,5 +43,5 @@ public class Constantes {
 
     public static final String ROTATION_ATTRIBUTES = "RotationAttributes";
 
-    public final static RotationAttributes DEFAULT_ROTATION_ATTRIBUTES = new RotationAttributes(0.01);
+    public final static RotationAttributes DEFAULT_ROTATION_ATTRIBUTES = new RotationAttributes(0.);
 }

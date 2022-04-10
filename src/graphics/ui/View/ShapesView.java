@@ -30,14 +30,4 @@ public class ShapesView extends View {
         this.draftman.setGraphics(g);
         model.accept(draftman);
     }
-
-    @Override
-    public boolean isFocusable() {
-        return true;
-    }
-
-    @Override
-    public void invalidate(){
-        this.paintImmediately(getBounds());
-    }
 }

@@ -48,7 +48,7 @@ public class Editor  extends JFrame {
         i2.addAttributes(new SelectionAttributes());
         this.model.add(i2);
 
-        SRectangle r = new SRectangle(new Point(10,10),20,30);
+        SRectangle r = new SRectangle(new Point(10,10),100,100);
         r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
         r.addAttributes(new SelectionAttributes());
         r.addAttributes(new RotationAttributes(0.2));
@@ -85,6 +85,9 @@ public class Editor  extends JFrame {
         c3.add(ajout2);
 
         this.model.addCalque(c3);
+
+//        this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
+//        this.model.add(new SRectangle(new Point(50, 50), 100, 100));
     }
 
     public static void main(String[] args)

@@ -24,45 +24,59 @@ public class ShapeDraftman implements ShapeVisitor{
     }
 
     private  void drawRectangle(Rectangle rectangle, ColorAttributes color){
-
         if(color.filled) {
             this.graphics.setColor(color.filledColor);
             this.graphics.fillRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
-
         }
         if(color.stroked) {
             this.graphics.setColor(color.strokedColor);
             this.graphics.drawRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
-
         }
     }
 
     @Override
     public void visitRectangle(SRectangle rectangle) {
         Rectangle r = rectangle.getBounds();
-        ColorAttributes colorAttributes = (ColorAttributes)rectangle.getAttributes(Constantes.COLOR_ATTRIBUTE);
 
+        ColorAttributes colorAttributes = (ColorAttributes)rectangle.getAttributes(Constantes.COLOR_ATTRIBUTE);
         if (colorAttributes == null)
             colorAttributes = Constantes.DEFAULT_COLOR_ATTRIBUTES;
-        /*drawRectangle(r, colorAttributes);*/
 
         SelectionAttributes selection = (SelectionAttributes) rectangle.getAttributes(Constantes.SELECTION_ATTRIBUTE);
-        if(selection != null && selection.isSelected()){
-            drawSelection(r);
+        if (selection == null)
+            selection = Constantes.DEFAULT_SELECTION_ATTRIBUTES;
+
+        RotationAttributes rotation = (RotationAttributes)rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES);
+        if (rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES) == null)
+            rotation = Constantes.DEFAULT_ROTATION_ATTRIBUTES;
+
+        if (rotation.angle != 0.){
+            Graphics g = this.graphics.create();
+            Graphics2D g2d = (Graphics2D) g;
+
+            g2d.setTransform(AffineTransform.getRotateInstance(rotation.angle, (int)(r.x+r.width/2), (int)(r.y+r.height/2)));
+
+            if(colorAttributes.filled) {
+                g2d.setColor(colorAttributes.filledColor);
+                g2d.fillRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
+
+            }
+            if(colorAttributes.stroked) {
+                g2d.setColor(colorAttributes.strokedColor);
+                g2d.drawRect((int) r.getX(), (int) r.getY(), (int) r.getWidth(), (int) r.getHeight());
+            }
+
+            AffineTransform at = AffineTransform.getRotateInstance(0, (int)(r.x+r.width/2), (int)(r.y+r.height/2));
+            java.awt.Shape rotatedRect = at.createTransformedShape(r);
+            ((Graphics2D) g).draw(rotatedRect);
+        }
+        else{
+            drawRectangle(r, colorAttributes);
         }
 
-        RotationAttributes Rotation = (RotationAttributes)rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES);
-        if (rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES) == null){
-            Rotation = new RotationAttributes(0.0);
-            }
-        else{ Rotation.ModifAngle(Rotation.angle);   }
-
-        if (Rotation.angle != 0.0) { ((Graphics2D)this.graphics).rotate(-Rotation.angle) ;   }
-        drawRectangle(r,colorAttributes);
-        if (Rotation.angle != 0) {((Graphics2D)this.graphics).rotate(Rotation.angle) ;   }
-
-
-
+        if(selection.isSelected()){
+            drawSelection(r);
+        }
 
     }
 

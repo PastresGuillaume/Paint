@@ -13,9 +13,11 @@ import java.util.concurrent.ScheduledExecutorService;
 
 public class ModelView extends View implements Runnable{
     private ModelDraftman draftman;
+    private boolean isRun;
 
     public ModelView(Object model) {
         super(model);
+        this.isRun = true;
         this.draftman = new ModelDraftman();
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
         executor.scheduleAtFixedRate(this, 0, Constantes.DELTA_REFRESH, Constantes.TIME_UNIT);
@@ -44,16 +46,12 @@ public class ModelView extends View implements Runnable{
 
     @Override
     public void run(){
-        this.invalidate();
+        if (this.isRun) {
+            this.invalidate();
+        }
     }
 
-    @Override
-    public boolean isFocusable() {
-        return true;
-    }
-
-    @Override
-    public void invalidate(){
-        this.paintImmediately(getBounds());
+    public void setRun(boolean run) {
+        this.isRun = run;
     }
 }

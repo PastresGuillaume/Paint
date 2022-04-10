@@ -37,6 +37,15 @@ public abstract class View extends JPanel {
         return this.controller;
     }
 
+    @Override
+    public boolean isFocusable() {
+        return true;
+    }
+
+    @Override
+    public void invalidate(){
+        this.paintImmediately(getBounds());
+    }
 }
 
 

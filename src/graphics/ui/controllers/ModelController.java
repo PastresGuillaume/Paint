@@ -21,6 +21,7 @@ public class ModelController extends Controller {
             if (calque.isUsed()) {
                 this.controller.setView(this.getView());
                 this.controller.setModel(calque.getContent());
+//                this.getView().invalidate();
                 return;
             }
         }
