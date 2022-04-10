@@ -27,6 +27,8 @@ public abstract class Shape implements Runnable{
 
     public abstract void accept(ShapeVisitor visitor);
 
+    public abstract void resize(int width, int height);
+
     public abstract float perimetre();
 
     public void addAttributes(Attributes attributes){

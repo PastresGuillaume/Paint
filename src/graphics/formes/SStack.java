@@ -78,6 +78,11 @@ public class SStack extends Shape{
         visitor.visitStack(this);
     }
 
+    @Override
+    public void resize(int width, int height) {
+        //TODO jsp à quoi sert SStack
+    }
+
     public Shape getShape() {
         return shape;
     }

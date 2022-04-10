@@ -82,10 +82,10 @@ public class ShapeDraftman implements ShapeVisitor{
 
 
     @Override
-    public void visitCircle(SCircle circle) {
-        Rectangle rectangle = circle.getBounds();
-        ColorAttributes color= (ColorAttributes)circle.getAttributes(Constantes.COLOR_ATTRIBUTE);
-        SelectionAttributes selection = (SelectionAttributes) circle.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+    public void visitEllipsis(Shape ellipsis) {
+        Rectangle rectangle = ellipsis.getBounds();
+        ColorAttributes color= (ColorAttributes)ellipsis.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        SelectionAttributes selection = (SelectionAttributes) ellipsis.getAttributes(Constantes.SELECTION_ATTRIBUTE);
 
         if (color == null)
             color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
@@ -100,6 +100,7 @@ public class ShapeDraftman implements ShapeVisitor{
         if(selection != null && selection.isSelected())
             drawSelection(rectangle);
     }
+
 
     @Override
     public void visitText(SText text) {

@@ -46,6 +46,11 @@ public class SText extends Shape{
         visitor.visitText(this);
     }
 
+    @Override
+    public void resize(int width, int height) {
+        //TODO resize image
+    }
+
     public String getText(){
         return this.text;
     }

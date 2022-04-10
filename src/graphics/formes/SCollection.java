@@ -61,6 +61,11 @@ public class SCollection extends Shape{
         visitor.visitCollection(this);
     }
 
+    @Override
+    public void resize(int width, int height) {
+        //nothing to do
+    }
+
     public Iterator<Shape> iterator(){
         return this.shapes.iterator();
     }

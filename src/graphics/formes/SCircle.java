@@ -35,7 +35,12 @@ public class SCircle extends Shape {
 
     @Override
     public void accept(ShapeVisitor visitor) {
-        visitor.visitCircle(this);
+        visitor.visitEllipsis(this);
+    }
+
+    @Override
+    public void resize(int width, int height) {
+        //maybe only scaling
     }
 
     public int getRadius(){

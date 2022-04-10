@@ -5,7 +5,7 @@ import graphics.formes.*;
 public interface ShapeVisitor {
     void visitRectangle(SRectangle rectangle);
 
-    void visitCircle(SCircle circle);
+    void visitEllipsis(Shape ellipsis);
 
     void visitText(SText text);
 

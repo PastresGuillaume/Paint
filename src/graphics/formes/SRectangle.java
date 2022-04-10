@@ -48,6 +48,12 @@ public class SRectangle extends Shape{
         visitor.visitRectangle(this);
     }
 
+    @Override
+    public void resize(int width, int height) {
+        this.rect.width = width;
+        this.rect.height = height;
+    }
+
     public Rectangle getRect(){
         return this.rect;
     }

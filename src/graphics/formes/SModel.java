@@ -50,6 +50,11 @@ public class SModel extends Shape{
 
     }
 
+    @Override
+    public void resize(int width, int height) {
+        //TODO a quoi sert SMODEL
+    }
+
     public void addCalque(Calque calque){
         for (Calque calque1 : this.calques) {
             if (calque1.getName().equals(calque.getName())){
