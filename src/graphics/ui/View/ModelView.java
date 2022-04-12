@@ -14,6 +14,7 @@ import java.util.concurrent.ScheduledExecutorService;
 public class ModelView extends View implements Runnable{
     private ModelDraftman draftman;
     private boolean isRun;
+    private boolean noRightClickMenu = true;
 
     public ModelView(Object model) {
         super(model);
@@ -46,12 +47,24 @@ public class ModelView extends View implements Runnable{
 
     @Override
     public void run(){
-        if (this.isRun) {
+        if (this.isRun && this.noRightClickMenu) {
             this.invalidate();
         }
     }
 
     public void setRun(boolean run) {
         this.isRun = run;
+    }
+
+    //TODO La fonction run() fout toujours la merde D:
+    //Ajout
+
+
+    public boolean isNoRightClickMenu() {
+        return noRightClickMenu;
+    }
+
+    public void setNoRightClickMenu(boolean noRightClickMenu) {
+        this.noRightClickMenu = noRightClickMenu;
     }
 }

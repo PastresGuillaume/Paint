@@ -29,33 +29,33 @@ public class RectangleCreator extends AbstractController {
         this.locCreation = new Point();
         unselectedAll();
 
-        JMenu color = new JMenu("Color");
-        JMenuItem strokedColorMenu = new JMenuItem("Stroked color");
-        JMenuItem filledColorMenu = new JMenuItem("Filled color", new ImageIcon("graphics\\shapes\\ui\\image\\chat.jpg" ));
-
-        strokedColorMenu.addActionListener(e -> {
-            JFrame myFrame = new JFrame();
-            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            myFrame.setSize(500, 300);
-            myFrame.setLocationRelativeTo(null);
-            myFrame.setLayout(new BorderLayout());
-            strokedColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
-            myFrame.setTitle("Select your filled color");
-        });
-        filledColorMenu.addActionListener(e -> {
-            JFrame myFrame = new JFrame();
-            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            myFrame.setSize(500, 300);
-            myFrame.setLocationRelativeTo(null);
-            myFrame.setLayout(new BorderLayout());
-            filledColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
-            myFrame.setTitle("Select your filled color");
-        });
-
-        color.add(strokedColorMenu);
-        color.add(filledColorMenu);
-
-        menu.add(color);
+//        JMenu color = new JMenu("Color");
+//        JMenuItem strokedColorMenu = new JMenuItem("Stroked color");
+//        JMenuItem filledColorMenu = new JMenuItem("Filled color", new ImageIcon("graphics\\shapes\\ui\\image\\chat.jpg" ));
+//
+//        strokedColorMenu.addActionListener(e -> {
+//            JFrame myFrame = new JFrame();
+//            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            myFrame.setSize(500, 300);
+//            myFrame.setLocationRelativeTo(null);
+//            myFrame.setLayout(new BorderLayout());
+//            strokedColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
+//            myFrame.setTitle("Select your filled color");
+//        });
+//        filledColorMenu.addActionListener(e -> {
+//            JFrame myFrame = new JFrame();
+//            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//            myFrame.setSize(500, 300);
+//            myFrame.setLocationRelativeTo(null);
+//            myFrame.setLayout(new BorderLayout());
+//            filledColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
+//            myFrame.setTitle("Select your filled color");
+//        });
+//
+//        color.add(strokedColorMenu);
+//        color.add(filledColorMenu);
+//
+//        menu.add(color);
     }
 
     @Override
@@ -157,6 +157,36 @@ public class RectangleCreator extends AbstractController {
                 s.setSize(Math.abs(i), Math.abs(p));
             }
         }
+    }
+
+    public void requestJPopopUpMenu(JPopupMenu menu,ModelController modelController) {
+        JMenu color = new JMenu("Color");
+        JMenuItem strokedColorMenu = new JMenuItem("Stroked color");
+        JMenuItem filledColorMenu = new JMenuItem("Filled color", new ImageIcon("graphics\\shapes\\ui\\image\\chat.jpg" ));
+
+        strokedColorMenu.addActionListener(e -> {
+            JFrame myFrame = new JFrame();
+            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            myFrame.setSize(500, 300);
+            myFrame.setLocationRelativeTo(null);
+            myFrame.setLayout(new BorderLayout());
+            strokedColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
+            myFrame.setTitle("Select your stroked color");
+        });
+        filledColorMenu.addActionListener(e -> {
+            JFrame myFrame = new JFrame();
+            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            myFrame.setSize(500, 300);
+            myFrame.setLocationRelativeTo(null);
+            myFrame.setLayout(new BorderLayout());
+            filledColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
+            myFrame.setTitle("Select your filled color");
+        });
+
+        color.add(strokedColorMenu);
+        color.add(filledColorMenu);
+
+        menu.add(color);
     }
 
 }

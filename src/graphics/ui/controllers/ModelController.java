@@ -3,13 +3,17 @@ package graphics.ui.controllers;
 import graphics.formes.Calque;
 import graphics.formes.SModel;
 import graphics.formes.Shape;
+import graphics.ui.View.ModelView;
 import graphics.ui.View.View;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.util.Objects;
 
 public class ModelController extends Controller {
     private AbstractController controller;
+    private JPopupMenu menu = new JPopupMenu("Menu");
 
     public ModelController(Object newModel, View v) {
         super(newModel);
@@ -30,6 +34,8 @@ public class ModelController extends Controller {
     public void setController(AbstractController c){
         c.setView(this.controller.getView());
         this.controller = c;
+        this.menu = new JPopupMenu("menu");
+        c.requestJPopopUpMenu(this.menu, this);
     }
 
     private void unSelectAll() {
@@ -44,7 +50,14 @@ public class ModelController extends Controller {
     @Override
     public void mousePressed(MouseEvent e) {
         setController();
-        this.controller.mousePressed(e);
+        if(SwingUtilities.isRightMouseButton(e)) {
+            ((ModelView)this.getView()).setNoRightClickMenu(false);
+            if(!Objects.equals(menu, new JPopupMenu()))
+                menu.show(this.getView(), e.getX(), e.getY());
+        }
+        else
+            this.controller.mousePressed(e);
+        ((ModelView)this.getView()).setNoRightClickMenu(true);
     }
 
     @Override

@@ -3,6 +3,7 @@ package graphics.ui.controllers;
 import graphics.formes.Shape;
 import graphics.ui.View.ModelView;
 
+import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -71,5 +72,8 @@ public class AbstractController extends Controller {
 
     @Override
     public void keyReleased(KeyEvent evt) {
+    }
+
+    public void requestJPopopUpMenu(JPopupMenu menu,ModelController modelController) {
     }
 }
