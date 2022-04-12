@@ -20,9 +20,11 @@ public class SelectionAttributes extends Attributes{
 
     public void unselect(){
         this.selected = false;
+
     }
 
     public void toggleSelection(){
         this.selected = !this.selected;
+
     }
 }

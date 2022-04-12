@@ -44,4 +44,8 @@ public class Constantes {
     public static final String ROTATION_ATTRIBUTES = "RotationAttributes";
 
     public final static RotationAttributes DEFAULT_ROTATION_ATTRIBUTES = new RotationAttributes(0.);
+
+    public final static Cursor SE_RESIZE_CURSOR = new Cursor(Cursor.SE_RESIZE_CURSOR);
+
+    public final static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
 }

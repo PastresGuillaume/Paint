@@ -54,7 +54,7 @@ public class Editor  extends JFrame {
         r.addAttributes(new RotationAttributes(0.2));
         this.model.add(r);
 
-        SCircle c = new SCircle(new Point(100,100),10);
+        SEllipsis c = new SEllipsis(new Point(100,100),10);
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));
         c.addAttributes(new SelectionAttributes());
         this.model.add(c);
@@ -71,7 +71,7 @@ public class Editor  extends JFrame {
         r.addAttributes(new ColorAttributes(true,false,Color.MAGENTA,Color.BLUE));
         r.addAttributes(new SelectionAttributes());
         sc.add(r);
-        c = new SCircle(new Point(150,100),20);
+        c = new SEllipsis(new Point(150,100),20);
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
         c.addAttributes(new SelectionAttributes());
         sc.add(c);
@@ -86,8 +86,8 @@ public class Editor  extends JFrame {
 
         this.model.addCalque(c3);
 
-//        this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
-//        this.model.add(new SRectangle(new Point(50, 50), 100, 100));
+        //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
+        //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
     }
 
     public static void main(String[] args)

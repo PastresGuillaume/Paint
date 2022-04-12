@@ -14,6 +14,8 @@ import java.util.Iterator;
 
 import graphics.ui.View.View;
 
+import static graphics.Constantes.*;
+
 public class ShapesController extends AbstractController {
 
     private Shape model;
@@ -21,6 +23,8 @@ public class ShapesController extends AbstractController {
     private boolean shiftPressed = false;
     private Point lastClick;
     private boolean selectionDragged=false;
+    private Shape resizeableShape;
+    private Point initLoc;
 
     public ShapesController(Shape newModel, View view) {
         super(newModel);
@@ -36,18 +40,29 @@ public class ShapesController extends AbstractController {
 
     @Override
     public void mousePressed(MouseEvent e) {
+
+
         this.selectionDragged=false;
         this.lastClick = e.getPoint();
 
         if (!this.shiftPressed) {
             model.unselect();
         }
+
         Shape shapeSelec = getTarget(e.getX(), e.getY());
         if (shapeSelec!=null){
             shapeSelec.select();
             return;
         }
+
         this.selectionDragged = true;
+
+
+
+        this.resizeableShape = getResizeableShape(e.getX(), e.getY());
+        if (resizeableShape!=null){
+            this.initLoc = resizeableShape.getLoc();
+        }
     }
 
     @Override
@@ -101,6 +116,20 @@ public class ShapesController extends AbstractController {
 
     @Override
     public void mouseMoved(MouseEvent evt) {
+        Iterator<Shape> iterator = ((SCollection)this.getModel()).iterator();
+        while(iterator.hasNext()) {
+            Shape shape = iterator.next();
+            if (((SelectionAttributes) shape.getAttributes(Constantes.SELECTION_ATTRIBUTE)).isSelected()){
+                Rectangle r = shape.getBounds();
+                if ((new Rectangle(r.x+r.width, r.y+r.height, SIZE_SHAPE_SELECTED, SIZE_SHAPE_SELECTED)).contains(evt.getX(), evt.getY())){
+                    this.view.setCursor(SE_RESIZE_CURSOR);
+                    return;
+                }
+                else {
+                    this.view.setCursor(DEFAULT_CURSOR);
+                }
+            }
+        }
     }
 
     @Override
@@ -122,6 +151,22 @@ public class ShapesController extends AbstractController {
                 }
             }
             this.lastClick = new Point(evt.getX(), evt.getY());
+        }
+
+        if (this.resizeableShape != null){
+            int newWidth = evt.getX() - initLoc.x;
+            int newHeight = evt.getY() - initLoc.y;
+            this.resizeableShape.setLoc(new Point(this.initLoc.x, this.initLoc.y));
+            if (newWidth<0 && newHeight >=0){
+                this.resizeableShape.translate(evt.getX()-resizeableShape.getLoc().x, 0);
+            }
+            else if (newWidth>=0 && newHeight<0){
+                this.resizeableShape.translate(0, evt.getY()-resizeableShape.getLoc().y);
+            }
+            else if(newWidth<0){
+                this.resizeableShape.translate(evt.getX()-resizeableShape.getLoc().x, evt.getY()-resizeableShape.getLoc().y);
+            }
+            this.resizeableShape.resize(Math.abs(newWidth), Math.abs(newHeight));
         }
     }
 
@@ -160,6 +205,28 @@ public class ShapesController extends AbstractController {
             }
         }
         return retour;
+    }
+
+    public Shape getResizeableShape(int x, int y){
+        SCollection model;
+        try{
+            model = (SCollection) this.model;
+        }
+        catch (ClassCastException ex){
+            model = ((SModel) this.model).getModel();
+        }
+        Iterator<Shape> iterator = model.iterator();
+        while(iterator.hasNext()) {
+            Shape shape = iterator.next();
+            if (((SelectionAttributes) shape.getAttributes(Constantes.SELECTION_ATTRIBUTE)).isSelected()){
+                Rectangle r = shape.getBounds();
+                if ((new Rectangle(r.x+r.width, r.y+r.height, SIZE_SHAPE_SELECTED, SIZE_SHAPE_SELECTED)).contains(x,y)){
+                    return shape;
+                }
+            }
+
+        }
+        return null;
     }
 
     public void unSelectAll(){
