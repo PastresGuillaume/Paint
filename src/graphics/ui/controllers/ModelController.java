@@ -32,7 +32,7 @@ public class ModelController extends Controller {
     }
 
     public void setController(AbstractController c){
-        c.setView(this.controller.getView());
+        c.setView(this.getView());
         this.controller = c;
         this.menu = new JPopupMenu("menu");
         c.requestJPopopUpMenu(this.menu, this);
