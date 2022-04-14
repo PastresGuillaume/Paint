@@ -40,6 +40,9 @@ public class SModel extends Shape{
 
     @Override
     public void unselect(){
+        for (Calque calque : this.calques) {
+            calque.getContent().unselect();
+        }
     }
 
     @Override

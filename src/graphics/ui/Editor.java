@@ -88,6 +88,7 @@ public class Editor  extends JFrame {
 
         //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
         //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
+//        this.model.setUse(1);
     }
 
     public static void main(String[] args)

@@ -1,6 +1,5 @@
 package graphics.ui.View;
 
-import graphics.Constantes;
 import graphics.formes.SModel;
 import graphics.ui.Visitor.ModelDraftman;
 import graphics.ui.controllers.AbstractController;
@@ -8,8 +7,6 @@ import graphics.ui.controllers.ModelController;
 import graphics.ui.controllers.Controller;
 
 import java.awt.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class ModelView extends View{
     private ModelDraftman draftman;

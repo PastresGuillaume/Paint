@@ -2,8 +2,6 @@ package graphics.attributes;
 
 import graphics.Constantes;
 
-import javax.management.Attribute;
-
 public class RotationAttributes extends Attributes{
    public Double angle ;
 

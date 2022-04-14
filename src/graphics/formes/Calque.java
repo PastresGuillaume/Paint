@@ -1,13 +1,10 @@
 package graphics.formes;
 
-import graphics.Constantes;
 import graphics.attributes.ColorAttributes;
 import graphics.attributes.SelectionAttributes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class Calque{
     public static int nb_Calque=0;

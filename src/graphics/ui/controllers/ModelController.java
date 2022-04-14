@@ -3,7 +3,6 @@ package graphics.ui.controllers;
 import graphics.formes.Calque;
 import graphics.formes.SModel;
 import graphics.formes.Shape;
-import graphics.ui.View.ModelView;
 import graphics.ui.View.View;
 
 import javax.swing.*;
