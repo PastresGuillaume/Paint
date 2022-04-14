@@ -8,7 +8,7 @@ import graphics.ui.Visitor.ShapeVisitor;
 import java.awt.*;
 import java.util.ArrayList;
 
-public abstract class Shape implements Runnable{
+public abstract class Shape{
 
 
     private ArrayList<Attributes> attributes;
@@ -28,8 +28,6 @@ public abstract class Shape implements Runnable{
     public abstract void accept(ShapeVisitor visitor);
 
     public abstract void resize(int width, int height);
-
-    public abstract float perimetre();
 
     public void addAttributes(Attributes attributes){
         this.attributes.add(attributes);
@@ -64,11 +62,6 @@ public abstract class Shape implements Runnable{
         }
     }
 
-    @Override
-    public void run(){
-
-    }
-
     public void setSize(int abs, int abs1) {
         //TODO Thomas
     }
@@ -80,14 +73,6 @@ public abstract class Shape implements Runnable{
         catch (NullPointerException npe){
             return false;
         }
-    }
-
-    public Point parcourt(double distance){
-        return null;
-    }
-
-    public double getPerimetre(){
-        return 0;
     }
 
 }

@@ -48,4 +48,6 @@ public class Constantes {
     public final static Cursor SE_RESIZE_CURSOR = new Cursor(Cursor.SE_RESIZE_CURSOR);
 
     public final static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
+
+    public final static ColorAttributes SELECTION_COLOR = new ColorAttributes(false, true, Color.BLACK, Color.BLACK);
 }

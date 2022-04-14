@@ -12,6 +12,4 @@ public interface ShapeVisitor {
     void visitCollection(SCollection collection);
 
     void visitImage(SImage image);
-
-    void visitStack(SStack stack);
 }

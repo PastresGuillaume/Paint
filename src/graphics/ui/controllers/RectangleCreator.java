@@ -98,11 +98,9 @@ public class RectangleCreator extends AbstractController {
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        {
-            int width = (int) (e.getPoint().getX() - this.locCreation.getX());
-            int height = (int) (e.getPoint().getY() - this.locCreation.getY());
-            this.changeSize(width, height);
-        }
+        int width = (int) (e.getPoint().getX() - this.locCreation.getX());
+        int height = (int) (e.getPoint().getY() - this.locCreation.getY());
+        this.changeSize(width, height);
     }
 
     @Override
@@ -132,7 +130,7 @@ public class RectangleCreator extends AbstractController {
 
     private void unselectedAll(){
         try {
-            for (Shape s : ((SModel) this.model).getModel().getElement())
+            for (Shape s : ((SModel) this.model).getCalqueUse().getElement())
                 s.unselect();
         }
         catch (ClassCastException e){

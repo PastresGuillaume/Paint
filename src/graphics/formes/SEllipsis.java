@@ -31,12 +31,6 @@ public class SEllipsis extends Shape{
         return this.rect.getBounds();
     }
 
-
-    @Override
-    public float perimetre() {
-        return 0;
-    }
-
     @Override
     public void accept(ShapeVisitor visitor) {
         visitor.visitEllipsis(this);

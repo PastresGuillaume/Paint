@@ -64,6 +64,7 @@ public class SCollection extends Shape{
     @Override
     public void resize(int width, int height) {
         //nothing to do
+        //TODO see if it is correct
     }
 
     public Iterator<Shape> iterator(){
@@ -84,18 +85,5 @@ public class SCollection extends Shape{
         for (Shape s: this.shapes){
             s.unselect();
         }
-    }
-    
-    @Override
-    public void run(){
-        for (Shape shape : this.shapes) {
-            shape.run();
-        }
-    }
-
-    @Override
-    public float perimetre() {
-        Rectangle rect1 = getBounds() ;
-        return(2*rect1.height+2*rect1.width);
     }
 }

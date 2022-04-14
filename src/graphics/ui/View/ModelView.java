@@ -11,17 +11,12 @@ import java.awt.*;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 
-public class ModelView extends View implements Runnable{
+public class ModelView extends View{
     private ModelDraftman draftman;
-    private boolean isRun;
-    private boolean noRightClickMenu = true;
 
     public ModelView(Object model) {
         super(model);
-        this.isRun = true;
         this.draftman = new ModelDraftman();
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(this, 0, Constantes.DELTA_REFRESH, Constantes.TIME_UNIT);
     }
 
     @Override
@@ -43,28 +38,5 @@ public class ModelView extends View implements Runnable{
         }
         this.draftman.setGraphics(g);
         model.accept(draftman);
-    }
-
-    @Override
-    public void run(){
-        if (this.isRun && this.noRightClickMenu) {
-            this.invalidate();
-        }
-    }
-
-    public void setRun(boolean run) {
-        this.isRun = run;
-    }
-
-    //TODO La fonction run() fout toujours la merde D:
-    //Ajout
-
-
-    public boolean isNoRightClickMenu() {
-        return noRightClickMenu;
-    }
-
-    public void setNoRightClickMenu(boolean noRightClickMenu) {
-        this.noRightClickMenu = noRightClickMenu;
     }
 }

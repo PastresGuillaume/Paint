@@ -54,7 +54,7 @@ public class ShapeDraftman implements ShapeVisitor{
             Graphics g = this.graphics.create();
             Graphics2D g2d = (Graphics2D) g;
 
-            g2d.setTransform(AffineTransform.getRotateInstance(rotation.angle, (int)(r.x+r.width/2), (int)(r.y+r.height/2)));
+            g2d.setTransform(AffineTransform.getRotateInstance(-rotation.angle, (int)(r.x+r.width/2), (int)(r.y+r.height/2)));
 
             if(colorAttributes.filled) {
                 g2d.setColor(colorAttributes.filledColor);
@@ -154,23 +154,17 @@ public class ShapeDraftman implements ShapeVisitor{
         }
     }
 
-    @Override
-    public void visitStack(SStack stack){
-        stack.getShape().accept(this);
-        if (stack.isChangeShape()){
-//            on est sur le premier element
-            if (stack.isSelected()){
-                drawSelection(stack.getBounds());
-            }
-        }
-        if (stack.getNextSStack()!=null){
-            stack.getNextSStack().accept(this);
-        }
-    }
-
     private void drawSelection(Rectangle rectangle) {
-        this.graphics.drawRect((int) rectangle.getX() - Constantes.SIZE_SHAPE_SELECTED, (int) rectangle.getY() - Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
-        this.graphics.drawRect((int) (rectangle.getX() + rectangle.width), (int) rectangle.getY() + rectangle.height, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
+        if (Constantes.SELECTION_COLOR.filled){
+            this.graphics.setColor(Constantes.SELECTION_COLOR.filledColor);
+            this.graphics.fillRect((int) rectangle.getX() - Constantes.SIZE_SHAPE_SELECTED, (int) rectangle.getY() - Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
+            this.graphics.fillRect((int) (rectangle.getX() + rectangle.width), (int) rectangle.getY() + rectangle.height, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
+        }
+        if (Constantes.SELECTION_COLOR.stroked) {
+            this.graphics.setColor(Constantes.SELECTION_COLOR.strokedColor);
+            this.graphics.drawRect((int) rectangle.getX() - Constantes.SIZE_SHAPE_SELECTED, (int) rectangle.getY() - Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
+            this.graphics.drawRect((int) (rectangle.getX() + rectangle.width), (int) rectangle.getY() + rectangle.height, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
+        }
     }
 
 

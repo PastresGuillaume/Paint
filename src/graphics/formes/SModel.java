@@ -1,14 +1,11 @@
 package graphics.formes;
 
-import graphics.Constantes;
 import graphics.ui.Visitor.ModelDraftman;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 public class SModel extends Shape{
     ArrayList<Calque> calques;
@@ -52,7 +49,8 @@ public class SModel extends Shape{
 
     @Override
     public void resize(int width, int height) {
-        //TODO a quoi sert SMODEL
+        //TODO a quoi sert SMODEL ?
+        //TODO c'est ce qui remplace le model du prof. En gros c'est ce qui regroupe tous mes calques, et apres j'ai la vue et le model qui correspondent pour gerer comme il faut les calques
     }
 
     public void addCalque(Calque calque){
@@ -61,9 +59,6 @@ public class SModel extends Shape{
                 return;
             }
         }
-        ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-        executor.scheduleAtFixedRate(calque, 0, Constantes.DELTA_REFRESH, Constantes.TIME_UNIT);
-        calque.setThread(executor);
         this.calques.add(calque);
     }
 
@@ -262,7 +257,7 @@ public class SModel extends Shape{
         }
     }
 
-    public SCollection getModel(){
+    public SCollection getCalqueUse(){
         for (Calque calque : this.calques) {
             if (calque.isUsed()){
                 return calque.getContent();
@@ -273,10 +268,5 @@ public class SModel extends Shape{
 
     public void accept(ModelDraftman draftman) {
         draftman.visitModel(this);
-    }
-    @Override
-    public float perimetre() {
-        Rectangle rect1 = getBounds() ;
-        return(2*rect1.height+2*rect1.width);
     }
 }

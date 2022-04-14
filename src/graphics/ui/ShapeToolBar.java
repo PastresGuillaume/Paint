@@ -33,7 +33,7 @@ public class ShapeToolBar extends JFrame{
         btnNew.setToolTipText( "Everyday i'm drinking" );
         btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> {
-            view.setController(new ShapesController(((SModel)view.getModel()).getModel(), this.getView()));
+            view.setController(new ShapesController(((SModel)view.getModel()).getCalqueUse(), this.getView()));
         });
         toolBar.add( btnNew );
 

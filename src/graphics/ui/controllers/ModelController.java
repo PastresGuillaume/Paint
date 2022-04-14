@@ -25,7 +25,7 @@ public class ModelController extends Controller {
             if (calque.isUsed()) {
                 this.controller.setView(this.getView());
                 this.controller.setModel(calque.getContent());
-//                this.getView().invalidate();
+                this.getView().invalidate();
                 return;
             }
         }
@@ -51,13 +51,13 @@ public class ModelController extends Controller {
     public void mousePressed(MouseEvent e) {
         setController();
         if(SwingUtilities.isRightMouseButton(e)) {
-            ((ModelView)this.getView()).setNoRightClickMenu(false);
+//            ((ModelView)this.getView()).setNoRightClickMenu(false);
             if(!Objects.equals(menu, new JPopupMenu()))
                 menu.show(this.getView(), e.getX(), e.getY());
         }
         else
             this.controller.mousePressed(e);
-        ((ModelView)this.getView()).setNoRightClickMenu(true);
+//        ((ModelView)this.getView()).setNoRightClickMenu(true);
     }
 
     @Override

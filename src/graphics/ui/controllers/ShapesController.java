@@ -75,7 +75,7 @@ public class ShapesController extends AbstractController {
                 model = (SCollection) this.model;
             }
             catch (ClassCastException ex){
-                model = ((SModel) this.model).getModel();
+                model = ((SModel) this.model).getCalqueUse();
             }
 
             for (Shape shape : model.getElement()) {
@@ -142,7 +142,7 @@ public class ShapesController extends AbstractController {
                 iterator = ((SCollection) model).iterator();
             }
             catch (ClassCastException e){
-                iterator = ((SModel) model).getModel().iterator();
+                iterator = ((SModel) model).getCalqueUse().iterator();
             }
             while (iterator.hasNext()) {
                 Shape shape = iterator.next();
@@ -194,7 +194,7 @@ public class ShapesController extends AbstractController {
             model = (SCollection) this.model;
         }
         catch (ClassCastException ex){
-            model = ((SModel) this.model).getModel();
+            model = ((SModel) this.model).getCalqueUse();
         }
         Iterator<Shape> iterator = model.iterator();
         Shape retour = null;
@@ -213,7 +213,7 @@ public class ShapesController extends AbstractController {
             model = (SCollection) this.model;
         }
         catch (ClassCastException ex){
-            model = ((SModel) this.model).getModel();
+            model = ((SModel) this.model).getCalqueUse();
         }
         Iterator<Shape> iterator = model.iterator();
         while(iterator.hasNext()) {
