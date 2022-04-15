@@ -50,4 +50,8 @@ public class Constantes {
     public final static Cursor DEFAULT_CURSOR = new Cursor(Cursor.DEFAULT_CURSOR);
 
     public final static ColorAttributes SELECTION_COLOR = new ColorAttributes(false, true, Color.BLACK, Color.BLACK);
+
+    public final static int DEFAULT_DEPLACEMENT_HORIZONTAL = 300;
+
+    public final static int DEFAULT_DEPLACEMENT_VERTICAL = 300;
 }

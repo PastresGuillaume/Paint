@@ -10,7 +10,6 @@ import java.util.ArrayList;
 
 public abstract class Shape{
 
-
     private ArrayList<Attributes> attributes;
 
     Shape(){
@@ -75,4 +74,11 @@ public abstract class Shape{
         }
     }
 
+    public abstract void zoomIn();
+
+    public abstract void zoomOut();
+
+    protected void force_translate(int dx, int dy) {
+        this.translate(dx, dy);
+    }
 }

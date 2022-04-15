@@ -15,6 +15,7 @@ public abstract class View extends JPanel {
         this.controller.setView(this);
         this.addMouseListener(this.controller);
         this.addMouseMotionListener(this.controller);
+        this.addMouseWheelListener(this.controller);
         this.addKeyListener(this.controller);
     }
 

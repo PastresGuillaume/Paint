@@ -5,7 +5,7 @@ import graphics.ui.Visitor.ShapeVisitor;
 import java.awt.*;
 
 public class SCircle extends Shape {
-    private int radius;
+    private double radius;
     private Point loc;
 
     public SCircle(Point point, int r){
@@ -30,7 +30,7 @@ public class SCircle extends Shape {
 
     @Override
     public Rectangle getBounds() {
-        return new Rectangle(this.loc.x, this.loc.y, 2*this.radius, 2*this.radius);
+        return new Rectangle(this.loc.x, this.loc.y, (int)(2*this.radius), (int)(2*this.radius));
     }
 
     @Override
@@ -45,10 +45,23 @@ public class SCircle extends Shape {
     }
 
     public int getRadius(){
-        return this.radius;
+        return (int)this.radius;
     }
 
     public void setRadius(int r){
         this.radius = r;
+    }
+
+    @Override
+    public void zoomIn() {
+        this.loc.translate(this.loc.x, this.loc.y);
+        this.radius*=2;
+    }
+
+    @Override
+    public void zoomOut() {
+        this.loc.x = this.loc.x/2;
+        this.loc.y = this.loc.y/2;
+        this.radius/=2;
     }
 }

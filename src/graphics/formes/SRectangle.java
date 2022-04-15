@@ -50,4 +50,20 @@ public class SRectangle extends Shape{
     public void setSize(int i, int p) {
         this.rect.setSize(i, p);
     }
+
+    @Override
+    public void zoomIn() {
+        this.rect.height*=2;
+        this.rect.width*=2;
+        this.rect.x*=2;
+        this.rect.y*=2;
+    }
+
+    @Override
+    public void zoomOut() {
+        this.rect.height/=2;
+        this.rect.width/=2;
+        this.rect.x/=2;
+        this.rect.y/=2;
+    }
 }

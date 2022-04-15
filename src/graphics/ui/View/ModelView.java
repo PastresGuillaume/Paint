@@ -11,6 +11,10 @@ import java.awt.*;
 public class ModelView extends View{
     private ModelDraftman draftman;
 
+    public ModelDraftman getDraftman() {
+        return draftman;
+    }
+
     public ModelView(Object model) {
         super(model);
         this.draftman = new ModelDraftman();

@@ -44,4 +44,20 @@ public class SEllipsis extends Shape{
         this.rect.width = width;
         this.rect.height = height;
     }
+
+    @Override
+    public void zoomIn() {
+        this.rect.height*=2;
+        this.rect.width*=2;
+        this.rect.x*=2;
+        this.rect.y*=2;
+    }
+
+    @Override
+    public void zoomOut() {
+        this.rect.height/=2;
+        this.rect.width/=2;
+        this.rect.x/=2;
+        this.rect.y/=2;
+    }
 }

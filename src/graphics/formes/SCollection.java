@@ -86,4 +86,25 @@ public class SCollection extends Shape{
             s.unselect();
         }
     }
+
+    @Override
+    public void zoomIn() {
+        for (Shape shape : this.getElement()) {
+            shape.zoomIn();
+        }
+    }
+
+    @Override
+    public void zoomOut() {
+        for (Shape shape : this.getElement()) {
+            shape.zoomOut();
+        }
+    }
+
+    @Override
+    public void force_translate(int dx, int dy) {
+        for (Shape shape : this.getElement()) {
+            shape.force_translate(dx, dy);
+        }
+    }
 }

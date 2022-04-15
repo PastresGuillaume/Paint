@@ -58,4 +58,16 @@ public class SText extends Shape{
     public void setText(String t){
         this.text = t;
     }
+
+    @Override
+    public void zoomIn() {
+        this.loc.x*=2;
+        this.loc.y*=2;
+    }
+
+    @Override
+    public void zoomOut() {
+        this.loc.x/=2;
+        this.loc.y/=2;
+    }
 }

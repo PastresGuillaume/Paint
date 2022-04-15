@@ -272,4 +272,24 @@ public class SModel extends Shape{
     public void accept(ModelDraftman draftman) {
         draftman.visitModel(this);
     }
+
+    public void force_translate(int dx, int dy){
+        for (Calque calque : this.getCalques()) {
+            calque.force_translate(dx, dy);
+        }
+    }
+
+    @Override
+    public void zoomIn() {
+        for (Calque calque : this.getCalques()) {
+            calque.zoomIn();
+        }
+    }
+
+    @Override
+    public void zoomOut() {
+        for (Calque calque : this.getCalques()) {
+            calque.zoomOut();
+        }
+    }
 }

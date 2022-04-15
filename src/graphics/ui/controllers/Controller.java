@@ -2,14 +2,9 @@ package graphics.ui.controllers;
 
 import graphics.ui.View.View;
 
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
+import java.awt.event.*;
 
-public class Controller implements MouseListener, MouseMotionListener, KeyListener
-{
+public class Controller implements MouseListener, MouseMotionListener, KeyListener, MouseWheelListener {
     private Object model;
     private View view;
 
@@ -70,5 +65,9 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
 
     @Override
     public void keyReleased(KeyEvent evt) {
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
     }
 }

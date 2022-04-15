@@ -64,4 +64,19 @@ public class Calque{
         this.content.add(s);
     }
 
+    public void zoomIn(){
+        for (Shape shape : this.getContent().getElement()) {
+            shape.zoomIn();
+        }
+    }
+
+    public void zoomOut(){
+        for (Shape shape : this.getContent().getElement()) {
+            shape.zoomOut();
+        }
+    }
+
+    public void force_translate(int dx, int dy) {
+        this.content.force_translate(dx, dy);
+    }
 }

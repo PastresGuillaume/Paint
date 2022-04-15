@@ -1,5 +1,6 @@
 package graphics.ui.controllers;
 
+import graphics.Constantes;
 import graphics.formes.Calque;
 import graphics.formes.SModel;
 import graphics.formes.Shape;
@@ -8,15 +9,18 @@ import graphics.ui.View.View;
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseWheelEvent;
 import java.util.Objects;
 
 public class ModelController extends Controller {
     private AbstractController controller;
     private JPopupMenu menu = new JPopupMenu("Menu");
+    private boolean control;
 
     public ModelController(Object newModel, View v) {
         super(newModel);
         this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent(), v);
+        this.control = false;
     }
 
     private void setController() {
@@ -104,12 +108,53 @@ public class ModelController extends Controller {
     @Override
     public void keyPressed(KeyEvent e) {
         setController();
+        if (e.getKeyCode()==8){
+            ((SModel) this.getModel()).getCalqueUse().getElement().removeIf(Shape::isSelected);
+        }
+        if (e.getKeyCode()==KeyEvent.VK_META) {
+            this.control = true;
+        }
+        if (this.control){
+            if (e.getKeyCode()==KeyEvent.VK_A) {
+                for (Shape shape : ((SModel) this.getModel()).getCalqueUse().getElement()) {
+                    shape.select();
+                }
+            }
+            else if (e.getKeyCode()==KeyEvent.VK_UP){
+                ((SModel) this.getModel()).force_translate(0, Constantes.DEFAULT_DEPLACEMENT_VERTICAL);
+            }
+            else if (e.getKeyCode()==KeyEvent.VK_DOWN){
+                ((SModel) this.getModel()).force_translate(0, -Constantes.DEFAULT_DEPLACEMENT_VERTICAL);
+            }
+            else if (e.getKeyCode()==KeyEvent.VK_LEFT){
+                ((SModel) this.getModel()).force_translate(Constantes.DEFAULT_DEPLACEMENT_HORIZONTAL, 0);
+            }
+            else if (e.getKeyCode()==KeyEvent.VK_RIGHT){
+                ((SModel) this.getModel()).force_translate(-Constantes.DEFAULT_DEPLACEMENT_HORIZONTAL, 0);
+            }
+        }
+
         this.controller.keyPressed(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
         setController();
+        if (e.getKeyCode()==KeyEvent.VK_META) {
+            this.control = false;
+        }
         this.controller.keyReleased(e);
+    }
+
+    @Override
+    public void mouseWheelMoved(MouseWheelEvent e) {
+        if (this.control){
+            if (e.getWheelRotation()<0){
+                ((SModel) this.getModel()).zoomIn();
+            }
+            if (e.getWheelRotation()>0){
+                ((SModel) this.getModel()).zoomOut();
+            }
+        }
     }
 }
