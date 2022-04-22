@@ -56,6 +56,10 @@ public class Calque{
         return content;
     }
 
+    public void setContent(SCollection content) {
+        this.content = content;
+    }
+
     public void accept(ShapeVisitor visitor) {
         this.content.accept(visitor);
     }
@@ -78,5 +82,9 @@ public class Calque{
 
     public void force_translate(int dx, int dy) {
         this.content.force_translate(dx, dy);
+    }
+
+    public boolean isGame(){
+        return false;
     }
 }

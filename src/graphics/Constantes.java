@@ -54,4 +54,22 @@ public class Constantes {
     public final static int DEFAULT_DEPLACEMENT_HORIZONTAL = 300;
 
     public final static int DEFAULT_DEPLACEMENT_VERTICAL = 300;
+
+    public final static int GAME_ID_MORT_PION = 0;
+
+    public final static ColorAttributes PLATEAU_MORT_PION_COLOR = new ColorAttributes(true, true, Color.BLACK, Color.BLACK);
+
+    public final static ColorAttributes PLATEAU_MORT_PION_SELECTION = new ColorAttributes(true, true, Color.BLACK, Color.BLACK);
+
+    public final static ColorAttributes J1_MORT_PION_COLOR = new ColorAttributes(true, true, Color.BLUE, Color.BLUE);
+
+    public final static ColorAttributes J1_MORT_PION_SELECTION = new ColorAttributes(true, true, Color.BLUE, Color.BLUE);
+
+    public final static ColorAttributes J2_MORT_PION_COLOR = new ColorAttributes(true, true, Color.RED, Color.RED);
+
+    public final static ColorAttributes J2_MORT_PION_SELECTION = new ColorAttributes(true, true, Color.RED, Color.RED);
+
+    public final static ColorAttributes MORT_PION_NULL_COLOR = new ColorAttributes(false, false, Color.WHITE, Color.WHITE);
+
+    public final static SelectionAttributes MORT_PION_NULL_SELECTION = new SelectionAttributes();
 }

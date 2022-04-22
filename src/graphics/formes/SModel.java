@@ -25,12 +25,10 @@ public class SModel extends Shape{
 
     @Override
     public void setLoc(Point point) {
-
     }
 
     @Override
     public void translate(int x, int y) {
-
     }
 
     @Override
@@ -47,7 +45,6 @@ public class SModel extends Shape{
 
     @Override
     public void accept(ShapeVisitor visitor) {
-
     }
 
     @Override

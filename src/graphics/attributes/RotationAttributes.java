@@ -3,15 +3,11 @@ package graphics.attributes;
 import graphics.Constantes;
 
 public class RotationAttributes extends Attributes{
-   public Double angle ;
+   public Double angle;
 
-    public RotationAttributes(Double angle2){
-        this.angle=angle2;
+   public RotationAttributes(Double angle){
+        this.angle=angle;
     }
-
-   public Double Angle(){
-       return (this.angle);
-   }
 
     @Override
     public String getId() {
@@ -24,8 +20,4 @@ public class RotationAttributes extends Attributes{
                 "angle=" + angle +
                 '}';
     }
-
-   public void ModifAngle(Double angle){
-       this.angle = angle;
-   }
 }
