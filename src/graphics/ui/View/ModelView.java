@@ -1,6 +1,7 @@
 package graphics.ui.View;
 
 import graphics.formes.SModel;
+import graphics.ui.Visitor.GameDraftman;
 import graphics.ui.Visitor.ModelDraftman;
 import graphics.ui.controllers.AbstractController;
 import graphics.ui.controllers.ModelController;
@@ -9,7 +10,8 @@ import graphics.ui.controllers.Controller;
 import java.awt.*;
 
 public class ModelView extends View{
-    private ModelDraftman draftman;
+//    private ModelDraftman draftman;
+    private GameDraftman draftman;
 
     public ModelDraftman getDraftman() {
         return draftman;
@@ -17,7 +19,8 @@ public class ModelView extends View{
 
     public ModelView(Object model) {
         super(model);
-        this.draftman = new ModelDraftman();
+//        this.draftman = new ModelDraftman();
+        this.draftman = new GameDraftman();
     }
 
     @Override
