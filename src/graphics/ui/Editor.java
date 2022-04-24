@@ -91,10 +91,10 @@ public class Editor  extends JFrame {
         //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
         //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
 //        this.model.setUse(1);
-        CalqueGame q = new CalqueGame(Constantes.GAME_ID_MORT_PION);
-        ((MortPion) q.getGame()).play(1, 1);
+        //CalqueGame q = new CalqueGame(Constantes.GAME_ID_MORT_PION);
+        //((MortPion) q.getGame()).play(1, 1);
 
-        this.model.addCalque(q);
+        //this.model.addCalque(q);
         this.model.setUse(2);
     }
 

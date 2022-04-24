@@ -48,7 +48,13 @@ public class SText extends Shape{
 
     @Override
     public void resize(int width, int height) {
-        //TODO resize image
+        //Fixme resize Text when given negative height/width
+        FontAttributes fontAttributes = (FontAttributes) this.getAttributes(Constantes.FONT_ATTRIBUTE);
+        if (fontAttributes==null){
+            fontAttributes = Constantes.DEFAULT_FONT_ATTRIBUTES;
+        }
+        int newFontSize = fontAttributes.font.getSize()*width/this.getBounds().width;
+        fontAttributes.font = fontAttributes.font.deriveFont(fontAttributes.font.getStyle(), newFontSize);
     }
 
     public String getText(){

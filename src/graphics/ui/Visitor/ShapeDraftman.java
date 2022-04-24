@@ -140,6 +140,9 @@ public class ShapeDraftman implements ShapeVisitor{
         Rectangle r = image.getBounds();
         this.graphics.drawImage(image.getImage(), r.x, r.y, r.width, r.height, null);
         this.drawSelectedImage(image);
+        SelectionAttributes selection = (SelectionAttributes) image.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+        if(selection != null && selection.isSelected())
+            drawSelection(r);
     }
 
     public void drawSelectedImage(SImage shape){
