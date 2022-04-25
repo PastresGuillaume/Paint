@@ -29,20 +29,16 @@ public class ShapeToolBar extends JFrame{
     public JToolBar createToolBar() {
         JToolBar toolBar = new JToolBar();
 
-        JButton btnNew = new JButton( new ImageIcon("images\\rien.jpg") );
+        JButton btnNew = new JButton( new ImageIcon("images\\select.png") );
         btnNew.setToolTipText( "Everyday i'm drinking" );
         btnNew.setSize(this.dimension);
-        btnNew.addActionListener(e -> {
-            view.setController(new ShapesController(((SModel)view.getModel()).getCalqueUse(), this.getView()));
-        });
+        btnNew.addActionListener(e -> view.setController(new ShapesController((Shape) view.getModel(), this.view)));
         toolBar.add( btnNew );
 
-        JButton btnDrawRectangle = new JButton( new ImageIcon("images\\rien.png" ) );
+        JButton btnDrawRectangle = new JButton( new ImageIcon("images\\square.png" ) );
         btnDrawRectangle.setToolTipText( "Everyday i'm drinking" );
         btnDrawRectangle.setSize(this.dimension);
-        btnDrawRectangle.addActionListener(e -> {
-            view.setController(new RectangleCreator((Shape) view.getModel(), this.view));
-        });
+        btnDrawRectangle.addActionListener(e -> view.setController(new RectangleCreator((Shape) view.getModel(), this.view)));
         toolBar.add(btnDrawRectangle);
 
         return toolBar;

@@ -6,7 +6,8 @@ import graphics.formes.SModel;
 public class ModelDraftman extends ShapeDraftman {
     public void visitModel(SModel m){
         for (Calque c : m.getCalques()){
-            c.accept(this);
+            if( c.isPaint())
+                c.accept(this);
         }
     }
 }

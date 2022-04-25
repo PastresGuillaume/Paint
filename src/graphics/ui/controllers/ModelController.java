@@ -20,11 +20,13 @@ public class ModelController extends Controller {
 
     public ModelController(Object newModel, View v) {
         super(newModel);
-        this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent(), v);
+        this.controller = new ShapesController(((SModel)newModel).getCalques().get(0).getContent(),v);
         this.control = false;
     }
 
-    private void setController() {
+    public AbstractController getController() {return this.controller;}
+
+    public void setController() {
         for (Calque calque : ((SModel) this.getModel()).getCalques()) {
             if (calque.isUsed()) {
                 if (calque.isGame() && !(this.controller instanceof GameController)){
@@ -39,8 +41,8 @@ public class ModelController extends Controller {
     }
 
     public void setController(AbstractController c){
-        c.setView(this.getView());
         this.controller = c;
+        this.setController();
         this.menu = new JPopupMenu("menu");
         c.requestJPopopUpMenu(this.menu, this);
     }

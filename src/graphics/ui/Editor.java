@@ -34,7 +34,9 @@ public class Editor  extends JFrame {
         this.mview.setPreferredSize(new Dimension(300,300));
         this.getContentPane().add(this.mview, java.awt.BorderLayout.CENTER);
 
-        this.add( new ShapeToolBar(this.mview).createToolBar(), BorderLayout.EAST );
+        this.add( new ShapeToolBar(this.mview).createToolBar(), BorderLayout.PAGE_END );
+
+        this.add( new CalqueToolBar(this.mview).createToolBar(), BorderLayout.EAST );
     }
 
 
@@ -80,6 +82,7 @@ public class Editor  extends JFrame {
         this.model.add(sc);
 
         Calque c3 = new Calque();
+
 
         SRectangle ajout2 = new SRectangle(new Point(200, 200), 100, 100);
         ajout2.addAttributes(new SelectionAttributes());

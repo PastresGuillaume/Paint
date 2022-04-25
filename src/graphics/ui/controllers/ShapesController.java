@@ -18,6 +18,7 @@ import static graphics.Constantes.*;
 
 public class ShapesController extends AbstractController {
 
+    private Shape model;
     private ModelView view;
     private boolean shiftPressed = false;
     private Point lastClick;
@@ -27,6 +28,7 @@ public class ShapesController extends AbstractController {
 
     public ShapesController(Shape newModel, View view) {
         super(newModel);
+        this.model = newModel;
         this.lastClick = new Point();
         this.view = (ModelView) view;
     }
@@ -44,7 +46,7 @@ public class ShapesController extends AbstractController {
         this.lastClick = e.getPoint();
 
         if (!this.shiftPressed) {
-            this.getModel().unselect();
+            model.unselect();
         }
 
         Shape shapeSelec = getTarget(e.getX(), e.getY());
@@ -67,13 +69,13 @@ public class ShapesController extends AbstractController {
     public void mouseReleased(MouseEvent e) {
         if (selectionDragged) {
             Rectangle selection = new Rectangle(this.lastClick.x, this.lastClick.y, e.getX() - this.lastClick.x, e.getY() - this.lastClick.y);
-            this.getModel().unselect();
+            model.unselect();
             SCollection model;
             try{
-                model = (SCollection) this.getModel();
+                model = (SCollection) this.model;
             }
             catch (ClassCastException ex){
-                model = ((SModel) this.getModel()).getCalqueUse();
+                model = ((SModel) this.model).getCalqueUse();
             }
 
             for (Shape shape : model.getElement()) {
@@ -137,10 +139,10 @@ public class ShapesController extends AbstractController {
             int dy = evt.getY()-lastClick.y;
             Iterator<Shape> iterator;
             try {
-                iterator = ((SCollection) this.getModel()).iterator();
+                iterator = ((SCollection) model).iterator();
             }
             catch (ClassCastException e){
-                iterator = ((SModel) this.getModel()).getCalqueUse().iterator();
+                iterator = ((SModel) model).getCalqueUse().iterator();
             }
             while (iterator.hasNext()) {
                 Shape shape = iterator.next();
@@ -189,10 +191,10 @@ public class ShapesController extends AbstractController {
     public Shape getTarget(int x, int y){
         SCollection model;
         try{
-            model = (SCollection) this.getModel();
+            model = (SCollection) this.model;
         }
         catch (ClassCastException ex){
-            model = ((SModel) this.getModel()).getCalqueUse();
+            model = ((SModel) this.model).getCalqueUse();
         }
         Iterator<Shape> iterator = model.iterator();
         Shape retour = null;
@@ -208,10 +210,10 @@ public class ShapesController extends AbstractController {
     public Shape getResizeableShape(int x, int y){
         SCollection model;
         try{
-            model = (SCollection) this.getModel();
+            model = (SCollection) this.model;
         }
         catch (ClassCastException ex){
-            model = ((SModel) this.getModel()).getCalqueUse();
+            model = ((SModel) this.model).getCalqueUse();
         }
         Iterator<Shape> iterator = model.iterator();
         while(iterator.hasNext()) {
@@ -228,7 +230,14 @@ public class ShapesController extends AbstractController {
     }
 
     public void unSelectAll(){
-        Iterator<Shape> iterator = ((SCollection) this.getModel()).iterator();
+        SCollection model;
+        try{
+            model = (SCollection) this.model;
+        }
+        catch (ClassCastException ex){
+            model = ((SModel) this.model).getCalqueUse();
+        }
+        Iterator<Shape> iterator = model.iterator();
         while (iterator.hasNext()){
             ((SelectionAttributes)iterator.next().getAttributes(Constantes.SELECTION_ATTRIBUTE)).unselect();
         }
