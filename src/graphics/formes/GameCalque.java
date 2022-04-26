@@ -7,10 +7,10 @@ import graphics.ui.Visitor.GameDraftman;
 import graphics.ui.Visitor.ShapeVisitor;
 
 
-public class CalqueGame extends Calque {
+public class GameCalque extends Calque {
     private Game game;
 
-    public CalqueGame(int idJeu) {
+    public GameCalque(int idJeu) {
         super();
         switch (idJeu){
             case Constantes.GAME_ID_MORT_PION:

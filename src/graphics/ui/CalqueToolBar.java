@@ -1,10 +1,15 @@
 package graphics.ui;
 
+import graphics.Constantes;
 import graphics.formes.Calque;
+import graphics.formes.GameCalque;
 import graphics.formes.SModel;
+import graphics.formes.Shape;
 import graphics.ui.View.ModelView;
 import graphics.ui.controllers.AbstractController;
+import graphics.ui.controllers.GameController;
 import graphics.ui.controllers.ModelController;
+import graphics.ui.controllers.ShapesController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -41,6 +46,16 @@ public class CalqueToolBar extends  JFrame{
         });
         toolBar.add(saveBtn);
 
+        JButton addGameBtn = new JButton(new ImageIcon("images\\mortPion.png"));
+        addGameBtn.setToolTipText("New mort pion");
+        addGameBtn.setSize(this.dimension);
+        addGameBtn.addActionListener(e -> {
+            Calque calque = new GameCalque(Constantes.GAME_ID_MORT_PION);
+            sModel.addCalque(calque);
+            addButtonCalque(calque,sModel,toolBar);
+        });
+        toolBar.add(addGameBtn);
+
         toolBar.addSeparator();
 
         for(Calque calque : sModel.getCalques()) {
@@ -61,6 +76,12 @@ public class CalqueToolBar extends  JFrame{
         btnNew.addActionListener(e -> {
             sModel.setUse(calque);
             ((ModelController)this.getView().getController()).getController().setModel(calque.getContent());
+            if (calque.isGame()){
+                view.setController(new GameController(((GameCalque) calque)));
+            }
+            else {
+                view.setController(new ShapesController((Shape) view.getModel(), this.view));
+            }
         });
         toolBar.add(btnNew);
 

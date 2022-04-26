@@ -2,7 +2,7 @@ package graphics.ui.controllers;
 
 import graphics.Constantes;
 import graphics.formes.Calque;
-import graphics.formes.CalqueGame;
+import graphics.formes.GameCalque;
 import graphics.formes.SModel;
 import graphics.formes.Shape;
 import graphics.ui.View.View;
@@ -29,9 +29,6 @@ public class ModelController extends Controller {
     public void setController() {
         for (Calque calque : ((SModel) this.getModel()).getCalques()) {
             if (calque.isUsed()) {
-                if (calque.isGame() && !(this.controller instanceof GameController)){
-                    this.controller = new GameController((CalqueGame) calque);
-                }
                 this.controller.setView(this.getView());
                 this.controller.setModel(calque.getContent());
                 this.getView().invalidate();

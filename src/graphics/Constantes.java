@@ -72,4 +72,6 @@ public class Constantes {
     public final static ColorAttributes MORT_PION_NULL_COLOR = new ColorAttributes(false, false, Color.WHITE, Color.WHITE);
 
     public final static SelectionAttributes MORT_PION_NULL_SELECTION = new SelectionAttributes();
+
+    public final static int GAME_ID_DAMES = 1;
 }

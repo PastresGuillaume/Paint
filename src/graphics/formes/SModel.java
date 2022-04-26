@@ -67,7 +67,10 @@ public class SModel extends Shape{
     }
 
     public void delCalque(Calque calque){
-        this.calques.remove(calque);
+        if (calque.isUsed()){
+            this.calques.remove(calque);
+            this.setUse(0);
+        }
     }
 
     public void exchangeCalques(int c1, int c2){
@@ -204,6 +207,9 @@ public class SModel extends Shape{
     }
 
     public void setUse(int n){
+        if (this.calques.size()==0){
+            this.calques.add(new Calque());
+        }
         if (n>=0 && n<this.calques.size()){
             this.setUse(this.calques.get(n));
         }

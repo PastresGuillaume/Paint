@@ -1,7 +1,7 @@
 package graphics.ui.controllers;
 
 import graphics.Constantes;
-import graphics.formes.CalqueGame;
+import graphics.formes.GameCalque;
 import graphics.formes.Shape;
 import graphics.jeux.Game;
 import graphics.jeux.MortPion;
@@ -11,9 +11,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 public class GameController extends AbstractController{
-    private CalqueGame calqueJeu;
+    private GameCalque calqueJeu;
 
-    public GameController(CalqueGame calqueJeu) {
+    public GameController(GameCalque calqueJeu) {
         super(calqueJeu.getContent());
         this.calqueJeu = calqueJeu;
     }
@@ -28,7 +28,7 @@ public class GameController extends AbstractController{
         super.setModel(model);
     }
 
-    public void setModel(CalqueGame calqueJeu){
+    public void setModel(GameCalque calqueJeu){
         this.calqueJeu = calqueJeu;
         this.setModel(this.calqueJeu.getContent());
     }

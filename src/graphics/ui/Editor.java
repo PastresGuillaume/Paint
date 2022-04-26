@@ -83,7 +83,6 @@ public class Editor  extends JFrame {
 
         Calque c3 = new Calque();
 
-
         SRectangle ajout2 = new SRectangle(new Point(200, 200), 100, 100);
         ajout2.addAttributes(new SelectionAttributes());
         ajout2.addAttributes(new ColorAttributes(true, true, Color.GREEN, Color.BLUE));
@@ -91,14 +90,8 @@ public class Editor  extends JFrame {
 
         this.model.addCalque(c3);
 
-        //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
-        //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
-//        this.model.setUse(1);
-        //CalqueGame q = new CalqueGame(Constantes.GAME_ID_MORT_PION);
-        //((MortPion) q.getGame()).play(1, 1);
-
-        //this.model.addCalque(q);
-        this.model.setUse(2);
+        GameCalque q = new GameCalque(Constantes.GAME_ID_MORT_PION);
+        this.model.addCalque(q);
     }
 
     public static void main(String[] args)
