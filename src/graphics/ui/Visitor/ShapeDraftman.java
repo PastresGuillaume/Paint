@@ -80,6 +80,12 @@ public class ShapeDraftman implements ShapeVisitor{
 
     }
 
+    @Override
+    public void visitPolygon(Polygon Poly){
+
+
+    }
+
 
     @Override
     public void visitEllipsis(Shape ellipsis) {

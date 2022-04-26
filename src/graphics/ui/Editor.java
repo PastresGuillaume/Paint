@@ -6,6 +6,7 @@ import graphics.attributes.FontAttributes;
 import graphics.attributes.RotationAttributes;
 import graphics.attributes.SelectionAttributes;
 import graphics.formes.*;
+import graphics.formes.Shape;
 import graphics.jeux.MortPion;
 import graphics.ui.View.ModelView;
 
@@ -57,6 +58,7 @@ public class Editor  extends JFrame {
         r.addAttributes(new SelectionAttributes());
         r.addAttributes(new RotationAttributes(0.2));
         this.model.add(r);
+
 
         SEllipsis c = new SEllipsis(new Point(100,100),10);
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));

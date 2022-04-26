@@ -42,9 +42,7 @@ public class SRectangle extends Shape{
         this.rect.height = height;
     }
 
-    public Rectangle getRect(){
-        return this.rect;
-    }
+    public Rectangle getRect(){return this.rect;}
 
     @Override
     public void setSize(int i, int p) {
