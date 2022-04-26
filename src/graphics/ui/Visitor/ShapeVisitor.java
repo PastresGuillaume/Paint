@@ -12,7 +12,7 @@ public interface ShapeVisitor {
 
     void visitText(SText text);
 
-    void visitPolygon(Polygon Poly);
+    void visitPolygon(SPolygone Poly);
 
     void visitCollection(SCollection collection);
 

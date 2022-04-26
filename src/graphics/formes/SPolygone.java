@@ -7,6 +7,7 @@ import java.awt.*;
 public class SPolygone extends Shape {
     private Polygon poly;
 
+
     /*
     un polygon est composé de :
     private int npoints;
@@ -33,6 +34,18 @@ public class SPolygone extends Shape {
         //TODO see this code
     }
 
+    public int[] GetxPoints(){
+        return(this.poly.xpoints);
+
+    }
+    public int[] GetyPoints(){
+        return(this.poly.ypoints);
+    }
+
+    public int GetnPoints(){
+        return(this.poly.npoints);
+    }
+
     @Override
     public void translate(int x, int y) {
         this.poly.translate(x,y);
@@ -44,7 +57,7 @@ public class SPolygone extends Shape {
     }
 
     @Override
-    public void accept(ShapeVisitor visitor) {visitor.visitPolygon(this.poly);
+    public void accept(ShapeVisitor visitor) {visitor.visitPolygon(this);
 
     }
 
