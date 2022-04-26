@@ -80,12 +80,12 @@ public class ShapeDraftman implements ShapeVisitor{
 
     }
 
-
     @Override
-    public void visitEllipsis(Shape ellipsis) {
-        Rectangle rectangle = ellipsis.getBounds();
-        ColorAttributes color= (ColorAttributes)ellipsis.getAttributes(Constantes.COLOR_ATTRIBUTE);
-        SelectionAttributes selection = (SelectionAttributes) ellipsis.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+    public void visitPolygon(SPolygone poly){
+        Rectangle rectangle = poly.getBounds();
+
+        ColorAttributes color= (ColorAttributes)poly.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        SelectionAttributes selection = (SelectionAttributes) poly.getAttributes(Constantes.SELECTION_ATTRIBUTE);
 
         if (color == null)
             color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
@@ -101,6 +101,38 @@ public class ShapeDraftman implements ShapeVisitor{
             drawSelection(rectangle);
     }
 
+
+
+    private  void drawPolygon(SPolygone poly, ColorAttributes color){
+        if(color.filled) {
+            this.graphics.setColor(color.filledColor);
+            this.graphics.fillPolygon((int[]) poly.GetxPoints(), (int[]) poly.GetyPoints(), (int) poly.GetnPoints());
+        }
+        if(color.stroked) {
+            this.graphics.setColor(color.strokedColor);
+            this.graphics.drawPolygon((int[]) poly.GetxPoints(), (int[]) poly.GetyPoints(), (int) poly.GetnPoints());
+        }
+    }
+
+    @Override
+    public void visitEllipsis(Shape ellipsis) {
+    Rectangle rectangle = ellipsis.getBounds();
+    ColorAttributes color= (ColorAttributes)ellipsis.getAttributes(Constantes.COLOR_ATTRIBUTE);
+    SelectionAttributes selection = (SelectionAttributes) ellipsis.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+
+        if (color == null)
+    color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
+        if(color.filled) {
+        this.graphics.setColor(color.filledColor);
+        this.graphics.fillOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+    }
+        if(color.stroked) {
+        this.graphics.setColor(color.strokedColor);
+        this.graphics.drawOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+    }
+        if(selection != null && selection.isSelected())
+    drawSelection(rectangle);
+        }
 
     @Override
     public void visitText(SText text) {

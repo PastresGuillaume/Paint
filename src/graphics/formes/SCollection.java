@@ -71,9 +71,7 @@ public class SCollection extends Shape{
         return this.shapes.iterator();
     }
 
-    public void add(Shape shape){
-        this.shapes.add(shape);
-    }
+    public void add(Shape shape){this.shapes.add(shape); }
 
     public ArrayList<Shape> getElement() {
         return this.shapes;
