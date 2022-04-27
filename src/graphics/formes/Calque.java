@@ -5,8 +5,13 @@ import graphics.attributes.SelectionAttributes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
+import java.io.Serializable;
 
-public class Calque{
+public class Calque implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -555108164984005640L;
+
     public static int nb_Calque=0;
 
     private SCollection content;
@@ -87,4 +92,6 @@ public class Calque{
     public boolean isGame(){
         return false;
     }
+
+
 }

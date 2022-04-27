@@ -9,6 +9,8 @@ import java.io.File;
 import java.io.IOException;
 
 public class SImage extends Shape{
+    //TODO Serialisation a redefinir a cause de la bufferedImage
+
     private Rectangle rect;
     private BufferedImage image;
 

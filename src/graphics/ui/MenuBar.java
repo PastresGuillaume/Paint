@@ -1,7 +1,8 @@
 package graphics.ui;
 
 import graphics.Constantes;
-import graphics.formes.SRectangle;
+import graphics.formes.*;
+import graphics.formes.Shape;
 import graphics.ui.View.ModelView;
 
 import javax.swing.*;
@@ -29,11 +30,12 @@ public class MenuBar extends JFrame {
         this.menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem saveMenu = new JMenuItem("Save");
-        saveMenu.addActionListener(e -> this.saveHandler.saveObject(new SRectangle(new Point(10, 10), 100, 100)));
+        //TODO à terminer la save en donnant directement la view
+        saveMenu.addActionListener(e -> this.save(((SModel)view.getModel())));
         fileMenu.add(saveMenu);
 
         JMenuItem importMenu = new JMenuItem("Import");
-        importMenu.addActionListener(e -> this.saveHandler.loadObject());
+        importMenu.addActionListener(e -> this.load());
         fileMenu.add(importMenu);
         menuBar.add(fileMenu);
 
@@ -54,5 +56,15 @@ public class MenuBar extends JFrame {
                 this.menuBar.getMenu(i).getItem(j).setForeground(Constantes.DARKMODE_TEXTMENU_COLOR);
             }
         }
+    }
+
+    public void save(Object object){
+        this.saveHandler.saveObject(object);
+    }
+
+    public void load(){
+        Object object = this.saveHandler.loadObject();
+        this.view.setModel(object);
+
     }
 }

@@ -1,5 +1,7 @@
 package graphics.ui;
 
+import graphics.Constantes;
+import graphics.attributes.ColorAttributes;
 import graphics.formes.SRectangle;
 
 import java.io.*;
@@ -18,16 +20,16 @@ public class SaveHandler {
         }
     }
 
-    public void loadObject() {
+    public Object loadObject() {
         File file = new File(file_path);
         Object object;
-        SRectangle rectangle;
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
-            rectangle = (SRectangle) ois.readObject();
-            System.out.println(rectangle.getBounds().width);
+            object = ois.readObject();
+            return object;
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
+        return null;
     }
 }
