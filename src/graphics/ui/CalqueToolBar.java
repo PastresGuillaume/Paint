@@ -61,6 +61,8 @@ public class CalqueToolBar extends  JFrame{
         btnNew.addActionListener(e -> {
             sModel.setUse(calque);
             ((ModelController)this.getView().getController()).getController().setModel(calque.getContent());
+            ((SModel) this.view.getModel()).unselect();
+            this.view.invalidate();
         });
         toolBar.add(btnNew);
 

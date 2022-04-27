@@ -169,6 +169,8 @@ public class RectangleCreator extends AbstractController {
             myFrame.setLocationRelativeTo(null);
             myFrame.setLayout(new BorderLayout());
             strokedColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
+            if (strokedColorMenu == null)
+                strokedColor = Constantes.DEFAULT_COLOR_ADD_RECTANGLE;
             myFrame.setTitle("Select your stroked color");
         });
         filledColorMenu.addActionListener(e -> {
@@ -178,6 +180,8 @@ public class RectangleCreator extends AbstractController {
             myFrame.setLocationRelativeTo(null);
             myFrame.setLayout(new BorderLayout());
             filledColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
+            if (filledColor == null)
+                filledColor = Constantes.COLOR_INVISIBLE;
             myFrame.setTitle("Select your filled color");
         });
 
