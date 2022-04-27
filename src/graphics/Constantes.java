@@ -72,4 +72,11 @@ public class Constantes {
     public final static ColorAttributes MORT_PION_NULL_COLOR = new ColorAttributes(false, false, Color.WHITE, Color.WHITE);
 
     public final static SelectionAttributes MORT_PION_NULL_SELECTION = new SelectionAttributes();
+
+    public final static Color DARKMODE_BACKGROUND_COLOR = new Color(80, 80, 80);
+
+    public final static Color DARKMODE_MENUBAR_COLOR = new Color(60, 60, 60);
+
+    public final static Color DARKMODE_TEXTMENU_COLOR = new Color(200, 200, 200);
+
 }

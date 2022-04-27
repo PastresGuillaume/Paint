@@ -35,6 +35,8 @@ public class Editor  extends JFrame {
         this.mview.setPreferredSize(new Dimension(300,300));
         this.getContentPane().add(this.mview, java.awt.BorderLayout.CENTER);
 
+        this.add( new MenuBar(this.mview).createMenuBar(), BorderLayout.NORTH);
+
         this.add( new ShapeToolBar(this.mview).createToolBar(), BorderLayout.PAGE_END );
 
         this.add( new CalqueToolBar(this.mview).createToolBar(), BorderLayout.EAST );
@@ -47,29 +49,29 @@ public class Editor  extends JFrame {
 
         SImage i1 = new SImage(new Point(50,50), 250, 250,"mini.jpg");
         i1.addAttributes(new SelectionAttributes());
-        this.model.add(i1);
+        //this.model.add(i1);
 
         SImage i2 = new SImage(new Point(100,100),600, "galaxia.png");
         i2.addAttributes(new SelectionAttributes());
-        this.model.add(i2);
+        //this.model.add(i2);
 
         SRectangle r = new SRectangle(new Point(10,10),100,100);
         r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
         r.addAttributes(new SelectionAttributes());
-        r.addAttributes(new RotationAttributes(0.2));
+        //r.addAttributes(new RotationAttributes(0.2));
         this.model.add(r);
 
 
         SEllipsis c = new SEllipsis(new Point(100,100),10);
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));
         c.addAttributes(new SelectionAttributes());
-        this.model.add(c);
+        //this.model.add(c);
 
         SText t= new SText(new Point(100,100),"hello");
         t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
         t.addAttributes(new FontAttributes());
         t.addAttributes(new SelectionAttributes());
-        this.model.add(t);
+        //this.model.add(t);
 
         SCollection sc = new SCollection();
         sc.addAttributes(new SelectionAttributes());
@@ -81,7 +83,7 @@ public class Editor  extends JFrame {
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
         c.addAttributes(new SelectionAttributes());
         sc.add(c);
-        this.model.add(sc);
+        //this.model.add(sc);
 
         Calque c3 = new Calque();
 
@@ -91,17 +93,18 @@ public class Editor  extends JFrame {
         ajout2.addAttributes(new ColorAttributes(true, true, Color.GREEN, Color.BLUE));
         c3.add(ajout2);
 
-        this.model.addCalque(c3);
+        //this.model.addCalque(c3);
 
         //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
         //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
-//        this.model.setUse(1);
+        //this.model.setUse(1);
         //CalqueGame q = new CalqueGame(Constantes.GAME_ID_MORT_PION);
         //((MortPion) q.getGame()).play(1, 1);
 
         //this.model.addCalque(q);
-        this.model.setUse(2);
+        //this.model.setUse(2);
     }
+
 
     public static void main(String[] args)
     {

@@ -1,37 +1,32 @@
 package graphics.ui;
 
-import graphics.formes.SCollection;
+import graphics.formes.SRectangle;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class SaveHandler {
+    private static final String file_path = "filename.txt";
 
-    public void createSave(){
-        try{
-            File save = new File("filename.txt");
-            if (save.createNewFile()){
-                System.out.println("Save successfully created");
-            }
-            else {
-                System.out.println("File already exists");
-            }
+    public void saveObject(Object object) {
+        File file = new File(file_path);
+        try {
+            ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
+            oos.writeObject(object);
+            oos.close();
         } catch (IOException e) {
-            System.out.println("An error occurred while creating a file");
             e.printStackTrace();
         }
     }
 
-
-    public void writeSave(SCollection model){
+    public void loadObject() {
+        File file = new File(file_path);
+        Object object;
+        SRectangle rectangle;
         try {
-            FileWriter fileWriter = new FileWriter("filename.txt");
-            fileWriter.write("test");
-            fileWriter.close();
-            System.out.println("Successfully saved");
-        } catch (IOException e) {
-            System.out.println("An error occurred while saving");
+            ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));
+            rectangle = (SRectangle) ois.readObject();
+            System.out.println(rectangle.getBounds().width);
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
