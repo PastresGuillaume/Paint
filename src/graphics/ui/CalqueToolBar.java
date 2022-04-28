@@ -16,6 +16,8 @@ public class CalqueToolBar extends  JFrame{
     private ModelView view;
     private final Dimension dimension;
 
+    public  final String borderLayout = BorderLayout.EAST;
+
     public CalqueToolBar(ModelView view){
         super( "JToolBar for Calque" );
         this.view = view;
@@ -34,6 +36,7 @@ public class CalqueToolBar extends  JFrame{
         JButton saveBtn = new JButton(new ImageIcon("images\\add.png"));
         saveBtn.setToolTipText("New Calque");
         saveBtn.setSize(this.dimension);
+//        saveBtn.setMargin(new Insets((int) this.dimension.height/2,(int) this.dimension.width/2,(int) this.dimension.height/2,(int) this.dimension.width/2));
         saveBtn.addActionListener(e -> {
             Calque calque = new Calque();
             sModel.addCalque(calque);
@@ -58,6 +61,7 @@ public class CalqueToolBar extends  JFrame{
         JButton btnNew = new JButton(new ImageIcon("images\\rien.jpg"));
         btnNew.setToolTipText(calque.getName());
         btnNew.setSize(this.dimension);
+//        btnNew.setMargin(new Insets((int) this.dimension.height/2,(int) this.dimension.width/2,(int) this.dimension.height/2,(int) this.dimension.width/2));
         btnNew.addActionListener(e -> {
             sModel.setUse(calque);
             ((ModelController)this.getView().getController()).getController().setModel(calque.getContent());

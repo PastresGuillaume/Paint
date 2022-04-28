@@ -81,4 +81,16 @@ public class Constantes {
 
     public final static String FILE_EXTENSION = ".ser";
 
+    public final static String MENU_BAR_ID = "MenuBar";
+
+    public final static String CALQUE_TOOL_BAR_ID = "CalqueToolBar";
+
+    public final static String SHAPE_TOOL_BAR_ID = "ShapeToolBar";
+
+    public  final static String SHAPE_TOOL_BAR_LOC = BorderLayout.PAGE_END;
+
+    public final static String MENU_BAR_LOC = BorderLayout.NORTH;
+
+    public final static String CALQUE_TOOL_BAR_LOC = BorderLayout.EAST;
+
 }

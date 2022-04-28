@@ -58,7 +58,8 @@ public class MenuBar extends JFrame {
 
     public void toggleDarkMode(){
         this.view.setBackground(Constantes.DARKMODE_BACKGROUND_COLOR);
-        this.menuBar.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+        for(JComponent menu : view.getMenus().values())
+            menu.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
         for (int i =0; i<this.menuBar.getMenuCount(); i++){
             this.menuBar.getMenu(i).setForeground(Constantes.DARKMODE_TEXTMENU_COLOR);
             for (int j=0; j<this.menuBar.getMenu(i).getItemCount(); j++){
