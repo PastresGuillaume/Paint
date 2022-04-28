@@ -35,9 +35,9 @@ public class Editor  extends JFrame {
         this.mview.setPreferredSize(new Dimension(300,300));
         this.getContentPane().add(this.mview, java.awt.BorderLayout.CENTER);
 
-        this.add(mview.getMenus().get(Constantes.MENU_BAR_ID),Constantes.MENU_BAR_LOC);
-        this.add(mview.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID),Constantes.CALQUE_TOOL_BAR_LOC);
-        this.add(mview.getMenus().get(Constantes.SHAPE_TOOL_BAR_ID),Constantes.SHAPE_TOOL_BAR_LOC);
+        this.add(((MenuBar) mview.getMenus().get(Constantes.MENU_BAR_ID)).createMenuBar(),Constantes.MENU_BAR_LOC);
+        this.add(((CalqueToolBar)mview.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).createToolBar(),Constantes.CALQUE_TOOL_BAR_LOC);
+        this.add(((ShapeToolBar) mview.getMenus().get(Constantes.SHAPE_TOOL_BAR_ID)).createToolBar(),Constantes.SHAPE_TOOL_BAR_LOC);
     }
 
 

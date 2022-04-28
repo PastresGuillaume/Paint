@@ -93,4 +93,11 @@ public class Constantes {
 
     public final static String CALQUE_TOOL_BAR_LOC = BorderLayout.EAST;
 
+    public final static String IS_PAINTED_CALQUE = "isPainted";
+
+    public final static String IS_USED_CALQUE = "isUsed";
+
+    public final static int WIDTH_ICON = 50;
+
+    public final static int HEIGHT_ICON = 50;
 }

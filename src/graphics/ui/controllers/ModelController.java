@@ -5,12 +5,14 @@ import graphics.formes.Calque;
 import graphics.formes.CalqueGame;
 import graphics.formes.SModel;
 import graphics.formes.Shape;
+import graphics.ui.View.ModelView;
 import graphics.ui.View.View;
 
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
+import java.io.IOException;
 import java.util.Objects;
 
 public class ModelController extends Controller {
@@ -56,6 +58,14 @@ public class ModelController extends Controller {
         }
     }
 
+    private Calque getCalqueUsed() {
+        for (Calque calque : ((SModel) this.getModel()).getCalques()) {
+            if (calque.isUsed())
+                return calque;
+        }
+        return null;
+    }
+
     @Override
     public void mousePressed(MouseEvent e) {
         setController();
@@ -73,6 +83,11 @@ public class ModelController extends Controller {
     public void mouseReleased(MouseEvent e) {
         setController();
         this.controller.mouseReleased(e);
+        try {
+            ((ModelView) this.getView()).updateIconCalqueBar(this.getCalqueUsed());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
