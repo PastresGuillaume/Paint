@@ -14,6 +14,6 @@ public class FileExtensionFilter extends FileFilter {
 
     @Override
     public String getDescription() {
-        return "Text Files";
+        return "Paint Files";
     }
 }

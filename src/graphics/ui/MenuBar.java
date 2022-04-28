@@ -11,10 +11,10 @@ import java.awt.event.ActionListener;
 import java.io.File;
 
 public class MenuBar extends JFrame {
-    private  ModelView view;
-    private SaveHandler saveHandler;
+    private final ModelView view;
+    private final SaveHandler saveHandler;
     private  JMenuBar menuBar;
-    private JFileChooser fileChooser;
+    private final JFileChooser fileChooser;
 
 
     public MenuBar(ModelView view){
@@ -34,13 +34,15 @@ public class MenuBar extends JFrame {
 
     public JMenuBar createMenuBar(){
         this.menuBar = new JMenuBar();
+
         JMenu fileMenu = new JMenu("File");
         JMenuItem saveMenu = new JMenuItem("Save");
-        //TODO à terminer la save en donnant directement la view
-        saveMenu.addActionListener(e -> this.save(((SModel)view.getModel())));
+        saveMenu.setIcon(resizeIcon(new ImageIcon("images\\save.png")));
+        saveMenu.addActionListener(e -> this.save());
         fileMenu.add(saveMenu);
 
         JMenuItem importMenu = new JMenuItem("Import");
+        importMenu.setIcon(resizeIcon(new ImageIcon("images\\import.png")));
         importMenu.addActionListener(e -> this.load());
         fileMenu.add(importMenu);
         menuBar.add(fileMenu);
@@ -50,6 +52,7 @@ public class MenuBar extends JFrame {
         modeItem.addActionListener(e -> this.toggleDarkMode());
         settingMenu.add(modeItem);
         menuBar.add(settingMenu);
+
         return this.menuBar;
     }
 
@@ -59,12 +62,14 @@ public class MenuBar extends JFrame {
         for (int i =0; i<this.menuBar.getMenuCount(); i++){
             this.menuBar.getMenu(i).setForeground(Constantes.DARKMODE_TEXTMENU_COLOR);
             for (int j=0; j<this.menuBar.getMenu(i).getItemCount(); j++){
+                this.menuBar.getMenu(i).getItem(j).setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
                 this.menuBar.getMenu(i).getItem(j).setForeground(Constantes.DARKMODE_TEXTMENU_COLOR);
             }
         }
     }
 
-    public void save(Object object){
+    public void save(){
+        Object object = (view.getModel());
         int selectedFile = this.fileChooser.showSaveDialog(view);
         if (selectedFile == JFileChooser.APPROVE_OPTION){
             File file = new File(this.fileChooser.getSelectedFile() + Constantes.FILE_EXTENSION);
@@ -78,5 +83,11 @@ public class MenuBar extends JFrame {
             Object object = this.saveHandler.loadObject(this.fileChooser.getSelectedFile());
             this.view.setModel(object);
         }
+    }
+
+    private static Icon resizeIcon(ImageIcon icon) {
+        Image img = icon.getImage();
+        Image resizedImage = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
+        return new ImageIcon(resizedImage);
     }
 }
