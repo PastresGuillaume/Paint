@@ -79,4 +79,6 @@ public class Constantes {
 
     public final static Color DARKMODE_TEXTMENU_COLOR = new Color(200, 200, 200);
 
+    public final static String FILE_EXTENSION = ".ser";
+
 }

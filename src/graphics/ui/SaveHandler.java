@@ -7,10 +7,7 @@ import graphics.formes.SRectangle;
 import java.io.*;
 
 public class SaveHandler {
-    private static final String file_path = "filename.txt";
-
-    public void saveObject(Object object) {
-        File file = new File(file_path);
+    public void saveObject(Object object, File file) {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
             oos.writeObject(object);
@@ -20,8 +17,7 @@ public class SaveHandler {
         }
     }
 
-    public Object loadObject() {
-        File file = new File(file_path);
+    public Object loadObject(File file) {
         Object object;
         try {
             ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file));

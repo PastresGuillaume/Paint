@@ -49,11 +49,11 @@ public class Editor  extends JFrame {
 
         SImage i1 = new SImage(new Point(50,50), 250, 250,"mini.jpg");
         i1.addAttributes(new SelectionAttributes());
-        //this.model.add(i1);
+        this.model.add(i1);
 
         SImage i2 = new SImage(new Point(100,100),600, "galaxia.png");
         i2.addAttributes(new SelectionAttributes());
-        //this.model.add(i2);
+        this.model.add(i2);
 
         SRectangle r = new SRectangle(new Point(10,30),200,100);
         r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
@@ -71,7 +71,7 @@ public class Editor  extends JFrame {
         t.addAttributes(new ColorAttributes(true,true,Color.YELLOW,Color.BLUE));
         t.addAttributes(new FontAttributes());
         t.addAttributes(new SelectionAttributes());
-        //this.model.add(t);
+        this.model.add(t);
 
         SCollection sc = new SCollection();
         sc.addAttributes(new SelectionAttributes());
@@ -83,7 +83,7 @@ public class Editor  extends JFrame {
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.DARK_GRAY));
         c.addAttributes(new SelectionAttributes());
         sc.add(c);
-        //this.model.add(sc);
+        this.model.add(sc);
 
         Calque c3 = new Calque();
 

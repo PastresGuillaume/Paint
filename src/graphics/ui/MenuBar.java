@@ -8,11 +8,13 @@ import graphics.ui.View.ModelView;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 public class MenuBar extends JFrame {
-    private ModelView view;
+    private  ModelView view;
     private SaveHandler saveHandler;
     private  JMenuBar menuBar;
+    private JFileChooser fileChooser;
 
 
     public MenuBar(ModelView view){
@@ -20,6 +22,10 @@ public class MenuBar extends JFrame {
         this.view = view;
         this.setBounds(0, 0, 500, 10);
         this.saveHandler = new SaveHandler();
+        this.fileChooser = new JFileChooser();
+        this.fileChooser.setAcceptAllFileFilterUsed(false);
+        this.fileChooser.setFileFilter(new FileExtensionFilter());
+        this.fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
     }
 
     public ModelView getView(){
@@ -59,12 +65,18 @@ public class MenuBar extends JFrame {
     }
 
     public void save(Object object){
-        this.saveHandler.saveObject(object);
+        int selectedFile = this.fileChooser.showSaveDialog(view);
+        if (selectedFile == JFileChooser.APPROVE_OPTION){
+            File file = new File(this.fileChooser.getSelectedFile() + Constantes.FILE_EXTENSION);
+            this.saveHandler.saveObject(object, file);
+        }
     }
 
     public void load(){
-        Object object = this.saveHandler.loadObject();
-        this.view.setModel(object);
-
+        int selectedFile = this.fileChooser.showOpenDialog(view);
+        if (selectedFile == JFileChooser.APPROVE_OPTION){
+            Object object = this.saveHandler.loadObject(this.fileChooser.getSelectedFile());
+            this.view.setModel(object);
+        }
     }
 }
