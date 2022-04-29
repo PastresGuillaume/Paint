@@ -35,9 +35,9 @@ public class Editor  extends JFrame {
         this.mview.setPreferredSize(new Dimension(300,300));
         this.getContentPane().add(this.mview, java.awt.BorderLayout.CENTER);
 
-        this.add( new ShapeToolBar(this.mview).createToolBar(), BorderLayout.PAGE_END );
-
-        this.add( new CalqueToolBar(this.mview).createToolBar(), BorderLayout.EAST );
+        this.add(((MenuBar) mview.getMenus().get(Constantes.MENU_BAR_ID)).createMenuBar(),Constantes.MENU_BAR_LOC);
+        this.add(((CalqueToolBar)mview.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).createToolBar(),Constantes.CALQUE_TOOL_BAR_LOC);
+        this.add(((ShapeToolBar) mview.getMenus().get(Constantes.SHAPE_TOOL_BAR_ID)).createToolBar(),Constantes.SHAPE_TOOL_BAR_LOC);
     }
 
 
@@ -53,10 +53,10 @@ public class Editor  extends JFrame {
         i2.addAttributes(new SelectionAttributes());
         this.model.add(i2);
 
-        SRectangle r = new SRectangle(new Point(10,10),100,100);
+        SRectangle r = new SRectangle(new Point(10,30),200,100);
         r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
         r.addAttributes(new SelectionAttributes());
-        r.addAttributes(new RotationAttributes(0.2));
+        //r.addAttributes(new RotationAttributes(0.2));
         this.model.add(r);
 
 
@@ -90,11 +90,20 @@ public class Editor  extends JFrame {
         ajout2.addAttributes(new ColorAttributes(true, true, Color.GREEN, Color.BLUE));
         c3.add(ajout2);
 
-        this.model.addCalque(c3);
+        //this.model.addCalque(c3);
 
         GameCalque q = new GameCalque(Constantes.GAME_ID_MORT_PION);
         this.model.addCalque(q);
+        //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
+        //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
+        //this.model.setUse(1);
+        //CalqueGame q = new CalqueGame(Constantes.GAME_ID_MORT_PION);
+        //((MortPion) q.getGame()).play(1, 1);
+
+        //this.model.addCalque(q);
+        //this.model.setUse(2);
     }
+
 
     public static void main(String[] args)
     {

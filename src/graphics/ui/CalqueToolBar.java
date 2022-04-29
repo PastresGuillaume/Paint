@@ -15,36 +15,42 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.util.HashMap;
 
 public class CalqueToolBar extends  JFrame{
 
     private ModelView view;
     private final Dimension dimension;
+    private HashMap<String,JComponent> buttons = new HashMap<>();
+
+    public  final String borderLayout = BorderLayout.EAST;
 
     public CalqueToolBar(ModelView view){
         super( "JToolBar for Calque" );
         this.view = view;
-        this.dimension = new Dimension(25,25);
+        this.dimension = new Dimension(15,15);
     }
 
-    public ModelView getView(){
-        return this.view;
-    }
+    public ModelView getView(){return this.view;}
+
+    public HashMap<String, JComponent> getButtons() {return buttons;}
 
     public JToolBar createToolBar() {
         JToolBar toolBar = new JToolBar(JToolBar.VERTICAL);
         SModel sModel = (SModel) this.view.getModel();
         JScrollPane jScrollPane = new JScrollPane();
 
-        JButton saveBtn = new JButton(new ImageIcon("images\\add.png"));
-        saveBtn.setToolTipText("New Calque");
-        saveBtn.setSize(this.dimension);
-        saveBtn.addActionListener(e -> {
+        JButton addBtn = new JButton(new ImageIcon("images\\add.png"));
+        addBtn.setToolTipText("New Calque");
+        addBtn.setSize(this.dimension);
+//        saveBtn.setMargin(new Insets((int) this.dimension.height/2,(int) this.dimension.width/2,(int) this.dimension.height/2,(int) this.dimension.width/2));
+        addBtn.addActionListener(e -> {
             Calque calque = new Calque();
             sModel.addCalque(calque);
             addButtonCalque(calque,sModel,toolBar);
         });
-        toolBar.add(saveBtn);
+        this.buttons.put("add",addBtn);
+        toolBar.add(addBtn);
 
         JButton addGameBtn = new JButton(new ImageIcon("images\\mortPion.png"));
         addGameBtn.setToolTipText("New mort pion");
@@ -62,6 +68,8 @@ public class CalqueToolBar extends  JFrame{
             addButtonCalque(calque,sModel,toolBar);
         }
 
+//        this.buttons.get(sModel.getCalques().get(0).getName() + Constantes.IS_PAINTED_CALQUE).setBackground(Color.black);
+
         toolBar.setOpaque(true);
         toolBar.setMargin(new Insets(10,0,10,0));
         toolBar.setFloatable(false);
@@ -73,6 +81,7 @@ public class CalqueToolBar extends  JFrame{
         JButton btnNew = new JButton(new ImageIcon("images\\rien.jpg"));
         btnNew.setToolTipText(calque.getName());
         btnNew.setSize(this.dimension);
+//        btnNew.setMargin(new Insets((int) this.dimension.height/2,(int) this.dimension.width/2,(int) this.dimension.height/2,(int) this.dimension.width/2));
         btnNew.addActionListener(e -> {
             sModel.setUse(calque);
             ((ModelController)this.getView().getController()).getController().setModel(calque.getContent());
@@ -85,6 +94,7 @@ public class CalqueToolBar extends  JFrame{
             ((SModel) this.view.getModel()).unselect();
             this.view.invalidate();
         });
+        this.buttons.put(calque.getName() + Constantes.IS_USED_CALQUE,btnNew);
         toolBar.add(btnNew);
 
         JCheckBox checkBox = new JCheckBox(calque.getName(), true);
@@ -95,6 +105,7 @@ public class CalqueToolBar extends  JFrame{
                 sModel.setNotPaint(calque);
             view.invalidate();
         });
+        this.buttons.put(calque.getName() + Constantes.IS_PAINTED_CALQUE,checkBox);
         toolBar.add(checkBox);
     }
 }

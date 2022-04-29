@@ -74,4 +74,32 @@ public class Constantes {
     public final static SelectionAttributes MORT_PION_NULL_SELECTION = new SelectionAttributes();
 
     public final static int GAME_ID_DAMES = 1;
+
+    public final static Color DARKMODE_BACKGROUND_COLOR = new Color(80, 80, 80);
+
+    public final static Color DARKMODE_MENUBAR_COLOR = new Color(60, 60, 60);
+
+    public final static Color DARKMODE_TEXTMENU_COLOR = new Color(200, 200, 200);
+
+    public final static String FILE_EXTENSION = ".ser";
+
+    public final static String MENU_BAR_ID = "MenuBar";
+
+    public final static String CALQUE_TOOL_BAR_ID = "CalqueToolBar";
+
+    public final static String SHAPE_TOOL_BAR_ID = "ShapeToolBar";
+
+    public  final static String SHAPE_TOOL_BAR_LOC = BorderLayout.PAGE_END;
+
+    public final static String MENU_BAR_LOC = BorderLayout.NORTH;
+
+    public final static String CALQUE_TOOL_BAR_LOC = BorderLayout.EAST;
+
+    public final static String IS_PAINTED_CALQUE = "isPainted";
+
+    public final static String IS_USED_CALQUE = "isUsed";
+
+    public final static int WIDTH_ICON = 50;
+
+    public final static int HEIGHT_ICON = 50;
 }

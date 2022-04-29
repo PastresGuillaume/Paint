@@ -6,10 +6,13 @@ import graphics.attributes.SelectionAttributes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Shape{
-
+public abstract class Shape implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1783389611714034615L;
     private ArrayList<Attributes> attributes;
 
     Shape(){

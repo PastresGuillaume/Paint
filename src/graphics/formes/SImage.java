@@ -5,10 +5,11 @@ import graphics.ui.Visitor.ShapeVisitor;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class SImage extends Shape{
+    //TODO Serialisation a redefinir a cause de la bufferedImage
+
     private Rectangle rect;
     private BufferedImage image;
 
@@ -92,4 +93,17 @@ public class SImage extends Shape{
         this.rect.x/=2;
         this.rect.y/=2;
     }
+
+    @Serial
+    private void writeObject(ObjectOutputStream oos) throws IOException{
+        oos.writeObject(this.rect);
+        ImageIO.write(this.image, "png", oos);
+    }
+
+    @Serial
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
+        this.rect = (Rectangle)ois.readObject();
+        this.image = ImageIO.read(ois);
+    }
+
 }
