@@ -1,13 +1,9 @@
 package graphics.ui;
 
 import graphics.Constantes;
-import graphics.formes.*;
-import graphics.formes.Shape;
 import graphics.ui.View.ModelView;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.io.File;
 
 public class MenuBar extends JFrame {
@@ -15,6 +11,7 @@ public class MenuBar extends JFrame {
     private final SaveHandler saveHandler;
     private  JMenuBar menuBar;
     private final JFileChooser fileChooser;
+    private final PopupHelpMenu popupHelpMenu;
 
 
     public MenuBar(ModelView view){
@@ -26,6 +23,8 @@ public class MenuBar extends JFrame {
         this.fileChooser.setAcceptAllFileFilterUsed(false);
         this.fileChooser.setFileFilter(new FileExtensionFilter());
         this.fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        this.popupHelpMenu = new PopupHelpMenu();
+
     }
 
     public ModelView getView(){
@@ -53,7 +52,17 @@ public class MenuBar extends JFrame {
         settingMenu.add(modeItem);
         menuBar.add(settingMenu);
 
+        JMenu helpMenu = new JMenu("Help");
+        JMenuItem helpItem = new JMenuItem("Commands");
+        helpItem.addActionListener(e -> this.toggleDisplayHelpMenu());
+        helpMenu.add(helpItem);
+        menuBar.add(helpMenu);
+
         return this.menuBar;
+    }
+
+    public void toggleDisplayHelpMenu(){
+        this.popupHelpMenu.toggleDisplayMenu();
     }
 
     public void toggleDarkMode(){

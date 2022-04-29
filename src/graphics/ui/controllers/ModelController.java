@@ -132,7 +132,7 @@ public class ModelController extends Controller {
         if (e.getKeyCode()==8){
             ((SModel) this.getModel()).getCalqueUse().getElement().removeIf(Shape::isSelected);
         }
-        if (e.getKeyCode()==KeyEvent.VK_META) {
+        if (e.getKeyCode()==KeyEvent.VK_META || e.getKeyCode()==KeyEvent.VK_CONTROL) {
             this.control = true;
         }
         if (this.control){
