@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-public class MenuBar extends JFrame {
+public class MenuBar extends AbstractBar {
     private final ModelView view;
     private final SaveHandler saveHandler;
     private  JMenuBar menuBar;
@@ -15,7 +15,6 @@ public class MenuBar extends JFrame {
 
 
     public MenuBar(ModelView view){
-        super( "Menu Bar" );
         this.view = view;
         this.setBounds(0, 0, 500, 10);
         this.saveHandler = new SaveHandler();
@@ -67,7 +66,8 @@ public class MenuBar extends JFrame {
 
     public void toggleDarkMode(){
         this.view.setBackground(Constantes.DARKMODE_BACKGROUND_COLOR);
-        this.menuBar.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+        for(AbstractBar menu : this.view.getMenus().values())
+            menu.goDarkMode();
         for (int i =0; i<this.menuBar.getMenuCount(); i++){
             this.menuBar.getMenu(i).setForeground(Constantes.DARKMODE_TEXTMENU_COLOR);
             for (int j=0; j<this.menuBar.getMenu(i).getItemCount(); j++){
@@ -98,5 +98,15 @@ public class MenuBar extends JFrame {
         Image img = icon.getImage();
         Image resizedImage = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImage);
+    }
+
+    @Override
+    public void goDarkMode() {
+        this.menuBar.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+    }
+
+    @Override
+    public void noDarkMode() {
+        this.menuBar.setBackground(Color.WHITE);
     }
 }

@@ -11,16 +11,16 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.HashMap;
 
-public class CalqueToolBar extends  JFrame{
+public class CalqueToolBar extends  AbstractBar{
 
     private ModelView view;
     private final Dimension dimension;
+    private JToolBar toolBar = new JToolBar(JToolBar.VERTICAL);
     private HashMap<String,JComponent> buttons = new HashMap<>();
 
     public  final String borderLayout = BorderLayout.EAST;
 
     public CalqueToolBar(ModelView view){
-        super( "JToolBar for Calque" );
         this.view = view;
         this.dimension = new Dimension(15,15);
     }
@@ -30,7 +30,6 @@ public class CalqueToolBar extends  JFrame{
     public HashMap<String, JComponent> getButtons() {return buttons;}
 
     public JToolBar createToolBar() {
-        JToolBar toolBar = new JToolBar(JToolBar.VERTICAL);
         SModel sModel = (SModel) this.view.getModel();
         JScrollPane jScrollPane = new JScrollPane();
 
@@ -139,4 +138,33 @@ public class CalqueToolBar extends  JFrame{
 
         btnNew.setComponentPopupMenu(jPopupMenu);
     }
+
+    @Override
+    public void goDarkMode() {
+        this.toolBar.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+        for(JComponent button : this.buttons.values()) {
+            button.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+            button.setForeground(Color.white);
+            if(button.getComponentPopupMenu() != null) {
+                for(MenuElement item : button.getComponentPopupMenu().getSubElements()) {
+                    ((JMenuItem) item).setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+                    ((JMenuItem) item).setForeground(Color.white);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void noDarkMode() {
+        this.toolBar.setBackground(Color.WHITE);
+        for(JComponent button : this.buttons.values())
+            if(button.getComponentPopupMenu() != null) {
+                for(MenuElement item : button.getComponentPopupMenu().getSubElements()) {
+                    ((JMenuItem) item).setBackground(Color.WHITE);
+                    ((JMenuItem) item).setForeground(Constantes.DARKMODE_MENUBAR_COLOR);
+                }
+            }
+    }
+
+
 }
