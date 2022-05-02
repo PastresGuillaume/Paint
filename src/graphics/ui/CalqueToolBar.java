@@ -144,11 +144,11 @@ public class CalqueToolBar extends  AbstractBar{
         this.toolBar.setBackground(Constantes.MENUBAR_COLOR);
         for(JComponent button : this.buttons.values()) {
             button.setBackground(Constantes.MENUBAR_COLOR);
-            button.setForeground(Constantes.TEXT_COLOR);
+            button.setForeground(Constantes.TEXTMENU_COLOR);
             if(button.getComponentPopupMenu() != null) {
                 for(MenuElement item : button.getComponentPopupMenu().getSubElements()) {
                     ((JMenuItem) item).setBackground(Constantes.MENUBAR_COLOR);
-                    ((JMenuItem) item).setForeground(Constantes.TEXT_COLOR);
+                    ((JMenuItem) item).setForeground(Constantes.TEXTMENU_COLOR);
                 }
             }
         }
