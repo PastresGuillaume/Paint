@@ -79,6 +79,18 @@ public class Constantes {
 
     public final static Color DARKMODE_TEXTMENU_COLOR = new Color(200, 200, 200);
 
+    public final static Color BRIGHTMODE_BACKGROUND_COLOR = new Color(220, 220, 220);
+
+    public final static Color BRIGHTMODE_MENUBAR_COLOR = new Color(200, 200, 200);
+
+    public final static Color BRIGHTMODE_TEXTMENU_COLOR = new Color(0, 0, 0);
+
+    public static Color BACKGROUND_COLOR;
+
+    public static Color MENUBAR_COLOR;
+
+    public static Color TEXTMENU_COLOR;
+
     public final static String FILE_EXTENSION = ".ser";
 
     public final static String MENU_BAR_ID = "MenuBar";
@@ -100,4 +112,7 @@ public class Constantes {
     public final static int WIDTH_ICON = 50;
 
     public final static int HEIGHT_ICON = 50;
+
+    public static Dimension WINDOW_DIMENSIONS = new Dimension();
+
 }

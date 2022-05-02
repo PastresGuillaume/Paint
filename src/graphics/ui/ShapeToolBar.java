@@ -44,20 +44,11 @@ public class ShapeToolBar extends AbstractBar{
     }
 
     @Override
-    public void goDarkMode() {
-        this.toolBar.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+    public void changeColor() {
+        this.toolBar.setBackground(Constantes.MENUBAR_COLOR);
         for(Component component : this.toolBar.getComponents()){
-            component.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
-            component.setForeground(Color.WHITE);
-        }
-    }
-
-    @Override
-    public void noDarkMode() {
-        this.toolBar.setBackground(Color.WHITE);
-        for(Component component : this.toolBar.getComponents()){
-            component.setBackground(Color.WHITE);
-            component.setForeground(Constantes.DARKMODE_MENUBAR_COLOR);
+            component.setBackground(Constantes.MENUBAR_COLOR);
+            component.setForeground(Constantes.TEXTMENU_COLOR);
         }
     }
 }

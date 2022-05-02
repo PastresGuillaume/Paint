@@ -140,31 +140,17 @@ public class CalqueToolBar extends  AbstractBar{
     }
 
     @Override
-    public void goDarkMode() {
-        this.toolBar.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
+    public void changeColor() {
+        this.toolBar.setBackground(Constantes.MENUBAR_COLOR);
         for(JComponent button : this.buttons.values()) {
-            button.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
-            button.setForeground(Color.white);
+            button.setBackground(Constantes.MENUBAR_COLOR);
+            button.setForeground(Constantes.TEXT_COLOR);
             if(button.getComponentPopupMenu() != null) {
                 for(MenuElement item : button.getComponentPopupMenu().getSubElements()) {
-                    ((JMenuItem) item).setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
-                    ((JMenuItem) item).setForeground(Color.white);
+                    ((JMenuItem) item).setBackground(Constantes.MENUBAR_COLOR);
+                    ((JMenuItem) item).setForeground(Constantes.TEXT_COLOR);
                 }
             }
         }
     }
-
-    @Override
-    public void noDarkMode() {
-        this.toolBar.setBackground(Color.WHITE);
-        for(JComponent button : this.buttons.values())
-            if(button.getComponentPopupMenu() != null) {
-                for(MenuElement item : button.getComponentPopupMenu().getSubElements()) {
-                    ((JMenuItem) item).setBackground(Color.WHITE);
-                    ((JMenuItem) item).setForeground(Constantes.DARKMODE_MENUBAR_COLOR);
-                }
-            }
-    }
-
-
 }

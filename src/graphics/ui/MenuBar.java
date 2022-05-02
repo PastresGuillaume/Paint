@@ -11,7 +11,8 @@ public class MenuBar extends AbstractBar {
     private final SaveHandler saveHandler;
     private  JMenuBar menuBar;
     private final JFileChooser fileChooser;
-    private final PopupHelpMenu popupHelpMenu;
+    private final HelpMenu helpMenu;
+    private boolean isDarkMode = false;
 
 
     public MenuBar(ModelView view){
@@ -22,7 +23,7 @@ public class MenuBar extends AbstractBar {
         this.fileChooser.setAcceptAllFileFilterUsed(false);
         this.fileChooser.setFileFilter(new FileExtensionFilter());
         this.fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        this.popupHelpMenu = new PopupHelpMenu();
+        this.helpMenu = new HelpMenu();
 
     }
 
@@ -61,21 +62,25 @@ public class MenuBar extends AbstractBar {
     }
 
     public void toggleDisplayHelpMenu(){
-        this.popupHelpMenu.toggleDisplayMenu();
+        this.helpMenu.toggleDisplayMenu();
     }
 
     public void toggleDarkMode(){
-        this.view.setBackground(Constantes.DARKMODE_BACKGROUND_COLOR);
-        for(AbstractBar menu : this.view.getMenus().values())
-            menu.goDarkMode();
-        for (int i =0; i<this.menuBar.getMenuCount(); i++){
-            this.menuBar.getMenu(i).setForeground(Constantes.DARKMODE_TEXTMENU_COLOR);
-            for (int j=0; j<this.menuBar.getMenu(i).getItemCount(); j++){
-                this.menuBar.getMenu(i).getItem(j).setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
-                this.menuBar.getMenu(i).getItem(j).setForeground(Constantes.DARKMODE_TEXTMENU_COLOR);
-            }
+        this.isDarkMode = ! this.isDarkMode;
+        if (this.isDarkMode){
+            Constantes.MENUBAR_COLOR = Constantes.DARKMODE_MENUBAR_COLOR;
+            Constantes.TEXTMENU_COLOR = Constantes.DARKMODE_TEXTMENU_COLOR;
+            Constantes.BACKGROUND_COLOR = Constantes.DARKMODE_BACKGROUND_COLOR;
         }
+        else{
+            Constantes.MENUBAR_COLOR = Constantes.BRIGHTMODE_MENUBAR_COLOR;
+            Constantes.TEXTMENU_COLOR = Constantes.BRIGHTMODE_TEXTMENU_COLOR;
+            Constantes.BACKGROUND_COLOR = Constantes.BRIGHTMODE_BACKGROUND_COLOR;
+        }
+        for(AbstractBar menu : this.view.getMenus().values())
+            menu.changeColor();
     }
+
 
     public void save(){
         Object object = (view.getModel());
@@ -101,12 +106,15 @@ public class MenuBar extends AbstractBar {
     }
 
     @Override
-    public void goDarkMode() {
-        this.menuBar.setBackground(Constantes.DARKMODE_MENUBAR_COLOR);
-    }
-
-    @Override
-    public void noDarkMode() {
-        this.menuBar.setBackground(Color.WHITE);
+    public void changeColor() {
+        this.view.setBackground(Constantes.BACKGROUND_COLOR);
+        this.menuBar.setBackground(Constantes.MENUBAR_COLOR);
+        for (int i =0; i<this.menuBar.getMenuCount(); i++){
+            this.menuBar.getMenu(i).setForeground(Constantes.TEXTMENU_COLOR);
+            for (int j=0; j<this.menuBar.getMenu(i).getItemCount(); j++){
+                this.menuBar.getMenu(i).getItem(j).setBackground(Constantes.MENUBAR_COLOR);
+                this.menuBar.getMenu(i).getItem(j).setForeground(Constantes.TEXTMENU_COLOR);
+            }
+        }
     }
 }

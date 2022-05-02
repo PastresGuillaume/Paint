@@ -12,6 +12,8 @@ import graphics.ui.View.ModelView;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class Editor  extends JFrame {
     ModelView mview;
@@ -26,6 +28,12 @@ public class Editor  extends JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
                 System.exit(0);
+            }
+        });
+        this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                Constantes.WINDOW_DIMENSIONS.setSize(e.getComponent().getSize());
             }
         });
 
