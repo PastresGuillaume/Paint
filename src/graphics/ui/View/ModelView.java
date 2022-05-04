@@ -3,6 +3,7 @@ package graphics.ui.View;
 import graphics.Constantes;
 import graphics.formes.Calque;
 import graphics.formes.SModel;
+import graphics.ui.AbstractBar;
 import graphics.ui.CalqueToolBar;
 import graphics.ui.MenuBar;
 import graphics.ui.ShapeToolBar;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 public class ModelView extends View{
 //    private ModelDraftman draftman;
     private GameDraftman draftman;
-    private HashMap<String, JFrame> menus = new HashMap<>();
+    private HashMap<String, AbstractBar> menus = new HashMap<>();
 
     public ModelDraftman getDraftman() {
         return draftman;
@@ -61,7 +62,7 @@ public class ModelView extends View{
         model.accept(draftman);
     }
 
-    public HashMap<String, JFrame> getMenus() {return menus;}
+    public HashMap<String, AbstractBar> getMenus() {return menus;}
 
     public void updateIconCalqueBar(Calque calque) throws IOException {
         BufferedImage bi = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
