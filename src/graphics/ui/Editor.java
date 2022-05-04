@@ -14,13 +14,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 
 public class Editor  extends JFrame {
     ModelView mview;
     SModel model;
 
-    public Editor()
-    {
+    public Editor() throws IOException {
         super("Shapes Editor");
 
         this.addWindowListener(new java.awt.event.WindowAdapter()
@@ -34,6 +36,10 @@ public class Editor  extends JFrame {
             @Override
             public void componentResized(ComponentEvent e) {
                 Constantes.WINDOW_DIMENSIONS.setSize(e.getComponent().getSize());
+                File dir = new File("images\\icons");
+                for(File file: Objects.requireNonNull(dir.listFiles()))
+                    if (!file.isDirectory())
+                        file.delete();
             }
         });
 
@@ -112,8 +118,7 @@ public class Editor  extends JFrame {
     }
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
         Editor self = new Editor();
         self.pack();
         self.setVisible(true);
