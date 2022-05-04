@@ -92,8 +92,8 @@ public class MenuBar extends AbstractBar {
     }
 
     public void load(){
-        int selectedFile = this.fileChooser.showOpenDialog(view);
-        if (selectedFile == JFileChooser.APPROVE_OPTION){
+        int operationResult = this.fileChooser.showOpenDialog(view);
+        if (operationResult == JFileChooser.APPROVE_OPTION){
             Object object = this.saveHandler.loadObject(this.fileChooser.getSelectedFile());
             this.view.setModel(object);
         }

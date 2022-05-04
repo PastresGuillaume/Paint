@@ -115,4 +115,6 @@ public class Constantes {
 
     public static Dimension WINDOW_DIMENSIONS = new Dimension();
 
+    public static final int MAXIMUM_IMAGE_SIZE = 500;
+
 }
