@@ -96,6 +96,7 @@ public class MenuBar extends AbstractBar {
         if (operationResult == JFileChooser.APPROVE_OPTION){
             Object object = this.saveHandler.loadObject(this.fileChooser.getSelectedFile());
             this.view.setModel(object);
+            ((CalqueToolBar)this.view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).refresh();
         }
     }
 

@@ -173,4 +173,13 @@ public class CalqueToolBar extends  AbstractBar{
             }
         }
     }
+
+    public void refresh()  {
+        try {
+            this.toolBar.removeAll();
+            this.toolBar = this.createToolBar();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

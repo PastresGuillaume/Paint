@@ -49,6 +49,7 @@ public class ImageCreator extends AbstractController{
         sImage.addAttributes(new SelectionAttributes());
         ((SelectionAttributes) sImage.getAttributes(Constantes.SELECTION_ATTRIBUTE)).select();
         ((SCollection) this.model).add(sImage);
+        this.getView().setController(new ShapesController((Shape) this.getModel(), this.getView()));
     }
 
 }
