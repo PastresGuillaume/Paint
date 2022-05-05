@@ -29,6 +29,10 @@ public class Editor  extends JFrame {
         {
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
+                File dir = new File("images\\icons");
+                for(File file: Objects.requireNonNull(dir.listFiles()))
+                    if (!file.isDirectory())
+                        file.delete();
                 System.exit(0);
             }
         });
@@ -36,10 +40,6 @@ public class Editor  extends JFrame {
             @Override
             public void componentResized(ComponentEvent e) {
                 Constantes.WINDOW_DIMENSIONS.setSize(e.getComponent().getSize());
-                File dir = new File("images\\icons");
-                for(File file: Objects.requireNonNull(dir.listFiles()))
-                    if (!file.isDirectory())
-                        file.delete();
             }
         });
 
