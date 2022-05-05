@@ -26,6 +26,5 @@ public class FontAttributes extends Attributes{
         int width = (int)(font.getStringBounds(s, frc).getWidth());
         int height = (int)(font.getStringBounds(s, frc).getHeight());
         return new Rectangle(-2,-height+(int)(this.font.getSize()*0.25),width+4,height);
-//        ca marche donc touche pas stp
     }
 }

@@ -70,13 +70,11 @@ public class ModelController extends Controller {
     public void mousePressed(MouseEvent e) {
         setController();
         if(SwingUtilities.isRightMouseButton(e)) {
-//            ((ModelView)this.getView()).setNoRightClickMenu(false);
             if(!Objects.equals(menu, new JPopupMenu()))
                 menu.show(this.getView(), e.getX(), e.getY());
         }
         else
             this.controller.mousePressed(e);
-//        ((ModelView)this.getView()).setNoRightClickMenu(true);
     }
 
     @Override

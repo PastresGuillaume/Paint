@@ -2,18 +2,12 @@ package graphics.ui;
 
 
 import graphics.Constantes;
-import graphics.formes.SModel;
 import graphics.formes.Shape;
-import graphics.ui.controllers.ImageCreator;
-import graphics.ui.controllers.RectangleCreator;
-import graphics.ui.controllers.ShapesController;
+import graphics.ui.controllers.*;
 import graphics.ui.View.ModelView;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 
 public class ShapeToolBar extends AbstractBar{
 
@@ -38,16 +32,22 @@ public class ShapeToolBar extends AbstractBar{
 
     public JToolBar createToolBar() {
         JButton btnNew = new JButton( new ImageIcon("images\\select.png") );
-        btnNew.setToolTipText( "Everyday i'm drinking" );
+        btnNew.setToolTipText( "Selection" );
         btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> view.setController(new ShapesController((Shape) view.getModel(), this.view)));
         toolBar.add( btnNew );
 
         JButton btnDrawRectangle = new JButton( new ImageIcon("images\\square.png" ) );
-        btnDrawRectangle.setToolTipText( "Everyday i'm drinking" );
+        btnDrawRectangle.setToolTipText( "Draw rectangle" );
         btnDrawRectangle.setSize(this.dimension);
         btnDrawRectangle.addActionListener(e -> view.setController(new RectangleCreator((Shape) view.getModel(), this.view)));
         toolBar.add(btnDrawRectangle);
+
+        JButton btnDrawCircle = new JButton( new ImageIcon("images\\circle.png" ) );
+        btnDrawCircle.setToolTipText( "Draw circle" );
+        btnDrawCircle.setSize(this.dimension);
+        btnDrawCircle.addActionListener(e -> view.setController(new EllipsisCreator((Shape) view.getModel(), this.view)));
+        toolBar.add(btnDrawCircle);
 
         JButton btnDrawImage = new JButton(new ImageIcon((new ImageIcon("images\\picture.png")).getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
         btnDrawImage.setToolTipText("Draw Image");
