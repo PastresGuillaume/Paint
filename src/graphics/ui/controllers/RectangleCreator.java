@@ -3,9 +3,7 @@ package graphics.ui.controllers;
 import graphics.attributes.ColorAttributes;
 import graphics.attributes.SelectionAttributes;
 import graphics.Constantes;
-import graphics.formes.SCollection;
-import graphics.formes.SModel;
-import graphics.formes.SRectangle;
+import graphics.formes.*;
 import graphics.formes.Shape;
 import graphics.ui.View.ModelView;
 
@@ -28,34 +26,6 @@ public class RectangleCreator extends AbstractController {
         this.setView(view);
         this.locCreation = new Point();
         unselectedAll();
-
-//        JMenu color = new JMenu("Color");
-//        JMenuItem strokedColorMenu = new JMenuItem("Stroked color");
-//        JMenuItem filledColorMenu = new JMenuItem("Filled color", new ImageIcon("graphics\\shapes\\ui\\image\\chat.jpg" ));
-//
-//        strokedColorMenu.addActionListener(e -> {
-//            JFrame myFrame = new JFrame();
-//            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            myFrame.setSize(500, 300);
-//            myFrame.setLocationRelativeTo(null);
-//            myFrame.setLayout(new BorderLayout());
-//            strokedColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
-//            myFrame.setTitle("Select your filled color");
-//        });
-//        filledColorMenu.addActionListener(e -> {
-//            JFrame myFrame = new JFrame();
-//            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//            myFrame.setSize(500, 300);
-//            myFrame.setLocationRelativeTo(null);
-//            myFrame.setLayout(new BorderLayout());
-//            filledColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
-//            myFrame.setTitle("Select your filled color");
-//        });
-//
-//        color.add(strokedColorMenu);
-//        color.add(filledColorMenu);
-//
-//        menu.add(color);
     }
 
     @Override
@@ -76,7 +46,7 @@ public class RectangleCreator extends AbstractController {
         }
         else {
             this.locCreation = e.getPoint();
-            SRectangle rect = new SRectangle(e.getPoint(), 10, 10);
+            SRectangle rect = new SRectangle(this.locCreation, 10, 10);
             rect.addAttributes(new ColorAttributes(true, true, filledColor, strokedColor));
             rect.addAttributes(new SelectionAttributes());
             ((SelectionAttributes) rect.getAttributes(Constantes.SELECTION_ATTRIBUTE)).select();
@@ -105,23 +75,6 @@ public class RectangleCreator extends AbstractController {
 
     @Override
     public void keyPressed(KeyEvent evt) {
-        int keyCode = evt.getKeyCode();
-        if(keyCode == KeyEvent.VK_SHIFT || keyCode == KeyEvent.VK_CONTROL) {
-            JFrame myFrame = new JFrame();
-            myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            myFrame.setSize(500, 300);
-            myFrame.setLocationRelativeTo(null);
-            myFrame.setLayout(new BorderLayout());
-            Color selectedColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
-            if(keyCode == KeyEvent.VK_SHIFT){
-                filledColor = selectedColor;
-                myFrame.setTitle("Select your filled color");
-            }
-            else {
-                strokedColor = selectedColor;
-                myFrame.setTitle("Select your stroked color");
-            }
-        }
     }
 
     @Override
@@ -152,7 +105,7 @@ public class RectangleCreator extends AbstractController {
                 else if (p < 0) {
                     s.setLoc((new Point(this.locCreation.x,this.locCreation.y + p)));
                 }
-                s.setSize(Math.abs(i), Math.abs(p));
+                s.resize(Math.abs(i), Math.abs(p));
             }
         }
     }
@@ -164,24 +117,26 @@ public class RectangleCreator extends AbstractController {
 
         strokedColorMenu.addActionListener(e -> {
             JFrame myFrame = new JFrame();
+            Color strokedColorPrevious = this.strokedColor;
             myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             myFrame.setSize(500, 300);
             myFrame.setLocationRelativeTo(null);
             myFrame.setLayout(new BorderLayout());
             strokedColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
             if (strokedColorMenu == null)
-                strokedColor = Constantes.DEFAULT_COLOR_ADD_RECTANGLE;
+                strokedColor = strokedColorPrevious;
             myFrame.setTitle("Select your stroked color");
         });
         filledColorMenu.addActionListener(e -> {
             JFrame myFrame = new JFrame();
+            Color filledColorPrevious = this.filledColor;
             myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             myFrame.setSize(500, 300);
             myFrame.setLocationRelativeTo(null);
             myFrame.setLayout(new BorderLayout());
             filledColor = JColorChooser.showDialog(myFrame, "Pick a Color", Color.GREEN);
             if (filledColor == null)
-                filledColor = Constantes.COLOR_INVISIBLE;
+                filledColor = filledColorPrevious;
             myFrame.setTitle("Select your filled color");
         });
 

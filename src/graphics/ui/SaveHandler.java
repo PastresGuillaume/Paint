@@ -24,6 +24,7 @@ public class SaveHandler {
             object = ois.readObject();
             return object;
         } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Selected File has the wrong extension or doesn't exist");
             e.printStackTrace();
         }
         return null;

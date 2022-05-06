@@ -44,6 +44,10 @@ public class SCircle extends Shape {
         //TODO see this code
     }
 
+    public void setSize(int i,int p) {
+        this.radius = (int) Math.sqrt( i*i + p*p );
+    }
+
     public int getRadius(){
         return (int)this.radius;
     }

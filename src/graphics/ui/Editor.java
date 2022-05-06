@@ -14,19 +14,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import java.io.File;
+import java.io.IOException;
+import java.util.Objects;
 
 public class Editor  extends JFrame {
     ModelView mview;
     SModel model;
 
-    public Editor()
-    {
+    public Editor() throws IOException {
         super("Shapes Editor");
 
         this.addWindowListener(new java.awt.event.WindowAdapter()
         {
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
+                File dir = new File("images\\icons");
+                for(File file: Objects.requireNonNull(dir.listFiles()))
+                    if (!file.isDirectory())
+                        file.delete();
                 System.exit(0);
             }
         });
@@ -113,8 +119,7 @@ public class Editor  extends JFrame {
     }
 
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) throws IOException {
         Editor self = new Editor();
         self.pack();
         self.setVisible(true);

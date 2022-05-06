@@ -1,5 +1,6 @@
 package graphics.formes;
 
+import graphics.Constantes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import javax.imageio.ImageIO;
@@ -39,6 +40,25 @@ public class SImage extends Shape{
             this.rect = new Rectangle(point.x, point.y, width, height);
         }
         catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public SImage(Point point, File file){
+        try {
+            this.image = ImageIO.read(file);
+            int width = this.image.getWidth();
+            int height = this.image.getHeight();
+            if (width> Constantes.MAXIMUM_IMAGE_SIZE && width>height){
+                height = height*Constantes.MAXIMUM_IMAGE_SIZE/width;
+                width = Constantes.MAXIMUM_IMAGE_SIZE;
+            }
+            else if(height>Constantes.MAXIMUM_IMAGE_SIZE && height>width){
+                width = width*Constantes.MAXIMUM_IMAGE_SIZE/height;
+                height = Constantes.MAXIMUM_IMAGE_SIZE;
+            }
+            this.rect = new Rectangle(point.x, point.y, width, height);
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

@@ -39,16 +39,10 @@ public class SRectangle extends Shape {
 
     @Override
     public void resize(int width, int height) {
-        this.rect.width = width;
-        this.rect.height = height;
+        this.rect.setSize(new Dimension(width,height));
     }
 
     public Rectangle getRect(){return this.rect;}
-
-    @Override
-    public void setSize(int i, int p) {
-        this.rect.setSize(i, p);
-    }
 
     @Override
     public void zoomIn() {

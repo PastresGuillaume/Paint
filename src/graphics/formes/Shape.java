@@ -64,10 +64,6 @@ public abstract class Shape implements Serializable {
         }
     }
 
-    public void setSize(int abs, int abs1) {
-        //TODO Thomas
-    }
-
     public boolean isSelected() {
         try{
             return ((SelectionAttributes) this.getAttributes(Constantes.SELECTION_ATTRIBUTE)).isSelected();
