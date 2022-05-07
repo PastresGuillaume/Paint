@@ -65,7 +65,7 @@ public class ModelView extends View{
     public HashMap<String, AbstractBar> getMenus() {return menus;}
 
     public void updateIconCalqueBar(Calque calque) throws IOException {
-        BufferedImage bi = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
+        BufferedImage bi = new BufferedImage(Constantes.WINDOW_DIMENSIONS.width,Constantes.WINDOW_DIMENSIONS.height,BufferedImage.TYPE_INT_ARGB);
         Graphics2D ig2 = bi.createGraphics();
 
         SModel sModel = ((SModel) this.getModel());

@@ -1,6 +1,8 @@
 package graphics.ui;
 
 import graphics.Constantes;
+import graphics.formes.CalqueGame;
+import graphics.formes.SModel;
 import graphics.ui.View.ModelView;
 import javax.swing.*;
 import java.awt.*;
@@ -51,6 +53,10 @@ public class MenuBar extends AbstractBar {
         modeItem.addActionListener(e -> this.toggleDarkMode());
         settingMenu.add(modeItem);
         menuBar.add(settingMenu);
+
+        JMenu gameMenu = new JMenu("Games");
+        gameMenu.add(this.createGameItem("Morpion", Constantes.GAME_ID_MORT_PION));
+        menuBar.add(gameMenu);
 
         JMenu helpMenu = new JMenu("Help");
         JMenuItem helpItem = new JMenuItem("Commands");
@@ -117,5 +123,19 @@ public class MenuBar extends AbstractBar {
                 this.menuBar.getMenu(i).getItem(j).setForeground(Constantes.TEXTMENU_COLOR);
             }
         }
+    }
+
+    public void selectGame(int gameID){
+        CalqueGame calqueGame = new CalqueGame(gameID);
+        ((SModel)this.view.getModel()).addCalque(calqueGame);
+        ((CalqueToolBar)this.view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).refresh();
+        ((SModel)this.view.getModel()).unselect();
+        ((SModel) this.view.getModel()).setUse(calqueGame);
+    }
+
+    public JMenuItem createGameItem(String gameName, int gameID){
+        JMenuItem gameItem = new JMenuItem(gameName);
+        gameItem.addActionListener(e -> this.selectGame(gameID));
+        return gameItem;
     }
 }

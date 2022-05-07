@@ -113,7 +113,7 @@ public class Constantes {
 
     public final static int HEIGHT_ICON = 50;
 
-    public static Dimension WINDOW_DIMENSIONS = new Dimension();
+    public static Dimension WINDOW_DIMENSIONS = new Dimension(300, 300);
 
     public static final int MAXIMUM_IMAGE_SIZE = 500;
 
