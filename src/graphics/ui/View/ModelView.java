@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ModelView extends View{
-//    private ModelDraftman draftman;
     private GameDraftman draftman;
     private HashMap<String, AbstractBar> menus = new HashMap<>();
 
@@ -33,7 +32,6 @@ public class ModelView extends View{
 
     public ModelView(Object model) {
         super(model);
-//        this.draftman = new ModelDraftman();
         this.draftman = new GameDraftman();
 
         this.menus.put(Constantes.CALQUE_TOOL_BAR_ID,new CalqueToolBar(this));
