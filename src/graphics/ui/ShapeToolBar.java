@@ -30,25 +30,25 @@ public class ShapeToolBar extends AbstractBar{
     }
 
     public JToolBar createToolBar() {
-        JButton btnNew = new JButton( new ImageIcon("images\\select.png") );
+        JButton btnNew = new JButton( new ImageIcon(Constantes.PATH_IMAGES + "select.png") );
         btnNew.setToolTipText( "Selection" );
         btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> view.setController(new ShapesController((Shape) view.getModel(), this.view)));
         toolBar.add( btnNew );
 
-        JButton btnDrawRectangle = new JButton( new ImageIcon("images\\square.png" ) );
+        JButton btnDrawRectangle = new JButton( new ImageIcon(Constantes.PATH_IMAGES + "square.png" ) );
         btnDrawRectangle.setToolTipText( "Draw rectangle" );
         btnDrawRectangle.setSize(this.dimension);
         btnDrawRectangle.addActionListener(e -> view.setController(new RectangleCreator((Shape) view.getModel(), this.view)));
         toolBar.add(btnDrawRectangle);
 
-        JButton btnDrawCircle = new JButton( new ImageIcon("images\\circle.png" ) );
+        JButton btnDrawCircle = new JButton( new ImageIcon(Constantes.PATH_IMAGES + "circle.png" ) );
         btnDrawCircle.setToolTipText( "Draw circle" );
         btnDrawCircle.setSize(this.dimension);
         btnDrawCircle.addActionListener(e -> view.setController(new EllipsisCreator((Shape) view.getModel(), this.view)));
         toolBar.add(btnDrawCircle);
 
-        JButton btnDrawImage = new JButton(new ImageIcon((new ImageIcon("images\\picture.png")).getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
+        JButton btnDrawImage = new JButton(new ImageIcon((new ImageIcon(Constantes.PATH_IMAGES + "picture.png")).getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
         btnDrawImage.setToolTipText("Draw Image");
         btnDrawImage.setSize(this.dimension);
         btnDrawImage.addActionListener(e -> {

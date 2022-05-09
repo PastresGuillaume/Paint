@@ -6,6 +6,7 @@ import graphics.attributes.RotationAttributes;
 import graphics.attributes.SelectionAttributes;
 
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class Constantes {
     public final static String FONT_ATTRIBUTE = "FontAttributes";
@@ -23,6 +24,10 @@ public class Constantes {
     public final static int SIZE_SHAPE_SELECTED = 10;
 
     public final static ColorAttributes COLOR_SHAPE_SELECTED = new ColorAttributes(false, true, Color.BLACK, Color.BLACK);
+
+    public final static int DELTA_REFRESH = 25;
+
+    public final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
 
     public final static String TEXTE_POLICE = "TimesRoman";
 
@@ -111,4 +116,9 @@ public class Constantes {
     public static Dimension WINDOW_DIMENSIONS = new Dimension(300, 300);
 
     public static final int MAXIMUM_IMAGE_SIZE = 500;
+
+    public static final String PATH_IMAGES = "images\\";
+
+    public static final String PATH_ICONS = "images\\icons\\";
+
 }

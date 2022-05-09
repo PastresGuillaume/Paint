@@ -38,7 +38,7 @@ public class CalqueToolBar extends  AbstractBar{
         SModel sModel = (SModel) this.view.getModel();
         JScrollPane jScrollPane = new JScrollPane();
 
-        JButton addBtn = new JButton(new ImageIcon("images\\add.png"));
+        JButton addBtn = new JButton(new ImageIcon(Constantes.PATH_IMAGES + "add.png"));
         addBtn.setToolTipText("New Calque");
         addBtn.setSize(this.dimension);
         addBtn.addActionListener(e -> {
@@ -69,7 +69,9 @@ public class CalqueToolBar extends  AbstractBar{
     }
 
     private void addButtonCalque(Calque calque, SModel sModel, JToolBar toolBar){
-        JButton btnNew = new JButton(new ImageIcon("images\\rien.jpg"));
+        JButton btnNew = new JButton();
+        btnNew.setBackground(Constantes.BACKGROUND_COLOR);
+        btnNew.setForeground(Constantes.TEXTMENU_COLOR);
         btnNew.setToolTipText("Select " + calque.getName());
         btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> {
@@ -88,6 +90,8 @@ public class CalqueToolBar extends  AbstractBar{
 
         JCheckBox checkBox = new JCheckBox(calque.getName(), true);
         checkBox.setToolTipText("Want to see " + calque.getName() + " ?");
+        checkBox.setBackground(Constantes.BACKGROUND_COLOR);
+        checkBox.setForeground(Constantes.TEXTMENU_COLOR);
         checkBox.addItemListener(e -> {
             if(e.getStateChange() == ItemEvent.SELECTED)
                 sModel.setPaint(calque);
@@ -102,10 +106,17 @@ public class CalqueToolBar extends  AbstractBar{
         JMenuItem deleteCalque = new JMenuItem("delete " + calque.getName());
         JMenuItem renameCalque = new JMenuItem("rename " + calque.getName());
 
+        jPopupMenu.setBackground(Constantes.BACKGROUND_COLOR);
+        jPopupMenu.setForeground(Constantes.TEXTMENU_COLOR);
+        deleteCalque.setBackground(Constantes.BACKGROUND_COLOR);
+        deleteCalque.setForeground(Constantes.TEXTMENU_COLOR);
+        renameCalque.setBackground(Constantes.BACKGROUND_COLOR);
+        renameCalque.setForeground(Constantes.TEXTMENU_COLOR);
+
         deleteCalque.addActionListener(e -> {
             int input = JOptionPane.showConfirmDialog(null, "Do you want to delete" + calque.getName() + "?");
             if(input == 0) {
-                File dir = new File("images\\icons");
+                File dir = new File(Constantes.PATH_IMAGES + "icons");
                 try {
                     for (File file : Objects.requireNonNull(dir.listFiles()))
                         if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
@@ -136,7 +147,7 @@ public class CalqueToolBar extends  AbstractBar{
                 public void keyPressed(KeyEvent e) {
                     if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         String outcome = text.getText();
-                        File dir = new File("images\\icons");
+                        File dir = new File(Constantes.PATH_IMAGES + "icons");
                         try {
                             for (File file : Objects.requireNonNull(dir.listFiles()))
                                 if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))

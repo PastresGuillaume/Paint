@@ -113,7 +113,7 @@ public class RectangleCreator extends AbstractController {
     public void requestJPopopUpMenu(JPopupMenu menu,ModelController modelController) {
         JMenu color = new JMenu("Color");
         JMenuItem strokedColorMenu = new JMenuItem("Stroked color");
-        JMenuItem filledColorMenu = new JMenuItem("Filled color", new ImageIcon("graphics\\shapes\\ui\\image\\chat.jpg" ));
+        JMenuItem filledColorMenu = new JMenuItem("Filled color");
 
         strokedColorMenu.addActionListener(e -> {
             JFrame myFrame = new JFrame();
