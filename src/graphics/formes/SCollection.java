@@ -3,10 +3,14 @@ package graphics.formes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 public class SCollection extends Shape{
+    @Serial
+    private static final long serialVersionUID = -1732110102692478729L;
+
     private ArrayList<Shape> shapes;
 
     public SCollection(){

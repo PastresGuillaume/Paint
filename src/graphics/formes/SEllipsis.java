@@ -3,8 +3,12 @@ package graphics.formes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
 
 public class SEllipsis extends Shape{
+    @Serial
+    private static final long serialVersionUID = -5864575391362709945L;
+
     private Rectangle rect;
 
     public SEllipsis(Point point, int r){

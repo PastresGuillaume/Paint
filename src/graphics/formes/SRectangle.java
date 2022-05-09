@@ -3,8 +3,12 @@ package graphics.formes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
 
 public class SRectangle extends Shape {
+    @Serial
+    private static final long serialVersionUID = 23532633816002260L;
+
     private Rectangle rect;
 
     public SRectangle(Point point, int x, int y ){

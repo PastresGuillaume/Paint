@@ -5,8 +5,12 @@ import graphics.attributes.FontAttributes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
 
 public class SText extends Shape{
+    @Serial
+    private static final long serialVersionUID = 3460010181915715737L;
+
     private String text;
     private Point loc;
 

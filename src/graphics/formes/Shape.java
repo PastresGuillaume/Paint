@@ -13,6 +13,7 @@ import java.util.ArrayList;
 public abstract class Shape implements Serializable {
     @Serial
     private static final long serialVersionUID = 1783389611714034615L;
+
     private ArrayList<Attributes> attributes;
 
     Shape(){

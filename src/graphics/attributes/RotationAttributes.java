@@ -2,8 +2,13 @@ package graphics.attributes;
 
 import graphics.Constantes;
 
+import java.io.Serial;
+
 public class RotationAttributes extends Attributes{
-   public Double angle;
+    @Serial
+    private static final long serialVersionUID = 7303747377918541891L;
+
+    public Double angle;
 
    public RotationAttributes(Double angle){
         this.angle=angle;

@@ -4,10 +4,14 @@ import graphics.ui.Visitor.ModelDraftman;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class SModel extends Shape{
+    @Serial
+    private static final long serialVersionUID = 2516608974470857280L;
+
     ArrayList<Calque> calques;
 
     public SModel() {

@@ -3,8 +3,12 @@ package graphics.attributes;
 import graphics.Constantes;
 
 import java.awt.*;
+import java.io.Serial;
 
 public class ColorAttributes extends Attributes{
+    @Serial
+    private static final long serialVersionUID = 3150342127768320072L;
+
     public ColorAttributes(boolean filled, boolean stroked, Color filledColor, Color strokedColor){
         this.filled = filled;
         this.stroked = stroked;

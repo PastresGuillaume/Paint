@@ -3,8 +3,12 @@ package graphics.formes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
 
 public class SCircle extends Shape {
+    @Serial
+    private static final long serialVersionUID = 6315456169132488899L;
+
     private double radius;
     private Point loc;
 

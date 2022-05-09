@@ -5,8 +5,12 @@ import graphics.Constantes;
 import java.awt.*;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
+import java.io.Serial;
 
 public class FontAttributes extends Attributes{
+    @Serial
+    private static final long serialVersionUID = 6174642913178746392L;
+
     public Font font;
     public Color fontColor;
 

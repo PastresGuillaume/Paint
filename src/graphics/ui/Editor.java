@@ -65,7 +65,7 @@ public class Editor  extends JFrame {
         i1.addAttributes(new SelectionAttributes());
         this.model.add(i1);
 
-        SImage i2 = new SImage(new Point(100,100),600, "galaxia.png");
+        SImage i2 = new SImage(new Point(100,100), "galaxia.png");
         i2.addAttributes(new SelectionAttributes());
         this.model.add(i2);
 

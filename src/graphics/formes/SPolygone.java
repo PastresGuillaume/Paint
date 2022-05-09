@@ -3,8 +3,12 @@ package graphics.formes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
+import java.io.Serial;
 
 public class SPolygone extends Shape {
+    @Serial
+    private static final long serialVersionUID = -88192407312194124L;
+
     private Polygon poly;
 
     /*

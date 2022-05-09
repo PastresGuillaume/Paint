@@ -9,37 +9,17 @@ import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class SImage extends Shape{
-    //TODO Serialisation a redefinir a cause de la bufferedImage
+    @Serial
+    private static final long serialVersionUID = -5222809445146307472L;
 
     private Rectangle rect;
     private BufferedImage image;
 
-    public SImage(Point point, String path){
-        try{
-            this.image = ImageIO.read(new File("./images/"+path));
-            this.rect = new Rectangle(point.x, point.y, this.image.getWidth(), this.image.getHeight());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public SImage(Point point, int width, String path){
-        try{
-            this.image = ImageIO.read(new File("./images/"+path));
-            this.rect = new Rectangle(point.x, point.y, width, this.image.getHeight()*width/image.getWidth());
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public SImage(Point point, int width, int height, String path){
-        try{
-            this.image = ImageIO.read(new File("./images/"+path));
+    public SImage(Point point, int width, int height, File file){
+        try {
+            this.image = ImageIO.read(file);
             this.rect = new Rectangle(point.x, point.y, width, height);
-        }
-        catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -62,6 +42,15 @@ public class SImage extends Shape{
             e.printStackTrace();
         }
     }
+
+    public SImage(Point point, int width, int height, String path){
+        this(point, width, height,new File("./images/"+path));
+    }
+
+    public SImage(Point point, String path){
+        this(point, new File("./images/"+path));
+    }
+
 
     @Override
     public Point getLoc() {
