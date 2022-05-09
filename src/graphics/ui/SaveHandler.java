@@ -1,9 +1,5 @@
 package graphics.ui;
 
-import graphics.Constantes;
-import graphics.attributes.ColorAttributes;
-import graphics.formes.SRectangle;
-
 import java.io.*;
 
 public class SaveHandler {

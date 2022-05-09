@@ -42,6 +42,8 @@ public class SCircle extends Shape {
     public void resize(int width, int height) {
         //maybe only scaling
         //TODO see this code
+
+//        TODO on supprime si personne n'en a besoin (9 mai 13h30)
     }
 
     public void setSize(int i,int p) {

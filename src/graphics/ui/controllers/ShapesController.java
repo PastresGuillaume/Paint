@@ -40,8 +40,6 @@ public class ShapesController extends AbstractController {
 
     @Override
     public void mousePressed(MouseEvent e) {
-
-
         this.selectionDragged=false;
         this.lastClick = e.getPoint();
 
@@ -56,8 +54,6 @@ public class ShapesController extends AbstractController {
         }
 
         this.selectionDragged = true;
-
-
 
         this.resizeableShape = getResizeableShape(e.getX(), e.getY());
         if (resizeableShape!=null){

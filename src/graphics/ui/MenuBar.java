@@ -1,7 +1,7 @@
 package graphics.ui;
 
 import graphics.Constantes;
-import graphics.formes.CalqueGame;
+import graphics.formes.GameCalque;
 import graphics.formes.SModel;
 import graphics.ui.View.ModelView;
 import graphics.ui.controllers.GameController;
@@ -129,7 +129,7 @@ public class MenuBar extends AbstractBar {
     }
 
     public void selectGame(int gameID){
-        CalqueGame calqueGame = new CalqueGame(gameID);
+        GameCalque calqueGame = new GameCalque(gameID);
         ((SModel)this.view.getModel()).addCalque(calqueGame);
         ((CalqueToolBar)this.view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).refresh();
         ((SModel)this.view.getModel()).unselect();

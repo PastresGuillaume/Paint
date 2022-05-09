@@ -29,7 +29,8 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     }
 
     @Override
-    public void mousePressed(MouseEvent e) {}
+    public void mousePressed(MouseEvent e) {
+    }
 
     @Override
     public void mouseReleased(MouseEvent e) {

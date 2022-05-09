@@ -6,7 +6,6 @@ import graphics.attributes.RotationAttributes;
 import graphics.attributes.SelectionAttributes;
 
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
 
 public class Constantes {
     public final static String FONT_ATTRIBUTE = "FontAttributes";
@@ -24,10 +23,6 @@ public class Constantes {
     public final static int SIZE_SHAPE_SELECTED = 10;
 
     public final static ColorAttributes COLOR_SHAPE_SELECTED = new ColorAttributes(false, true, Color.BLACK, Color.BLACK);
-
-    public final static int DELTA_REFRESH = 25;
-
-    public final static TimeUnit TIME_UNIT = TimeUnit.MILLISECONDS;
 
     public final static String TEXTE_POLICE = "TimesRoman";
 
@@ -73,8 +68,6 @@ public class Constantes {
 
     public final static SelectionAttributes MORT_PION_NULL_SELECTION = new SelectionAttributes();
 
-    public final static int GAME_ID_DAMES = 1;
-
     public final static Color DARKMODE_BACKGROUND_COLOR = new Color(80, 80, 80);
 
     public final static Color DARKMODE_MENUBAR_COLOR = new Color(60, 60, 60);
@@ -118,5 +111,4 @@ public class Constantes {
     public static Dimension WINDOW_DIMENSIONS = new Dimension(300, 300);
 
     public static final int MAXIMUM_IMAGE_SIZE = 500;
-
 }

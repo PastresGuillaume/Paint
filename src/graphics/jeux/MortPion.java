@@ -1,6 +1,8 @@
 package graphics.jeux;
 
 import graphics.Constantes;
+import graphics.ui.Visitor.GameDraftman;
+import graphics.ui.Visitor.ShapeVisitor;
 
 public class MortPion implements Game{
     private int[][] board;
@@ -78,5 +80,10 @@ public class MortPion implements Game{
             board[x][y] = couleur;
             couleur = couleur==1?2:1;
         }
+    }
+
+    @Override
+    public void accept(ShapeVisitor visitor) {
+        ((GameDraftman) visitor).visitMortPion(this);
     }
 }

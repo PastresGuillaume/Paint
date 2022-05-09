@@ -2,7 +2,6 @@ package graphics.ui.controllers;
 
 import graphics.Constantes;
 import graphics.formes.Calque;
-import graphics.formes.GameCalque;
 import graphics.formes.SModel;
 import graphics.formes.Shape;
 import graphics.ui.View.ModelView;
@@ -173,7 +172,4 @@ public class ModelController extends Controller {
             }
         }
     }
-
-    
-
 }

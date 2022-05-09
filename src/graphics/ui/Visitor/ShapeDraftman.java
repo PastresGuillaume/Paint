@@ -14,7 +14,7 @@ import java.util.Iterator;
 
 public class ShapeDraftman implements ShapeVisitor{
     private Graphics graphics;
-
+//    TODO rotation for all shape
     public void setGraphics(Graphics g){
         this.graphics = g;
     }
@@ -86,7 +86,6 @@ public class ShapeDraftman implements ShapeVisitor{
 
         ColorAttributes color= (ColorAttributes)poly.getAttributes(Constantes.COLOR_ATTRIBUTE);
         SelectionAttributes selection = (SelectionAttributes) poly.getAttributes(Constantes.SELECTION_ATTRIBUTE);
-
         if (color == null)
             color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
         if(color.filled) {
@@ -203,11 +202,11 @@ public class ShapeDraftman implements ShapeVisitor{
     }
 
 
-    private void drawRotation(Rectangle rectangle) {
-        Graphics2D g2d = (Graphics2D) this.graphics;
-        AffineTransform oldTransform = g2d.getTransform();
-        g2d.setTransform(AffineTransform.getRotateInstance(0.2));
-        g2d.draw(rectangle);
-        g2d.setTransform(oldTransform);
-    }
+//    private void drawRotation(Rectangle rectangle) {
+//        Graphics2D g2d = (Graphics2D) this.graphics;
+//        AffineTransform oldTransform = g2d.getTransform();
+//        g2d.setTransform(AffineTransform.getRotateInstance(0.2));
+//        g2d.draw(rectangle);
+//        g2d.setTransform(oldTransform);
+//    }
 }

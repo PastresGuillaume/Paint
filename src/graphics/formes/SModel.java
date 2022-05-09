@@ -51,6 +51,8 @@ public class SModel extends Shape{
     public void resize(int width, int height) {
         //TODO a quoi sert SMODEL ?
         //TODO c'est ce qui remplace le model du prof. En gros c'est ce qui regroupe tous mes calques, et apres j'ai la vue et le model qui correspondent pour gerer comme il faut les calques
+
+//        TODO on supprime si personne n'en a besoin (9 mai 13h30)
     }
 
     public void addCalque(Calque calque){

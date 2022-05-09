@@ -4,7 +4,6 @@ import graphics.ui.controllers.Controller;
 
 import javax.swing.JPanel;
 
-
 public abstract class View extends JPanel {
     private Object model;
     private Controller controller;

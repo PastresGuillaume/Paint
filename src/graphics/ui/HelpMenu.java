@@ -4,8 +4,6 @@ import graphics.Constantes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.security.KeyStore;
 
 public class HelpMenu extends JFrame {
     private final JFrame helpMenu;

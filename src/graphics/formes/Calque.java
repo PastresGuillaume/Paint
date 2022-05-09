@@ -92,6 +92,4 @@ public class Calque implements Serializable {
     public boolean isGame(){
         return false;
     }
-
-
 }

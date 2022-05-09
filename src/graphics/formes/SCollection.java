@@ -65,6 +65,8 @@ public class SCollection extends Shape{
     public void resize(int width, int height) {
         //nothing to do
         //TODO see if it is correct
+
+//        TODO on supprime si personne n'en a besoin (9 mai 13h30)
     }
 
     public Iterator<Shape> iterator(){

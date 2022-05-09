@@ -68,11 +68,10 @@ public class EllipsisCreator extends AbstractController{
             this.changeSize(width, height);
     }
 
-    public void keyPressed(KeyEvent evt){//TODO Rajouter un point au centre pour faciliter l'utilisation{
+    public void keyPressed(KeyEvent evt){
     }
 
-    public void keyReleased(KeyEvent evt)
-    {
+    public void keyReleased(KeyEvent evt){
     }
 
     private void unselectedAll(){

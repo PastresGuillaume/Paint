@@ -3,7 +3,6 @@ package graphics.formes;
 import graphics.ui.Visitor.ShapeVisitor;
 
 import java.awt.*;
-import java.io.Serializable;
 
 public class SRectangle extends Shape {
     private Rectangle rect;

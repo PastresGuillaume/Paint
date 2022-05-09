@@ -1,6 +1,5 @@
 package graphics.ui;
 
-
 import graphics.Constantes;
 import graphics.formes.Shape;
 import graphics.ui.controllers.*;

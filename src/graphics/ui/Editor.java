@@ -6,8 +6,6 @@ import graphics.attributes.FontAttributes;
 import graphics.attributes.RotationAttributes;
 import graphics.attributes.SelectionAttributes;
 import graphics.formes.*;
-import graphics.formes.Shape;
-import graphics.jeux.MortPion;
 import graphics.ui.View.ModelView;
 
 import javax.swing.*;
@@ -30,9 +28,13 @@ public class Editor  extends JFrame {
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
                 File dir = new File("images\\icons");
-                for(File file: Objects.requireNonNull(dir.listFiles()))
-                    if (!file.isDirectory())
-                        file.delete();
+                try {
+                    for (File file : Objects.requireNonNull(dir.listFiles()))
+                        if (!file.isDirectory())
+                            file.delete();
+                }
+                catch (Exception exp){
+                }
                 System.exit(0);
             }
         });
@@ -58,7 +60,7 @@ public class Editor  extends JFrame {
     private void buildModel()
     {
         this.model = new SModel();
-        /*
+
         SImage i1 = new SImage(new Point(50,50), 250, 250,"mini.jpg");
         i1.addAttributes(new SelectionAttributes());
         this.model.add(i1);
@@ -70,13 +72,14 @@ public class Editor  extends JFrame {
         SRectangle r = new SRectangle(new Point(10,30),200,100);
         r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
         r.addAttributes(new SelectionAttributes());
-        //r.addAttributes(new RotationAttributes(0.2));
+        r.addAttributes(new RotationAttributes(0.2));
         this.model.add(r);
 
 
         SEllipsis c = new SEllipsis(new Point(100,100),10);
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));
         c.addAttributes(new SelectionAttributes());
+        c.addAttributes(new RotationAttributes(0.2));
         this.model.add(c);
 
         SText t= new SText(new Point(100,100),"hello");
@@ -106,18 +109,21 @@ public class Editor  extends JFrame {
 
         //this.model.addCalque(c3);
 
-        GameCalque q = new GameCalque(Constantes.GAME_ID_MORT_PION);
-        this.model.addCalque(q);
+//        GameCalque q = new GameCalque(Constantes.GAME_ID_MORT_PION);
+//        GameCalque q = new GameCalque(Constantes.GAME_ID_DAMES);
+//        ((Dames) q.getGame()).interdit(0, 1, 11);
+//        ((Dames) q.getGame()).interdit(0, 3, 22);
+//        this.model.addCalque(q);
         //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
         //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
         //this.model.setUse(1);
 
-         */
+
         //CalqueGame q = new CalqueGame(Constantes.GAME_ID_MORT_PION);
         //((MortPion) q.getGame()).play(1, 1);
 
-        //this.model.addCalque(q);
-        //this.model.setUse(2);
+//        this.model.addCalque(q);
+//        this.model.setUse(1);
     }
 
 

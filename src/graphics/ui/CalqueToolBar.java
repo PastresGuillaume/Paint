@@ -2,9 +2,11 @@ package graphics.ui;
 
 import graphics.Constantes;
 import graphics.formes.Calque;
+import graphics.formes.GameCalque;
 import graphics.formes.SModel;
 import graphics.ui.View.ModelView;
-import graphics.ui.controllers.ModelController;
+import graphics.ui.controllers.GameController;
+import graphics.ui.controllers.ShapesController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -63,7 +65,6 @@ public class CalqueToolBar extends  AbstractBar{
         toolBar.setMargin(new Insets(10,0,10,0));
         toolBar.setFloatable(false);
 
-
         return toolBar;
     }
 
@@ -73,7 +74,12 @@ public class CalqueToolBar extends  AbstractBar{
         btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> {
             sModel.setUse(calque);
-            ((ModelController)this.getView().getController()).getController().setModel(calque.getContent());
+            if (calque.isGame()){
+                this.getView().setController(new GameController(((GameCalque) calque)));
+            }
+            else {
+                this.getView().setController(new ShapesController(((SModel) this.view.getModel()).getCalqueUse(), this.view));
+            }
             ((SModel) this.view.getModel()).unselect();
             this.view.invalidate();
         });
@@ -100,9 +106,13 @@ public class CalqueToolBar extends  AbstractBar{
             int input = JOptionPane.showConfirmDialog(null, "Do you want to delete" + calque.getName() + "?");
             if(input == 0) {
                 File dir = new File("images\\icons");
-                for(File file: Objects.requireNonNull(dir.listFiles()))
-                    if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
-                        file.delete();
+                try {
+                    for (File file : Objects.requireNonNull(dir.listFiles()))
+                        if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
+                            file.delete();
+                }
+                catch (Exception exp){
+                }
                 ((SModel) view.getModel()).delCalque(calque);
                 toolBar.remove(btnNew);
                 toolBar.remove(checkBox);
@@ -127,9 +137,13 @@ public class CalqueToolBar extends  AbstractBar{
                     if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         String outcome = text.getText();
                         File dir = new File("images\\icons");
-                        for(File file: Objects.requireNonNull(dir.listFiles()))
-                            if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
-                                file.delete();
+                        try {
+                            for (File file : Objects.requireNonNull(dir.listFiles()))
+                                if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
+                                    file.delete();
+                        }
+                        catch (Exception exp){
+                        }
                         ((CalqueToolBar) view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().remove(calque.getName() + Constantes.IS_USED_CALQUE);
                         ((CalqueToolBar) view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().remove(calque.getName() + Constantes.IS_PAINTED_CALQUE);
                         calque.setName(outcome);

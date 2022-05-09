@@ -7,7 +7,6 @@ import java.awt.*;
 public class SPolygone extends Shape {
     private Polygon poly;
 
-
     /*
     un polygon est composé de :
     private int npoints;
@@ -15,11 +14,11 @@ public class SPolygone extends Shape {
     private int[] ypoints;
     */
 
-    public void SPolygon(int[] xpoints, int[] ypoints, int npoints){this.poly = new Polygon(xpoints,ypoints,npoints); }
+    public void SPolygon(int[] xpoints, int[] ypoints, int npoints){this.poly = new Polygon(xpoints,ypoints,npoints);}
 
     public void SPolygonAjoutPoint(int x,int y){
         this.poly.addPoint(x,y);
-        poly.npoints=+1;
+        this.poly.npoints+=1;
     }
 
     @Override
@@ -30,14 +29,13 @@ public class SPolygone extends Shape {
 
     @Override
     public void setLoc(Point point) {
-        //maybe only scaling
-        //TODO see this code
+        this.poly.translate(point.x-this.poly.xpoints[0], point.y-this.poly.ypoints[0]);
     }
 
     public int[] GetxPoints(){
         return(this.poly.xpoints);
-
     }
+
     public int[] GetyPoints(){
         return(this.poly.ypoints);
     }
@@ -69,11 +67,17 @@ public class SPolygone extends Shape {
 
     @Override
     public void zoomIn() {
-
+        for (int length = 0; length<this.poly.npoints; length++) {
+            this.poly.xpoints[length] *= 2;
+            this.poly.ypoints[length] *= 2;
+        }
     }
 
     @Override
     public void zoomOut() {
-
+        for (int length = 0; length<this.poly.npoints; length++) {
+            this.poly.xpoints[length] /= 2;
+            this.poly.ypoints[length] /= 2;
+        }
     }
 }
