@@ -18,9 +18,9 @@ public class SPolygone extends Shape {
     private int[] ypoints;
     */
 
-    public void SPolygon(int[] xpoints, int[] ypoints, int npoints){this.poly = new Polygon(xpoints,ypoints,npoints);}
+    public SPolygone(int[] xpoints, int[] ypoints, int npoints){this.poly = new Polygon(xpoints,ypoints,npoints);}
 
-    public void SPolygonAjoutPoint(int x,int y){
+    public void SPolygoneAjoutPoint(int x, int y){
         this.poly.addPoint(x,y);
         this.poly.npoints+=1;
     }
@@ -29,6 +29,10 @@ public class SPolygone extends Shape {
     public Point getLoc() {
         Point point = new Point(this.poly.xpoints[0] , this.poly.ypoints[0]);
         return (point);
+    }
+
+    public Polygon getPoly() {
+        return poly;
     }
 
     @Override
@@ -59,8 +63,8 @@ public class SPolygone extends Shape {
     }
 
     @Override
-    public void accept(ShapeVisitor visitor) {visitor.visitPolygon(this);
-
+    public void accept(ShapeVisitor visitor) {
+        visitor.visitPolygon(this);
     }
 
     @Override

@@ -29,7 +29,6 @@ public class MenuBar extends AbstractBar {
         this.fileChooser.setFileFilter(new FileExtensionFilter());
         this.fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         this.helpMenu = new HelpMenu();
-
     }
 
     public ModelView getView(){
@@ -38,6 +37,8 @@ public class MenuBar extends AbstractBar {
 
     public JMenuBar createMenuBar(){
         this.menuBar = new JMenuBar();
+
+        this.menuBar.setLayout(new GridLayout(0,1));
 
         JMenu fileMenu = new JMenu("File");
         JMenuItem saveMenu = new JMenuItem("Save");
@@ -66,6 +67,8 @@ public class MenuBar extends AbstractBar {
         helpItem.addActionListener(e -> this.toggleDisplayHelpMenu());
         helpMenu.add(helpItem);
         menuBar.add(helpMenu);
+
+        this.menuBar.setMaximumSize(this.menuBar.getMinimumSize());
 
         return this.menuBar;
     }

@@ -68,7 +68,6 @@ public class ShapeDraftman implements ShapeVisitor{
 
             AffineTransform at = AffineTransform.getRotateInstance(0, (int)(r.x+r.width/2), (int)(r.y+r.height/2));
             java.awt.Shape rotatedRect = at.createTransformedShape(r);
-            ((Graphics2D) g).draw(rotatedRect);
         }
         else{
             drawRectangle(r, colorAttributes);
@@ -84,74 +83,151 @@ public class ShapeDraftman implements ShapeVisitor{
     public void visitPolygon(SPolygone poly){
         Rectangle rectangle = poly.getBounds();
 
-        ColorAttributes color= (ColorAttributes)poly.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        ColorAttributes colorAttributes =(ColorAttributes)poly.getAttributes(Constantes.COLOR_ATTRIBUTE);
         SelectionAttributes selection = (SelectionAttributes) poly.getAttributes(Constantes.SELECTION_ATTRIBUTE);
-        if (color == null)
-            color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
-        if(color.filled) {
-            this.graphics.setColor(color.filledColor);
-            this.graphics.fillOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+        if (colorAttributes == null)
+            colorAttributes = Constantes.DEFAULT_COLOR_ATTRIBUTES;
+        if (selection == null)
+            selection = new SelectionAttributes();
+
+        RotationAttributes rotation = (RotationAttributes)poly.getAttributes(Constantes.ROTATION_ATTRIBUTES);
+        if (poly.getAttributes(Constantes.ROTATION_ATTRIBUTES) == null)
+            rotation = Constantes.DEFAULT_ROTATION_ATTRIBUTES;
+
+        if (rotation.angle != 0.){
+            Graphics g = this.graphics.create();
+            Graphics2D g2d = (Graphics2D) g;
+            Rectangle r = poly.getBounds();
+
+            g2d.setTransform(AffineTransform.getRotateInstance(-rotation.angle, (int)(r.x+r.width/2), (int)(r.y+r.height/2)));
+
+
+            if (colorAttributes.filled) {
+                g2d.setColor(colorAttributes.filledColor);
+                g2d.drawPolygon(poly.getPoly());
+            }
+            if (colorAttributes.stroked) {
+                g2d.setColor(colorAttributes.strokedColor);
+                g2d.drawPolygon(poly.getPoly());
+            }
+
+            AffineTransform at = AffineTransform.getRotateInstance(0, (int)(r.x+r.width/2), (int)(r.y+r.height/2));
+            java.awt.Shape rotatedRect = at.createTransformedShape(poly.getPoly());
         }
-        if(color.stroked) {
-            this.graphics.setColor(color.strokedColor);
-            this.graphics.drawOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+        else {
+            if (colorAttributes.filled) {
+                this.graphics.setColor(colorAttributes.filledColor);
+                this.graphics.drawPolygon(poly.getPoly());
+            }
+            if (colorAttributes.stroked) {
+                this.graphics.setColor(colorAttributes.strokedColor);
+                this.graphics.drawPolygon(poly.getPoly());
+            }
         }
-        if(selection != null && selection.isSelected())
+        if(selection.isSelected())
             drawSelection(rectangle);
-    }
-
-
-
-    private  void drawPolygon(SPolygone poly, ColorAttributes color){
-        if(color.filled) {
-            this.graphics.setColor(color.filledColor);
-            this.graphics.fillPolygon((int[]) poly.GetxPoints(), (int[]) poly.GetyPoints(), (int) poly.GetnPoints());
-        }
-        if(color.stroked) {
-            this.graphics.setColor(color.strokedColor);
-            this.graphics.drawPolygon((int[]) poly.GetxPoints(), (int[]) poly.GetyPoints(), (int) poly.GetnPoints());
-        }
     }
 
     @Override
     public void visitEllipsis(Shape ellipsis) {
-    Rectangle rectangle = ellipsis.getBounds();
-    ColorAttributes color= (ColorAttributes)ellipsis.getAttributes(Constantes.COLOR_ATTRIBUTE);
-    SelectionAttributes selection = (SelectionAttributes) ellipsis.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+        Rectangle rectangle = ellipsis.getBounds();
+        ColorAttributes color = (ColorAttributes)ellipsis.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        SelectionAttributes selection = (SelectionAttributes) ellipsis.getAttributes(Constantes.SELECTION_ATTRIBUTE);
+        RotationAttributes rotation = (RotationAttributes) ellipsis.getAttributes(Constantes.ROTATION_ATTRIBUTES);
 
         if (color == null)
-    color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
-        if(color.filled) {
-        this.graphics.setColor(color.filledColor);
-        this.graphics.fillOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
-    }
-        if(color.stroked) {
-        this.graphics.setColor(color.strokedColor);
-        this.graphics.drawOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
-    }
-        if(selection != null && selection.isSelected())
-    drawSelection(rectangle);
+            color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
+
+        if (selection == null)
+            selection = Constantes.DEFAULT_SELECTION_ATTRIBUTES;
+
+        if (rotation == null)
+            rotation = Constantes.DEFAULT_ROTATION_ATTRIBUTES;
+
+
+        if (rotation.angle != 0.){
+            Graphics g = this.graphics.create();
+            Graphics2D g2d = (Graphics2D) g;
+
+            g2d.setTransform(AffineTransform.getRotateInstance(-rotation.angle, (int)(rectangle.x+rectangle.width/2), (int)(rectangle.y+rectangle.height/2)));
+
+            if(color.filled) {
+                g2d.setColor(color.filledColor);
+                g2d.fillOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+            }
+            if(color.stroked) {
+                g2d.setColor(color.strokedColor);
+                g2d.drawOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+            }
+
+            AffineTransform at = AffineTransform.getRotateInstance(0, (int)(rectangle.x+rectangle.width/2), (int)(rectangle.y+rectangle.height/2));
+            java.awt.Shape rotatedRect = at.createTransformedShape(rectangle);
+        }
+        else {
+            if (color.filled) {
+                this.graphics.setColor(color.filledColor);
+                this.graphics.fillOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+            }
+            if (color.stroked) {
+                this.graphics.setColor(color.strokedColor);
+                this.graphics.drawOval((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+            }
+        }
+        if (selection.isSelected())
+            drawSelection(rectangle);
         }
 
     @Override
     public void visitText(SText text) {
         SelectionAttributes selection = (SelectionAttributes) text.getAttributes(Constantes.SELECTION_ATTRIBUTE);
-        ColorAttributes color= (ColorAttributes) text.getAttributes(Constantes.COLOR_ATTRIBUTE);
-        FontAttributes font= (FontAttributes) text.getAttributes(Constantes.FONT_ATTRIBUTE);
+        if (selection==null)
+            selection = Constantes.DEFAULT_SELECTION_ATTRIBUTES;
+
+        ColorAttributes color = (ColorAttributes) text.getAttributes(Constantes.COLOR_ATTRIBUTE);
+        if (color==null)
+            color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
+
+        FontAttributes font = (FontAttributes) text.getAttributes(Constantes.FONT_ATTRIBUTE);
+        if (font==null)
+            font = Constantes.DEFAULT_FONT_ATTRIBUTES;
+
+        RotationAttributes rotation = (RotationAttributes) text.getAttributes(Constantes.ROTATION_ATTRIBUTES);
+        if (rotation==null)
+            rotation = Constantes.DEFAULT_ROTATION_ATTRIBUTES;
+
         Rectangle rectangle = text.getBounds();
 
-        if(font ==null)
-            font = Constantes.DEFAULT_FONT_ATTRIBUTES;
-        this.graphics.setFont(font.font);
+        if (rotation.angle!=0){
+            Graphics g = this.graphics.create();
+            Graphics2D g2d = (Graphics2D) g;
 
-        if (color == null)
-            color = Constantes.DEFAULT_COLOR_ATTRIBUTES;
-        drawRectangle(rectangle,color);
+            g2d.setTransform(AffineTransform.getRotateInstance(-rotation.angle, (int)(rectangle.x+rectangle.width/2), (int)(rectangle.y+rectangle.height/2)));
 
-        this.graphics.setColor(font.fontColor);
-        this.graphics.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
+            g2d.setFont(font.font);
 
-        if(selection != null && selection.isSelected())
+            if(color.filled) {
+                g2d.setColor(color.filledColor);
+                g2d.fillRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+            }
+            if(color.stroked) {
+                g2d.setColor(color.strokedColor);
+                g2d.drawRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
+            }
+
+            g2d.setColor(font.fontColor);
+            g2d.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
+
+            AffineTransform at = AffineTransform.getRotateInstance(0, (int)(rectangle.x+rectangle.width/2), (int)(rectangle.y+rectangle.height/2));
+            java.awt.Shape rotatedRect = at.createTransformedShape(rectangle);
+        }
+        else {
+            this.graphics.setFont(font.font);
+            drawRectangle(rectangle, color);
+
+            this.graphics.setColor(font.fontColor);
+            this.graphics.drawString(text.getText(), text.getLoc().x, text.getLoc().y);
+        }
+        if(selection.isSelected())
             drawSelection(rectangle);
     }
 
