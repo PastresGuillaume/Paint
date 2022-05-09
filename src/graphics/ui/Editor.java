@@ -58,7 +58,7 @@ public class Editor  extends JFrame {
     private void buildModel()
     {
         this.model = new SModel();
-
+        /*
         SImage i1 = new SImage(new Point(50,50), 250, 250,"mini.jpg");
         i1.addAttributes(new SelectionAttributes());
         this.model.add(i1);
@@ -111,6 +111,8 @@ public class Editor  extends JFrame {
         //this.model.add(new SRectangle(new Point(-50, -50), 100, 100));
         //this.model.add(new SRectangle(new Point(50, 50), 100, 100));
         //this.model.setUse(1);
+
+         */
         //CalqueGame q = new CalqueGame(Constantes.GAME_ID_MORT_PION);
         //((MortPion) q.getGame()).play(1, 1);
 

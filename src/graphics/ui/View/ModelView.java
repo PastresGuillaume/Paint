@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class ModelView extends View{
-//    private ModelDraftman draftman;
     private GameDraftman draftman;
     private HashMap<String, AbstractBar> menus = new HashMap<>();
 
@@ -33,7 +32,6 @@ public class ModelView extends View{
 
     public ModelView(Object model) {
         super(model);
-//        this.draftman = new ModelDraftman();
         this.draftman = new GameDraftman();
 
         this.menus.put(Constantes.CALQUE_TOOL_BAR_ID,new CalqueToolBar(this));
@@ -65,7 +63,7 @@ public class ModelView extends View{
     public HashMap<String, AbstractBar> getMenus() {return menus;}
 
     public void updateIconCalqueBar(Calque calque) throws IOException {
-        BufferedImage bi = new BufferedImage(300,300,BufferedImage.TYPE_INT_ARGB);
+        BufferedImage bi = new BufferedImage(Constantes.WINDOW_DIMENSIONS.width,Constantes.WINDOW_DIMENSIONS.height,BufferedImage.TYPE_INT_ARGB);
         Graphics2D ig2 = bi.createGraphics();
 
         SModel sModel = ((SModel) this.getModel());
