@@ -39,8 +39,6 @@ public class MenuBar extends AbstractBar {
     public JMenuBar createMenuBar(){
         this.menuBar = new JMenuBar();
 
-        this.menuBar.setLayout(new GridLayout(0,1));
-
         JMenu fileMenu = new JMenu("File");
         JMenuItem saveMenu = new JMenuItem("Save");
         saveMenu.setIcon(resizeIcon(new ImageIcon("images\\save.png")));
