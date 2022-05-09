@@ -19,6 +19,8 @@ public class HelpMenu extends JFrame {
         this.helpMenu.setContentPane(panel);
         this.setCommandHelpMenu();
         this.setMenuHelpMenu();
+        this.setToolBarHelpMenu();
+        this.setCreditsHelpMenu();
         this.helpMenu.setResizable(false);
     }
 
@@ -29,17 +31,18 @@ public class HelpMenu extends JFrame {
         this.helpMenu.setLocation(x, y);
         this.tabs.setPreferredSize(new Dimension((int)(this.helpMenu.getWidth()*0.9), (int)(this.helpMenu.getHeight()*0.85)));
         this.helpMenu.setVisible(true);
-
     }
 
     public void newTab(String tabName, JPanel tab){
-        JPanel container = new JPanel();
         JScrollPane scrollPane = new JScrollPane(tab);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(15, 100));
-        container.add(tab);
-        container.add(scrollPane);
-        this.tabs.addTab(tabName, container);
+        this.tabs.addTab(tabName, scrollPane);
+    }
+
+    public JTextArea newTexArea(String text){
+        JTextArea textArea = new JTextArea(text);
+        textArea.setEditable(false);
+        textArea.setOpaque(false);
+        return textArea;
     }
 
     public void setCommandHelpMenu(){
@@ -49,34 +52,52 @@ public class HelpMenu extends JFrame {
                 Select All: Ctrl-A
                 Supp: Backspace
                 """;
-        JTextArea textArea = new JTextArea(text);
-        textArea.setEditable(false);
-        textArea.setOpaque(false);
-        tab.add(textArea);
+        tab.add(newTexArea(text));
         this.newTab("Command", tab);
     }
 
     public void setMenuHelpMenu(){
         JPanel tab = new JPanel();
-
         String text = """
                 File:
                 Save: save current file to specified location
                 Import: load file specified
                 """;
-        JTextArea textArea = new JTextArea(text);
+        tab.add(newTexArea(text));
         text = """
                 Settings:
                 DarkMode: Change UI color to a dark theme
+                Clear: Clear actual project, all shapes and calques are erased
                 """;
-        textArea.setEditable(false);
-        textArea.setOpaque(false);
-        tab.add(textArea);
-        JTextArea test = new JTextArea(text);
-        test.setEditable(false);
-        test.setOpaque(false);
-        tab.add(test);
+        tab.add(newTexArea(text));
+        text = """
+                Games:
+                Create a new Calque with the selected game
+                """;
+        tab.add(newTexArea(text));
         this.newTab("Menu", tab);
+    }
+
+    public void setToolBarHelpMenu(){
+        JPanel tab = new JPanel();
+        String text = """
+                To complete
+                """;
+        tab.add(newTexArea(text));
+        this.newTab("ToolBar", tab);
+    }
+
+    public void setCreditsHelpMenu(){
+        JPanel tab = new JPanel();
+        String text = """
+                Project realised by:
+                FONTAINE Thomas
+                FAYS Matthieu
+                PASTRES Guillaume
+                YAGHDJIAN Marion
+                """;
+        tab.add(newTexArea(text));
+        this.newTab("Credits", tab);
     }
 
 }

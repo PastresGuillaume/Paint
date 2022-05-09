@@ -1,6 +1,7 @@
 package graphics.ui;
 
 import graphics.Constantes;
+import graphics.formes.Calque;
 import graphics.formes.GameCalque;
 import graphics.formes.SModel;
 import graphics.ui.View.ModelView;
@@ -56,6 +57,9 @@ public class MenuBar extends AbstractBar {
         JMenuItem modeItem = new JMenuItem("DarkMode");
         modeItem.addActionListener(e -> this.toggleDarkMode());
         settingMenu.add(modeItem);
+        JMenuItem clearItem = new JMenuItem("Clear");
+        clearItem.addActionListener(e -> this.clear());
+        settingMenu.add(clearItem);
         menuBar.add(settingMenu);
 
         JMenu gameMenu = new JMenu("Games");
@@ -63,7 +67,7 @@ public class MenuBar extends AbstractBar {
         menuBar.add(gameMenu);
 
         JMenu helpMenu = new JMenu("Help");
-        JMenuItem helpItem = new JMenuItem("Commands");
+        JMenuItem helpItem = new JMenuItem("Help Menu");
         helpItem.addActionListener(e -> this.toggleDisplayHelpMenu());
         helpMenu.add(helpItem);
         menuBar.add(helpMenu);
@@ -144,5 +148,11 @@ public class MenuBar extends AbstractBar {
         JMenuItem gameItem = new JMenuItem(gameName);
         gameItem.addActionListener(e -> this.selectGame(gameID));
         return gameItem;
+    }
+
+    public void clear(){
+        Calque.nb_Calque = 0;
+        this.view.setModel(new SModel());
+        ((CalqueToolBar)this.view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).refresh();
     }
 }

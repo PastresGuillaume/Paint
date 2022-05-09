@@ -57,6 +57,8 @@ public class ShapesController extends AbstractController {
 
         this.resizeableShape = getResizeableShape(e.getX(), e.getY());
         if (resizeableShape!=null){
+            this.unSelectAll();
+            resizeableShape.select();
             this.initLoc = resizeableShape.getLoc();
         }
     }
