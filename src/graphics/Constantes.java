@@ -123,4 +123,7 @@ public class Constantes {
 
     public static final String PATH_ICONS = "images"+PATH_SEPARATOR+"icons"+PATH_SEPARATOR;
 
+    public static final String PATH_NO_PAINT_NO_GAME = PATH_IMAGES+PATH_SEPARATOR+"NoPaintNoGame"+PATH_SEPARATOR;
+
+    public static final String PATH_SON = "son"+PATH_SEPARATOR;
 }

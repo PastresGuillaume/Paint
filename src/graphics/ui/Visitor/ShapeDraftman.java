@@ -122,6 +122,7 @@ public class ShapeDraftman implements ShapeVisitor{
             if (colorAttributes.stroked) {
                 this.graphics.setColor(colorAttributes.strokedColor);
                 this.graphics.drawPolygon(poly.getPoly());
+
             }
         }
         if(selection.isSelected())
