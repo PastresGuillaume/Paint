@@ -96,41 +96,6 @@ public class Scene extends JPanel {
 
 
 
-    //Variable decor
-    /////////////////////////////
-    public TuyauRouge tuyauRouge1;
-    public TuyauRouge tuyauRouge2;
-    public TuyauRouge tuyauRouge3;
-    public TuyauRouge tuyauRouge4;
-    public TuyauRouge tuyauRouge5;
-    public TuyauRouge tuyauRouge6;
-    public TuyauRouge tuyauRouge7;
-    public TuyauRouge tuyauRouge8;
-
-    public Bloc bloc1;
-    public Bloc bloc2;
-    public Bloc bloc3;
-    public Bloc bloc4;
-    public Bloc bloc5;
-    public Bloc bloc6;
-    public Bloc bloc7;
-    public Bloc bloc8;
-    public Bloc bloc9;
-    public Bloc bloc10;
-
-
-    public Piece piece1;
-    public Piece piece2;
-    public Piece piece3;
-    public Piece piece4;
-    public Piece piece5;
-    public Piece piece6;
-    public Piece piece7;
-    public Piece piece8;
-    public Piece piece9;
-    public Piece piece10;
-
-
     //Variable Image
     /////////////////////////////
     private ImageIcon icoDrapeuFin;
@@ -211,67 +176,41 @@ public class Scene extends JPanel {
 
         //Instanciation du decor
         /////////////////////////////
-        this.tuyauRouge1 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge1X,tuyauRougeY);
-        this.tuyauRouge2 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge2X,tuyauRougeY);
-        this.tuyauRouge3 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge3X,tuyauRougeY);
-        this.tuyauRouge4 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge4X,tuyauRougeY);
-        this.tuyauRouge5 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge5X,tuyauRougeY);
-        this.tuyauRouge6 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge6X,tuyauRougeY);
-        this.tuyauRouge7 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge7X,tuyauRougeY);
-        this.tuyauRouge8 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge8X,tuyauRougeY);
+        this.tabDecor.add( new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge1X,tuyauRougeY));
+        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge2X,tuyauRougeY));
+        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge3X,tuyauRougeY));
+        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge4X,tuyauRougeY));
+        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge5X,tuyauRougeY));
+        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge6X,tuyauRougeY));
+        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge7X,tuyauRougeY));
+        this.tabDecor.add( new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge8X,tuyauRougeY));
 
-        this.bloc1 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX1,blocY );
-        this.bloc2 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX2,blocY);
-        this.bloc3 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX3,blocY );
-        this.bloc4 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX4,blocY );
-        this.bloc5 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX5,blocY);
-        this.bloc6 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX6,blocY );
-        this.bloc7 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX7,blocY );
-        this.bloc8 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX8,blocY);
-        this.bloc9 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX9,blocY);
-        this.bloc10 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX10,blocY );
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX1,blocY ));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX2,blocY));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX3,blocY ));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX4,blocY ));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX5,blocY));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX6,blocY ));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX7,blocY ));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX8,blocY));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX9,blocY));
+        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX10,blocY ));
 
-        this.piece1 = new Piece(imagePieceX,imagePieceY,pieceX1,pieceY);
-        this.piece2 = new Piece(imagePieceX,imagePieceY,pieceX2,pieceY);
-        this.piece3 = new Piece(imagePieceX,imagePieceY,pieceX3,pieceY);
-        this.piece4 = new Piece(imagePieceX,imagePieceY,pieceX4,pieceY);
-        this.piece5 = new Piece(imagePieceX,imagePieceY,pieceX5,pieceY);
-        this.piece6 = new Piece(imagePieceX,imagePieceY,pieceX6,pieceY);
-        this.piece7 = new Piece(imagePieceX,imagePieceY,pieceX7,pieceY);
-        this.piece8 = new Piece(imagePieceX,imagePieceY,pieceX8,pieceY);
-        this.piece9 = new Piece(imagePieceX,imagePieceY,pieceX9,pieceY);
-        this.piece10 = new Piece(imagePieceX,imagePieceY,pieceX10,pieceY);
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX1,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX2,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX3,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX4,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX5,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX6,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX7,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX8,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX9,pieceY));
+        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX10,pieceY));
 
-        this.tabDecor.add(this.tuyauRouge1);
-        this.tabDecor.add(this.tuyauRouge2);
-        this.tabDecor.add(this.tuyauRouge3);
-        this.tabDecor.add(this.tuyauRouge4);
-        this.tabDecor.add(this.tuyauRouge5);
-        this.tabDecor.add(this.tuyauRouge6);
-        this.tabDecor.add(this.tuyauRouge7);
-        this.tabDecor.add(this.tuyauRouge8);
 
-        this.tabDecor.add(this.bloc1);
-        this.tabDecor.add(this.bloc2);
-        this.tabDecor.add(this.bloc3);
-        this.tabDecor.add(this.bloc4);
-        this.tabDecor.add(this.bloc5);
-        this.tabDecor.add(this.bloc6);
-        this.tabDecor.add(this.bloc7);
-        this.tabDecor.add(this.bloc8);
-        this.tabDecor.add(this.bloc9);
-        this.tabDecor.add(this.bloc10);
 
-        this.tabPiece.add(this.piece1);
-        this.tabPiece.add(this.piece2);
-        this.tabPiece.add(this.piece3);
-        this.tabPiece.add(this.piece4);
-        this.tabPiece.add(this.piece5);
-        this.tabPiece.add(this.piece6);
-        this.tabPiece.add(this.piece7);
-        this.tabPiece.add(this.piece8);
-        this.tabPiece.add(this.piece9);
-        this.tabPiece.add(this.piece10);
+
+
 
         //Instanciation Personnage + clavier et fenetre
         ////////////////////////////////////////////////////////////
@@ -415,7 +354,7 @@ public class Scene extends JPanel {
 
         //Mise à jour des positions des objets
         //////////////////////////////////////////////////////////
-        if(this.xPos >=0 && this.xPos <= 5000){
+        if(this.xPos >=0 && this.xPos <= posMAX){
             for(int i=0; i<this.tabDecor.size();i++){
                 this.tabDecor.get(i).deplacement();
             }
@@ -467,7 +406,7 @@ public class Scene extends JPanel {
 
         //image du drapeau d'arrivée
         g2.drawImage(imgDrapeauFin,posMAX-this.xPos,imgDrapeauFinY,null);
-        g2.drawImage(imgSortie,posMAX-this.xPos,imgSortieY,null);
+        g2.drawImage(imgSortie,posMAX+300-this.xPos,imgSortieY,null);
 
         //Bonus
         /////////////////////////////

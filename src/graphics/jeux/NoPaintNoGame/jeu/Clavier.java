@@ -43,8 +43,8 @@ public class Clavier implements KeyListener {
             Main.scene.setDx(1);*/
 
         else if(e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if(Main.scene.getxPos()==5000){
-                Main.scene.setxPos(5000);
+            if(Main.scene.getxPos()==Main.scene.posMAX){
+                Main.scene.setxPos(Main.scene.posMAX);
                 Main.scene.setxFond1(-50);
                 Main.scene.setxPos(1250);
             }

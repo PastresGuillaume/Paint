@@ -146,7 +146,7 @@ public  abstract class Personnage {
         ImageIcon ico;
         Image img;
 
-        if (this.marche == false || Main.scene.getxPos() <= 0 || Main.scene.getxPos() > 5000) {
+        if (this.marche == false || Main.scene.getxPos() <= 0 || Main.scene.getxPos() > Main.scene.posMAX) {
             if (this.versDroite) {
                 str = Constantes.PATH_NO_PAINT_NO_GAME + nom + "ArretDroit.jpg";
             } else {
