@@ -6,8 +6,7 @@ import javax.swing.*;
 
 
 public class TuyauRouge extends Decor{
-    //private Image imgTuyauRouge  ;
-    //private ImageIcon icoTuyauRouge ;
+
 
     public TuyauRouge(int largeur, int hauteur, int x, int y) {
         super(largeur, hauteur, x, y);
@@ -15,7 +14,4 @@ public class TuyauRouge extends Decor{
         super.imgDecor = this.icoDecor.getImage();
     }
 
-    /*public Image getImgTuyauRouge() {
-        return imgTuyauRouge;
-    }*/
 }

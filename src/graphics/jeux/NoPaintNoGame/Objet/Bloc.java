@@ -6,8 +6,9 @@ import javax.swing.*;
 
 
 public class Bloc extends Decor{
-    //private Image imgBloc  ;
-    //private ImageIcon icoBloc ;
+
+    //Construceur
+    ///////////////////////////////////////
 
     public Bloc(int largeur, int hauteur, int x, int y) {
         super(largeur, hauteur, x, y);
@@ -15,7 +16,4 @@ public class Bloc extends Decor{
         super.imgDecor = this.icoDecor.getImage();
     }
 
-    /*public Image getImgBloc() {
-        return imgBloc;
-    }*/
 }

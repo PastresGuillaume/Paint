@@ -15,19 +15,16 @@ import java.awt.*;
 import java.util.ArrayList;
 
 public class Scene extends JPanel {
-    //Dimension des images
-    public int imgFondX=630;
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                    //Création des donnees membres//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    public int getImgFondX() { return imgFondX;  }
+    //Initialisation du Parcourt
+    /////////////////////////////
 
-    public int imgFondY;
-
-    public int ligneChemin ;
-
-    public int tuyauVertX;
-    public int tuyauVertY;
     public  int posMAX = 6300;
 
+    // Position du decor dans le parcourt
     public int tuyauRougeY=420;
 
     public int tuyauRouge1X=700;
@@ -53,6 +50,7 @@ public class Scene extends JPanel {
     public int blocX9=4900;
     public int blocX10=5700;
 
+    public int pieceY=blocY-45;
 
     public int pieceX1=blocX1+20;
     public int pieceX2=blocX2+20;
@@ -65,25 +63,25 @@ public class Scene extends JPanel {
     public int pieceX9=blocX9+20;
     public int pieceX10=blocX10+20;
 
+    public int chateauX=5;
+    public int chateauY=275;
 
+    public int departX=220;
+    public int departY=365;
 
-    public int pieceY=blocY-45;
+    public int imgDrapeauFinY=300;// Pas de X , car on utilise la posMAX ,
+    public int imgSortieY=370;// de meme
 
-
+    //Personnage
+    /////////////////////////////
     public int marioX=300;
-
-    public void setMarioY(int marioY) {
-        this.marioY = marioY;
-    }
-
-    public int marioY=155+160+70;//285
-
-    public int getMarioY0() {
-        return marioY0;
-    }
-
+    public int marioY=395;//385
     public int marioY0=385;
+    public Mario mario;
 
+
+    //Dimension des images
+    /////////////////////////////
     int imageMarioLarge =108;
     int imageMarioHauteur = 170;
 
@@ -96,20 +94,10 @@ public class Scene extends JPanel {
     int imagePieceX =40;
     int imagePieceY = 40;
 
-    //hauteur de mario : 252
 
 
-    public int chateauX;
-    public int chateauY=275;
-
-    public int departX;
-    public int departY=365;
-
-    public int imgDrapeauFinY=300;
-
-    public int imgSortieY=370;
-    //private ArrayList<String> tabNomDecor;
-
+    //Variable decor
+    /////////////////////////////
     public TuyauRouge tuyauRouge1;
     public TuyauRouge tuyauRouge2;
     public TuyauRouge tuyauRouge3;
@@ -142,49 +130,55 @@ public class Scene extends JPanel {
     public Piece piece9;
     public Piece piece10;
 
+
+    //Variable Image
+    /////////////////////////////
     private ImageIcon icoDrapeuFin;
     private Image imgDrapeauFin;
     private ImageIcon icoSortie;
     private Image imgSortie;
 
-    //Stock image du fond
+    //fond
     private final ImageIcon icoFond;
     private final Image imgFond1;
     private final Image imgFond2;
 
+    //départ
     private final ImageIcon icoChateau1;
     private final Image imgChateau1;
     private final ImageIcon icoDepart;
     private final Image imgDepart;
 
-    //private ArrayList<Decor> tabDecor2;
 
-    private final ArrayList<Decor> tabDecorb=new ArrayList<Decor>();// tableau des objets du jeu
+
+    ///Initialisation des ArrayList
+    /////////////////////////////
+
     private final ArrayList<Decor> tabDecor=new ArrayList<Decor>();
-
     private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();// tableau des objets du jeu
 
+    //Variable Bonus
+    /////////////////////////////
     private CompteARebour compteARebours;
-
     private Score score;
     private Font police= new Font("Arial",Font.PLAIN ,10);
 
-    // à remplacer par SText quand il sera incorposé au projet de groupe.
 
+
+    // Variable du Paysage
+    /////////////////////////////
     private int xFond2;
     private int xPos;
-
     private int dx;
     private int xFond1;//abscice du coin sup gauche par rapport à lecran
-    /*mario*/
-
     private int ysol;//hauteur du sol
     private int hauteurPlafond;
-    public Mario mario;
-    //private ImageIcon icoMario;//code provisoire
-    //private Image imgMario;//code provisoire
 
-//constructeur
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                        //Constructeur//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Scene(){
         super();// hérite du constructeur de JPanel
@@ -202,18 +196,21 @@ public class Scene extends JPanel {
         this.imgFond1=this.icoFond.getImage();
         this.imgFond2=this.icoFond.getImage();
 
-
-
         this.icoChateau1 = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"chateau.jpg");// quand on créer le fichier jar , le chemin change)
         this.imgChateau1=this.icoChateau1.getImage();
 
         this.icoDepart = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"depart.jpg");// quand on créer le fichier jar , le chemin change)
         this.imgDepart=this.icoDepart.getImage();
 
-        //for(int i=0; i<8 ;i++){
-           // tuyauRouge$i = new TuyauRouge(600,230, 800,300);
-        //}
+        this.icoSortie = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"sortie.jpg");
+        this.imgSortie = this.icoSortie.getImage();
 
+        this.icoDrapeuFin = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"drpeauFin.jpg");
+        this.imgDrapeauFin = this.icoDrapeuFin.getImage();
+
+
+        //Instanciation du decor
+        /////////////////////////////
         this.tuyauRouge1 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge1X,tuyauRougeY);
         this.tuyauRouge2 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge2X,tuyauRougeY);
         this.tuyauRouge3 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge3X,tuyauRougeY);
@@ -222,9 +219,6 @@ public class Scene extends JPanel {
         this.tuyauRouge6 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge6X,tuyauRougeY);
         this.tuyauRouge7 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge7X,tuyauRougeY);
         this.tuyauRouge8 = new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge8X,tuyauRougeY);
-
-
-
 
         this.bloc1 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX1,blocY );
         this.bloc2 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX2,blocY);
@@ -237,8 +231,6 @@ public class Scene extends JPanel {
         this.bloc9 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX9,blocY);
         this.bloc10 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX10,blocY );
 
-
-
         this.piece1 = new Piece(imagePieceX,imagePieceY,pieceX1,pieceY);
         this.piece2 = new Piece(imagePieceX,imagePieceY,pieceX2,pieceY);
         this.piece3 = new Piece(imagePieceX,imagePieceY,pieceX3,pieceY);
@@ -250,9 +242,6 @@ public class Scene extends JPanel {
         this.piece9 = new Piece(imagePieceX,imagePieceY,pieceX9,pieceY);
         this.piece10 = new Piece(imagePieceX,imagePieceY,pieceX10,pieceY);
 
-
-
-
         this.tabDecor.add(this.tuyauRouge1);
         this.tabDecor.add(this.tuyauRouge2);
         this.tabDecor.add(this.tuyauRouge3);
@@ -261,8 +250,6 @@ public class Scene extends JPanel {
         this.tabDecor.add(this.tuyauRouge6);
         this.tabDecor.add(this.tuyauRouge7);
         this.tabDecor.add(this.tuyauRouge8);
-
-
 
         this.tabDecor.add(this.bloc1);
         this.tabDecor.add(this.bloc2);
@@ -275,7 +262,6 @@ public class Scene extends JPanel {
         this.tabDecor.add(this.bloc9);
         this.tabDecor.add(this.bloc10);
 
-
         this.tabPiece.add(this.piece1);
         this.tabPiece.add(this.piece2);
         this.tabPiece.add(this.piece3);
@@ -287,73 +273,46 @@ public class Scene extends JPanel {
         this.tabPiece.add(this.piece9);
         this.tabPiece.add(this.piece10);
 
-
-
-
-
-
-
-
-
-
-        this.icoSortie = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"sortie.jpg");
-        this.imgSortie = this.icoSortie.getImage();
-
-        this.icoDrapeuFin = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"drpeauFin.jpg");
-        this.imgDrapeauFin = this.icoDrapeuFin.getImage();
-
-
-
-
-
-
-
-
-
-
-
-
-        /*mario*/
+        //Instanciation Personnage + clavier et fenetre
+        ////////////////////////////////////////////////////////////
         mario = new Mario(imageMarioLarge,imageMarioHauteur,marioX,marioY);
-        //icoMario = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"personnage.jpg");// quand on créer le fichier jar , le chemin change)
-        //this.imgMario=this.icoMario.getImage();
-        /*fin mario*/
-
-
-        //fin association
 
         this.setFocusable(true);
         this.requestFocusInWindow();
-
         this.addKeyListener(new Clavier());
+
+        //Bonus
+        /////////////////////////////
         score = new Score();
         compteARebours = new CompteARebour();
 
-
-
+        //Instanciation du thread (Attention ne pas déplacer sinon rien ne va plus)
+        /////////////////////////////
         Thread chronoEcran = new Thread(new Chrono());
         chronoEcran.start();
 
+
     }
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                     //Fin du constructeur//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-
-
-    // GETTERS//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                            // GETTERS//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public int getDx() {return dx; }
 
     public int getxPos() {return xPos;}
 
-    public int getYSol() { return ysol;  }
+    public int getHauteurPlafond() {return hauteurPlafond; }
 
-    public int getHauteurPlafond() {
-        return hauteurPlafond;
-    }
-
-    //SETTERS//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                        // SETTERS//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     public void setYsol(int ysol) { this.ysol = ysol; }
@@ -368,43 +327,39 @@ public class Scene extends JPanel {
 
     public void setxFond2(int xFond2) {this.xFond2 = xFond2; }
 
+    public void setMarioY(int marioY) {this.marioY = marioY; }
 
-    /////////////////////////////////////////////////////////
-                                    //Méthodes//
-    /////////////////////////////////////////////////////////
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                //Méthodes//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //déplacementFond(
+    /////////////////////////////
     public void deplacementFond(){
-        //this.xFond1=this.xFond1 - this.dx;
-        //this.xFond2=this.xFond2 - this.dx;
+
       if(this.xPos>=0 && this.xPos <= Main.scene.posMAX) {
           this.xPos = this.xPos + this.dx;
           this.xFond1 = this.xFond1 - this.dx;
           this.xFond2 = this.xFond2 - this.dx;
       }
 
-
-
         if(this.xFond1==-1300){this.xFond1=1300;}
         else if(this.xFond2==-1300){this.xFond2=1300;}
         else if(this.xFond1==1300){this.xFond1=-1300;}
         else if(this.xFond2==1300){this.xFond2=-1300;}
 
-
-
     }
-        //&& (this.score.getNbrPiece() ==10)
+
+    //Partie gagnée ou non
+    /////////////////////////////
     private boolean partieGagnee(){
-        if((this.compteARebours.getCompteurTemps() > 0) && (this.mario.isVivant() ) && (this.xPos >=posMAX)){
-                return (true);
-        }
+        if((this.compteARebours.getCompteurTemps() > 0) && (this.mario.isVivant() ) && (this.xPos >=posMAX)){ return (true); }
         else {return (false);}
     }
 
-
     private boolean partiePerdue(){
-        if(this.compteARebours.getCompteurTemps()<= 0 || !this.mario.isVivant() ){
-            return (true);
-        }
+        if(this.compteARebours.getCompteurTemps()<= 0 || !this.mario.isVivant() ){ return (true); }
         else {return (false);}
     }
 
@@ -419,7 +374,8 @@ public class Scene extends JPanel {
 
 
 
-
+    //PaintComponent
+    /////////////////////////////
 
     public void paintComponent(Graphics g){
 
@@ -437,7 +393,7 @@ public class Scene extends JPanel {
 
 
         }
- /*
+    /*
         for(int i=0; i< this.tabPiece.size();i++) {
             if(this.mario.proche(this.tabPiece.get(i))){
                 if(this.mario.contactPiece(this.tabPiece.get(i))){
@@ -452,38 +408,13 @@ public class Scene extends JPanel {
         this.deplacementFond();
 
         //Mise à jour des scores
+        /////////////////////////////
+
         g2.setFont(police);
         g2.drawString("Pièces trouvées : " + this.score.getNbrPiece() + "/" + this.score.getNombPieceTotal(),440,25 );
 
-
-
-        //détection des contacts de mario avec des pieces
-        /*for(int i=0; i< this.tabPiece.size() ; i++){
-            if(this.mario.proche(this.tabPiece.get(i))){
-                if(this.mario.contactPiece(this.tabPiece.get(i))){
-                    this.tabPiece.remove(i);
-                    this.score.setNbrPiece(this.score.getNbrPiece()+1);
-                }
-            }
-        }
-
-
-
-        //detection contact
-
-        for(int i=0; i< this.tabDecor.size();i++) {
-            //mario
-            if (this.mario.contactAvant(this.tabDecor.get(i))) {
-                this.mario.contactAvant(this.tabDecor.get(i));
-            }
-        }
-            //proche et pas contact
-        //fin détection
-        // on met la détection avant sinon il y a des problèmes de syncronisations
-*/
-
-
-
+        //Mise à jour des positions des objets
+        //////////////////////////////////////////////////////////
         if(this.xPos >=0 && this.xPos <= 5000){
             for(int i=0; i<this.tabDecor.size();i++){
                 this.tabDecor.get(i).deplacement();
@@ -496,29 +427,30 @@ public class Scene extends JPanel {
 
 
 
-
+        //dessin du fond
+        /////////////////////////////
         g2.drawImage(this.imgFond1,this.xFond1,0,null);
         g2.drawImage(this.imgFond2,this.xFond2,0,null);
 
 
-        g2.drawImage(this.imgChateau1,5-this.xPos,chateauY,null);
-        g2.drawImage(this.imgDepart,220-this.xPos,departY,null);
+        g2.drawImage(this.imgChateau1,chateauX-this.xPos,chateauY,null);
+        g2.drawImage(this.imgDepart,departX-this.xPos,departY,null);
 
 
 
-           //image mario
+        //dessin du personnage
+        /////////////////////////////
+
         if(this.mario.isVivant){
-
-
             if(this.mario.isSaut()){g2.drawImage(this.mario.saute(),this.mario.getX(),this.mario.getY(),null);}
             else {g2.drawImage(this.mario.marche("personnage",25),this.mario.getX(),this.mario.getY(),null);}
-
         }
         else{g2.drawImage(this.mario.meurt(),this.mario.getX(),this.mario.getY(),null); }
 
 
 
         // Images du décor
+        /////////////////////////////
 
         for(int i=0; i< this.tabDecor.size();i++){
             g2.drawImage(this.tabDecor.get(i).getImgDecor(),this.tabDecor.get(i).getX(),this.tabDecor.get(i).getY(),null);
@@ -537,15 +469,14 @@ public class Scene extends JPanel {
         g2.drawImage(imgDrapeauFin,posMAX-this.xPos,imgDrapeauFinY,null);
         g2.drawImage(imgSortie,posMAX-this.xPos,imgSortieY,null);
 
-
-        //Compte  à rebours
+        //Bonus
+        /////////////////////////////
         g2.drawString(this.compteARebours.getStr(), 5 , 25);
-
-        //Nombre
         g2.drawString(this.score.getNbrPiece() + " pièces trouvées sur 10 ", 650 , 25);
 
-        //fin de la partie
 
+        //fin de la partie
+        /////////////////////////////
         if(this.finPartie()){
             Font policeFin = new Font("Arial",Font.BOLD ,50);
             g2.setFont(policeFin);
@@ -555,11 +486,9 @@ public class Scene extends JPanel {
 
             }
 
-            else if(this.partiePerdue())
-
-            {g2.drawString("vous avez perdu...",120,180);
+            else if(this.partiePerdue()){
+                g2.drawString("vous avez perdu...",120,180);
                 Audio.playSound("/son/perdu.wav");
-
             }
         }
 

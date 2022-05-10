@@ -9,22 +9,20 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Mario extends Personnage {
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Création des donnees membres//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     private Image imgMario;
     private ImageIcon icoMario;
     private int compteurMort;
     private boolean saut; // vrai si il saute
-
-
-//getters
-
-
-//setters
-
-
     private int compteurSaut;
 
 
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Constructeur//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Mario(int largeur, int hauteur, int x, int y) {
         super(largeur, hauteur, x, y, false, true);// 28 large sur 50 de haut*/
@@ -36,7 +34,9 @@ public class Mario extends Personnage {
 
     }
 
-    //Getter
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Getters//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Image getImgMario() {
         return imgMario;
@@ -44,12 +44,17 @@ public class Mario extends Personnage {
     public boolean isSaut() {
         return saut;
     }
-    //setter
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Setters//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public void setSaut(boolean saut) {
         this.saut = saut;
     }
 
-    //Méthodes
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //METHODES//
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Image saute() {
         ImageIcon ico;
@@ -112,15 +117,7 @@ public class Mario extends Personnage {
 
     }
 
-    /*public boolean proche(Decor decor) {
-        if (Main.scene.marioY == decor.getY()) {
-            return (true);
-        } else {
-            return (false);
-        }
 
-
-    }*/
 
     public boolean proche(Decor objet){
         if((this.getX() > objet.getX() - 10 && this.getX() < objet.getX() + objet.getLargeur() + 10)
@@ -171,19 +168,7 @@ public class Mario extends Personnage {
 
             //this.setMarche(true);
         }
-        // Mario saute sur un objet
 
-        /*if (super.contactDessous(decor)){
-            if(this.saut) {
-                Main.scene.setMarioY(decor.getY()-this.getHauteur());
-                Main.scene.setYsol(decor.getY()-this.getHauteur());
-                this.setSaut(false);
-                //this.setMarche(true);
-            } // Mario saute sur un objet
-            else{
-                Main.scene.setMarioY(Main.scene.marioY0);
-            }
-        }*/
 
         else if (!super.contactDessous(decor)) {
             Main.scene.setYsol(Main.scene.marioY);//altitude du sol initial
