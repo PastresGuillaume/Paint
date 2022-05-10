@@ -2,18 +2,47 @@ package graphics.jeux.NoPaintNoGame.Affichage;
 
 import graphics.jeux.NoPaintNoGame.jeu.Main;
 
+/**
+ * CompteARebour est la classe qui définit le compte à rebour de javadoc
+ * Cette classe est caractérisée par les informations suivantes :
+ * <ul>
+ *  <li> Un int PAUSE</li>
+ *  <li> Un int compteurTemps</li>
+ *  <li> Un String str</li>
+ *
+ * </ul>
+ * CompteARebour est un thread qui détermine le temps qu'il reste au personnage pour finir le jeu.
+ *
+ */
+
 public class CompteARebour implements Runnable {
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///////////////////////SE = 1000;
+    // *     private int compteurTe//////////////////////////////////////////////////////////////////////////////////////////
                                                 //Création des donnees membres //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Un int PAUSE
+     */
     private final int PAUSE = 1000;
+    /**
+     * Un int compteurTemps
+     */
     private int compteurTemps;
+    /**
+     * Un String str
+     */
     private String str;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                         //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * <b>Constructeur de Decor</b>
+     *
+     * Créer un thread , qui calcul le temps qu'il reste au personnage pour finir le jeu.
+     *
+     */
     public CompteARebour() {
         this.compteurTemps = 100;
         this.str = "Temps restant : 100";
@@ -31,6 +60,9 @@ public class CompteARebour implements Runnable {
                                                       //METHODES//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * run() lance le thread et affiche le temps qu'il reste à l'écran
+     */
     @Override
     public void run(){
         while(true){

@@ -1,11 +1,30 @@
 package graphics.jeux.NoPaintNoGame.Affichage;
 
+/**
+ * Score est la classe qui définit le score de javadoc.
+ * Cette classe est caractérisée par les informations suivantes :
+ * <ul>
+ *  <li> private final int nombPieceTotal</li>
+ *  <li> Un int nbrPiece</li>
+ *
+ * </ul>
+ * Le score le nombre de pièce récupéré par le joueur.
+ *
+ */
 public class Score {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                             //Création des donnees membres //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Un int nombPieceTotal
+     * C'est le nombre de pièces qu'il y a au total dans le jeu
+     */
     private final int nombPieceTotal= 10;
+    /**
+     * Un int nbrPiece
+     * c'est le nombre de pièces que le joueur a ramassé
+     */
     private int nbrPiece;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

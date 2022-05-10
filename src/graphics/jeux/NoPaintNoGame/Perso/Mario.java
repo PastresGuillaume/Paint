@@ -12,11 +12,11 @@ import java.awt.*;
  * Mario est la classe qui définit le personnagede javadoc que le joueur utilise
  * Cette classe est caractérisée par les informations suivantes :
  * <ul>
- *  <li>Une Image imgMario
- *  <li>Une ImageIcon icoMario
- *  <li>Un int compteurMort
- *  <li>Un boolean saut
- *  <li>Un int compteurSaut
+ *  <li>Une Image imgMario</li>
+ *  <li>Une ImageIcon icoMario</li>
+ *  <li>Un int compteurMort</li>
+ *  <li>Un boolean saut</li>
+ *  <li>Un int compteurSaut</li>
  * </ul>
  * Mario est le personnage que le joueur va utiliser dans NoPaintNoGame.
  *
