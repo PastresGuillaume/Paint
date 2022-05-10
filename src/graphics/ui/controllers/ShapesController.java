@@ -81,6 +81,7 @@ public class ShapesController extends AbstractController {
                     shape.select();
                 }
             }
+            this.view.setCursor(DEFAULT_CURSOR);
         }
         selectionDragged = false;
     }

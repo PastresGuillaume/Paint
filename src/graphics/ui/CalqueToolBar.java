@@ -19,7 +19,6 @@ import java.util.Objects;
 public class CalqueToolBar extends  AbstractBar{
 
     private ModelView view;
-    private final Dimension dimension;
     private JToolBar toolBar = new JToolBar(JToolBar.VERTICAL);
     private HashMap<String,JComponent> buttons = new HashMap<>();
 
@@ -27,7 +26,6 @@ public class CalqueToolBar extends  AbstractBar{
 
     public CalqueToolBar(ModelView view){
         this.view = view;
-        this.dimension = new Dimension(15,15);
     }
 
     public ModelView getView(){return this.view;}
@@ -36,11 +34,9 @@ public class CalqueToolBar extends  AbstractBar{
 
     public JToolBar createToolBar() throws IOException {
         SModel sModel = (SModel) this.view.getModel();
-        JScrollPane jScrollPane = new JScrollPane();
 
         JButton addBtn = new JButton(new ImageIcon(Constantes.PATH_IMAGES + "add.png"));
         addBtn.setToolTipText("New Calque");
-        addBtn.setSize(this.dimension);
         addBtn.addActionListener(e -> {
             Calque calque = new Calque();
             sModel.addCalque(calque);
@@ -73,7 +69,6 @@ public class CalqueToolBar extends  AbstractBar{
         btnNew.setBackground(Constantes.BACKGROUND_COLOR);
         btnNew.setForeground(Constantes.TEXTMENU_COLOR);
         btnNew.setToolTipText("Select " + calque.getName());
-        btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> {
             sModel.setUse(calque);
             if (calque.isGame()){
