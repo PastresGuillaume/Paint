@@ -8,6 +8,22 @@ import graphics.jeux.NoPaintNoGame.jeu.Main;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Exemple est la classe qui définit un exemple de javadoc
+ * Cette classe est caractérisée par les informations suivantes :
+ * <ul>
+ * <li>Description fonctionnelle de l'attribut 1</li>
+ * <li>Description fonctionnelle de l'attribut 2</li>
+ * </ul>
+ * Description des principales fonctionnalités de la classe
+ * </p>
+ * Description complémentaire, sur les attributs statiques par exemple
+ * </p>
+ * @author nom de l'auteur
+ * @version numéro de version
+ */
+
+
 public  abstract class Personnage {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Création des donnees membres//

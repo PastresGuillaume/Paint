@@ -5,16 +5,71 @@ import graphics.jeux.NoPaintNoGame.jeu.Main;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Decor est la classe abstaite qui définit un decor de javadoc
+ * Cette classe est caractérisée par les informations suivantes :
+ * <ul>
+ * <li>Une largeur pour son image</li>
+ * <li>Une hauteur pour son image</li>
+ * <li>Une abscisse x pour son image</li>
+ * <li>Une ordonnée y pour son image</li>
+ * <li> Une image imgDecor</li>
+ * <li> Une icoimage icoDecor</li>
+ * </ul>
+ * Cette classe abstraite definit un decor qui peut etre une piece , un bloc ou un tuyauRouge, qui sera dessiné dans la scène.
+ * De plus , grace à la méthode contact, Le personnage pourra détecter ces éléments de décors et ne pas renter dedans lorsqu'il se déplace.
+ *
+ */
+
+
 public abstract class Decor {
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    //Création des donnees membres//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   /**
+    * largeur de l'image imgDecor
+    */
    private int largeur;
+
+   /**
+    * Hauteur de l'image imgDecor
+    */
    private int hauteur;
+
+   /**
+    * Abscisse x pour son image
+    */
    private int x;
+
+   /**
+    * Ordonnée y pour son image
+    */
    private int y;
+
+   /**
+    * Description de l'attribut 1
+    */
    protected Image imgDecor  ;
+
+   /**
+    * Description de l'attribut 1
+    */
    protected ImageIcon icoDecor ;
+
+
+
+   /**
+    * <b>Constructeur de Decor</b>
+    *
+    * @param largeur
+    *     Largeur de son image
+    * @param hauteur
+    *     Hauteur de son image
+    * @param x
+    *      Abscisse de son image
+    * @param y
+    *      Ordonnée de son image
+    */
 
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,6 +117,17 @@ public abstract class Decor {
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    //Methodes//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   /**
+    * deplacement() permet de déplacer un élément du décor.
+    * Cette méthode est utilisée pour donner l'illusion que le personnage se déplace:
+    * Les abscisses du fond et des éléments du décor sont modifiées à la même vitesse , puis un thread repaint le tout .
+    * Seul l'abscisse du personnage ne change pas, ce qui donne l'illusion qu'il bouge.
+    *
+    *     description du paramètre en entrée
+    * @return description de la sortie
+    */
+
+
    public void deplacement(){
       if(Main.scene.getxPos() >=0){
          this.x = this.x -Main.scene.getDx();
