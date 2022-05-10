@@ -18,50 +18,28 @@ public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                     //Création des donnees membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///Initialisation des ArrayList
+    /////////////////////////////
+    private final ArrayList<Decor> tabDecor=new ArrayList<Decor>();
+    private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();// tableau des objets du jeu
 
     //Initialisation du Parcourt
     /////////////////////////////
 
     public  int posMAX = 6300;
 
-    // Position du decor dans le parcourt
+
+
     public int tuyauRougeY=420;
 
+
+    public int blocX1=400;
     public int tuyauRouge1X=700;
-    public int tuyauRouge2X=1300;
-    public int tuyauRouge3X=1900;
-    public int tuyauRouge4X=2900;
-    public int tuyauRouge5X=3700;
-    public int tuyauRouge6X=4600;
-    public int tuyauRouge7X=5400;
-    public int tuyauRouge8X=6000;
 
 
     public int blocY=290;
 
-    public int blocX1=400;
-    public int blocX2=1000;
-    public int blocX3=1600;
-    public int blocX4=2300;
-    public int blocX5=2600;
-    public int blocX6=3400;
-    public int blocX7=4000;
-    public int blocX8=4300;
-    public int blocX9=4900;
-    public int blocX10=5700;
-
     public int pieceY=blocY-45;
-
-    public int pieceX1=blocX1+20;
-    public int pieceX2=blocX2+20;
-    public int pieceX3=blocX3+20;
-    public int pieceX4=blocX4+20;
-    public int pieceX5=blocX5+20;
-    public int pieceX6=blocX6+20;
-    public int pieceX7=blocX7+20;
-    public int pieceX8=blocX8+20;
-    public int pieceX9=blocX9+20;
-    public int pieceX10=blocX10+20;
 
     public int chateauX=5;
     public int chateauY=275;
@@ -116,11 +94,7 @@ public class Scene extends JPanel {
 
 
 
-    ///Initialisation des ArrayList
-    /////////////////////////////
 
-    private final ArrayList<Decor> tabDecor=new ArrayList<Decor>();
-    private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();// tableau des objets du jeu
 
     //Variable Bonus
     /////////////////////////////
@@ -146,6 +120,7 @@ public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     public Scene(){
+
         super();// hérite du constructeur de JPanel
 
         this.xFond1 = -50; // ( image déborde de chaque coté)
@@ -176,26 +151,10 @@ public class Scene extends JPanel {
 
         //Instanciation du decor
         /////////////////////////////
-        this.tabDecor.add( new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge1X,tuyauRougeY));
-        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge2X,tuyauRougeY));
-        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge3X,tuyauRougeY));
-        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge4X,tuyauRougeY));
-        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge5X,tuyauRougeY));
-        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge6X,tuyauRougeY));
-        this.tabDecor.add(new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge7X,tuyauRougeY));
-        this.tabDecor.add( new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge8X,tuyauRougeY));
+        this.AbscisseDecor();
 
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX1,blocY ));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX2,blocY));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX3,blocY ));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX4,blocY ));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX5,blocY));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX6,blocY ));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX7,blocY ));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX8,blocY));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX9,blocY));
-        this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX10,blocY ));
 
+        /*
         this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX1,pieceY));
         this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX2,pieceY));
         this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX3,pieceY));
@@ -207,7 +166,7 @@ public class Scene extends JPanel {
         this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX9,pieceY));
         this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX10,pieceY));
 
-
+        */
 
 
 
@@ -272,6 +231,28 @@ public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                 //Méthodes//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Initialisation du décor
+    /////////////////////////////
+
+    public void AbscisseDecor(){
+        //this.tabNomTRValeurX.add(tuyauRouge1X);
+        int A= 0;
+
+        for(int i=0; i<8;i++) {
+
+            A = +i*900;
+
+            this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX1+ A,blocY ));
+            //this.tabDecor.add(new Piece(imagePieceX,imagePieceY,blocX1+A+20,pieceY));
+            this.tabDecor.add( new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge1X + A,tuyauRougeY));
+            this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX1+600+ A,blocY ));
+           // this.tabDecor.add(new Piece(imagePieceX,imagePieceY,blocX1+ A+620,pieceY));
+
+        }
+
+    }
+
+
 
     //déplacementFond(
     /////////////////////////////

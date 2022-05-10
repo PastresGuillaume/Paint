@@ -224,6 +224,7 @@ public class Mario extends Personnage {
      */
 
     public void contact(Decor decor) {
+
         //Contact hotizontal
         if ((super.contactAvant(decor) && this.isVersDroite() || super.contactArriere(decor) && !this.isVersDroite())) {
 
