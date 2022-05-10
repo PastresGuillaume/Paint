@@ -20,22 +20,22 @@ public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///Initialisation des ArrayList
     /////////////////////////////
-    private final ArrayList<Decor> tabDecor=new ArrayList<Decor>();
-    private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();// tableau des objets du jeu
+    public final ArrayList<Decor> tabDecor=new ArrayList<Decor>();
+   private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();// tableau des objets du jeu
 
     //Initialisation du Parcourt
     /////////////////////////////
 
-    public  int posMAX = 6300;
 
 
+    public int repetitionMotif=9;
 
     public int tuyauRougeY=420;
 
 
     public int blocX1=400;
     public int tuyauRouge1X=700;
-
+    public  int posMAX = (repetitionMotif+1)*600+tuyauRouge1X+700;
 
     public int blocY=290;
 
@@ -238,15 +238,15 @@ public class Scene extends JPanel {
         //this.tabNomTRValeurX.add(tuyauRouge1X);
         int A= 0;
 
-        for(int i=0; i<8;i++) {
+        for(int i=0; i<repetitionMotif-1;i++) {
 
             A = +i*900;
 
-            this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX1+ A,blocY ));
+            this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur,blocX1+ A,blocY ));
             //this.tabDecor.add(new Piece(imagePieceX,imagePieceY,blocX1+A+20,pieceY));
             this.tabDecor.add( new TuyauRouge(imageTuyauRLarge,imageTuyauRHauteur, tuyauRouge1X + A,tuyauRougeY));
             this.tabDecor.add(new Bloc(imageBlocLarge,imageBlocHauteur, blocX1+600+ A,blocY ));
-           // this.tabDecor.add(new Piece(imagePieceX,imagePieceY,blocX1+ A+620,pieceY));
+            // this.tabDecor.add(new Piece(imagePieceX,imagePieceY,blocX1+ A+620,pieceY));
 
         }
 
@@ -306,7 +306,7 @@ public class Scene extends JPanel {
 
         for(int i=0; i< this.tabDecor.size();i++) {
             if(this.mario.proche(this.tabDecor.get(i))){
-                this.mario.contact(this.tabDecor.get(i));
+                this.mario.contact(this.tabDecor.get(i),i);
                 this.mario.fly(this.tabDecor.get(i));
 
             }
@@ -319,8 +319,6 @@ public class Scene extends JPanel {
                 if(this.mario.contactPiece(this.tabPiece.get(i))){
                     this.tabPiece.remove(this.tabPiece.get(i));
                     this.score.compteurPiece();
-
-
                 }
             }
         }*/

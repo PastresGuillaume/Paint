@@ -39,7 +39,7 @@ public class Piece extends Decor{
     //Construceur
     ///////////////////////////////////////
     public Piece(int largeur, int hauteur, int x, int y) {
-        super(largeur, hauteur, x, y);
+        super(largeur, hauteur, x, y,true);
         super.icoDecor = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"piece.jpg");
         super.imgDecor = this.icoDecor.getImage();
     }

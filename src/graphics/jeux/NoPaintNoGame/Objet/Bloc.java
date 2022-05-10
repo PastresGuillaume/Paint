@@ -45,7 +45,7 @@ public class Bloc extends Decor{
     ///////////////////////////////////////
 
     public Bloc(int largeur, int hauteur, int x, int y) {
-        super(largeur, hauteur, x, y);
+        super(largeur, hauteur, x, y,false);
         super.icoDecor = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"bloc.jpg");
         super.imgDecor = this.icoDecor.getImage();
     }

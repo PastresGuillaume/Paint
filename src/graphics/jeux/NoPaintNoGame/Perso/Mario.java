@@ -161,13 +161,13 @@ public class Mario extends Personnage {
     /**
      *contactPiece détecte s'il y a un contact avec une piece
      *
-     * @param piece
+     * @param decor
      *
      * @return un boolean
      */
 
-    public boolean contactPiece(Piece piece) {
-        if (this.contactArriere(piece) || this.contactAvant(piece) || this.contactDessous(piece) || this.contactDessus(piece)) {
+    public boolean contactPiece(Decor decor) {
+        if (this.contactArriere(decor) || this.contactAvant(decor) || this.contactDessous(decor) || this.contactDessus(decor)) {
             return (true);
         } else {
             return (false);
@@ -223,41 +223,46 @@ public class Mario extends Personnage {
      *
      */
 
-    public void contact(Decor decor) {
+    public void contact(Decor decor, int i) {
+        if(!decor.isbPiece()) {
 
-        //Contact hotizontal
-        if ((super.contactAvant(decor) && this.isVersDroite() || super.contactArriere(decor) && !this.isVersDroite())) {
+            //Contact hotizontal
+            if ((super.contactAvant(decor) && this.isVersDroite() || super.contactArriere(decor) && !this.isVersDroite())) {
 
-            Main.scene.setDx(0);
-            this.setMarche(false);
+                Main.scene.setDx(0);
+                this.setMarche(false);
+            }
+
+            // contact avec un objet en dessous
+            if (super.contactDessous(decor) && this.saut) {
+                Main.scene.setMarioY(decor.getY() - this.getHauteur());
+                Main.scene.setYsol(decor.getY() - this.getHauteur());
+                this.setSaut(false);
+
+                //this.setMarche(true);
+            } else if (!super.contactDessous(decor)) {
+                Main.scene.setYsol(Main.scene.marioY);//altitude du sol initial
+
+                if (!this.saut) {
+                    this.setY(Main.scene.marioY);
+
+
+                }//altitude initiale de mario
+            }
+
+            // contact avec un objet au dessus
+            if (super.contactDessus(decor)) {
+                Main.scene.setHauteurPlafond(decor.getY() + decor.getHauteur()); //le plafond devient le dessous de l'objet
+            } else if (!contactDessus(decor) && !this.saut) {
+                Main.scene.setHauteurPlafond(0);//altitud einitiale (ciel)
+            }
         }
+        else{
+            if(this.contactPiece(decor)){
+                Main.scene.tabDecor.remove(decor);
 
-        // contact avec un objet en dessous
-        if (super.contactDessous(decor) && this.saut) {
-            Main.scene.setMarioY(decor.getY()-this.getHauteur());
-            Main.scene.setYsol(decor.getY()-this.getHauteur());
-            this.setSaut(false);
+            }
 
-            //this.setMarche(true);
-        }
-
-
-        else if (!super.contactDessous(decor)) {
-            Main.scene.setYsol(Main.scene.marioY);//altitude du sol initial
-
-            if (!this.saut) {
-                this.setY(Main.scene.marioY);
-
-
-
-            }//altitude initiale de mario
-        }
-
-        // contact avec un objet au dessus
-        if (super.contactDessus(decor)) {
-            Main.scene.setHauteurPlafond(decor.getY() + decor.getHauteur()); //le plafond devient le dessous de l'objet
-        } else if (!contactDessus(decor) && !this.saut) {
-            Main.scene.setHauteurPlafond(0);//altitud einitiale (ciel)
         }
 
     }

@@ -15,6 +15,7 @@ import java.awt.*;
  * <li>Une ordonnée y pour son image</li>
  * <li> Une image imgDecor</li>
  * <li> Une icoimage icoDecor</li>
+ * <li> Un boolean piece </li>
  * </ul>
  * Cette classe abstraite definit un decor qui peut etre une piece , un bloc ou un tuyauRouge, qui sera dessiné dans la scène.
  * De plus , grace à la méthode contact, Le personnage pourra détecter ces éléments de décors et ne pas renter dedans lorsqu'il se déplace.
@@ -56,6 +57,10 @@ public abstract class Decor {
     */
    protected ImageIcon icoDecor ;
 
+   /**
+    * Description de l'attribut 1
+    */
+   protected boolean bPiece ;
 
 
    /**
@@ -76,11 +81,12 @@ public abstract class Decor {
    //Constructeur//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   public Decor(int largeur, int hauteur, int x, int y) {
+   public Decor(int largeur, int hauteur, int x, int y,boolean f) {
       this.largeur = largeur;
       this.hauteur = hauteur;
       this.x = x;
       this.y = y;
+      this.bPiece=f;
    }
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -97,6 +103,7 @@ public abstract class Decor {
 
    public ImageIcon getIcoDecor() { return icoDecor; }
 
+   public boolean isbPiece() { return bPiece; }
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    //setters//
