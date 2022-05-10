@@ -117,8 +117,10 @@ public class Constantes {
 
     public static final int MAXIMUM_IMAGE_SIZE = 500;
 
-    public static final String PATH_IMAGES = "images\\";
+    public static final String PATH_SEPARATOR = (System.getProperty("os.name").toLowerCase().contains("mac"))?"/":"\\";
 
-    public static final String PATH_ICONS = "images\\icons\\";
+    public static final String PATH_IMAGES = "images"+PATH_SEPARATOR;
+
+    public static final String PATH_ICONS = "images"+PATH_SEPARATOR+"icons"+PATH_SEPARATOR;
 
 }

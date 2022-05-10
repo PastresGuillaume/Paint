@@ -40,26 +40,28 @@ public class ShapesController extends AbstractController {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        this.selectionDragged=false;
-        this.lastClick = e.getPoint();
-
-        if (!this.shiftPressed) {
-            model.unselect();
-        }
-
-        Shape shapeSelec = getTarget(e.getX(), e.getY());
-        if (shapeSelec!=null){
-            shapeSelec.select();
-            return;
-        }
-
-        this.selectionDragged = true;
 
         this.resizeableShape = getResizeableShape(e.getX(), e.getY());
         if (resizeableShape!=null){
             this.unSelectAll();
             resizeableShape.select();
             this.initLoc = resizeableShape.getLoc();
+        }
+        else {
+            this.selectionDragged = false;
+            this.lastClick = e.getPoint();
+
+            if (!this.shiftPressed) {
+                model.unselect();
+            }
+
+            Shape shapeSelec = getTarget(e.getX(), e.getY());
+            if (shapeSelec != null) {
+                shapeSelec.select();
+                return;
+            }
+
+            this.selectionDragged = true;
         }
     }
 

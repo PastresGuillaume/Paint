@@ -27,14 +27,10 @@ public class Editor  extends JFrame {
         {
             public void windowClosing(java.awt.event.WindowEvent evt)
             {
-                File dir = new File("images\\icons");
-                try {
+                File dir = new File(Constantes.PATH_ICONS);
                     for (File file : Objects.requireNonNull(dir.listFiles()))
                         if (!file.isDirectory())
                             file.delete();
-                }
-                catch (Exception exp){
-                }
                 System.exit(0);
             }
         });

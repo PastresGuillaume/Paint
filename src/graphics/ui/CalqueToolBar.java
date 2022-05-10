@@ -112,13 +112,9 @@ public class CalqueToolBar extends  AbstractBar{
             int input = JOptionPane.showConfirmDialog(null, "Do you want to delete" + calque.getName() + "?");
             if(input == 0) {
                 File dir = new File(Constantes.PATH_IMAGES + "icons");
-                try {
-                    for (File file : Objects.requireNonNull(dir.listFiles()))
-                        if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
-                            file.delete();
-                }
-                catch (Exception exp){
-                }
+                for (File file : Objects.requireNonNull(dir.listFiles()))
+                    if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
+                        file.delete();
                 ((SModel) view.getModel()).delCalque(calque);
                 toolBar.remove(btnNew);
                 toolBar.remove(checkBox);
@@ -143,13 +139,9 @@ public class CalqueToolBar extends  AbstractBar{
                     if(e.getKeyCode() == KeyEvent.VK_ENTER){
                         String outcome = text.getText();
                         File dir = new File(Constantes.PATH_IMAGES + "icons");
-                        try {
-                            for (File file : Objects.requireNonNull(dir.listFiles()))
-                                if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
-                                    file.delete();
-                        }
-                        catch (Exception exp){
-                        }
+                        for (File file : Objects.requireNonNull(dir.listFiles()))
+                            if (file.getName().equals(calque.getName() + Constantes.IS_USED_CALQUE + ".png"))
+                                file.delete();
                         ((CalqueToolBar) view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().remove(calque.getName() + Constantes.IS_USED_CALQUE);
                         ((CalqueToolBar) view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().remove(calque.getName() + Constantes.IS_PAINTED_CALQUE);
                         calque.setName(outcome);

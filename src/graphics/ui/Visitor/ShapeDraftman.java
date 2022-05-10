@@ -47,7 +47,7 @@ public class ShapeDraftman implements ShapeVisitor{
             selection = Constantes.DEFAULT_SELECTION_ATTRIBUTES;
 
         RotationAttributes rotation = (RotationAttributes)rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES);
-        if (rectangle.getAttributes(Constantes.ROTATION_ATTRIBUTES) == null)
+        if (rotation == null)
             rotation = Constantes.DEFAULT_ROTATION_ATTRIBUTES;
 
         if (rotation.angle != 0.){
