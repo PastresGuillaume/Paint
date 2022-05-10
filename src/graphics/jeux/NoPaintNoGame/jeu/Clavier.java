@@ -22,7 +22,10 @@ public class Clavier implements KeyListener {
                 Main.scene.setxFond2(1250);
             }
             Main.scene.mario.setVersDroite(true);
-            Main.scene.mario.setMarche(true);
+            if(!Main.scene.mario.isSaut()){
+                Main.scene.mario.setMarche(true);
+            }
+
             Main.scene.setDx(1);
         }
 

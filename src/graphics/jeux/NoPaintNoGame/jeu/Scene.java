@@ -26,31 +26,33 @@ public class Scene extends JPanel {
 
     public int tuyauVertX;
     public int tuyauVertY;
-
-    public int tuyauRouge1X=800;
-    public int tuyauRouge2X=1300;
-    public int tuyauRouge3X=1900;
-    public int tuyauRouge4X=2500;
-    public int tuyauRouge5X=2800;
-    public int tuyauRouge6X=3300;
-    public int tuyauRouge7X=3800;
-    public int tuyauRouge8X=4600;
+    public  int posMAX = 6300;
 
     public int tuyauRougeY=420;
 
+    public int tuyauRouge1X=700;
+    public int tuyauRouge2X=1300;
+    public int tuyauRouge3X=1900;
+    public int tuyauRouge4X=2900;
+    public int tuyauRouge5X=3700;
+    public int tuyauRouge6X=4600;
+    public int tuyauRouge7X=5400;
+    public int tuyauRouge8X=6000;
+
+
     public int blocY=290;
+
     public int blocX1=400;
-    public int blocX2=1070;
-    public int blocX3=1530;
-    public int blocX4=2000;
-    public int blocX5=2300;
-    public int blocX6=2700;
-    public int blocX7=3000;
-    public int blocX8=3400;
-    public int blocX9=3700;
-    public int blocX10=4000;
-    public int blocX11=4400;
-    public int blocX12=5000;
+    public int blocX2=1000;
+    public int blocX3=1600;
+    public int blocX4=2300;
+    public int blocX5=2600;
+    public int blocX6=3400;
+    public int blocX7=4000;
+    public int blocX8=4300;
+    public int blocX9=4900;
+    public int blocX10=5700;
+
 
     public int pieceX1=blocX1+20;
     public int pieceX2=blocX2+20;
@@ -63,12 +65,10 @@ public class Scene extends JPanel {
     public int pieceX9=blocX9+20;
     public int pieceX10=blocX10+20;
 
+
+
     public int pieceY=blocY-45;
 
-/*
-    public int marioX=300;
-    public int marioY=155;
-    */
 
     public int marioX=300;
 
@@ -92,7 +92,12 @@ public class Scene extends JPanel {
 
     int imageBlocLarge =95;
     int imageBlocHauteur = 94;
+
+    int imagePieceX =40;
+    int imagePieceY = 40;
+
     //hauteur de mario : 252
+
 
     public int chateauX;
     public int chateauY=275;
@@ -100,6 +105,9 @@ public class Scene extends JPanel {
     public int departX;
     public int departY=365;
 
+    public int imgDrapeauFinY=300;
+
+    public int imgSortieY=370;
     //private ArrayList<String> tabNomDecor;
 
     public TuyauRouge tuyauRouge1;
@@ -121,8 +129,7 @@ public class Scene extends JPanel {
     public Bloc bloc8;
     public Bloc bloc9;
     public Bloc bloc10;
-    public Bloc bloc11;
-    public Bloc bloc12;
+
 
     public Piece piece1;
     public Piece piece2;
@@ -229,21 +236,20 @@ public class Scene extends JPanel {
         this.bloc8 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX8,blocY);
         this.bloc9 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX9,blocY);
         this.bloc10 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX10,blocY );
-        this.bloc11 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX11,blocY );
-        this.bloc12 = new Bloc(imageBlocLarge,imageBlocHauteur, blocX12,blocY );
 
 
 
-        this.piece1 = new Piece(pieceX1,pieceY);
-        this.piece2 = new Piece(pieceX2,pieceY);
-        this.piece3 = new Piece(pieceX3,pieceY);
-        this.piece4 = new Piece(pieceX4,pieceY);
-        this.piece5 = new Piece(pieceX5,pieceY);
-        this.piece6 = new Piece(pieceX6,pieceY);
-        this.piece7 = new Piece(pieceX7,pieceY);
-        this.piece8 = new Piece(pieceX8,pieceY);
-        this.piece9 = new Piece(pieceX9,pieceY);
-        this.piece10 = new Piece(pieceX10,pieceY);
+        this.piece1 = new Piece(imagePieceX,imagePieceY,pieceX1,pieceY);
+        this.piece2 = new Piece(imagePieceX,imagePieceY,pieceX2,pieceY);
+        this.piece3 = new Piece(imagePieceX,imagePieceY,pieceX3,pieceY);
+        this.piece4 = new Piece(imagePieceX,imagePieceY,pieceX4,pieceY);
+        this.piece5 = new Piece(imagePieceX,imagePieceY,pieceX5,pieceY);
+        this.piece6 = new Piece(imagePieceX,imagePieceY,pieceX6,pieceY);
+        this.piece7 = new Piece(imagePieceX,imagePieceY,pieceX7,pieceY);
+        this.piece8 = new Piece(imagePieceX,imagePieceY,pieceX8,pieceY);
+        this.piece9 = new Piece(imagePieceX,imagePieceY,pieceX9,pieceY);
+        this.piece10 = new Piece(imagePieceX,imagePieceY,pieceX10,pieceY);
+
 
 
 
@@ -268,8 +274,7 @@ public class Scene extends JPanel {
         this.tabDecor.add(this.bloc8);
         this.tabDecor.add(this.bloc9);
         this.tabDecor.add(this.bloc10);
-        this.tabDecor.add(this.bloc11);
-        this.tabDecor.add(this.bloc12);
+
 
         this.tabPiece.add(this.piece1);
         this.tabPiece.add(this.piece2);
@@ -371,7 +376,7 @@ public class Scene extends JPanel {
     public void deplacementFond(){
         //this.xFond1=this.xFond1 - this.dx;
         //this.xFond2=this.xFond2 - this.dx;
-      if(this.xPos>=0 && this.xPos <= 5000) {
+      if(this.xPos>=0 && this.xPos <= Main.scene.posMAX) {
           this.xPos = this.xPos + this.dx;
           this.xFond1 = this.xFond1 - this.dx;
           this.xFond2 = this.xFond2 - this.dx;
@@ -387,9 +392,9 @@ public class Scene extends JPanel {
 
 
     }
-
+        //&& (this.score.getNbrPiece() ==10)
     private boolean partieGagnee(){
-        if((this.compteARebours.getCompteurTemps() > 0) && (this.mario.isVivant() )&& (this.score.getNbrPiece() ==10) && (this.xPos >= 4999)){
+        if((this.compteARebours.getCompteurTemps() > 0) && (this.mario.isVivant() ) && (this.xPos >=posMAX)){
                 return (true);
         }
         else {return (false);}
@@ -432,7 +437,17 @@ public class Scene extends JPanel {
 
 
         }
+ /*
+        for(int i=0; i< this.tabPiece.size();i++) {
+            if(this.mario.proche(this.tabPiece.get(i))){
+                if(this.mario.contactPiece(this.tabPiece.get(i))){
+                    this.tabPiece.remove(this.tabPiece.get(i));
+                    this.score.compteurPiece();
 
+
+                }
+            }
+        }*/
 
         this.deplacementFond();
 
@@ -493,7 +508,7 @@ public class Scene extends JPanel {
 
            //image mario
         if(this.mario.isVivant){
-           //this.mario.fly(tuyauRouge1);
+
 
             if(this.mario.isSaut()){g2.drawImage(this.mario.saute(),this.mario.getX(),this.mario.getY(),null);}
             else {g2.drawImage(this.mario.marche("personnage",25),this.mario.getX(),this.mario.getY(),null);}
@@ -519,13 +534,15 @@ public class Scene extends JPanel {
 
 
         //image du drapeau d'arrivée
-        g2.drawImage(imgDrapeauFin,4800-this.xPos,115,null);
-        g2.drawImage(imgSortie,5000-this.xPos,145,null);
+        g2.drawImage(imgDrapeauFin,posMAX-this.xPos,imgDrapeauFinY,null);
+        g2.drawImage(imgSortie,posMAX-this.xPos,imgSortieY,null);
 
 
         //Compte  à rebours
         g2.drawString(this.compteARebours.getStr(), 5 , 25);
 
+        //Nombre
+        g2.drawString(this.score.getNbrPiece() + " pièces trouvées sur 10 ", 650 , 25);
 
         //fin de la partie
 
