@@ -123,8 +123,6 @@ public abstract class Decor {
     * Les abscisses du fond et des éléments du décor sont modifiées à la même vitesse , puis un thread repaint le tout .
     * Seul l'abscisse du personnage ne change pas, ce qui donne l'illusion qu'il bouge.
     *
-    *     description du paramètre en entrée
-    * @return description de la sortie
     */
 
 

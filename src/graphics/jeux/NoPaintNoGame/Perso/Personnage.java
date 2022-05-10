@@ -9,18 +9,22 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Exemple est la classe qui définit un exemple de javadoc
+ *
+ * Personnage est la classe abstraite qui définit un personnage de javadoc
  * Cette classe est caractérisée par les informations suivantes :
  * <ul>
- * <li>Description fonctionnelle de l'attribut 1</li>
- * <li>Description fonctionnelle de l'attribut 2</li>
+ * <li> Un boolean isVivant</li>
+ * <li> Un int largeur</li>
+ * <li> Un int hauteur</li>
+ * <li> Un int x</li>
+ * <li> Un int y</li>
+ * <li> Un boolean marche</li>
+ * <li> Un boolean versDroite</li>
+ * <li> Un int compteur </li>
  * </ul>
- * Description des principales fonctionnalités de la classe
- * </p>
- * Description complémentaire, sur les attributs statiques par exemple
- * </p>
- * @author nom de l'auteur
- * @version numéro de version
+ *
+ * Cette classe
+ *
  */
 
 
@@ -128,6 +132,15 @@ public  abstract class Personnage {
     //METHODES//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * marche renvoie la bonne image qui correspond au déplacement du personnage
+     *
+     * @param nom
+     * @param frequence
+     *
+     * @return une image
+     */
+
     public Image marche(String nom, int frequence) {
         String str;
         ImageIcon ico;
@@ -169,8 +182,13 @@ public  abstract class Personnage {
 
     }
 
-
-
+    /**
+     *contactAvant détecte s'il y a une collision avec un element du décor et la partie droite de l'image du personnage
+     *
+     * @param objet
+     *
+     * @return un boolean
+     */
 
 
 
@@ -184,6 +202,14 @@ public  abstract class Personnage {
         }
     }
 
+    /**
+     *contactDessous détecte s'il y a une collision avec un element du décor et le dessous de l'image du personnage
+     *
+     * @param objet
+     *
+     * @return un boolean
+     */
+
 
     public boolean contactDessous(Decor objet) {
         if (this.x + this.largeur < objet.getX() + 5 || this.x > objet.getX() + objet.getLargeur() - 5 || this.y + this.hauteur < objet.getY() || this.y + this.hauteur > objet.getY() + 5) {
@@ -192,7 +218,13 @@ public  abstract class Personnage {
             return (true);
         }
     }
-
+    /**
+     *contactDessus détecte s'il y a une collision avec un element du décor et le haut de l'image du personnage
+     *
+     * @param objet
+     *
+     * @return un boolean
+     */
 
     public boolean contactDessus(Decor objet) {
         if (this.x + this.largeur < objet.getX() + 5 || this.x > objet.getX() + objet.getLargeur()  - 5|| this.y < objet.getY() + objet.getHauteur() || this.y > objet.getY() + objet.getHauteur() + 5) {
@@ -201,6 +233,14 @@ public  abstract class Personnage {
             return (true);
         }
     }
+
+    /**
+     *contactArriere détecte s'il y a une collision avec un element du décor et la partie gauche de l'image du personnage
+     *
+     * @param objet
+     *
+     * @return un boolean
+     */
 
 
     public boolean contactArriere(Decor objet) {

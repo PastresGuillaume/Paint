@@ -9,18 +9,17 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Exemple est la classe qui définit un exemple de javadoc
+ * Mario est la classe qui définit le personnagede javadoc que le joueur utilise
  * Cette classe est caractérisée par les informations suivantes :
  * <ul>
- * <li>Description fonctionnelle de l'attribut 1</li>
- * <li>Description fonctionnelle de l'attribut 2</li>
+ *  <li>Une Image imgMario
+ *  <li>Une ImageIcon icoMario
+ *  <li>Un int compteurMort
+ *  <li>Un boolean saut
+ *  <li>Un int compteurSaut
  * </ul>
- * Description des principales fonctionnalités de la classe
- * </p>
- * Description complémentaire, sur les attributs statiques par exemple
- * </p>
- * @author nom de l'auteur
- * @version numéro de version
+ * Mario est le personnage que le joueur va utiliser dans NoPaintNoGame.
+ *
  */
 
 
@@ -29,16 +28,43 @@ public class Mario extends Personnage {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Création des donnees membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /**
+     * Une Image imgMario
+     */
     private Image imgMario;
+
+    /**
+     *Une ImageIcon icoMario
+     */
     private ImageIcon icoMario;
+
+    /**
+     *Un int compteurMort
+     */
     private int compteurMort;
+
+    /**
+     *Un boolean saut
+     */
     private boolean saut; // vrai si il saute
+    /**
+     *Un int compteurSaut
+     */
     private int compteurSaut;
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * <b>Constructeur de Decor</b>
+ *
+ * @param largeur
+ * @param hauteur
+ * @param x
+ * @param y
+ *
+ */
 
     public Mario(int largeur, int hauteur, int x, int y) {
         super(largeur, hauteur, x, y, false, true);// 28 large sur 50 de haut*/
@@ -61,6 +87,9 @@ public class Mario extends Personnage {
         return saut;
     }
 
+    @Override
+    public boolean isVivant() { return super.isVivant(); }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Setters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,6 +101,12 @@ public class Mario extends Personnage {
     //METHODES//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+/**
+ *saute() permet de faire sauter Mario; c'est à dire de déplacer son image vers le haut jusqu'à une hauteur maximale appellée HauteurPlafond.
+ * Puis de faire retomber l'image sur le sol ( ou sur un objet en cas de contact)
+ *
+ * @return une image
+ */
     public Image saute() {
         ImageIcon ico;
         Image img;
@@ -123,6 +158,13 @@ public class Mario extends Personnage {
         return img;
 
     }
+    /**
+     *contactPiece détecte s'il y a un contact avec une piece
+     *
+     * @param piece
+     *
+     * @return un boolean
+     */
 
     public boolean contactPiece(Piece piece) {
         if (this.contactArriere(piece) || this.contactAvant(piece) || this.contactDessous(piece) || this.contactDessus(piece)) {
@@ -134,12 +176,25 @@ public class Mario extends Personnage {
     }
 
 
-
+    /**
+     *proche détecte s'il y a un element du decor proche du joueur
+     *
+     * @param objet
+     * c'est un element du décor
+     *
+     * @return un boolean
+     */
     public boolean proche(Decor objet){
         if((this.getX() > objet.getX() - 10 && this.getX() < objet.getX() + objet.getLargeur() + 10)
                 || (this.getX() + this.getLargeur() > objet.getX() - 10 && this.getX() + this.getLargeur() < objet.getX() + objet.getLargeur() + 10)){return true;}
         else{return false;}
     }
+
+    /**
+     *meurt retourne l'image de mario s'il meurt
+     *
+     * @return une image
+     */
 
     public Image meurt() {
         String str = null;
@@ -159,14 +214,14 @@ public class Mario extends Personnage {
 
     }
 
-    @Override
-    public boolean isVivant() {
-        return super.isVivant();
-    }
-
-
-
-
+    /**
+     * Contact détecte s'il y a une collision entre un élément du decor et mario.
+     * Si c'est le cas ,empèche mario d'avancer en modifiant son boolean de marche
+     *
+     * @param decor
+     * c'est un element du décor
+     *
+     */
 
     public void contact(Decor decor) {
         //Contact hotizontal
@@ -207,7 +262,13 @@ public class Mario extends Personnage {
     }
 
 
-
+    /**
+     * Fly permet de ramener mario sur le sol après qu'il soit monté sur un objet
+     *
+     * @param decor
+     * c'est un element du décor
+     *
+     */
 
 
     public void fly(Decor decor){
