@@ -2,7 +2,8 @@ package graphics.jeux.NoPaintNoGame.Perso;
 
 import graphics.Constantes;
 import graphics.jeux.NoPaintNoGame.Objet.Decor;
-import graphics.jeux.NoPaintNoGame.jeu.LaunchNPNG;
+import graphics.jeux.NoPaintNoGame.Objet.Piece;
+import graphics.jeux.NoPaintNoGame.jeu.Main;
 
 import javax.swing.*;
 import java.awt.*;
@@ -114,7 +115,7 @@ public class Mario extends Personnage {
         this.compteurSaut++;
         //Montée du saut
         if (this.compteurSaut <= 70) { // Saut est appelé plein de fois, mario Monte, tant que ça ne dépasse pas 35
-            if (this.getY() > LaunchNPNG.scene.getHauteurPlafond()) {
+            if (this.getY() > Main.scene.getHauteurPlafond()) {
                 this.setY(this.getY() - 5);
             } // ordonnées mesurée de haut en bas d'où le - 4 même s'il monte
             else {
@@ -128,7 +129,7 @@ public class Mario extends Personnage {
         }
 
         //Retombé du saut
-        else if (this.getY() < LaunchNPNG.scene.marioY) {
+        else if (this.getY() < Main.scene.marioY) {
             this.setY(this.getY() + 1); // mario redescend jusqu'à ce que ses pieds touchent le sol
             if (this.isVersDroite()) {
                 str = Constantes.PATH_NO_PAINT_NO_GAME+"personnageSautDroit.jpg";
@@ -228,22 +229,22 @@ public class Mario extends Personnage {
             //Contact hotizontal
             if ((super.contactAvant(decor) && this.isVersDroite() || super.contactArriere(decor) && !this.isVersDroite())) {
 
-                LaunchNPNG.scene.setDx(0);
+                Main.scene.setDx(0);
                 this.setMarche(false);
             }
 
             // contact avec un objet en dessous
             if (super.contactDessous(decor) && this.saut) {
-                LaunchNPNG.scene.setMarioY(decor.getY() - this.getHauteur());
-                LaunchNPNG.scene.setYsol(decor.getY() - this.getHauteur());
+                Main.scene.setMarioY(decor.getY() - this.getHauteur());
+                Main.scene.setYsol(decor.getY() - this.getHauteur());
                 this.setSaut(false);
 
                 //this.setMarche(true);
             } else if (!super.contactDessous(decor)) {
-                LaunchNPNG.scene.setYsol(LaunchNPNG.scene.marioY);//altitude du sol initial
+                Main.scene.setYsol(Main.scene.marioY);//altitude du sol initial
 
                 if (!this.saut) {
-                    this.setY(LaunchNPNG.scene.marioY);
+                    this.setY(Main.scene.marioY);
 
 
                 }//altitude initiale de mario
@@ -251,14 +252,14 @@ public class Mario extends Personnage {
 
             // contact avec un objet au dessus
             if (super.contactDessus(decor)) {
-                LaunchNPNG.scene.setHauteurPlafond(decor.getY() + decor.getHauteur()); //le plafond devient le dessous de l'objet
+                Main.scene.setHauteurPlafond(decor.getY() + decor.getHauteur()); //le plafond devient le dessous de l'objet
             } else if (!contactDessus(decor) && !this.saut) {
-                LaunchNPNG.scene.setHauteurPlafond(0);//altitud einitiale (ciel)
+                Main.scene.setHauteurPlafond(0);//altitud einitiale (ciel)
             }
         }
         else{
             if(this.contactPiece(decor)){
-                LaunchNPNG.scene.tabDecor.remove(decor);
+                Main.scene.tabDecor.remove(decor);
 
             }
 
@@ -277,8 +278,8 @@ public class Mario extends Personnage {
 
 
     public void fly(Decor decor){
-        if(!super.contactDessous(decor) && !this.saut && this.getY() < LaunchNPNG.scene.marioY0){
-            this.setY( LaunchNPNG.scene.marioY0);
+        if(!super.contactDessous(decor) && !this.saut && this.getY() < Main.scene.marioY0){
+            this.setY( Main.scene.marioY0);
 
         }
         else{

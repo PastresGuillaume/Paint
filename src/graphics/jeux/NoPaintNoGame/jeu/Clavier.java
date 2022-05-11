@@ -6,10 +6,21 @@ import graphics.jeux.NoPaintNoGame.ecoute.Audio;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+/**
+ * Clavier est une interface qui permet de d'utiliser le clavier pour exécuter certaines commandes.
+ * Elle hérite de KeyListener, qui est elle même une interface.
+ *
+ */
 
 public class Clavier implements KeyListener {
 
-
+    /**
+     *keyPressed permet de déclancher des fonctions lorsqu'on presse les flèches droites et gauches ou lorsqu'on appuie sur la barre espace
+     *
+     * @param e
+     * c'est un KeyEvent , c'est à dire une commande du clavier
+     *
+     */
 
     //appuie sur la touche
     @Override
@@ -57,7 +68,13 @@ public class Clavier implements KeyListener {
 
 
 
-
+    /**
+     *keyPressed permet de déclancher des fonctions lorsqu'on relache les flèches droites et gauches ou lorsqu'on appuie sur la barre espace
+     *
+     * @param e
+     * c'est un KeyEvent , c'est à dire une commande du clavier
+     *
+     */
 
     //relache la touche
     @Override
