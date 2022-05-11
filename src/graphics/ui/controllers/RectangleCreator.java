@@ -17,7 +17,7 @@ public class RectangleCreator extends AbstractController {
     private Shape model;
     private Point locCreation ;
     private Color filledColor = Constantes.COLOR_INVISIBLE;
-    private Color strokedColor = Constantes.DEFAULT_COLOR_ADD_RECTANGLE;
+    private Color strokedColor = Constantes.DEFAULT_COLOR_ADD;
     final JPopupMenu menu = new JPopupMenu("Color Menu");
 
     public RectangleCreator(Shape newModel, ModelView view) {

@@ -259,8 +259,8 @@ public class ShapeDraftman implements ShapeVisitor{
             Rectangle r = shape.getBounds();
             this.graphics.setColor(Color.BLACK);
             this.graphics.drawRect(r.x,r.y,r.width,r.height);
-            if (Constantes.COLOR_SHAPE_SELECTED.filled){
-                this.graphics.setColor(Constantes.COLOR_SHAPE_SELECTED.filledColor);
+            if (Constantes.SELECTION_COLOR.filled){
+                this.graphics.setColor(Constantes.SELECTION_COLOR.filledColor);
             }
         }
     }

@@ -184,12 +184,24 @@ public class SImage extends Shape{
         this.rect.y/=2;
     }
 
+    /**
+     * Sert à la sauvegarde.
+     *
+     * @param oos
+     * @throws IOException
+     */
     @Serial
     private void writeObject(ObjectOutputStream oos) throws IOException{
         oos.writeObject(this.rect);
         ImageIO.write(this.image, "png", oos);
     }
 
+    /**
+     * Sert à la sauvegarde.
+     * @param ois
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{
         this.rect = (Rectangle)ois.readObject();
