@@ -9,11 +9,19 @@ import graphics.ui.View.ModelView;
 import java.awt.event.MouseEvent;
 import java.io.File;
 
+/**
+ * Controller to add Image with JFileChooser dialog
+ */
 public class ImageCreator extends AbstractController{
     private Shape model;
     private final File file;
 
-
+    /**
+     *
+     * @param newModel none
+     * @param view none
+     * @param file ImageFile given with the JFileChooser dialog
+     */
     public ImageCreator(Shape newModel, ModelView view, File file) {
         super(newModel);
         this.model = newModel;
@@ -22,6 +30,9 @@ public class ImageCreator extends AbstractController{
         this.unselectedAll();
     }
 
+    /**
+     * Unselect every Shape
+     */
     private void unselectedAll(){
         try {
             for (Shape s : ((SModel) this.model).getCalqueUse().getElement())
@@ -33,15 +44,27 @@ public class ImageCreator extends AbstractController{
         }
     }
 
+    /**
+     *
+     * @param model modèle souhaitée
+     */
     @Override
     public void setModel(Shape model)
     {
         this.model = model;
     }
 
+    /**
+     *
+     * @return model
+     */
     @Override
     public Shape getModel() {return this.model;}
 
+    /**
+     * Create a new SImage located on the mouse position with the image previously selected
+     * @param e Événement souris.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         unselectedAll();
