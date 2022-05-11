@@ -10,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Mario est la classe qui définit le personnagede javadoc que le joueur utilise
+ * Mario est la classe qui définit le personnage que le joueur utilise
  * Cette classe est caractérisée par les informations suivantes :
  * <ul>
  *  <li>Une Image imgMario</li>
@@ -27,7 +27,7 @@ import java.awt.*;
 public class Mario extends Personnage {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Création des donnees membres//
+                                                //Création des données membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * Une Image imgMario
@@ -55,7 +55,7 @@ public class Mario extends Personnage {
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Constructeur//
+                                                    //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
  * Constructeur de Decor
@@ -78,7 +78,7 @@ public class Mario extends Personnage {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Getters//
+                                                            //Getters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -90,8 +90,8 @@ public class Mario extends Personnage {
     }
 
     /**
-     * Test si l'on est dans un saut.
-     * @return Test si l'on est dans un saut
+     * Teste si l'on est dans un saut.
+     * @return Teste si l'on est dans un saut
      */
     public boolean isSaut() {
         return saut;
@@ -101,11 +101,11 @@ public class Mario extends Personnage {
     public boolean isVivant() { return super.isVivant(); }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Setters//
+                                                        //Setters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Set le saut
+     * Fixe le saut
      * @param saut Nouveau saut.
      */
     public void setSaut(boolean saut) {
@@ -113,12 +113,12 @@ public class Mario extends Personnage {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //METHODES//
+                                                        //Méthode//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /**
- *saute() permet de faire sauter Mario; c'est à dire de déplacer son image vers le haut jusqu'à une hauteur maximale appellée HauteurPlafond.
- * Puis de faire retomber l'image sur le sol ( ou sur un objet en cas de contact)
+ *saute() permet de faire sauter Mario; c'est-à-dire de déplacer son image vers le haut jusqu'à une hauteur maximale appelée HauteurPlafond.
+ * Puis de faire retomber l'image sur le sol (ou sur un objet en cas de contact)
  *
  * @return une image
  */
@@ -132,7 +132,7 @@ public class Mario extends Personnage {
         if (this.compteurSaut <= 70) { // Saut est appelé plein de fois, mario Monte, tant que ça ne dépasse pas 35
             if (this.getY() > LaunchNPNG.scene.getHauteurPlafond()) {
                 this.setY(this.getY() - 5);
-            } // ordonnées mesurée de haut en bas d'où le - 4 même s'il monte
+            } // ordonnées mesurées de haut en bas d'où le - 4 même s'il monte
             else {
                 this.compteurSaut = 71;
             }
@@ -231,7 +231,7 @@ public class Mario extends Personnage {
 
     /**
      * Contact détecte s'il y a une collision entre un élément du decor et mario.
-     * Si c'est le cas ,empèche mario d'avancer en modifiant son boolean de marche
+     * Si c'est le cas, empêche mario d'avancer en modifiant son boolean de marche
      *
      * @param decor c'est un element du décor
      * @param i entier
@@ -240,7 +240,7 @@ public class Mario extends Personnage {
     public void contact(Decor decor, int i) {
 
 
-            //Contact hotizontal
+            //Contact horizontal
             if ((super.contactAvant(decor) && this.isVersDroite() || super.contactArriere(decor) && !this.isVersDroite())) {
                 if(decor.isbPiece()) { LaunchNPNG.scene.tabDecor.remove(decor);}
                 else{LaunchNPNG.scene.setDx(0);
@@ -274,7 +274,7 @@ public class Mario extends Personnage {
                 }//altitude initiale de mario
             }
 
-            // contact avec un objet au dessus
+            // contact avec un objet au-dessus
             if (super.contactDessus(decor) && !decor.isbPiece()) {
 
                 LaunchNPNG.scene.setHauteurPlafond(decor.getY() + decor.getHauteur()); //le plafond devient le dessous de l'objet
@@ -282,7 +282,7 @@ public class Mario extends Personnage {
             }
             else if (!contactDessus(decor) && !this.saut && !decor.isbPiece()) {
 
-                LaunchNPNG.scene.setHauteurPlafond(0);//altitud einitiale (ciel)
+                LaunchNPNG.scene.setHauteurPlafond(0);//altitude initiale (ciel)
             }
         }
 
@@ -291,10 +291,10 @@ public class Mario extends Personnage {
 
 
     /**
-     * Fly permet de ramener mario sur le sol après qu'il soit monté sur un objet
+     * Fly() permet de ramener mario sur le sol après qu'il est monté sur un objet
      *
      * @param decor
-     * c'est un element du décor
+     * c'est un élément du décor
      *
      */
 
@@ -311,17 +311,15 @@ public class Mario extends Personnage {
     }
 
     /**
-     * Enleve le vol.
-     * @param decor decor
+     * Enlève le vol.
+     * @param decor décor
      */
     public void noFly(Decor decor){
         if(!super.contactDessus(decor) && !this.saut && this.getY() < LaunchNPNG.scene.marioY0){
             this.setY( LaunchNPNG.scene.marioY0);
 
         }
-        else{
-
-        }
+        else{}
 
     }
 }

@@ -15,7 +15,7 @@ package graphics.jeux.NoPaintNoGame.Affichage;
 
 public class CompteARebour implements Runnable {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                //Création des donnees membres //
+                                                //Création des données membres //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * Un int PAUSE
@@ -37,7 +37,7 @@ public class CompteARebour implements Runnable {
     /**
      * <b>Constructeur de Decor</b>
      *
-     * Créer un thread , qui calcul le temps qu'il reste au personnage pour finir le jeu.
+     * Créer un thread , qui calcule le temps qu'il reste au personnage pour finir le jeu.
      *
      */
     public CompteARebour() {
@@ -66,11 +66,11 @@ public class CompteARebour implements Runnable {
     public String getStr() {return str;}
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                      //METHODES//
+                                                      //Méthodes//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * run() lance le thread et affiche le temps qu'il reste à l'écran
+     * Lance le thread et affiche le temps qu'il reste à l'écran
      */
     @Override
     public void run(){

@@ -9,7 +9,6 @@ import graphics.jeux.NoPaintNoGame.Objet.Piece;
 import graphics.jeux.NoPaintNoGame.Objet.TuyauRouge;
 import graphics.jeux.NoPaintNoGame.Perso.Nuage;
 import graphics.jeux.NoPaintNoGame.Perso.Mario;
-import graphics.jeux.NoPaintNoGame.Perso.Personnage;
 import graphics.jeux.NoPaintNoGame.ecoute.Audio;
 
 import javax.swing.*;
@@ -18,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Scene est la classe qui permet d'administer les autres classes
  * Cette classe est caractérisée par les informations suivantes :
- * Il s'agit d'une classe qui hérite de la classe abstraite JPanel. Elle a donc :
+ * il s'agit d'une classe qui hérite de la classe abstraite JPanel, elle a donc :
  *
  *     boolean isTerminate
  *     ArrayList Decor tabDecor
@@ -83,12 +82,13 @@ import java.util.ArrayList;
  */
 public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                    //Création des donnees membres//
+                                                    //Création des données membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    ///Initialisation des ArrayList
-    /////////////////////////////
+
+    //Initialisation des ArrayList
+
     /**
-     * Le jeu est terminé ?
+     * Le jeu est-il terminé ?
      */
     private boolean isTerminate = false;
     /**
@@ -100,8 +100,8 @@ public class Scene extends JPanel {
      */
     private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();
 
-    //Initialisation du Parcourt
-    /////////////////////////////
+    //Initialisation du Parcours
+
 
     /**
      * le nuage
@@ -168,7 +168,7 @@ public class Scene extends JPanel {
     public int imgSortieY=370;// de meme
 
     //Personnage
-    /////////////////////////////
+
     /**
      * marioX
      */
@@ -188,7 +188,7 @@ public class Scene extends JPanel {
 
 
     //Dimension des images
-    /////////////////////////////
+
     /**
      * imageMarioLarge
      */
@@ -233,7 +233,6 @@ public class Scene extends JPanel {
      */
     int imageNuageY = 100;
 
-    //public int nuageX=tuyauRouge1X+imageTuyauRLarge+5;
     /**
      * nuageX
      */
@@ -243,8 +242,8 @@ public class Scene extends JPanel {
      */
     public int nuageY=10;//385
 
-    //Variable Image
-    /////////////////////////////
+    //Variables Image
+
     /**
      * icoDrapeuFin
      */
@@ -298,8 +297,8 @@ public class Scene extends JPanel {
 
 
 
-    //Variable Bonus
-    /////////////////////////////
+    //Variables Bonus
+
     /**
      * compteARebours
      */
@@ -315,8 +314,8 @@ public class Scene extends JPanel {
 
 
 
-    // Variable du Paysage
-    /////////////////////////////
+    // Variables du Paysage
+
     /**
      * xFond2
      */
@@ -348,14 +347,14 @@ public class Scene extends JPanel {
                                                         //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * <b>Constructeur de la scene</b>
+     * <b>Constructeur de la scène</b>
      *
      */
     public Scene(){
 
         super();// hérite du constructeur de JPanel
 
-        this.xFond1 = -50; // ( image déborde de chaque coté)
+        this.xFond1 = -50; // (image déborde de chaque cotés)
         this.xFond2 = 1250;
         this.dx=0;
         this.xPos=-1;
@@ -363,7 +362,7 @@ public class Scene extends JPanel {
         this.hauteurPlafond=0;
 
         //association image
-        icoFond = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"Fond.jpg");// quand on créer le fichier jar , le chemin change)
+        icoFond = new ImageIcon(Constantes.PATH_NO_PAINT_NO_GAME+"Fond.jpg");// quand on créer le fichier jar ,le chemin change)
 
         this.imgFond1=this.icoFond.getImage();
         this.imgFond2=this.icoFond.getImage();
@@ -381,30 +380,13 @@ public class Scene extends JPanel {
         this.imgDrapeauFin = this.icoDrapeuFin.getImage();
 
 
-        //Instanciation du decor
-        /////////////////////////////
+        //Instanciation du décor
+
         this.AbscisseDecor();
 
 
-        /*
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX1,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX2,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX3,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX4,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX5,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX6,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX7,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX8,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX9,pieceY));
-        this.tabPiece.add(new Piece(imagePieceX,imagePieceY,pieceX10,pieceY));
+        //Instanciation Personnage + clavier et fenêtre
 
-        */
-
-
-
-
-        //Instanciation Personnage + clavier et fenetre
-        ////////////////////////////////////////////////////////////
         mario = new Mario(imageMarioLarge,imageMarioHauteur,marioX,marioY);
         nuage = new Nuage(imageNuageX,imageNuageY,nuageX,nuageY);
 
@@ -413,12 +395,12 @@ public class Scene extends JPanel {
         this.addKeyListener(new Clavier());
 
         //Bonus
-        /////////////////////////////
+
         score = new Score();
         compteARebours = new CompteARebour();
 
         //Instanciation du thread (Attention ne pas déplacer sinon rien ne va plus)
-        /////////////////////////////
+
         Thread chronoEcran = new Thread(new Chrono());
         chronoEcran.start();
 
@@ -432,7 +414,7 @@ public class Scene extends JPanel {
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                            // GETTERS//
+                                                            // Getters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -457,7 +439,7 @@ public class Scene extends JPanel {
     public int getHauteurPlafond() {return hauteurPlafond; }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                                                        // SETTERS//
+                                                        //Setters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -514,15 +496,14 @@ public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                 //Méthodes//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
     //Initialisation du décor
-    /////////////////////////////
 
     /**
-     * AbscisseDecor() génère les instanciations des éléments du décor
+     * Génère les instanciations des éléments du décor
      *
      */
     public void AbscisseDecor(){
-        //this.tabNomTRValeurX.add(tuyauRouge1X);
         int A= 0;
 
         for(int i=0; i<repetitionMotif-1;i++) {
@@ -541,13 +522,13 @@ public class Scene extends JPanel {
     }
 
     /**
-     * deplacementFond()  déplace les éléments du déccor , comme le fond , et perfmet qu'il y est toujour une image en fond.
+     * Déplace les éléments du décor ,comme le fond , et permet qu'il y est toujours une image en fond.
      *
      *
      */
 
-    //déplacementFond(
-    /////////////////////////////
+    //deplacementFond()
+
     public void deplacementFond(){
 
       if(this.xPos>=0 && this.xPos <= LaunchNPNG.scene.posMAX) {
@@ -564,9 +545,9 @@ public class Scene extends JPanel {
     }
 
     //Partie gagnée ou non
-    /////////////////////////////
+
     /**
-     * partieGagnee() détermine la partie est gagnée
+     * partieGagnee() détermine si la partie est gagnée
      *
      * @return un boolean
      */
@@ -575,7 +556,7 @@ public class Scene extends JPanel {
         else {return (false);}
     }
     /**
-     * partiePerdue() détermine la partie est perdue
+     * partiePerdue() détermine si la partie est perdue
      *
      * @return un boolean
      */
@@ -601,21 +582,21 @@ public class Scene extends JPanel {
 
 
     /**
-     * paintComponent , permet de dessiner toutes les images de la scene
+     * Permet de dessiner toutes les images de la scène
      *
      * @param g
      * c'est un graphics
      */
 
     //PaintComponent
-    /////////////////////////////
+
 
     public void paintComponent(Graphics g){
 
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
 
-        //detection contact
+        //détection des contacts
 
         for(int i=0; i< this.tabDecor.size();i++) {
             if(this.mario.proche(this.tabDecor.get(i))){
@@ -627,12 +608,6 @@ public class Scene extends JPanel {
 
 
         }
-
-        /*for(int i=0; i< this.tabPiece.size();i++) {
-            if(this.mario.proche(this.tabPiece.get(i))){
-                this.mario.contact(this.tabPiece.get(i),i);
-            }
-        }*/
 
         for(int i=0; i< this.tabPiece.size();i++) {
             if(this.mario.proche(this.tabPiece.get(i))){
@@ -646,13 +621,13 @@ public class Scene extends JPanel {
         this.deplacementFond();
 
         //Mise à jour des scores
-        /////////////////////////////
+
 
         g2.setFont(police);
         g2.drawString("Pièces trouvées : " + this.score.getNbrPiece() + "/" + this.score.getNombPieceTotal(),440,25 );
 
         //Mise à jour des positions des objets
-        //////////////////////////////////////////////////////////
+
         if(this.xPos >=0 && this.xPos <= posMAX){
             for(int i=0; i<this.tabDecor.size();i++){
                 this.tabDecor.get(i).deplacement();
@@ -668,7 +643,7 @@ public class Scene extends JPanel {
 
 
         //dessin du fond
-        /////////////////////////////
+
         g2.drawImage(this.imgFond1,this.xFond1,0,null);
         g2.drawImage(this.imgFond2,this.xFond2,0,null);
 
@@ -679,7 +654,7 @@ public class Scene extends JPanel {
 
 
         //dessin du personnage
-        /////////////////////////////
+
 
         if(this.mario.isVivant){
             if(this.mario.isSaut()){g2.drawImage(this.mario.saute(),this.mario.getX(),this.mario.getY(),null);}
@@ -693,7 +668,7 @@ public class Scene extends JPanel {
 
 
         // Images du décor
-        /////////////////////////////
+
 
         for(int i=0; i< this.tabDecor.size();i++){
             g2.drawImage(this.tabDecor.get(i).getImgDecor(),this.tabDecor.get(i).getX(),this.tabDecor.get(i).getY(),null);
@@ -714,13 +689,13 @@ public class Scene extends JPanel {
         g2.drawImage(imgSortie,posMAX+300-this.xPos,imgSortieY,null);
 
         //Bonus
-        /////////////////////////////
+
         g2.drawString(this.compteARebours.getStr(), 5 , 25);
         g2.drawString(this.score.getNbrPiece() + " pièces trouvées sur 10 ", 650 , 25);
 
 
         //fin de la partie
-        /////////////////////////////
+
         if(this.finPartie()){
             Font policeFin = new Font("Arial", Font.BOLD, 50);
             g2.setFont(policeFin);

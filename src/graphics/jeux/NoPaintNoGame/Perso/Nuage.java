@@ -9,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
-        * Champi est la classe qui définit un champignon javadoc .
+        * Champi est la classe qui définit un nuage.
         * Cette classe est caractérisée par les informations suivantes :
         * <ul>
  *  <li>Une Image imgMario</li>
@@ -28,7 +28,7 @@ import java.awt.*;
 
 public class Nuage extends Personnage implements Runnable{
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Données membres//
+                                                        //Données membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -47,14 +47,14 @@ public class Nuage extends Personnage implements Runnable{
     /**
      * dxChamp
      */
-        private int dxChamp; // pas de déplacement du champignon
+        private int dxChamp; // pas de déplacement du nuage
     /**
      * running
      */
         private boolean running;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Constructeur//
+                                                    //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * <b>Constructeur de Decor</b>
@@ -77,7 +77,7 @@ public class Nuage extends Personnage implements Runnable{
             chronoChamp.start();
         }
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Getters//
+                                                        //Getters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //**** GETTERS ****//
@@ -91,42 +91,29 @@ public class Nuage extends Personnage implements Runnable{
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Methodes//
+                                                        //Méthodes//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //**** METHODES ****//
 
 
     /**
-     * bouge() permet de déplacer le champignon horizontalement ou verticalement
+     * Permet de déplacer le nuage horizontalement ou verticalement
      */
-        public void bouge(){ // D�placement du champignon
+        public void bouge(){ // D�placement du nuage
             if(super.isVersDroite() == true){this.dxChamp = 2;}
             else{this.dxChamp = -2;}
             super.setX(super.getX() + this.dxChamp);
-
-            /*
-            if(this.getX()>LaunchNPNG.scene.tuyauRouge1X){
-                this.dxChamp = -2;
-            System.out.println(this.getX());
-
-            }
-            else if (this.getX()< LaunchNPNG.scene.mario.getX()){
-                this.dxChamp = -2;
-                //System.out.println(this.getX());
-            }*/
-
-            //super.setX(super.getX() + this.dxChamp);
         }
 
     /**
-     * run() active le thread associé au champignon
+     * Active le thread associé au nuage
      *
      */
 
         @Override
         public void run() {
-            try{Thread.sleep(20);} // on attend 20 ms avant d'appeler bouge pour que tous les objets soient compl�tement cr��s
+            try{Thread.sleep(20);} // on attend 20 ms avant d'appeler bouge() pour que tous les objets soient complètement créés
             catch (InterruptedException e){}
 
             while(true){ // boucle infinie
@@ -136,9 +123,9 @@ public class Nuage extends Personnage implements Runnable{
             }
         }
     /**
-     * contact détecte un contact entre le champignon et un element du décor, si c'est le cas le champignon fait marche arrière
+     * Détecte un contact entre le nuage et un element du décor, si c'est le cas le nuage fait marche arrière
      *
-     * @param decor element du decor
+     * @param decor élément du decor
      */
         public void contact(Decor decor) {
             if(super.contactAvant(decor) && this.isVersDroite()){

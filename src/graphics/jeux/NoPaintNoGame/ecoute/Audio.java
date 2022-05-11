@@ -20,16 +20,16 @@ import java.io.File;
 public class Audio {
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Création des donnees membres //
+                                            //Création des données membres //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Un Clip clip
+     * Un Clip
      */
 
     private Clip clip;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Constructeur //
+                                                        //Constructeur //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
      * Constructeur de Audio
@@ -38,7 +38,6 @@ public class Audio {
      */
     public Audio(String son){
         try{
-//            AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getResource(son));
             AudioInputStream audio = AudioSystem.getAudioInputStream(new File(Constantes.PATH_SON+"/"+son+".wav"));
             clip = AudioSystem.getClip();
             clip.open(audio);
@@ -50,22 +49,22 @@ public class Audio {
     }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Methodes//
+                                                            //Méthodes//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     *play lance le son
+     *lance le son
      */
     public void play(){clip.start();}
 
     /**
-     *play arrete le son
+     *arrête le son
      */
 
     public void stop(){clip.stop();}
 
     /**
-     * playSound lance le son qui a pour nom "son"
+     * lance le son qui a pour nom "son"
      *
      * @param son Nom du son
      */
@@ -73,17 +72,6 @@ public class Audio {
         Audio s = new Audio(son);
         s.play();
     }
-
-     /*public void MusicFond(){
-        if(isSfond()){
-            Audio.playSound(Constantes.PATH_SON+"fond.wav");
-        }
-        else{
-            if(isSgagne()){Audio.playSound(Constantes.PATH_SON+"gagne.wav");}
-             else{ Audio.playSound(Constantes.PATH_SON+"perdu.wav"); }
-
-    }*/
-
 }
 
 

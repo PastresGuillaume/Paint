@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * Bloc est la classe qui définit un bloc de javadoc
  * Cette classe est caractérisée par les informations suivantes :
- * Il s'agit d'une classe qui hérite de la classe abstraite Decor. Elle a donc :
+ * il s'agit d'une classe qui hérite de la classe abstraite Decor. Elle a donc :
  *  <ul>
  * <li>Une largeur pour son image</li>
  * <li>Une hauteur pour son image</li>
@@ -42,7 +42,7 @@ public class Bloc extends Decor{
 
 
     //Construceur
-    ///////////////////////////////////////
+
 
     public Bloc(int largeur, int hauteur, int x, int y) {
         super(largeur, hauteur, x, y,false);

@@ -185,7 +185,7 @@ public class SModel extends Shape{
     }
 
     /**
-     * Bouge le calque numéro nbCalque entre calques de place newPlace-1 et newPlace.
+     * Bouge le calque numéro nbCalque entre les calques de place newPlace-1 et newPlace.
      *
      * @param nbCalque Numéro du calque à déplacer.
      * @param newPlace Nouvelle place du calque.
@@ -211,7 +211,7 @@ public class SModel extends Shape{
     }
 
     /**
-     * Bouge le calque numéro nbCalque entre calques de place newPlace-1 et newPlace.
+     * Bouge le calque numéro nbCalque entre les calques de place newPlace-1 et newPlace.
      *
      * @param nameCalque Nom du calque à déplacer.
      * @param newPlace Nouvelle place du calque.
@@ -423,7 +423,7 @@ public class SModel extends Shape{
     }
 
     /**
-     * Ne fais rien, car un model ne doit pas être dessiné par un ShapeVisitor.
+     * Ne fait rien, car un model ne doit pas être dessiné par un ShapeVisitor.
      *
      * @param visitor Un dessinateur quelconque, ou null.
      */
@@ -441,7 +441,7 @@ public class SModel extends Shape{
     }
 
     /**
-     * Ne fais rien, car on ne doit pas déplacer toutes les formes de tous les calques sans raison.
+     * Ne fait rien, car on ne doit pas déplacer toutes les formes de tous les calques sans raison.
      *
      * @param dx Type : int
      * @param dy Type : int

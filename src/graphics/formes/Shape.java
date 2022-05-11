@@ -89,7 +89,7 @@ public abstract class Shape implements Serializable {
      * Retourne l'attribut lié au nom de l'attribut.
      *
      * @param attributeName Nom de l'attribut.
-     * @return Attribut portant le nom souhaite s'il existe.
+     * @return Attribut portant le nom souhaité s'il existe.
      */
     public Attributes getAttributes(String attributeName){
         for (Attributes attributes : this.attributes){
@@ -127,7 +127,7 @@ public abstract class Shape implements Serializable {
     }
 
     /**
-     * Test si la forme est sélectionné.
+     * Test si la forme est sélectionnée.
      * @return Un booléen représentant l'état de selection de la forme.
      */
     public boolean isSelected() {

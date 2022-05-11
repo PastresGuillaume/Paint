@@ -17,15 +17,15 @@ import java.awt.*;
  * <li> Une icoimage icoDecor</li>
  * <li> Un boolean piece </li>
  * </ul>
- * Cette classe abstraite definit un decor qui peut etre une piece , un bloc ou un tuyauRouge, qui sera dessiné dans la scène.
- * De plus , grace à la méthode contact, Le personnage pourra détecter ces éléments de décors et ne pas renter dedans lorsqu'il se déplace.
+ * Cette classe abstraite definit un decor qui peut être une pièce ,un bloc ou un tuyauRouge, qui sera dessiné dans la scène.
+ * De plus ,grâce à la méthode contact ,le personnage pourra détecter ces éléments de décors et ne pas renter dedans lorsqu'il se déplace.
  *
  */
 
 
 public abstract class Decor {
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   //Création des donnees membres//
+                                             //Création des données membres//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
     * largeur de l'image imgDecor
@@ -78,7 +78,7 @@ public abstract class Decor {
 
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   //Constructeur//
+                                                      //Constructeur//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    /**
@@ -99,7 +99,7 @@ public abstract class Decor {
    }
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   //getters//
+                                                      //Getters//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
     * Retourne le largueur du décor.
@@ -149,7 +149,7 @@ public abstract class Decor {
    public boolean isbPiece() { return bPiece; }
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   //setters//
+                                                      //Setters//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
    /**
@@ -189,12 +189,12 @@ public abstract class Decor {
    public void setY(int y) {this.y = y;}
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-   //Methodes//
+                                                      //Méthodes//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    /**
     * deplacement() permet de déplacer un élément du décor.
     * Cette méthode est utilisée pour donner l'illusion que le personnage se déplace:
-    * Les abscisses du fond et des éléments du décor sont modifiées à la même vitesse , puis un thread repaint le tout .
+    * Les abscisses du fond et les éléments du décor sont modifiés à la même vitesse, puis un thread repaint le tout .
     * Seul l'abscisse du personnage ne change pas, ce qui donne l'illusion qu'il bouge.
     *
     */

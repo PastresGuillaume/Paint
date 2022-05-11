@@ -103,7 +103,7 @@ public class ModelView extends View{
     public HashMap<String, AbstractBar> getMenus() {return menus;}
 
     /**
-     * Met à jour l'icone dans la calqueBar du calque choisi
+     * Met à jour l'icône dans la calqueBar du calque choisi
      * @param calque calque à mettre à jour
      * @throws IOException L'écriture peut bug
      */

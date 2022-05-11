@@ -8,7 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
 /**
- * Classe abstraite définissant la forme génénale des contrôleurs
+ * Classe abstraite définissant la forme générale des contrôleurs
  */
 public class AbstractController extends Controller {
 
@@ -44,7 +44,7 @@ public class AbstractController extends Controller {
     /**
      * fixer le modèle
      *
-     * @param model modèle souhaitée
+     * @param model modèle souhaité
      */
     public void setModel(Shape model) {
         this.model = model;
@@ -63,7 +63,7 @@ public class AbstractController extends Controller {
     /**
      * avoir le modèle de ce controller
      *
-     * @return renvoie lr modèle de ce controller
+     * @return renvoie le modèle de ce controller
      */
     @Override
     public Shape getModel() {
@@ -80,7 +80,7 @@ public class AbstractController extends Controller {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache la souris.
+     * Action réalisée lorsque l'utilisateur relâche la souris.
      *
      * @param e Événement souris.
      */
@@ -152,7 +152,7 @@ public class AbstractController extends Controller {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache une touche.
+     * Action réalisée lorsque l'utilisateur relâche une touche.
      *
      * @param evt Événement clavier.
      */

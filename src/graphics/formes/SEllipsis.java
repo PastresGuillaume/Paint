@@ -31,7 +31,7 @@ public class SEllipsis extends Shape{
     }
 
     /**
-     * Calcul le coin superieur gauche du rectangle dans lequel s'inscrit l'ellipse.
+     * Calcule le coin superieur gauche du rectangle dans lequel s'inscrit l'ellipse.
      *
      * @return Le coin superieur gauche du rectangle dans lequel s'inscrit l'ellipse.
      */

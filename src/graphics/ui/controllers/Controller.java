@@ -72,7 +72,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache la souris.
+     * Action réalisée lorsque l'utilisateur relâche la souris.
      *
      * @param e Événement souris.
      */
@@ -144,7 +144,7 @@ public class Controller implements MouseListener, MouseMotionListener, KeyListen
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache une touche.
+     * Action réalisée lorsque l'utilisateur relâche une touche.
      *
      * @param evt Événement clavier.
      */

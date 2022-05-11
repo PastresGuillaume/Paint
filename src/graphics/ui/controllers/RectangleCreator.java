@@ -34,14 +34,14 @@ public class RectangleCreator extends AbstractController {
      */
     private Color strokedColor = Constantes.DEFAULT_COLOR_ADD;
     /**
-     *Le JPopUpMenu associeé
+     *Le JPopUpMenu associé
      */
     final JPopupMenu menu = new JPopupMenu("Color Menu");
 
     /**
      *Constructeur
      *
-     * @param newModel modèle  à utilisé
+     * @param newModel modèle à utiliser
      * @param view la view utilisée
      */
     public RectangleCreator(Shape newModel, ModelView view) {
@@ -94,7 +94,7 @@ public class RectangleCreator extends AbstractController {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache la souris.
+     * Action réalisée lorsque l'utilisateur relâche la souris.
      *
      * @param e Événement souris.
      */
@@ -137,7 +137,7 @@ public class RectangleCreator extends AbstractController {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache une touche.
+     * Action réalisée lorsque l'utilisateur relâche une touche.
      *
      * @param evt Événement clavier.
      */
@@ -146,7 +146,7 @@ public class RectangleCreator extends AbstractController {
     }
 
     /**
-     *Déselectionne toutes les figures
+     *Désélectionne toutes les figures
      */
     private void unselectedAll(){
         try {
@@ -187,7 +187,7 @@ public class RectangleCreator extends AbstractController {
      *Construit le JPopUpMenu associé
      *
      * @param menu le menu JPopUpMenu à construire
-     * @param modelController le modelcontroller utilisé
+     * @param modelController le modelController utilisé
      */
     public void requestJPopopUpMenu(JPopupMenu menu,ModelController modelController) {
         JMenu color = new JMenu("Color");

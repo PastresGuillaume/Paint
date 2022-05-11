@@ -46,10 +46,10 @@ public class FontAttributes extends Attributes{
     }
 
     /**
-     * Calcul le rectangle de taille minimal qui contient le texte.
+     * Calcule le rectangle de taille minimal qui contient le texte.
      *
      * @param s String affiché à l'écran.
-     * @return Le rectangle de taille minimal qui contient le texte.
+     * @return Le rectangle de taille minimale qui contient le texte.
      */
     public Rectangle getBounds(String s){
         FontRenderContext frc = new FontRenderContext(new AffineTransform(), true, true);

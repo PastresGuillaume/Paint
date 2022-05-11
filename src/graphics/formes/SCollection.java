@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * Définition de ce qu'est une collection de forme.
+ * Définition de ce qu'est une collection de formes.
  */
 public class SCollection extends Shape{
     /**
@@ -77,7 +77,7 @@ public class SCollection extends Shape{
     }
 
     /**
-     * Calcul le plus petit rectangle dans lequel s'inscrit toutes les formes de la collection.
+     * Calcule le plus petit rectangle dans lequel s'inscrit toutes les formes de la collection.
      *
      * @return Le plus petit rectangle dans lequel s'inscrit toutes les formes de la collection.
      */

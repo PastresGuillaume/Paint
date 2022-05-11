@@ -11,7 +11,7 @@ import java.awt.*;
 
 /**
  *
- * Personnage est la classe abstraite qui définit un personnage de javadoc
+ * Personnage est la classe abstraite qui définit un personnage.
  * Cette classe est caractérisée par les informations suivantes :
  * <ul>
  * <li> Un boolean isVivant</li>
@@ -23,18 +23,15 @@ import java.awt.*;
  * <li> Un boolean versDroite</li>
  * <li> Un int compteur </li>
  * </ul>
- *
- * Cette classe
- *
  */
 
 
 public  abstract class Personnage {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Création des donnees membres//
+                                         //Création des données membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * Est-ce qu'on est vivant.
+     * Est-ce qu'on est vivant ?
      */
     public boolean isVivant;
     /**
@@ -68,7 +65,7 @@ public  abstract class Personnage {
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Constructeur//
+                                                //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -97,7 +94,7 @@ public  abstract class Personnage {
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Getters//
+                                                         //Getters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
@@ -175,7 +172,7 @@ public  abstract class Personnage {
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //Setters//
+                                                         //Setters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -235,14 +232,14 @@ public  abstract class Personnage {
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //METHODES//
+                                                        //Méthodes//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * marche renvoie la bonne image qui correspond au déplacement du personnage
+     * Renvoie la bonne image qui correspond au déplacement du personnage
      *
      * @param nom Nom du personnage.
-     * @param frequence Nombre d'image dans le cycle
+     * @param frequence Nombre d'images dans le cycle
      *
      * @return une image
      */
@@ -289,7 +286,7 @@ public  abstract class Personnage {
     }
 
     /**
-     *contactAvant détecte s'il y a une collision avec un element du décor et la partie droite de l'image du personnage
+     *Détecte s'il y a une collision avec un élément du décor et la partie droite de l'image du personnage
      *
      * @param objet Objet du décor.
      *
@@ -307,7 +304,7 @@ public  abstract class Personnage {
     }
 
     /**
-     *contactDessous détecte s'il y a une collision avec un element du décor et le dessous de l'image du personnage
+     *Détecte s'il y a une collision avec un élément du décor et le dessous de l'image du personnage
      *
      * @param objet Objet du décor.
      *
@@ -322,7 +319,7 @@ public  abstract class Personnage {
         }
     }
     /**
-     *contactDessus détecte s'il y a une collision avec un element du décor et le haut de l'image du personnage
+     *Détecte s'il y a une collision avec un élément du décor et le haut de l'image du personnage
      *
      * @param objet Objet du décor.
      *
@@ -338,7 +335,7 @@ public  abstract class Personnage {
     }
 
     /**
-     *contactArriere détecte s'il y a une collision avec un element du décor et la partie gauche de l'image du personnage
+     *Détecte s'il y a une collision avec un élément du décor et la partie gauche de l'image du personnage
      *
      * @param objet Objet du décor.
      *
@@ -355,7 +352,7 @@ public  abstract class Personnage {
     }
 
     /**
-     * deplacement
+     * déplacement
      */
     public void deplacement(){
         if( LaunchNPNG.scene.getxPos() >= 0){this.x = this.x -  LaunchNPNG.scene.getDx();}

@@ -40,7 +40,7 @@ public class MenuBar extends AbstractBar {
      */
     private final HelpMenu helpMenu;
     /**
-     * Est-ce qu'on est en darkMode ?
+     * Est-ce que l'on est en darkMode ?
      */
     private boolean isDarkMode = false;
 

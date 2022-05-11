@@ -11,7 +11,7 @@ import java.io.File;
 public class FileExtensionFilter extends FileFilter {
 
     /**
-     * Vérifie si un fichier corresponds au bon type.
+     * Vérifie si un fichier correspond au bon type.
      *
      * @param f fichier en question.
      * @return Booléen.

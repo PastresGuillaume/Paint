@@ -105,7 +105,7 @@ public class ShapesController extends AbstractController {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache la souris.
+     * Action réalisée lorsque l'utilisateur relâche la souris.
      *
      * @param e Événement souris.
      */
@@ -262,7 +262,7 @@ public class ShapesController extends AbstractController {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache une touche.
+     * Action réalisée lorsque l'utilisateur relâche une touche.
      *
      * @param evt Événement clavier.
      */
@@ -329,7 +329,7 @@ public class ShapesController extends AbstractController {
     }
 
     /**
-     * Désélectionne la forme et toutes les formes la conposant.
+     * Désélectionne la forme et toutes les formes la composant.
      */
     public void unSelectAll(){
         SCollection model;

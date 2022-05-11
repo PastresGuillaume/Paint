@@ -7,7 +7,7 @@ import javax.swing.*;
 /**
  * Piece est la classe qui définit une piece de monnaie de javadoc
  * Cette classe est caractérisée par les informations suivantes :
- * Il s'agit d'une classe qui hérite de la classe abstraite Decor. Elle a donc :
+ * il s'agit d'une classe qui hérite de la classe abstraite Decor. Elle a donc :
  *  <ul>
  * <li>Une largeur pour son image</li>
  * <li>Une hauteur pour son image</li>

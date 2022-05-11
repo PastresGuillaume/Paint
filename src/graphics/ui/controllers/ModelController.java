@@ -27,7 +27,7 @@ public class ModelController extends Controller {
      */
     private JPopupMenu menu = new JPopupMenu("Menu");
     /**
-     * Est-ce que la touche controle est appuyé?
+     * Est-ce que la touche contrôle est appuyé ?
      */
     private boolean control;
 
@@ -117,7 +117,7 @@ public class ModelController extends Controller {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache la souris.
+     * Action réalisée lorsque l'utilisateur relâche la souris.
      *
      * @param e Événement souris.
      */
@@ -236,7 +236,7 @@ public class ModelController extends Controller {
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache une touche.
+     * Action réalisée lorsque l'utilisateur relâche une touche.
      *
      * @param e Événement clavier.
      */

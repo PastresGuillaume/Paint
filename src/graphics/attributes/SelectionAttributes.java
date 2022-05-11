@@ -15,7 +15,7 @@ public class SelectionAttributes extends Attributes{
     private static final long serialVersionUID = -8713699973156538423L;
 
     /**
-     * Est-ce que la forme est sélectionné ?
+     * Est-ce que la forme est sélectionnée ?
      */
     private boolean selected = false;
 
@@ -30,23 +30,23 @@ public class SelectionAttributes extends Attributes{
     }
 
     /**
-     * Est-ce que la forme est sélectionné ?
+     * Est-ce que la forme est sélectionnée ?
      *
-     * @return Est-ce que la forme est sélectionné ?
+     * @return Est-ce que la forme est sélectionnée ?
      */
     public boolean isSelected(){
         return this.selected;
     }
 
     /**
-     * Set le booléen de sélection à vrai.
+     * Fixe le booléen de sélection à vrai.
      */
     public void select(){
         this.selected = true;
     }
 
     /**
-     * Set le booléen de sélection à faux.
+     * Fixe le booléen de sélection à faux.
      */
     public void unselect(){
         this.selected = false;

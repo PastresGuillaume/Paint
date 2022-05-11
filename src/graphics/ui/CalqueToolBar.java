@@ -30,7 +30,7 @@ public class CalqueToolBar extends  AbstractBar{
      */
     private JToolBar toolBar = new JToolBar(JToolBar.VERTICAL);
     /**
-     *HashMap regroupant tous les boutons du menus avec comme clé le calque associé et leur fonction
+     *HashMap regroupant tous les boutons du menu avec comme clé le calque associé et leur fonction
      */
     private HashMap<String,JComponent> buttons = new HashMap<>();
 
@@ -50,8 +50,8 @@ public class CalqueToolBar extends  AbstractBar{
     public ModelView getView(){return this.view;}
 
     /**
-     * Renvoie la HashMap composé de tous les boutons du menus
-     * @return Renvoie la HashMap composé de tous les boutons du menus
+     * Renvoie la HashMap composé de tous les boutons du menu
+     * @return Renvoie la HashMap composé de tous les boutons du menu
      */
     public HashMap<String, JComponent> getButtons() {return buttons;}
 

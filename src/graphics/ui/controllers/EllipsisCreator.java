@@ -55,7 +55,7 @@ public class EllipsisCreator extends AbstractController{
     /**
      * Change le modèle.
      *
-     * @param model modèle souhaitée
+     * @param model modèle souhaité
      */
     @Override
     public void setModel(Shape model)
@@ -94,7 +94,7 @@ public class EllipsisCreator extends AbstractController{
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache la souris.
+     * Action réalisée lorsque l'utilisateur relâche la souris.
      *
      * @param e Événement souris.
      */
@@ -137,7 +137,7 @@ public class EllipsisCreator extends AbstractController{
     }
 
     /**
-     * Action réalisée lorsque l'utilisateur relache une touche.
+     * Action réalisée lorsque l'utilisateur relâche une touche.
      *
      * @param evt Événement clavier.
      */
@@ -146,7 +146,7 @@ public class EllipsisCreator extends AbstractController{
     }
 
     /**
-     *déselectionne toutes les Shapes
+     *désélectionne toutes les Shapes
      */
     private void unselectedAll(){
         try {

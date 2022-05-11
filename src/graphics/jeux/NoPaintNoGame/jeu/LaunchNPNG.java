@@ -7,7 +7,7 @@ import javax.swing.*;
  */
 public class LaunchNPNG {
     /**
-     * Scene
+     * Scène
      */
     public static Scene scene;
 
@@ -24,7 +24,7 @@ public class LaunchNPNG {
         fenetre.setResizable(false);//on ne la redimentionne pas
         fenetre.setAlwaysOnTop(true);//fenêtre en premier plan
 
-        //Jpannel où on stocke les elements
+        //Jpannel où on stocke les élements
         //Instanciation de l'objet scène
         scene = new Scene();
 
