@@ -2,9 +2,18 @@ package graphics.jeux.NoPaintNoGame.jeu;
 
 import javax.swing.*;
 
+/**
+ * Launcher pour le NPNG
+ */
 public class LaunchNPNG {
+    /**
+     * Scene
+     */
     public static Scene scene;
 
+    /**
+     * Lancement du jeu
+     */
     public void noPaintNoGame(){
 
         // Création de la fenêtre d'application

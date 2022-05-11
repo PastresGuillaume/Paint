@@ -234,6 +234,12 @@ public class SModel extends Shape{
         return this.calques;
     }
 
+    /**
+     * Change le nom d'un calque
+     *
+     * @param calque Calque
+     * @param newName Nouveau nom
+     */
     public void setName(Calque calque, String newName){
         for (Calque c:this.calques){
             if (Objects.equals(c.getName(), newName)){

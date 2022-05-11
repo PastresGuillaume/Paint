@@ -20,6 +20,7 @@ import java.util.ArrayList;
  * Cette classe est caractérisée par les informations suivantes :
  * Il s'agit d'une classe qui hérite de la classe abstraite JPanel. Elle a donc :
  *
+ *     boolean isTerminate
  *     ArrayList Decor tabDecor
  *     ArrayList Piece tabPiece
  *     Nuage nuage
@@ -86,80 +87,211 @@ public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     ///Initialisation des ArrayList
     /////////////////////////////
+    /**
+     * Le jeu est terminé ?
+     */
+    private boolean isTerminate = false;
+    /**
+     * tableau des éléments du décor
+     */
     public final ArrayList<Decor> tabDecor=new ArrayList<Decor>();
-   private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();// tableau des objets du jeu
+    /**
+     * tableau des objets du jeu
+     */
+    private final ArrayList<Piece> tabPiece=new ArrayList<Piece>();
 
     //Initialisation du Parcourt
     /////////////////////////////
 
-   public Nuage nuage;
+    /**
+     * le nuage
+     */
+    public Nuage nuage;
 
+    /**
+     * repetitionMotif
+     */
     public int repetitionMotif=9;
 
+    /**
+     * tuyauRougeY
+     */
     public int tuyauRougeY=420;
 
-
+    /**
+     * blocX1
+     */
     public int blocX1=400;
+    /**
+     * tuyauRouge1X
+     */
     public int tuyauRouge1X=700;
+    /**
+     * position maximale
+     */
     public  int posMAX = (repetitionMotif+1)*600+tuyauRouge1X+700;
-
+    /**
+     * blocY
+     */
     public int blocY=290;
 
+    /**
+     * pieceY
+     */
     public int pieceY=blocY-45;
 
+    /**
+     * chateauX
+     */
     public int chateauX=5;
+    /**
+     * chateauY
+     */
     public int chateauY=275;
 
+    /**
+     * departX
+     */
     public int departX=220;
+    /**
+     * departY
+     */
     public int departY=365;
 
+    /**
+     * imgDrapeauFinY
+     */
     public int imgDrapeauFinY=300;// Pas de X , car on utilise la posMAX ,
+    /**
+     * imgSortieY
+     */
     public int imgSortieY=370;// de meme
 
     //Personnage
     /////////////////////////////
+    /**
+     * marioX
+     */
     public int marioX=300;
+    /**
+     * marioY
+     */
     public int marioY=395;//385
+    /**
+     * marioY0
+     */
     public int marioY0=385;
+    /**
+     * mario
+     */
     public Mario mario;
 
 
     //Dimension des images
     /////////////////////////////
+    /**
+     * imageMarioLarge
+     */
     int imageMarioLarge =108;
+    /**
+     * imageMarioHauteur
+     */
     int imageMarioHauteur = 170;
 
+    /**
+     * imageTuyauRLarge
+     */
     int imageTuyauRLarge =106;
+    /**
+     * imageTuyauRHauteur
+     */
     int imageTuyauRHauteur = 200;
 
+    /**
+     * imageBlocLarge
+     */
     int imageBlocLarge =95;
+    /**
+     * imageBlocHauteur
+     */
     int imageBlocHauteur = 94;
 
+    /**
+     * imagePieceX
+     */
     int imagePieceX =40;
+    /**
+     * imagePieceY
+     */
     int imagePieceY = 40;
+    /**
+     * imageNuageX
+     */
     int imageNuageX =40;
+    /**
+     * imageNuageY
+     */
     int imageNuageY = 100;
 
     //public int nuageX=tuyauRouge1X+imageTuyauRLarge+5;
+    /**
+     * nuageX
+     */
     public int nuageX=tuyauRouge1X;
+    /**
+     * nuageY
+     */
     public int nuageY=10;//385
 
     //Variable Image
     /////////////////////////////
+    /**
+     * icoDrapeuFin
+     */
     private ImageIcon icoDrapeuFin;
+    /**
+     * imgDrapeauFin
+     */
     private Image imgDrapeauFin;
+    /**
+     * icoSortie
+     */
     private ImageIcon icoSortie;
+    /**
+     * imgSortie
+     */
     private Image imgSortie;
 
     //fond
+    /**
+     * icoFond
+     */
     private final ImageIcon icoFond;
+    /**
+     * imgFond1
+     */
     private final Image imgFond1;
+    /**
+     * imgFond2
+     */
     private final Image imgFond2;
 
     //départ
+    /**
+     * icoChateau1
+     */
     private final ImageIcon icoChateau1;
+    /**
+     * imgChateau1
+     */
     private final Image imgChateau1;
+    /**
+     * icoDepart
+     */
     private final ImageIcon icoDepart;
+    /**
+     * imgDepart
+     */
     private final Image imgDepart;
 
 
@@ -168,19 +300,46 @@ public class Scene extends JPanel {
 
     //Variable Bonus
     /////////////////////////////
+    /**
+     * compteARebours
+     */
     private CompteARebour compteARebours;
+    /**
+     * score
+     */
     private Score score;
+    /**
+     * police
+     */
     private Font police= new Font("Arial",Font.PLAIN ,10);
 
 
 
     // Variable du Paysage
     /////////////////////////////
+    /**
+     * xFond2
+     */
     private int xFond2;
+    /**
+     * xPos
+     */
     private int xPos;
+    /**
+     * dx
+     */
     private int dx;
-    private int xFond1;//abscice du coin sup gauche par rapport à lecran
-    private int ysol;//hauteur du sol
+    /**
+     * abscice du coin sup gauche par rapport à lecran
+     */
+    private int xFond1;
+    /**
+     * hauteur du sol
+     */
+    private int ysol;
+    /**
+     * hauteurPlafond
+     */
     private int hauteurPlafond;
 
 
@@ -276,10 +435,25 @@ public class Scene extends JPanel {
                                                             // GETTERS//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Getter pour dx
+     *
+     * @return dx
+     */
     public int getDx() {return dx; }
 
+    /**
+     * Getter pour xPos
+     *
+     * @return xPos
+     */
     public int getxPos() {return xPos;}
 
+    /**
+     * Getter pour la hauteur du plafond
+     *
+     * @return hauteurPlafond
+     */
     public int getHauteurPlafond() {return hauteurPlafond; }
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -287,18 +461,53 @@ public class Scene extends JPanel {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+    /**
+     * Setter ysol
+     *
+     * @param ysol Nouveau ysol
+     */
     public void setYsol(int ysol) { this.ysol = ysol; }
 
+    /**
+     * Setter hauteurPlafond
+     *
+     * @param hauteurPlafond Nouveau hauteurPlafond
+     */
     public void setHauteurPlafond(int hauteurPlafond) {this.hauteurPlafond = hauteurPlafond;}
 
+    /**
+     * Setter dx
+     *
+     * @param dx Nouveau dx
+     */
     public void setDx(int dx) {this.dx = dx;}
 
+    /**
+     * Setter xPos
+     *
+     * @param xPos Nouveau xPos
+     */
     public void setxPos(int xPos) {this.xPos = xPos;}
 
+    /**
+     * Setter xFond1
+     *
+     * @param xFond1 Nouveau xFond1
+     */
     public void setxFond1(int xFond1) {this.xFond1 = xFond1; }
 
+    /**
+     * Setter xFond2
+     *
+     * @param xFond2 Nouveau xFond2
+     */
     public void setxFond2(int xFond2) {this.xFond2 = xFond2; }
 
+    /**
+     * Setter marioY
+     *
+     * @param marioY Nouveau marioY
+     */
     public void setMarioY(int marioY) {this.marioY = marioY; }
 
 
@@ -513,24 +722,23 @@ public class Scene extends JPanel {
         //fin de la partie
         /////////////////////////////
         if(this.finPartie()){
-            Font policeFin = new Font("Arial",Font.BOLD ,50);
+            Font policeFin = new Font("Arial", Font.BOLD, 50);
             g2.setFont(policeFin);
-            if(this.partieGagnee()){
-                g2.drawString("Vous avez gagné",120,180);
-                Audio.playSound("gagne");
-
+            if (this.partieGagnee()) {
+                g2.drawString("Vous avez gagné", 120, 180);
+            } else if (this.partiePerdue()) {
+                g2.drawString("vous avez perdu...", 120, 180);
             }
-
-            else if(this.partiePerdue()){
-                g2.drawString("vous avez perdu...",120,180);
-                Audio.playSound("perdu");
+            if (!isTerminate) {
+                if (this.partieGagnee()) {
+                    Audio.playSound("gagne");
+                } else if (this.partiePerdue()) {
+                    Audio.playSound("perdu");
+                }
+                isTerminate = true;
             }
         }
-
-
-        }
-
-
+    }
 
 
 }

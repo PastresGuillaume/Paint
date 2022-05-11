@@ -31,6 +31,9 @@ public class Score {
     //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Constructeur
+     */
     public Score(){
         this.nbrPiece = 0;
     }
@@ -39,10 +42,18 @@ public class Score {
     //Getters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Getter pour le nombre de pièces total.
+     * @return nombre de pièces total
+     */
     public int getNombPieceTotal() {
         return nombPieceTotal;
     }
 
+    /**
+     * Getter pour le nombre de pièces.
+     * @return nombre de pièces
+     */
     public int getNbrPiece() {
         return nbrPiece;
     }
@@ -51,6 +62,11 @@ public class Score {
     //Setters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Setter pour le nombre de pièces
+     *
+     * @param nbrPiece Nouveau nombre
+     */
     public void setNbrPiece(int nbrPiece) {
         this.nbrPiece = nbrPiece;
     }
@@ -58,6 +74,10 @@ public class Score {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Methode//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Incrémente le nombre de pièces de 1
+     */
     public void compteurPiece(){
         if(getNbrPiece()<getNombPieceTotal()){
             setNbrPiece(getNbrPiece()+1);

@@ -187,8 +187,8 @@ public class SImage extends Shape{
     /**
      * Sert à la sauvegarde.
      *
-     * @param oos
-     * @throws IOException
+     * @param oos ObjectOutputStream
+     * @throws IOException l'écriture peut bug
      */
     @Serial
     private void writeObject(ObjectOutputStream oos) throws IOException{
@@ -199,9 +199,9 @@ public class SImage extends Shape{
     /**
      * Sert à la sauvegarde.
      *
-     * @param ois
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * @param ois ObjectInputStream
+     * @throws IOException Problèmes de lectures
+     * @throws ClassNotFoundException Problèmes de lectures
      */
     @Serial
     private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException{

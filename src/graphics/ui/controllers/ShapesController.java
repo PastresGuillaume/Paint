@@ -16,6 +16,9 @@ import graphics.ui.View.View;
 
 import static graphics.Constantes.*;
 
+/**
+ * Controller pour les formes.
+ */
 public class ShapesController extends AbstractController {
     /**
      * Forme.

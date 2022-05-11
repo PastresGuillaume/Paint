@@ -279,7 +279,7 @@ public class Constantes {
     /**
      * Chemin vers le dossier contenant les images du jeu NPNG.
      */
-    public static final String PATH_NO_PAINT_NO_GAME = PATH_IMAGES+PATH_SEPARATOR+"NoPaintNoGame"+PATH_SEPARATOR;
+    public static final String PATH_NO_PAINT_NO_GAME = PATH_IMAGES+"NoPaintNoGame"+PATH_SEPARATOR;
 
     /**
      * Chemin vers le dossier contenant les sons.

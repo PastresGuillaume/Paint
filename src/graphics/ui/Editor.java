@@ -16,10 +16,24 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
-public class Editor  extends JFrame {
+/**
+ * Classe de lancement du projet.
+ */
+public class Editor extends JFrame {
+    /**
+     * Vue du modèle
+     */
     ModelView mview;
+    /**
+     * Modèle
+     */
     SModel model;
 
+    /**
+     * Constructeur.
+     *
+     * @throws IOException Existence de fichiers.
+     */
     public Editor() throws IOException {
         super("Shapes Editor");
 
@@ -50,12 +64,11 @@ public class Editor  extends JFrame {
         this.setJMenuBar(((MenuBar) mview.getMenus().get(Constantes.MENU_BAR_ID)).createMenuBar());
         this.add(((CalqueToolBar)mview.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).createToolBar(),Constantes.CALQUE_TOOL_BAR_LOC);
         this.add(((ShapeToolBar) mview.getMenus().get(Constantes.SHAPE_TOOL_BAR_ID)).createToolBar(),Constantes.SHAPE_TOOL_BAR_LOC);
-
-//        this.add(((MenuBar) mview.getMenus().get(Constantes.MENU_BAR_ID)).createMenuBar(),Constantes.MENU_BAR_LOC);
-//        this.add(((CalqueToolBar)mview.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).createToolBar(),Constantes.CALQUE_TOOL_BAR_LOC);
     }
 
-
+    /**
+     * Construction du modèle.
+     */
     private void buildModel()
     {
         this.model = new SModel();
@@ -137,7 +150,12 @@ public class Editor  extends JFrame {
 //        this.model.setUse(1);
     }
 
-
+    /**
+     * Main.
+     *
+     * @param args arguments
+     * @throws IOException existence de fichiers.
+     */
     public static void main(String[] args) throws IOException {
         Editor self = new Editor();
         self.pack();

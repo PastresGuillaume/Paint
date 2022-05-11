@@ -48,17 +48,17 @@ public abstract class Decor {
    private int y;
 
    /**
-    * Description de l'attribut 1
+    * imgDecor
     */
    protected Image imgDecor  ;
 
    /**
-    * Description de l'attribut 1
+    * icoDecor
     */
    protected ImageIcon icoDecor ;
 
    /**
-    * Description de l'attribut 1
+    * bPiece
     */
    protected boolean bPiece ;
 
@@ -101,33 +101,91 @@ public abstract class Decor {
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    //getters//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+   /**
+    * Retourne le largueur du décor.
+    *
+    * @return La largueur du décor.
+    */
    public int getLargeur() {return largeur;}
 
+   /**
+    * Retourne la hauteur du décor.
+    *
+    * @return La hauteur du décor.
+    */
    public int getHauteur() {return hauteur;}
 
+   /**
+    * Getter de x.
+    *
+    * @return x
+    */
    public int getX() {return x;}
 
+   /**
+    * Getter de y.
+    *
+    * @return y
+    */
    public int getY() {return y;}
+
+   /**
+    * Getter pour l'image du décor
+    *
+    * @return L'image du décor
+    */
    public Image getImgDecor() { return imgDecor; }
 
+   /**
+    * Getter pour l'icon du décor.
+    * @return L'icon du décor.
+    */
    public ImageIcon getIcoDecor() { return icoDecor; }
 
+   /**
+    * Est-ce qu'il y a des pièces ?
+    * @return booléen
+    */
    public boolean isbPiece() { return bPiece; }
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    //setters//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+   /**
+    * Setter pour l'image du décor.
+    * @param imgDecor Nouvelle image.
+    */
    public void setImgDecor(Image imgDecor) {this.imgDecor = imgDecor; }
 
+   /**
+    * Setter pour l'icon du décor.
+    * @param icodecor Nouvelle icon.
+    */
    public void setIcoDecor(ImageIcon icodecor) {this.icoDecor = icodecor; }
 
+   /**
+    * Setter pour la largeur.
+    * @param largeur Nouvelle largeur.
+    */
    public void setLargeur(int largeur) {this.largeur = largeur;}
 
+   /**
+    * Setter pour la hauteur.
+    * @param hauteur Nouvelle hauteur.
+    */
    public void setHauteur(int hauteur) {this.hauteur = hauteur;}
 
+   /**
+    * Setter pour x
+    * @param x Nouveau x.
+    */
    public void setX(int x) {this.x = x;}
 
+   /**
+    * Setter pour y
+    * @param y Nouveau y.
+    */
    public void setY(int y) {this.y = y;}
 
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////

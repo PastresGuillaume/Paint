@@ -105,7 +105,7 @@ public class ModelView extends View{
     /**
      * Met à jour l'icone dans la calqueBar du calque choisi
      * @param calque calque à mettre à jour
-     * @throws IOException
+     * @throws IOException L'écriture peut bug
      */
     public void updateIconCalqueBar(Calque calque) throws IOException {
         BufferedImage bi = new BufferedImage(Constantes.WINDOW_DIMENSIONS.width,Constantes.WINDOW_DIMENSIONS.height,BufferedImage.TYPE_INT_ARGB);

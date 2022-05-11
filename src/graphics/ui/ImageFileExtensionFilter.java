@@ -7,6 +7,9 @@ import java.io.File;
  * Create a new FileFilter only for directory and files extensions for images
  */
 public class ImageFileExtensionFilter extends FileFilter {
+    /**
+     * Extension valide pour les images
+     */
     private final String[] validExtension = {".jpg", ".png", ".jpeg"};
 
     /**

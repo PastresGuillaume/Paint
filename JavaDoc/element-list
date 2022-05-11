@@ -1,0 +1,13 @@
+graphics
+graphics.attributes
+graphics.formes
+graphics.jeux
+graphics.jeux.NoPaintNoGame.Affichage
+graphics.jeux.NoPaintNoGame.ecoute
+graphics.jeux.NoPaintNoGame.jeu
+graphics.jeux.NoPaintNoGame.Objet
+graphics.jeux.NoPaintNoGame.Perso
+graphics.ui
+graphics.ui.controllers
+graphics.ui.View
+graphics.ui.Visitor

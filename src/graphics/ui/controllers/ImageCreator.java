@@ -13,7 +13,13 @@ import java.io.File;
  * Controller to add Image with JFileChooser dialog
  */
 public class ImageCreator extends AbstractController{
+    /**
+     * Modèle
+     */
     private Shape model;
+    /**
+     * Fichier de l'image
+     */
     private final File file;
 
     /**

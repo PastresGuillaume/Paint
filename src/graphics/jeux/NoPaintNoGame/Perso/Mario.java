@@ -58,12 +58,12 @@ public class Mario extends Personnage {
     //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * <b>Constructeur de Decor</b>
+ * Constructeur de Decor
  *
- * @param largeur
- * @param hauteur
- * @param x
- * @param y
+ * @param largeur largeur
+ * @param hauteur Hauteur
+ * @param x Position x
+ * @param y Position y
  *
  */
 
@@ -81,9 +81,18 @@ public class Mario extends Personnage {
     //Getters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * Getter pour l'image de Mario
+     * @return image
+     */
     public Image getImgMario() {
         return imgMario;
     }
+
+    /**
+     * Test si l'on est dans un saut.
+     * @return Test si l'on est dans un saut
+     */
     public boolean isSaut() {
         return saut;
     }
@@ -94,6 +103,11 @@ public class Mario extends Personnage {
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Setters//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * Set le saut
+     * @param saut Nouveau saut.
+     */
     public void setSaut(boolean saut) {
         this.saut = saut;
     }
@@ -162,7 +176,7 @@ public class Mario extends Personnage {
     /**
      *contactPiece détecte s'il y a un contact avec une piece
      *
-     * @param decor
+     * @param decor Decor
      *
      * @return un boolean
      */
@@ -219,9 +233,8 @@ public class Mario extends Personnage {
      * Contact détecte s'il y a une collision entre un élément du decor et mario.
      * Si c'est le cas ,empèche mario d'avancer en modifiant son boolean de marche
      *
-     * @param decor
-     * c'est un element du décor
-     *
+     * @param decor c'est un element du décor
+     * @param i entier
      */
 
     public void contact(Decor decor, int i) {
@@ -297,6 +310,10 @@ public class Mario extends Personnage {
 
     }
 
+    /**
+     * Enleve le vol.
+     * @param decor decor
+     */
     public void noFly(Decor decor){
         if(!super.contactDessus(decor) && !this.saut && this.getY() < LaunchNPNG.scene.marioY0){
             this.setY( LaunchNPNG.scene.marioY0);

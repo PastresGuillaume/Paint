@@ -31,11 +31,26 @@ public class Nuage extends Personnage implements Runnable{
     //Données membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+    /**
+     * image du champ
+     */
         private Image imgChamp;
+    /**
+     * icon du champ
+     */
         private ImageIcon icoChamp;
 
-        private final int PAUSE = 15; // temps d'attente en ms entre 2 tours de boucle
-        private int dxChamp; // pas de d�placement du champignon
+    /**
+     * temps d'attente en ms entre 2 tours de boucle
+     */
+        private final int PAUSE = 15;
+    /**
+     * dxChamp
+     */
+        private int dxChamp; // pas de déplacement du champignon
+    /**
+     * running
+     */
         private boolean running;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -44,10 +59,10 @@ public class Nuage extends Personnage implements Runnable{
     /**
      * <b>Constructeur de Decor</b>
      *
-     * @param largeur
-     * @param hauteur
-     * @param x
-     * @param y
+     * @param largeur Largeur du nuage
+     * @param hauteur hauteur du nuage
+     * @param x position x
+     * @param y position y
      */
         //**** CONSTRUCTEUR	****//
         public Nuage(int largeur, int hauteur , int x, int y) {
@@ -66,6 +81,12 @@ public class Nuage extends Personnage implements Runnable{
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
         //**** GETTERS ****//
+
+    /**
+     * getter pour imgChamp
+     *
+     * @return imgChamp
+     */
         public Image getImgChamp() {return imgChamp;}
 
 
@@ -115,7 +136,9 @@ public class Nuage extends Personnage implements Runnable{
             }
         }
     /**
-     *contact détecte un contact entre le champignon et un element du décor, si c'est le cas le champignon fait marche arrière
+     * contact détecte un contact entre le champignon et un element du décor, si c'est le cas le champignon fait marche arrière
+     *
+     * @param decor element du decor
      */
         public void contact(Decor decor) {
             if(super.contactAvant(decor) && this.isVersDroite()){
