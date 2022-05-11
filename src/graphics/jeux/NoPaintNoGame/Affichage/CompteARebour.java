@@ -30,6 +30,8 @@ public class CompteARebour implements Runnable {
      */
     private String str;
 
+    private boolean STOP=true;
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                         //Constructeur//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -65,6 +67,10 @@ public class CompteARebour implements Runnable {
      */
     public String getStr() {return str;}
 
+    public void setSTOP(boolean STOP) {
+        this.STOP = STOP;
+    }
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                       //Méthodes//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -74,7 +80,7 @@ public class CompteARebour implements Runnable {
      */
     @Override
     public void run(){
-        while(true){
+        while(STOP){
             //Main.scene.repaint();
 
             try {Thread.sleep(PAUSE);}catch(InterruptedException e){}
