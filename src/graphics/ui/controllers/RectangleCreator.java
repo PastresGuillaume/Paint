@@ -32,7 +32,7 @@ public class RectangleCreator extends AbstractController {
     /**
      *Couleur des contours de la figure
      */
-    private Color strokedColor = Constantes.DEFAULT_COLOR_ADD_RECTANGLE;
+    private Color strokedColor = Constantes.DEFAULT_COLOR_ADD;
     /**
      *Le JPopUpMenu associeé
      */
