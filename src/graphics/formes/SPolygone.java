@@ -5,6 +5,9 @@ import graphics.ui.Visitor.ShapeVisitor;
 import java.awt.*;
 import java.io.Serial;
 
+/**
+ * Définition des polygones
+ */
 public class SPolygone extends Shape {
     /**
      * Identifiant servant à la sauvegarde.
