@@ -5,6 +5,9 @@ import graphics.Constantes;
 import javax.swing.filechooser.FileFilter;
 import java.io.File;
 
+/**
+ * Create a new FileFilter only for directory and specified extension files used for our project (here ".ser")
+ */
 public class FileExtensionFilter extends FileFilter {
 
     @Override

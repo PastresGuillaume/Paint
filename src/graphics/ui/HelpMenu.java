@@ -5,6 +5,9 @@ import graphics.Constantes;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Help menu to display tips on how to use our project
+ */
 public class HelpMenu extends JFrame {
     private final JFrame helpMenu;
     private final JTabbedPane tabs;
@@ -24,6 +27,9 @@ public class HelpMenu extends JFrame {
         this.helpMenu.setResizable(false);
     }
 
+    /**
+     * Display the menu in the center of the current frame
+     */
     public void toggleDisplayMenu(){
         this.helpMenu.setSize(Constantes.WINDOW_DIMENSIONS.width*3/4, Constantes.WINDOW_DIMENSIONS.height*3/4);
         int x = (Constantes.WINDOW_DIMENSIONS.width - this.helpMenu.getSize().width)/2;
@@ -33,11 +39,21 @@ public class HelpMenu extends JFrame {
         this.helpMenu.setVisible(true);
     }
 
+    /**
+     * Add the given tab to the menu with a scrollPane
+     * @param tabName name of the new tab
+     * @param tab new tab to add
+     */
     public void newTab(String tabName, JPanel tab){
         JScrollPane scrollPane = new JScrollPane(tab);
         this.tabs.addTab(tabName, scrollPane);
     }
 
+    /**
+     * Create a JTextArea containing the specified text
+     * @param text text to add
+     * @return JTextArea containing the text
+     */
     public JTextArea newTexArea(String text){
         JTextArea textArea = new JTextArea(text);
         textArea.setEditable(false);
@@ -51,6 +67,8 @@ public class HelpMenu extends JFrame {
                 Keys Shortcut
                 Select All: Ctrl-A
                 Supp: Backspace
+                Enable multiple Selection: Shift
+                Enable Shape Resizing
                 """;
         tab.add(newTexArea(text));
         this.newTab("Command", tab);
@@ -81,7 +99,14 @@ public class HelpMenu extends JFrame {
     public void setToolBarHelpMenu(){
         JPanel tab = new JPanel();
         String text = """
-                To complete
+                Selector:
+                Enable Shapes Selection
+                """;
+        tab.add(newTexArea(text));
+        text = """
+                Shapes Creator:
+                Create a new shape
+                Notice: Right-click to select filled and stroked color
                 """;
         tab.add(newTexArea(text));
         this.newTab("ToolBar", tab);

@@ -174,12 +174,12 @@ public class Constantes {
     /**
      * Couleur de fond en mode clair.
      */
-    public final static Color BRIGHTMODE_BACKGROUND_COLOR = new Color(220, 220, 220);
+    public final static Color BRIGHTMODE_BACKGROUND_COLOR = new Color(238, 238, 238);
 
     /**
      * Couleur de fond du menuBar en mode clair.
      */
-    public final static Color BRIGHTMODE_MENUBAR_COLOR = new Color(200, 200, 200);
+    public final static Color BRIGHTMODE_MENUBAR_COLOR = new Color(238, 238, 238);
 
     /**
      * Couleur de fond du textMenu en mode clair.

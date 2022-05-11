@@ -15,6 +15,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/**
+ * JMenuBar Class
+ */
 public class MenuBar extends AbstractBar {
     private final ModelView view;
     private final SaveHandler saveHandler;
@@ -23,7 +26,10 @@ public class MenuBar extends AbstractBar {
     private final HelpMenu helpMenu;
     private boolean isDarkMode = false;
 
-
+    /**
+     * Instance the MenuBar: position, fileHandler, fileChooser and helpMenu
+     * @param view to set
+     */
     public MenuBar(ModelView view){
         this.view = view;
         this.setBounds(0, 0, 500, 10);
@@ -35,6 +41,10 @@ public class MenuBar extends AbstractBar {
         this.helpMenu = new HelpMenu();
     }
 
+    /**
+     *
+     * @return view
+     */
     public ModelView getView(){
         return this.view;
     }
@@ -83,6 +93,9 @@ public class MenuBar extends AbstractBar {
         this.helpMenu.toggleDisplayMenu();
     }
 
+    /**
+     * Change colors used for displaying menus
+     */
     public void toggleDarkMode(){
         this.isDarkMode = ! this.isDarkMode;
         if (this.isDarkMode){
@@ -99,7 +112,9 @@ public class MenuBar extends AbstractBar {
             menu.changeColor();
     }
 
-
+    /**
+     * Save the current state of the SModel in the specified place with a JFileChooser dialog
+     */
     public void save(){
         Object object = (view.getModel());
         int selectedFile = this.fileChooser.showSaveDialog(view);
@@ -109,6 +124,9 @@ public class MenuBar extends AbstractBar {
         }
     }
 
+    /**
+     * Load the save chosen with a JFileChooser dialog
+     */
     public void load(){
         int operationResult = this.fileChooser.showOpenDialog(view);
         if (operationResult == JFileChooser.APPROVE_OPTION){
@@ -118,12 +136,20 @@ public class MenuBar extends AbstractBar {
         }
     }
 
+    /**
+     * Resize the given icon to the right size
+     * @param icon to resize
+     * @return the icon resized
+     */
     private static Icon resizeIcon(ImageIcon icon) {
         Image img = icon.getImage();
         Image resizedImage = img.getScaledInstance(20, 20,  java.awt.Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImage);
     }
 
+    /**
+     * change background and foreground colors of items in the menuBar
+     */
     @Override
     public void changeColor() {
         this.view.setBackground(Constantes.BACKGROUND_COLOR);
@@ -137,6 +163,11 @@ public class MenuBar extends AbstractBar {
         }
     }
 
+    /**
+     * Actions realised after clicking on the matching button:
+     * Create a new GameCalque for the specified game and set it for playing
+     * @param gameID game id
+     */
     public void selectGame(int gameID){
         GameCalque calqueGame = new GameCalque(gameID);
         ((SModel)this.view.getModel()).addCalque(calqueGame);
@@ -146,12 +177,21 @@ public class MenuBar extends AbstractBar {
         ((ModelController) this.view.getController()).setController(new GameController(calqueGame));
     }
 
+    /**
+     * Create a JMenuItem for the specified game
+     * @param gameName name of the game to display
+     * @param gameID id of the game
+     * @return JMenuItem containing the actionListener to start the specified game
+     */
     public JMenuItem createGameItem(String gameName, int gameID){
         JMenuItem gameItem = new JMenuItem(gameName);
         gameItem.addActionListener(e -> this.selectGame(gameID));
         return gameItem;
     }
 
+    /**
+     * Erase all calque and set the count back to 0
+     */
     public void clear(){
         Calque.nb_Calque = 0;
         this.view.setModel(new SModel());

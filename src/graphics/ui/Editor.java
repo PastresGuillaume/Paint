@@ -60,9 +60,9 @@ public class Editor  extends JFrame {
     {
         this.model = new SModel();
 
-//        SImage i1 = new SImage(new Point(50,50), 250, 250,"mini.jpg");
-//        i1.addAttributes(new SelectionAttributes());
-//        this.model.add(i1);
+        SImage i1 = new SImage(new Point(50,50), 250, 250,"mini.jpg");
+        i1.addAttributes(new SelectionAttributes());
+        this.model.add(i1);
 //
 //        SImage i2 = new SImage(new Point(100,100),600, "galaxia.png");
 //        i2.addAttributes(new SelectionAttributes());
@@ -71,14 +71,14 @@ public class Editor  extends JFrame {
         SRectangle r = new SRectangle(new Point(10,30),200,100);
         r.addAttributes(new ColorAttributes(true,false,Color.BLUE,Color.BLUE));
         r.addAttributes(new SelectionAttributes());
-        r.addAttributes(new RotationAttributes(0.2));
+        //r.addAttributes(new RotationAttributes(0.2));
         this.model.add(r);
 //
 //
         SEllipsis c = new SEllipsis(new Point(100,100),10);
         c.addAttributes(new ColorAttributes(false,true,Color.BLUE,Color.BLUE));
         c.addAttributes(new SelectionAttributes());
-        c.addAttributes(new RotationAttributes(0.2));
+        //c.addAttributes(new RotationAttributes(0.2));
         this.model.add(c);
 //
 //        SText t= new SText(new Point(100,100),"hello");

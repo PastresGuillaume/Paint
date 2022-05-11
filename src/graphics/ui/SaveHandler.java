@@ -2,7 +2,15 @@ package graphics.ui;
 
 import java.io.*;
 
+/**
+ * Class for managing saves
+ */
 public class SaveHandler {
+    /**
+     * Save the given date in the specified file
+     * @param object Data to save
+     * @param file file in which data will be saved
+     */
     public void saveObject(Object object, File file) {
         try {
             ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file));
@@ -13,6 +21,11 @@ public class SaveHandler {
         }
     }
 
+    /**
+     * Load data form the specified file
+     * @param file to extract data from
+     * @return data to load
+     */
     public Object loadObject(File file) {
         Object object;
         try {
