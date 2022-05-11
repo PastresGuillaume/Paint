@@ -58,7 +58,7 @@ public class CalqueToolBar extends  AbstractBar{
     /**
      * Construit la JToolBar
      * @return La JToolBar construite
-     * @throws IOException 
+     * @throws IOException L'actualisation des icons peut bug.
      */
     public JToolBar createToolBar() throws IOException {
         SModel sModel = (SModel) this.view.getModel();

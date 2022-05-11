@@ -162,6 +162,9 @@ public class AbstractController extends Controller {
 
     /**
      * Construit le JPopupMenu associé à ce controller
+     *
+     * @param menu Menu.
+     * @param modelController Controller.
      */
     public void requestJPopopUpMenu(JPopupMenu menu,ModelController modelController) {
     }

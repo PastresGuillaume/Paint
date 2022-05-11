@@ -75,12 +75,10 @@ public class Champi extends Personnage implements Runnable{
 
         //**** METHODES ****//
 
+
     /**
      * bouge() permet de déplacer le champignon horizontalement ou verticalement
-     *
-     * @return une image
      */
-
         public void bouge(){ // D�placement du champignon
             if(this.getX()<500){
                 this.dxChamp = -1;

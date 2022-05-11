@@ -19,10 +19,9 @@ import java.util.ArrayList;
  * Scene est la classe qui permet d'administer les autres classes
  * Cette classe est caractérisée par les informations suivantes :
  * Il s'agit d'une classe qui hérite de la classe abstraite JPanel. Elle a donc :
- *  <ul>
  *
- *     ArrayList<Decor> tabDecor
- *     ArrayList<Piece> tabPiece
+ *     ArrayList Decor tabDecor
+ *     ArrayList Piece tabPiece
  *     Champi champi
  *     int repetitionMotif
  *     int tuyauRougeY

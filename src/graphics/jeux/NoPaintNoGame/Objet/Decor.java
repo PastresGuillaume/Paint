@@ -81,6 +81,15 @@ public abstract class Decor {
    //Constructeur//
    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+   /**
+    * Constructeur.
+    *
+    * @param largeur Largeur du décor.
+    * @param hauteur Hauteur du décor.
+    * @param x Position x.
+    * @param y Position y.
+    * @param f Est-ce que c'est une pièce ?
+    */
    public Decor(int largeur, int hauteur, int x, int y,boolean f) {
       this.largeur = largeur;
       this.hauteur = hauteur;

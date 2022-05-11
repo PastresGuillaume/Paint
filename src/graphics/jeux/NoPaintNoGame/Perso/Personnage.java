@@ -136,8 +136,8 @@ public  abstract class Personnage {
     /**
      * marche renvoie la bonne image qui correspond au déplacement du personnage
      *
-     * @param nom
-     * @param frequence
+     * @param nom Nom du personnage.
+     * @param frequence Nombre d'image dans le cycle
      *
      * @return une image
      */
@@ -186,12 +186,10 @@ public  abstract class Personnage {
     /**
      *contactAvant détecte s'il y a une collision avec un element du décor et la partie droite de l'image du personnage
      *
-     * @param objet
+     * @param objet Objet du décor.
      *
      * @return un boolean
      */
-
-
 
     public boolean contactAvant(Decor objet) {
         if (this.x + this.largeur < objet.getX() || this.x + this.largeur > objet.getX() + 5 || this.y + this.hauteur <= objet.getY() || this.y >= objet.getY() + objet.getHauteur()) {

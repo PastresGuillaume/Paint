@@ -32,13 +32,10 @@ public class Audio {
     //Constructeur //
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     /**
-     * <b>Constructeur de Audio</b>
+     * Constructeur de Audio
      *
-     * @param son
-     *
+     * @param son Nom de l'audio
      */
-
-
     public Audio(String son){
         try{
 //            AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getResource(son));
@@ -68,11 +65,10 @@ public class Audio {
     public void stop(){clip.stop();}
 
     /**
-     *playSound lance le son qui a pour nom "son"
+     * playSound lance le son qui a pour nom "son"
      *
-     * @param son
+     * @param son Nom du son
      */
-
     public static void playSound(String son){
         Audio s = new Audio(son);
         s.play();
