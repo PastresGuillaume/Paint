@@ -12,14 +12,38 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
+/**
+ * Créateur de rectangle
+ */
 public class RectangleCreator extends AbstractController {
 
+    /**
+     *modèle associé
+     */
     private Shape model;
+    /**
+     *Coordonnées du dernier clique souris
+     */
     private Point locCreation ;
+    /**
+     *Couleur de remplissage de la figure
+     */
     private Color filledColor = Constantes.COLOR_INVISIBLE;
-    private Color strokedColor = Constantes.DEFAULT_COLOR_ADD;
+    /**
+     *Couleur des contours de la figure
+     */
+    private Color strokedColor = Constantes.DEFAULT_COLOR_ADD_RECTANGLE;
+    /**
+     *Le JPopUpMenu associeé
+     */
     final JPopupMenu menu = new JPopupMenu("Color Menu");
 
+    /**
+     *Constructeur
+     *
+     * @param newModel modèle  à utilisé
+     * @param view la view utilisée
+     */
     public RectangleCreator(Shape newModel, ModelView view) {
         super(newModel);
         this.model = newModel;
@@ -81,6 +105,9 @@ public class RectangleCreator extends AbstractController {
     public void keyReleased(KeyEvent evt) {
     }
 
+    /**
+     *Déselectionne toutes les figures
+     */
     private void unselectedAll(){
         try {
             for (Shape s : ((SModel) this.model).getCalqueUse().getElement())
@@ -92,6 +119,12 @@ public class RectangleCreator extends AbstractController {
         }
     }
 
+    /**
+     *Change la taille de l'ellipse en création
+     *
+     * @param i abscisses du d'un coin du rectangle dont le coin opposé est aux coordonnées locCreation
+     * @param p ordonnées du d'un coin du rectangle dont le coin opposé est aux coordonnées locCreation
+     */
     private void changeSize(int i,int p) {
         for (Shape s : ((SCollection) this.model).getElement()) {
             SelectionAttributes selectionAttributes = (SelectionAttributes) s.getAttributes(Constantes.SELECTION_ATTRIBUTE);
@@ -110,6 +143,12 @@ public class RectangleCreator extends AbstractController {
         }
     }
 
+    /**
+     *Construit le JPopUpMenu associé
+     *
+     * @param menu le menu JPopUpMenu à construire
+     * @param modelController le modelcontroller utilisé
+     */
     public void requestJPopopUpMenu(JPopupMenu menu,ModelController modelController) {
         JMenu color = new JMenu("Color");
         JMenuItem strokedColorMenu = new JMenuItem("Stroked color");

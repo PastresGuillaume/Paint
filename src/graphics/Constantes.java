@@ -240,4 +240,6 @@ public class Constantes {
      * Chemin vers le dossier contenant les sons.
      */
     public static final String PATH_SON = "son"+PATH_SEPARATOR;
+
+    public  final String borderLayout = BorderLayout.EAST;
 }

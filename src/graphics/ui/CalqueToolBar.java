@@ -16,22 +16,50 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Objects;
 
+/**
+ * Classe construisant le menu gérant les calques
+ */
 public class CalqueToolBar extends  AbstractBar{
 
+    /**
+     *view associée
+     */
     private ModelView view;
+    /**
+     *la JToolBar associée
+     */
     private JToolBar toolBar = new JToolBar(JToolBar.VERTICAL);
+    /**
+     *HashMap regroupant tous les boutons du menus avec comme clé le calque associé et leur fonction
+     */
     private HashMap<String,JComponent> buttons = new HashMap<>();
 
-    public  final String borderLayout = BorderLayout.EAST;
-
+    /**
+     * Constructeur
+     *
+     * @param view view utilisée
+     */
     public CalqueToolBar(ModelView view){
         this.view = view;
     }
 
+    /**
+     * Renvoie la view
+     * @return renvoie la view
+     */
     public ModelView getView(){return this.view;}
 
+    /**
+     * Renvoie la HashMap composé de tous les boutons du menus
+     * @return Renvoie la HashMap composé de tous les boutons du menus
+     */
     public HashMap<String, JComponent> getButtons() {return buttons;}
 
+    /**
+     * Construit la JToolBar
+     * @return La JToolBar construite
+     * @throws IOException 
+     */
     public JToolBar createToolBar() throws IOException {
         SModel sModel = (SModel) this.view.getModel();
 
@@ -64,6 +92,12 @@ public class CalqueToolBar extends  AbstractBar{
         return toolBar;
     }
 
+    /**
+     * Rajoute le bouton de sélection et la checkbox de choix si on dessine le calque
+     * @param calque le calque impacté par ces boutons
+     * @param sModel le modèle
+     * @param toolBar la toolbar où sont les boutons
+     */
     private void addButtonCalque(Calque calque, SModel sModel, JToolBar toolBar){
         JButton btnNew = new JButton();
         btnNew.setBackground(Constantes.BACKGROUND_COLOR);
@@ -118,7 +152,6 @@ public class CalqueToolBar extends  AbstractBar{
                 ((SModel) view.getModel()).delCalque(calque);
                 toolBar.remove(btnNew);
                 toolBar.remove(checkBox);
-                toolBar.updateUI();
                 view.invalidate();
             }
         });
@@ -150,7 +183,6 @@ public class CalqueToolBar extends  AbstractBar{
                         checkBox.setText(calque.getName());
                         ((CalqueToolBar) view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().put(calque.getName() + Constantes.IS_USED_CALQUE,btnNew);
                         ((CalqueToolBar) view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().put(calque.getName() + Constantes.IS_PAINTED_CALQUE,checkBox);
-                        toolBar.updateUI();
                         deleteCalque.setText("delete " + outcome);
                         renameCalque.setText("rename " + outcome);
                         frame.setVisible(false);
@@ -171,6 +203,9 @@ public class CalqueToolBar extends  AbstractBar{
         btnNew.setComponentPopupMenu(jPopupMenu);
     }
 
+    /**
+     * Change la couleur du menu
+     */
     @Override
     public void changeColor() {
         this.toolBar.setBackground(Constantes.MENUBAR_COLOR);
@@ -186,6 +221,9 @@ public class CalqueToolBar extends  AbstractBar{
         }
     }
 
+    /**
+     * Reconstruit la toolbar actuelle
+     */
     public void refresh()  {
         try {
             this.toolBar.removeAll();

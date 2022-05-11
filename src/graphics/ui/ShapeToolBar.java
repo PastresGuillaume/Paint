@@ -8,16 +8,30 @@ import graphics.ui.View.ModelView;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Classe construisant le menu gérant le changement de contrôleur
+ */
 public class ShapeToolBar extends AbstractBar{
 
+    /**
+     * la view
+     */
     private ModelView view;
-    private final Dimension dimension;
+    /**
+     * La toolbar associée
+     */
     private JToolBar toolBar = new JToolBar();
+    /**
+     * un file chooser utile pour ImageCreator
+     */
     private final JFileChooser fileChooser;
 
+    /**
+     * Constructeur
+     * @param view la view du modèle mvc
+     */
     public ShapeToolBar(ModelView view){
         this.view = view;
-        this.dimension = new Dimension(25,25);
         this.setSize(300,25);
         this.fileChooser = new JFileChooser();
         this.fileChooser.setAcceptAllFileFilterUsed(false);
@@ -25,32 +39,36 @@ public class ShapeToolBar extends AbstractBar{
         this.fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
     }
 
+    /**
+     * avoir la view
+     * @return la view utilisée
+     */
     public ModelView getView(){
         return this.view;
     }
 
+    /**
+     * Construit la ToolBar associée
+     * @return renvoie la ToolBar construite
+     */
     public JToolBar createToolBar() {
         JButton btnNew = new JButton( new ImageIcon(Constantes.PATH_IMAGES + "select.png") );
         btnNew.setToolTipText( "Selection" );
-        btnNew.setSize(this.dimension);
         btnNew.addActionListener(e -> view.setController(new ShapesController((Shape) view.getModel(), this.view)));
         toolBar.add( btnNew );
 
         JButton btnDrawRectangle = new JButton( new ImageIcon(Constantes.PATH_IMAGES + "square.png" ) );
         btnDrawRectangle.setToolTipText( "Draw rectangle" );
-        btnDrawRectangle.setSize(this.dimension);
         btnDrawRectangle.addActionListener(e -> view.setController(new RectangleCreator((Shape) view.getModel(), this.view)));
         toolBar.add(btnDrawRectangle);
 
         JButton btnDrawCircle = new JButton( new ImageIcon(Constantes.PATH_IMAGES + "circle.png" ) );
         btnDrawCircle.setToolTipText( "Draw circle" );
-        btnDrawCircle.setSize(this.dimension);
         btnDrawCircle.addActionListener(e -> view.setController(new EllipsisCreator((Shape) view.getModel(), this.view)));
         toolBar.add(btnDrawCircle);
 
         JButton btnDrawImage = new JButton(new ImageIcon((new ImageIcon(Constantes.PATH_IMAGES + "picture.png")).getImage().getScaledInstance(15, 15, java.awt.Image.SCALE_SMOOTH)));
         btnDrawImage.setToolTipText("Draw Image");
-        btnDrawImage.setSize(this.dimension);
         btnDrawImage.addActionListener(e -> {
             int operationResult = fileChooser.showOpenDialog(view);
             if (operationResult == JFileChooser.APPROVE_OPTION){
@@ -62,6 +80,9 @@ public class ShapeToolBar extends AbstractBar{
         return toolBar;
     }
 
+    /**
+     * Change la couleur de la ToolBar
+     */
     @Override
     public void changeColor() {
         this.toolBar.setBackground(Constantes.MENUBAR_COLOR);
