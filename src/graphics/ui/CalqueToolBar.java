@@ -152,6 +152,7 @@ public class CalqueToolBar extends  AbstractBar{
                 ((SModel) view.getModel()).delCalque(calque);
                 toolBar.remove(btnNew);
                 toolBar.remove(checkBox);
+                toolBar.updateUI();
                 view.invalidate();
             }
         });
@@ -185,6 +186,7 @@ public class CalqueToolBar extends  AbstractBar{
                         ((CalqueToolBar) view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().put(calque.getName() + Constantes.IS_PAINTED_CALQUE,checkBox);
                         deleteCalque.setText("delete " + outcome);
                         renameCalque.setText("rename " + outcome);
+                        toolBar.updateUI();
                         frame.setVisible(false);
                     }
                 }

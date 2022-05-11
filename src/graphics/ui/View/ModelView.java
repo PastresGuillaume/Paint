@@ -31,7 +31,7 @@ public class ModelView extends View{
      */
     private GameDraftman draftman;
     /**
-     * Barre de menu.
+     * HashMap de tous les menus avec comme clé leur ID
      */
     private HashMap<String, AbstractBar> menus = new HashMap<>();
 
@@ -96,12 +96,17 @@ public class ModelView extends View{
     }
 
     /**
-     * Getter pour le menu.
+     * Getter pour la HashMap classant les menus
      *
      * @return Menu.
      */
     public HashMap<String, AbstractBar> getMenus() {return menus;}
 
+    /**
+     * Met à jour l'icone dans la calqueBar du calque choisi
+     * @param calque calque à mettre à jour
+     * @throws IOException
+     */
     public void updateIconCalqueBar(Calque calque) throws IOException {
         BufferedImage bi = new BufferedImage(Constantes.WINDOW_DIMENSIONS.width,Constantes.WINDOW_DIMENSIONS.height,BufferedImage.TYPE_INT_ARGB);
         Graphics2D ig2 = bi.createGraphics();
