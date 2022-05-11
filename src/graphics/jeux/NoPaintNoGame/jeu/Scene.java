@@ -571,7 +571,7 @@ public class Scene extends JPanel {
      * @return un boolean
      */
     private boolean partieGagnee(){
-        if((this.compteARebours.getCompteurTemps() > 0) && (this.mario.isVivant() ) && (this.xPos >=posMAX)){ return (true); }
+        if(((this.mario.isVivant()) && this.score.getNbrPiece() ==10 ) ||( (this.mario.isVivant()) && this.compteARebours.getCompteurTemps() > 0)  && (this.xPos >=posMAX) ) { return (true); }
         else {return (false);}
     }
     /**
@@ -592,7 +592,9 @@ public class Scene extends JPanel {
      */
 
      public boolean finPartie(){
-        if(this.partieGagnee()|| this.partiePerdue()){return true;}
+        if(this.partieGagnee()|| this.partiePerdue()){
+            this.compteARebours.setSTOP(false);
+            return true;}
         else{return false;}
     }
 
