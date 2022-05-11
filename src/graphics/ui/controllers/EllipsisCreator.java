@@ -52,13 +52,31 @@ public class EllipsisCreator extends AbstractController{
         unselectedAll();
     }
 
+    /**
+     * Change le modèle.
+     *
+     * @param model modèle souhaitée
+     */
+    @Override
     public void setModel(Shape model)
     {
         this.model = model;
     }
 
+    /**
+     * Renvoie le modèle actuel.
+     *
+     * @return Le modèle actuel.
+     */
+    @Override
     public Shape getModel() {return this.model;}
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie.
+     *
+     * @param e Événement souris.
+     */
+    @Override
     public void mousePressed(MouseEvent e) {
         unselectedAll();
         if(SwingUtilities.isRightMouseButton(e))
@@ -75,26 +93,55 @@ public class EllipsisCreator extends AbstractController{
         }
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache la souris.
+     *
+     * @param e Événement souris.
+     */
+    @Override
     public void mouseReleased(MouseEvent e) {
         this.locCreation = new Point();
         unselectedAll();
     }
 
-    public void mouseClicked(MouseEvent e)
-    {
+    /**
+     * Action réalisée lorsque l'utilisateur clique.
+     *
+     * @param e Événement souris.
+     */
+    @Override
+    public void mouseClicked(MouseEvent e) {
         this.locCreation = new Point();
         unselectedAll();
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur fait un cliqué glissé.
+     *
+     * @param e Événement souris.
+     */
+    @Override
     public void mouseDragged(MouseEvent e) {
             int width = (int) (e.getPoint().getX() - this.locCreation.getX());
             int height = (int) (e.getPoint().getY() - this.locCreation.getY());
             this.changeSize(width, height);
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie sur une touche.
+     *
+     * @param evt Événement clavier.
+     */
+    @Override
     public void keyPressed(KeyEvent evt){
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache une touche.
+     *
+     * @param evt Événement clavier.
+     */
+    @Override
     public void keyReleased(KeyEvent evt){
     }
 
@@ -143,6 +190,7 @@ public class EllipsisCreator extends AbstractController{
      * @param menu le menu JPopUpMenu à construire
      * @param modelController le modelcontroller utilisé
      */
+    @Override
     public void requestJPopopUpMenu(JPopupMenu menu,ModelController modelController) {
         JMenu color = new JMenu("Color");
         JMenuItem strokedColorMenu = new JMenuItem("Stroked color");

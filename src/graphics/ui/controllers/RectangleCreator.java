@@ -52,15 +52,30 @@ public class RectangleCreator extends AbstractController {
         unselectedAll();
     }
 
+    /**
+     * Change le modèle.
+     *
+     * @param model modèle souhaitée
+     */
     @Override
     public void setModel(Shape model)
     {
         this.model = model;
     }
 
+    /**
+     * Renvoie le modèle actuel.
+     *
+     * @return Le modèle actuel.
+     */
     @Override
     public Shape getModel() {return this.model;}
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
         unselectedAll();
@@ -78,18 +93,33 @@ public class RectangleCreator extends AbstractController {
         }
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache la souris.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         this.locCreation = new Point();
         unselectedAll();
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur clique.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         this.locCreation = new Point();
         unselectedAll();
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur fait un cliqué glissé.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseDragged(MouseEvent e) {
         int width = (int) (e.getPoint().getX() - this.locCreation.getX());
@@ -97,10 +127,20 @@ public class RectangleCreator extends AbstractController {
         this.changeSize(width, height);
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie sur une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyPressed(KeyEvent evt) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyReleased(KeyEvent evt) {
     }

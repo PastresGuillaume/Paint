@@ -17,15 +17,41 @@ import graphics.ui.View.View;
 import static graphics.Constantes.*;
 
 public class ShapesController extends AbstractController {
-
+    /**
+     * Forme.
+     */
     private Shape model;
+    /**
+     * Vue.
+     */
     private ModelView view;
+    /**
+     * Est-ce que la touche shift est appuyé ?
+     */
     private boolean shiftPressed = false;
+    /**
+     * Dernier clic.
+     */
     private Point lastClick;
+    /**
+     * Est-ce que l'on est en train de faire une sélection par déplacement de souris ?
+     */
     private boolean selectionDragged=false;
+    /**
+     * La dernière forme qui est redimensionnable.
+     */
     private Shape resizeableShape;
+    /**
+     * Coin supérieur gauche du rectangle dans lequel s'inscrit la forme.
+     */
     private Point initLoc;
 
+    /**
+     * Constructeur.
+     *
+     * @param newModel Forme.
+     * @param view Vue de la forme.
+     */
     public ShapesController(Shape newModel, View view) {
         super(newModel);
         this.model = newModel;
@@ -33,11 +59,21 @@ public class ShapesController extends AbstractController {
         this.view = (ModelView) view;
     }
 
+    /**
+     * Change la vue.
+     *
+     * @param view Vue souhaitée.
+     */
     @Override
     public void setView(ModelView view){
         this.view = view;
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
 
@@ -65,6 +101,11 @@ public class ShapesController extends AbstractController {
         }
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache la souris.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
         if (selectionDragged) {
@@ -88,6 +129,11 @@ public class ShapesController extends AbstractController {
         selectionDragged = false;
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur clique.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
         int xCursor = e.getX();
@@ -107,14 +153,29 @@ public class ShapesController extends AbstractController {
         }
     }
 
+    /**
+     * Action réalisée lorsque la souris entre dans l'écran.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    /**
+     * Action réalisée lorsque la souris sort de l'écran.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseExited(MouseEvent e) {
     }
 
+    /**
+     * Action réalisée lorsque la souris bouge.
+     *
+     * @param evt Événement souris.
+     */
     @Override
     public void mouseMoved(MouseEvent evt) {
         Iterator<Shape> iterator = ((SCollection)this.getModel()).iterator();
@@ -133,6 +194,11 @@ public class ShapesController extends AbstractController {
         }
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur fait un cliqué glissé.
+     *
+     * @param evt Événement souris.
+     */
     @Override
     public void mouseDragged(MouseEvent evt) {
         if (!this.selectionDragged) {
@@ -171,10 +237,20 @@ public class ShapesController extends AbstractController {
         }
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur clique sur une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyTyped(KeyEvent evt) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie sur une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyPressed(KeyEvent evt) {
         if (evt.isShiftDown()){
@@ -182,6 +258,11 @@ public class ShapesController extends AbstractController {
         }
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyReleased(KeyEvent evt) {
         if (!evt.isShiftDown()) {
@@ -189,6 +270,13 @@ public class ShapesController extends AbstractController {
         }
     }
 
+    /**
+     * Renvoie la forme sur laquelle on a cliqué.
+     *
+     * @param x Coordonnée x.
+     * @param y Coordonnée y.
+     * @return Forme sur laquelle on a cliqué.
+     */
     public Shape getTarget(int x, int y){
         SCollection model;
         try{
@@ -208,6 +296,13 @@ public class ShapesController extends AbstractController {
         return retour;
     }
 
+    /**
+     * Renvoie la forme sur laquelle on a cliqué sur une poignée de redimension.
+     *
+     * @param x Coordonnée x.
+     * @param y Coordonnée y.
+     * @return Forme sur laquelle on a cliqué sur une poignée de redimension.
+     */
     public Shape getResizeableShape(int x, int y){
         SCollection model;
         try{
@@ -230,6 +325,9 @@ public class ShapesController extends AbstractController {
         return null;
     }
 
+    /**
+     * Désélectionne la forme et toutes les formes la conposant.
+     */
     public void unSelectAll(){
         SCollection model;
         try{

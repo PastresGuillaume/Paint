@@ -70,42 +70,92 @@ public class AbstractController extends Controller {
         return this.model;
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mousePressed(MouseEvent e) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache la souris.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseReleased(MouseEvent e) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur clique.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseClicked(MouseEvent e) {
     }
 
+    /**
+     * Action réalisée lorsque la souris entre dans l'écran.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    /**
+     * Action réalisée lorsque la souris sort de l'écran.
+     *
+     * @param e Événement souris.
+     */
     @Override
     public void mouseExited(MouseEvent e) {
     }
 
+    /**
+     * Action réalisée lorsque la souris bouge.
+     *
+     * @param evt Événement souris.
+     */
     @Override
     public void mouseMoved(MouseEvent evt) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur fait un cliqué glissé.
+     *
+     * @param evt Événement souris.
+     */
     @Override
     public void mouseDragged(MouseEvent evt) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur clique sur une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyTyped(KeyEvent evt) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur appuie sur une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyPressed(KeyEvent evt) {
     }
 
+    /**
+     * Action réalisée lorsque l'utilisateur relache une touche.
+     *
+     * @param evt Événement clavier.
+     */
     @Override
     public void keyReleased(KeyEvent evt) {
     }
