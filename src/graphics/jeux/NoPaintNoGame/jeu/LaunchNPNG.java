@@ -21,14 +21,14 @@ public class LaunchNPNG {
         fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// quand on clique sur la croix rouge on ferme le programme
         fenetre.setSize(800,630);//taille
         fenetre.setLocationRelativeTo(null);//centrée
-        fenetre.setResizable(false);//on ne la redimentionne pas
+        fenetre.setResizable(false);//on ne la redimensionne pas
         fenetre.setAlwaysOnTop(true);//fenêtre en premier plan
 
         //Jpannel où on stocke les elements
         //Instanciation de l'objet scène
         scene = new Scene();
 
-        fenetre.setContentPane(scene); //On associe la scène à la fenêtre de application
+        fenetre.setContentPane(scene); //On associe la scène à la fenêtre d'application
         fenetre.setVisible(true);
     }
 }
