@@ -612,6 +612,7 @@ public class Scene extends JPanel {
 
     public void paintComponent(Graphics g){
 
+
         super.paintComponent(g);
         Graphics g2 = (Graphics2D)g;
 

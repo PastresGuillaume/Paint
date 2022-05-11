@@ -74,10 +74,11 @@ public class Audio {
         s.play();
     }
 
-     /*public void MusicFond(){
-        if(isSfond()){
+      /*public static void MusicFond(){
             Audio.playSound(Constantes.PATH_SON+"fond.wav");
-        }
+            }
+
+        if(isSfond()){ }
         else{
             if(isSgagne()){Audio.playSound(Constantes.PATH_SON+"gagne.wav");}
              else{ Audio.playSound(Constantes.PATH_SON+"perdu.wav"); }

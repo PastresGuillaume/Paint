@@ -1,5 +1,8 @@
 package graphics.jeux.NoPaintNoGame.jeu;
 
+import graphics.Constantes;
+import graphics.jeux.NoPaintNoGame.ecoute.Audio;
+
 import javax.swing.*;
 
 /**
@@ -23,7 +26,7 @@ public class LaunchNPNG {
         fenetre.setLocationRelativeTo(null);//centrée
         fenetre.setResizable(false);//on ne la redimentionne pas
         fenetre.setAlwaysOnTop(true);//fenêtre en premier plan
-
+        Audio.playSound("fond");
         //Jpannel où on stocke les elements
         //Instanciation de l'objet scène
         scene = new Scene();
