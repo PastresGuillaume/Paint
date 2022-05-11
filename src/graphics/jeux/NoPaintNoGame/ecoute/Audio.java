@@ -42,7 +42,7 @@ public class Audio {
     public Audio(String son){
         try{
 //            AudioInputStream audio = AudioSystem.getAudioInputStream(getClass().getResource(son));
-            AudioInputStream audio = AudioSystem.getAudioInputStream(new File(Constantes.PATH_SON+"son.wav"));
+            AudioInputStream audio = AudioSystem.getAudioInputStream(new File(Constantes.PATH_SON+"saut.wav"));
             clip = AudioSystem.getClip();
             clip.open(audio);
         }

@@ -198,6 +198,7 @@ public class SImage extends Shape{
 
     /**
      * Sert à la sauvegarde.
+     *
      * @param ois
      * @throws IOException
      * @throws ClassNotFoundException

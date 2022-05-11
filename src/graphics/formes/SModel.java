@@ -8,6 +8,9 @@ import java.io.Serial;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Définition du modèle.
+ */
 public class SModel extends Shape{
     /**
      * Identifiant servant à la sauvegarde.
