@@ -411,7 +411,7 @@ public class Scene extends JPanel {
             if(this.mario.proche(this.tabDecor.get(i))){
                 this.mario.contact(this.tabDecor.get(i),i);
                 this.mario.fly(this.tabDecor.get(i));
-                this.mario.noFly(this.tabDecor.get(i));
+                //this.mario.noFly(this.tabDecor.get(i));
 
             }
 
