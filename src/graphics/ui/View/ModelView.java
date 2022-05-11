@@ -22,14 +22,33 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * Définition de la vue du modèle.
+ */
 public class ModelView extends View{
+    /**
+     * Dessinateur.
+     */
     private GameDraftman draftman;
+    /**
+     * Barre de menu.
+     */
     private HashMap<String, AbstractBar> menus = new HashMap<>();
 
+    /**
+     * Getter du draftman.
+     *
+     * @return Le draftman.
+     */
     public ModelDraftman getDraftman() {
         return draftman;
     }
 
+    /**
+     * Constructeur.
+     *
+     * @param model Le modèle actuel.
+     */
     public ModelView(Object model) {
         super(model);
         this.draftman = new GameDraftman();
@@ -39,16 +58,32 @@ public class ModelView extends View{
         this.menus.put(Constantes.SHAPE_TOOL_BAR_ID,new ShapeToolBar(this));
     }
 
+    /**
+     * Controller par défaut.
+     *
+     * @param model Model actuel.
+     * @return Controller par défaut.
+     */
     @Override
     public Controller defaultController(Object model) {
         return new ModelController(model, this);
     }
 
+    /**
+     * Change le controller actuel.
+     *
+     * @param c Controller souhaité.
+     */
     public void setController(AbstractController c){
         ((ModelController) this.getController()).setController(c);
         super.requestFocusInWindow();
     }
 
+    /**
+     * Fonction de rafraichissement de l'écran.
+     *
+     * @param g Graphics.
+     */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -60,6 +95,11 @@ public class ModelView extends View{
         model.accept(draftman);
     }
 
+    /**
+     * Getter pour le menu.
+     *
+     * @return Menu.
+     */
     public HashMap<String, AbstractBar> getMenus() {return menus;}
 
     public void updateIconCalqueBar(Calque calque) throws IOException {

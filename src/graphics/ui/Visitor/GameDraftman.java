@@ -12,8 +12,16 @@ import graphics.jeux.MortPion;
 
 import java.awt.*;
 
+/**
+ * Définition du dessinateur pour les jeux dans les calques.
+ */
 public class GameDraftman extends ModelDraftman {
 
+    /**
+     * Desinnateur du mort pion.
+     *
+     * @param mortPion Mort pion en question.
+     */
     public void visitMortPion(MortPion mortPion){
         SCollection content = new SCollection();
         content.addAttributes(new SelectionAttributes());

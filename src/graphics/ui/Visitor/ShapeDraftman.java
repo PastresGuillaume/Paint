@@ -12,17 +12,39 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.util.Iterator;
 
+/**
+ * Définition du dessinateur de formes.
+ */
 public class ShapeDraftman implements ShapeVisitor{
+    /**
+     * Graphics.
+     */
     private Graphics graphics;
-//    TODO rotation for all shape
+
+    /**
+     * Change le graphics.
+     *
+     * @param g Nouveau graphics.
+     */
     public void setGraphics(Graphics g){
         this.graphics = g;
     }
 
+    /**
+     * Retourne le Graphics.
+     *
+     * @return Le Graphics.
+     */
     public Graphics getGraphics() {
         return graphics;
     }
 
+    /**
+     * Trace un rectangle.
+     *
+     * @param rectangle Rectangle à tracer.
+     * @param color Attribut de couleur.
+     */
     private  void drawRectangle(Rectangle rectangle, ColorAttributes color){
         if(color.filled) {
             this.graphics.setColor(color.filledColor);
@@ -34,6 +56,11 @@ public class ShapeDraftman implements ShapeVisitor{
         }
     }
 
+    /**
+     * Dessine un SRectangle
+     *
+     * @param rectangle Rectangle à dessiner.
+     */
     @Override
     public void visitRectangle(SRectangle rectangle) {
         Rectangle r = rectangle.getBounds();
@@ -79,6 +106,11 @@ public class ShapeDraftman implements ShapeVisitor{
 
     }
 
+    /**
+     * Dessine un SPolygone.
+     *
+     * @param poly Polygone à dessiner.
+     */
     @Override
     public void visitPolygon(SPolygone poly){
         Rectangle rectangle = poly.getBounds();
@@ -129,6 +161,11 @@ public class ShapeDraftman implements ShapeVisitor{
             drawSelection(rectangle);
     }
 
+    /**
+     * Dessine une ellipse.
+     *
+     * @param ellipsis Ellipse à dessiner.
+     */
     @Override
     public void visitEllipsis(Shape ellipsis) {
         Rectangle rectangle = ellipsis.getBounds();
@@ -178,6 +215,11 @@ public class ShapeDraftman implements ShapeVisitor{
             drawSelection(rectangle);
         }
 
+    /**
+     * Dessine un texte.
+     *
+     * @param text Texte à dessiner.
+     */
     @Override
     public void visitText(SText text) {
         SelectionAttributes selection = (SelectionAttributes) text.getAttributes(Constantes.SELECTION_ATTRIBUTE);
@@ -232,6 +274,11 @@ public class ShapeDraftman implements ShapeVisitor{
             drawSelection(rectangle);
     }
 
+    /**
+     * Dessine une collection.
+     *
+     * @param collection Collection à dessiner.
+     */
     @Override
     public void visitCollection(SCollection collection) {
         Iterator<Shape> i = collection.iterator();
@@ -243,6 +290,11 @@ public class ShapeDraftman implements ShapeVisitor{
             drawSelection(collection.getBounds());
     }
 
+    /**
+     * Dessine une image.
+     *
+     * @param image Image à dessiner.
+     */
     @Override
     public void visitImage(SImage image) {
         Rectangle r = image.getBounds();
@@ -253,6 +305,11 @@ public class ShapeDraftman implements ShapeVisitor{
             drawSelection(r);
     }
 
+    /**
+     * Place les poignées de selection d'une image.
+     *
+     * @param shape Image
+     */
     public void drawSelectedImage(SImage shape){
         SelectionAttributes selectionAttributes = (SelectionAttributes)shape.getAttributes(Constantes.SELECTION_ATTRIBUTE);
         if (selectionAttributes.isSelected()){
@@ -265,6 +322,11 @@ public class ShapeDraftman implements ShapeVisitor{
         }
     }
 
+    /**
+     * Place les poignées de selection d'une forme.
+     *
+     * @param rectangle Rectangle dans lequel s'inscrit la forme.
+     */
     private void drawSelection(Rectangle rectangle) {
         if (Constantes.SELECTION_COLOR.filled){
             this.graphics.setColor(Constantes.SELECTION_COLOR.filledColor);
@@ -277,13 +339,4 @@ public class ShapeDraftman implements ShapeVisitor{
             this.graphics.drawRect((int) (rectangle.getX() + rectangle.width), (int) rectangle.getY() + rectangle.height, Constantes.SIZE_SHAPE_SELECTED, Constantes.SIZE_SHAPE_SELECTED);
         }
     }
-
-
-//    private void drawRotation(Rectangle rectangle) {
-//        Graphics2D g2d = (Graphics2D) this.graphics;
-//        AffineTransform oldTransform = g2d.getTransform();
-//        g2d.setTransform(AffineTransform.getRotateInstance(0.2));
-//        g2d.draw(rectangle);
-//        g2d.setTransform(oldTransform);
-//    }
 }
