@@ -1,7 +1,5 @@
 package graphics.jeux.NoPaintNoGame.Affichage;
 
-import graphics.jeux.NoPaintNoGame.jeu.Main;
-
 /**
  * CompteARebour est la classe qui définit le compte à rebour de javadoc
  * Cette classe est caractérisée par les informations suivantes :

@@ -1,6 +1,6 @@
 package graphics.jeux.NoPaintNoGame.Objet;
 
-import graphics.jeux.NoPaintNoGame.jeu.Main;
+import graphics.jeux.NoPaintNoGame.jeu.LaunchNPNG;
 
 import javax.swing.*;
 import java.awt.*;
@@ -134,8 +134,8 @@ public abstract class Decor {
 
 
    public void deplacement(){
-      if(Main.scene.getxPos() >=0){
-         this.x = this.x -Main.scene.getDx();
+      if(LaunchNPNG.scene.getxPos() >=0){
+         this.x = this.x - LaunchNPNG.scene.getDx();
       }
    }
 }

@@ -258,7 +258,7 @@ public class Scene extends JPanel {
     /////////////////////////////
     public void deplacementFond(){
 
-      if(this.xPos>=0 && this.xPos <= Main.scene.posMAX) {
+      if(this.xPos>=0 && this.xPos <= LaunchNPNG.scene.posMAX) {
           this.xPos = this.xPos + this.dx;
           this.xFond1 = this.xFond1 - this.dx;
           this.xFond2 = this.xFond2 - this.dx;

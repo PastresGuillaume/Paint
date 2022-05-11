@@ -4,12 +4,15 @@ import graphics.Constantes;
 import graphics.formes.Calque;
 import graphics.formes.GameCalque;
 import graphics.formes.SModel;
+import graphics.jeux.NoPaintNoGame.jeu.LaunchNPNG;
 import graphics.ui.View.ModelView;
 import graphics.ui.controllers.GameController;
 import graphics.ui.controllers.ModelController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 public class MenuBar extends AbstractBar {
@@ -62,6 +65,7 @@ public class MenuBar extends AbstractBar {
 
         JMenu gameMenu = new JMenu("Games");
         gameMenu.add(this.createGameItem("Morpion", Constantes.GAME_ID_MORT_PION));
+        gameMenu.add(this.noPaintNoGame());
         menuBar.add(gameMenu);
 
         JMenu helpMenu = new JMenu("Help");
@@ -152,5 +156,17 @@ public class MenuBar extends AbstractBar {
         Calque.nb_Calque = 0;
         this.view.setModel(new SModel());
         ((CalqueToolBar)this.view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).refresh();
+    }
+
+    public JMenuItem noPaintNoGame(){
+        JMenuItem gameItem = new JMenuItem("NoPaintNoGame");
+        gameItem.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LaunchNPNG launchNPNG = new LaunchNPNG();
+                launchNPNG.noPaintNoGame();
+            }
+        });
+        return gameItem;
     }
 }

@@ -13,7 +13,7 @@ public class Chrono implements Runnable{
     @Override
     public void run(){
         while(true){
-            Main.scene.repaint();
+            LaunchNPNG.scene.repaint();
 
             try {Thread.sleep(PAUSE);}catch(InterruptedException e){}
         }

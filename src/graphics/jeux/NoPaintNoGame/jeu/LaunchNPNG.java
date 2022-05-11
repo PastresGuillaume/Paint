@@ -2,24 +2,24 @@ package graphics.jeux.NoPaintNoGame.jeu;
 
 import javax.swing.*;
 
-public class Main {
+public class LaunchNPNG {
     public static Scene scene;
 
-    public static void main(String[] args) {
+    public void noPaintNoGame(){
 
         // Création de la fenêtre d'application
         JFrame fenetre = new JFrame("No paint No Game" );
-        fenetre.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);// quand on clique sur la croix rouge on ferme le programe
+        fenetre.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);// quand on clique sur la croix rouge on ferme le programme
         fenetre.setSize(800,630);//taille
         fenetre.setLocationRelativeTo(null);//centrée
         fenetre.setResizable(false);//on ne la redimentionne pas
-        fenetre.setAlwaysOnTop(true);//fenetre en premier plan
+        fenetre.setAlwaysOnTop(true);//fenêtre en premier plan
 
-        //Jpannel où on stock les elements
-        //Instanciation de l'objet scene
+        //Jpannel où on stocke les elements
+        //Instanciation de l'objet scène
         scene = new Scene();
 
-        fenetre.setContentPane(scene); //On associe la scene à la fenêtre de application
+        fenetre.setContentPane(scene); //On associe la scène à la fenêtre de application
         fenetre.setVisible(true);
     }
 }
