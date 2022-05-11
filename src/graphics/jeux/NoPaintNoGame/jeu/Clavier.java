@@ -44,7 +44,7 @@ public class Clavier implements KeyListener {
                 LaunchNPNG.scene.mario.setSaut(true);
 //                TODO remettre
 //                Audio.playSound(Constantes.PATH_SON+"saut.wav");
-                Audio.playSound("son/saut.wav");
+                Audio.playSound("saut");
              }
 
 

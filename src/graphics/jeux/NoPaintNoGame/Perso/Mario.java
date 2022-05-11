@@ -225,48 +225,56 @@ public class Mario extends Personnage {
      */
 
     public void contact(Decor decor, int i) {
-        if(!decor.isbPiece()) {
+
 
             //Contact hotizontal
             if ((super.contactAvant(decor) && this.isVersDroite() || super.contactArriere(decor) && !this.isVersDroite())) {
+                if(decor.isbPiece()) { LaunchNPNG.scene.tabDecor.remove(decor);}
+                else{LaunchNPNG.scene.setDx(0);
+                    this.setMarche(false);}
 
-                LaunchNPNG.scene.setDx(0);
-                this.setMarche(false);
             }
 
             // contact avec un objet en dessous
             if (super.contactDessous(decor) && this.saut) {
-                LaunchNPNG.scene.setMarioY(decor.getY() - this.getHauteur());
-                LaunchNPNG.scene.setYsol(decor.getY() - this.getHauteur());
-                this.setSaut(false);
+                if(decor.isbPiece()) { LaunchNPNG.scene.tabDecor.remove(decor);}
+                else{
+                    LaunchNPNG.scene.setMarioY(decor.getY() - this.getHauteur());
+                    LaunchNPNG.scene.setYsol(decor.getY() - this.getHauteur());
+                    this.setSaut(false);
+                }
+
 
                 //this.setMarche(true);
             } else if (!super.contactDessous(decor)) {
-                LaunchNPNG.scene.setYsol(LaunchNPNG.scene.marioY);//altitude du sol initial
 
-                if (!this.saut) {
-                    this.setY(LaunchNPNG.scene.marioY);
+                if(decor.isbPiece()) { LaunchNPNG.scene.tabDecor.remove(decor);}
+                else{
+                    LaunchNPNG.scene.setYsol(LaunchNPNG.scene.marioY);//altitude du sol initial
+
+                    if (!this.saut) {
+                        this.setY(LaunchNPNG.scene.marioY);
+                }
+
 
 
                 }//altitude initiale de mario
             }
 
             // contact avec un objet au dessus
-            if (super.contactDessus(decor)) {
+            if (super.contactDessus(decor) && !decor.isbPiece()) {
+
                 LaunchNPNG.scene.setHauteurPlafond(decor.getY() + decor.getHauteur()); //le plafond devient le dessous de l'objet
-            } else if (!contactDessus(decor) && !this.saut) {
+
+            }
+            else if (!contactDessus(decor) && !this.saut && !decor.isbPiece()) {
+
                 LaunchNPNG.scene.setHauteurPlafond(0);//altitud einitiale (ciel)
             }
         }
-        else{
-            if(this.contactPiece(decor)){
-                LaunchNPNG.scene.tabDecor.remove(decor);
 
-            }
 
-        }
 
-    }
 
 
     /**
@@ -280,6 +288,17 @@ public class Mario extends Personnage {
 
     public void fly(Decor decor){
         if(!super.contactDessous(decor) && !this.saut && this.getY() < LaunchNPNG.scene.marioY0){
+            this.setY( LaunchNPNG.scene.marioY0);
+
+        }
+        else{
+
+        }
+
+    }
+
+    public void noFly(Decor decor){
+        if(!super.contactDessus(decor) && !this.saut && this.getY() < LaunchNPNG.scene.marioY0){
             this.setY( LaunchNPNG.scene.marioY0);
 
         }

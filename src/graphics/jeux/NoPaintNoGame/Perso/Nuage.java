@@ -26,7 +26,7 @@ import java.awt.*;
         */
 
 
-public class Champi extends Personnage implements Runnable{
+public class Nuage extends Personnage implements Runnable{
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Données membres//
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -50,7 +50,7 @@ public class Champi extends Personnage implements Runnable{
      * @param y
      */
         //**** CONSTRUCTEUR	****//
-        public Champi(int largeur, int hauteur ,int x, int y) {
+        public Nuage(int largeur, int hauteur , int x, int y) {
 
             super(largeur, hauteur, x, y,true,true);
             this.dxChamp = 1;
@@ -80,17 +80,22 @@ public class Champi extends Personnage implements Runnable{
      * bouge() permet de déplacer le champignon horizontalement ou verticalement
      */
         public void bouge(){ // D�placement du champignon
-            if(this.getX()<500){
-                this.dxChamp = -1;
+            if(super.isVersDroite() == true){this.dxChamp = 2;}
+            else{this.dxChamp = -2;}
+            super.setX(super.getX() + this.dxChamp);
+
+            /*
+            if(this.getX()>LaunchNPNG.scene.tuyauRouge1X){
+                this.dxChamp = -2;
             System.out.println(this.getX());
 
             }
-            else if (this.getX()> LaunchNPNG.scene.tuyauRouge1X){
-                this.dxChamp = -1;
+            else if (this.getX()< LaunchNPNG.scene.mario.getX()){
+                this.dxChamp = -2;
                 //System.out.println(this.getX());
-            }
+            }*/
 
-            super.setX(super.getX() + this.dxChamp);
+            //super.setX(super.getX() + this.dxChamp);
         }
 
     /**

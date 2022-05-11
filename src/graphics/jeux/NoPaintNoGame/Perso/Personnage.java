@@ -249,5 +249,10 @@ public  abstract class Personnage {
             return (true);
         }
     }
+
+    public void deplacement(){
+        if( LaunchNPNG.scene.getxPos() >= 0){this.x = this.x -  LaunchNPNG.scene.getDx();}
+    }
+
 }
 

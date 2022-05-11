@@ -7,7 +7,7 @@ import graphics.jeux.NoPaintNoGame.Objet.Bloc;
 import graphics.jeux.NoPaintNoGame.Objet.Decor;
 import graphics.jeux.NoPaintNoGame.Objet.Piece;
 import graphics.jeux.NoPaintNoGame.Objet.TuyauRouge;
-import graphics.jeux.NoPaintNoGame.Perso.Champi;
+import graphics.jeux.NoPaintNoGame.Perso.Nuage;
 import graphics.jeux.NoPaintNoGame.Perso.Mario;
 import graphics.jeux.NoPaintNoGame.Perso.Personnage;
 import graphics.jeux.NoPaintNoGame.ecoute.Audio;
@@ -22,7 +22,7 @@ import java.util.ArrayList;
  *
  *     ArrayList Decor tabDecor
  *     ArrayList Piece tabPiece
- *     Champi champi
+ *     Nuage nuage
  *     int repetitionMotif
  *     int tuyauRougeY
  *     int blocX1
@@ -53,11 +53,11 @@ import java.util.ArrayList;
  *
  *     int imagePieceX
  *     int imagePieceY
- *     int imageChampiX
- *     int imageChampiY
+ *     int imageNuageX
+ *     int imageNuageY
  *
- *     int champiX
- *     int champiY
+ *     int nuageX
+ *     int nuageY
  *
  *     ImageIcon icoDrapeuFin;
  *     Image imgDrapeauFin;
@@ -92,7 +92,7 @@ public class Scene extends JPanel {
     //Initialisation du Parcourt
     /////////////////////////////
 
-   //public Champi champi;
+   public Nuage nuage;
 
     public int repetitionMotif=9;
 
@@ -137,11 +137,12 @@ public class Scene extends JPanel {
 
     int imagePieceX =40;
     int imagePieceY = 40;
-    //int imageChampiX =40;
-    //int imageChampiY = 40;
+    int imageNuageX =40;
+    int imageNuageY = 100;
 
-    //public int champiX=tuyauRouge1X+imageTuyauRLarge+5;
-    //public int champiY=500;//385
+    //public int nuageX=tuyauRouge1X+imageTuyauRLarge+5;
+    public int nuageX=tuyauRouge1X;
+    public int nuageY=10;//385
 
     //Variable Image
     /////////////////////////////
@@ -246,7 +247,7 @@ public class Scene extends JPanel {
         //Instanciation Personnage + clavier et fenetre
         ////////////////////////////////////////////////////////////
         mario = new Mario(imageMarioLarge,imageMarioHauteur,marioX,marioY);
-        //champi = new Champi(imageChampiX,imageChampiY,champiX,champiY);
+        nuage = new Nuage(imageNuageX,imageNuageY,nuageX,nuageY);
 
         this.setFocusable(true);
         this.requestFocusInWindow();
@@ -326,6 +327,7 @@ public class Scene extends JPanel {
             this.tabPiece.add(new Piece(imagePieceX,imagePieceY,blocX1+ A+620,pieceY));
 
         }
+
 
     }
 
@@ -410,23 +412,19 @@ public class Scene extends JPanel {
             if(this.mario.proche(this.tabDecor.get(i))){
                 this.mario.contact(this.tabDecor.get(i),i);
                 this.mario.fly(this.tabDecor.get(i));
-                //this.mario.noFly(this.tabDecor.get(i));
+
 
             }
 
 
         }
 
-        for(int i=0; i< this.tabPiece.size();i++) {
+        /*for(int i=0; i< this.tabPiece.size();i++) {
             if(this.mario.proche(this.tabPiece.get(i))){
                 this.mario.contact(this.tabPiece.get(i),i);
-
-
             }
+        }*/
 
-
-        }
-    /*
         for(int i=0; i< this.tabPiece.size();i++) {
             if(this.mario.proche(this.tabPiece.get(i))){
                 if(this.mario.contactPiece(this.tabPiece.get(i))){
@@ -434,7 +432,7 @@ public class Scene extends JPanel {
                     this.score.compteurPiece();
                 }
             }
-        }*/
+        }
 
         this.deplacementFond();
 
@@ -450,11 +448,12 @@ public class Scene extends JPanel {
             for(int i=0; i<this.tabDecor.size();i++){
                 this.tabDecor.get(i).deplacement();
             }
+
             for(int i=0; i<this.tabPiece.size();i++){
                 this.tabPiece.get(i).deplacement();
             }
         }
-        //this.champi.deplacement();
+        this.nuage.deplacement();
 
 
 
@@ -481,7 +480,8 @@ public class Scene extends JPanel {
 
         //Image Champi
 
-        //g2.drawImage(this.champi.marche("champi",45),this.champi.getX(),this.champi.getY(),null);
+        g2.drawImage(this.nuage.marche("champi",45),this.nuage.getX(),this.nuage.getY(),null);
+
 
         // Images du décor
         /////////////////////////////
@@ -490,12 +490,13 @@ public class Scene extends JPanel {
             g2.drawImage(this.tabDecor.get(i).getImgDecor(),this.tabDecor.get(i).getX(),this.tabDecor.get(i).getY(),null);
 
         }
-
-        /*//image piece
+        //image piece
         for(int i=0; i< this.tabPiece.size();i++){
             g2.drawImage(this.tabPiece.get(i).getImgDecor(),this.tabPiece.get(i).getX(),this.tabPiece.get(i).getY(),null);
 
-        }*/
+        }
+
+
 
 
 
@@ -516,13 +517,13 @@ public class Scene extends JPanel {
             g2.setFont(policeFin);
             if(this.partieGagnee()){
                 g2.drawString("Vous avez gagné",120,180);
-                Audio.playSound("/son/gagne.wav");
+                Audio.playSound("gagne");
 
             }
 
             else if(this.partiePerdue()){
                 g2.drawString("vous avez perdu...",120,180);
-                Audio.playSound("/son/perdu.wav");
+                Audio.playSound("perdu");
             }
         }
 
