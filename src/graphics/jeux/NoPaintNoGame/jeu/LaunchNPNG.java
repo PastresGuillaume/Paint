@@ -1,5 +1,7 @@
 package graphics.jeux.NoPaintNoGame.jeu;
 
+import graphics.jeux.NoPaintNoGame.ecoute.Audio;
+
 import javax.swing.*;
 
 /**
@@ -26,6 +28,7 @@ public class LaunchNPNG {
 
         //Jpannel où on stocke les elements
         //Instanciation de l'objet scène
+        Audio.playSound("fond");
         scene = new Scene();
 
         fenetre.setContentPane(scene); //On associe la scène à la fenêtre d'application

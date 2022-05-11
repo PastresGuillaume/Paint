@@ -562,7 +562,7 @@ public class Scene extends JPanel {
      */
 
     private boolean partiePerdue(){
-        if(this.compteARebours.getCompteurTemps()<= 0 || !this.mario.isVivant() ){ return (true); }
+        if((this.compteARebours.getCompteurTemps()<= 0 ||  this.compteARebours.getCompteurTemps() > 0)  && !this.mario.isVivant() ){ return (true); }
         else {return (false);}
     }
 

@@ -30,6 +30,9 @@ public class CompteARebour implements Runnable {
      */
     private String str;
 
+    /**
+     * Stop
+     */
     private boolean STOP=true;
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -67,6 +70,10 @@ public class CompteARebour implements Runnable {
      */
     public String getStr() {return str;}
 
+    /**
+     * Setter pour stop
+     * @param STOP Nouvelle valeur de stop
+     */
     public void setSTOP(boolean STOP) {
         this.STOP = STOP;
     }
