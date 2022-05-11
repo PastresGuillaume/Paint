@@ -10,11 +10,22 @@ import java.io.File;
  */
 public class FileExtensionFilter extends FileFilter {
 
+    /**
+     * Vérifie si un fichier corresponds au bon type.
+     *
+     * @param f fichier en question.
+     * @return Booléen.
+     */
     @Override
     public boolean accept(File f) {
         return f.isDirectory() || f.getName().endsWith(Constantes.FILE_EXTENSION);
     }
 
+    /**
+     * Description.
+     *
+     * @return "Paint Files"
+     */
     @Override
     public String getDescription() {
         return "Paint Files";

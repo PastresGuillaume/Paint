@@ -19,11 +19,29 @@ import java.io.File;
  * JMenuBar Class
  */
 public class MenuBar extends AbstractBar {
+    /**
+     * Vue du modèle.
+     */
     private final ModelView view;
+    /**
+     * Management des sauvegardes.
+     */
     private final SaveHandler saveHandler;
+    /**
+     * Barre de menu.
+     */
     private  JMenuBar menuBar;
+    /**
+     * Choix de fichier.
+     */
     private final JFileChooser fileChooser;
+    /**
+     * Menu d'aide.
+     */
     private final HelpMenu helpMenu;
+    /**
+     * Est-ce qu'on est en darkMode ?
+     */
     private boolean isDarkMode = false;
 
     /**
@@ -49,6 +67,11 @@ public class MenuBar extends AbstractBar {
         return this.view;
     }
 
+    /**
+     * Création d'une barre de menu.
+     *
+     * @return La barre de menu.
+     */
     public JMenuBar createMenuBar(){
         this.menuBar = new JMenuBar();
 
@@ -89,6 +112,9 @@ public class MenuBar extends AbstractBar {
         return this.menuBar;
     }
 
+    /**
+     * Inverse l'affichage du menu.
+     */
     public void toggleDisplayHelpMenu(){
         this.helpMenu.toggleDisplayMenu();
     }
@@ -198,6 +224,11 @@ public class MenuBar extends AbstractBar {
         ((CalqueToolBar)this.view.getMenus().get(Constantes.CALQUE_TOOL_BAR_ID)).refresh();
     }
 
+    /**
+     * Ajoute le jeu NPNG au menu
+     *
+     * @return Un item de menu.
+     */
     public JMenuItem noPaintNoGame(){
         JMenuItem gameItem = new JMenuItem("NoPaintNoGame");
         gameItem.addActionListener(new ActionListener() {

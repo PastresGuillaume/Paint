@@ -186,34 +186,79 @@ public class Constantes {
      */
     public final static Color BRIGHTMODE_TEXTMENU_COLOR = new Color(0, 0, 0);
 
+    /**
+     * Couleur de fond.
+     */
     public static Color BACKGROUND_COLOR;
 
+    /**
+     * Couleur de fond de la menuBarre.
+     */
     public static Color MENUBAR_COLOR;
 
+    /**
+     * Couleur des textes des menus.
+     */
     public static Color TEXTMENU_COLOR;
 
+    /**
+     * Extension des fichiers de sauvegarde.
+     */
     public final static String FILE_EXTENSION = ".ser";
 
+    /**
+     * Identifiant de la menuBarre.
+     */
     public final static String MENU_BAR_ID = "MenuBar";
 
+    /**
+     * Identifiant de la calqueBarre.
+     */
     public final static String CALQUE_TOOL_BAR_ID = "CalqueToolBar";
 
+    /**
+     * Identifiant de la shapeBarre.
+     */
     public final static String SHAPE_TOOL_BAR_ID = "ShapeToolBar";
 
+    /**
+     * Place de la shapeBarre.
+     */
     public final static String SHAPE_TOOL_BAR_LOC = BorderLayout.PAGE_END;
 
+    /**
+     * Place de la calqueBarre.
+     */
     public final static String CALQUE_TOOL_BAR_LOC = BorderLayout.EAST;
 
+    /**
+     * Sert à l'affichage dynamique des calques dans la calqueBarre.
+     */
     public final static String IS_PAINTED_CALQUE = "isPainted";
 
+    /**
+     * Sert à l'affichage dynamique des calques dans la calqueBarre.
+     */
     public final static String IS_USED_CALQUE = "isUsed";
 
+    /**
+     * Largeur des icons.
+     */
     public final static int WIDTH_ICON = 50;
 
+    /**
+     * Hauteur des icons.
+     */
     public final static int HEIGHT_ICON = 50;
 
+    /**
+     * Dimension par défaut de la fenêtre.
+     */
     public static final Dimension WINDOW_DIMENSIONS = new Dimension(300, 300);
 
+    /**
+     * Taille maximale des images.
+     */
     public static final int MAXIMUM_IMAGE_SIZE = 500;
 
     /**
@@ -240,6 +285,4 @@ public class Constantes {
      * Chemin vers le dossier contenant les sons.
      */
     public static final String PATH_SON = "son"+PATH_SEPARATOR;
-
-    public  final String borderLayout = BorderLayout.EAST;
 }

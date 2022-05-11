@@ -9,9 +9,18 @@ import java.awt.*;
  * Help menu to display tips on how to use our project
  */
 public class HelpMenu extends JFrame {
+    /**
+     * Menu.
+     */
     private final JFrame helpMenu;
+    /**
+     * Boite de dialogue.
+     */
     private final JTabbedPane tabs;
 
+    /**
+     * Constructeur.
+     */
     HelpMenu(){
         this.helpMenu = new JFrame("Help Menu");
         this.helpMenu.setVisible(false);
@@ -61,6 +70,9 @@ public class HelpMenu extends JFrame {
         return textArea;
     }
 
+    /**
+     * Rajoute la commande help.
+     */
     public void setCommandHelpMenu(){
         JPanel tab = new JPanel();
         String text = """
@@ -74,6 +86,9 @@ public class HelpMenu extends JFrame {
         this.newTab("Command", tab);
     }
 
+    /**
+     * Setter du Menu
+     */
     public void setMenuHelpMenu(){
         JPanel tab = new JPanel();
         String text = """
@@ -96,6 +111,9 @@ public class HelpMenu extends JFrame {
         this.newTab("Menu", tab);
     }
 
+    /**
+     * Setter de la ToolBar
+     */
     public void setToolBarHelpMenu(){
         JPanel tab = new JPanel();
         String text = """
@@ -112,6 +130,9 @@ public class HelpMenu extends JFrame {
         this.newTab("ToolBar", tab);
     }
 
+    /**
+     * Setter des crédits
+     */
     public void setCreditsHelpMenu(){
         JPanel tab = new JPanel();
         String text = """
