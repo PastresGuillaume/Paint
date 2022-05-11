@@ -81,6 +81,7 @@ public class ModelView extends View{
         for(String nameCalque : arrayListPainted)
             sModel.setPaint(nameCalque);
         ImageIcon toChange = new ImageIcon("images\\icons\\" + calque.getName() + Constantes.IS_USED_CALQUE +".png");
-        ((JButton) ((CalqueToolBar) this.menus.get(Constantes.CALQUE_TOOL_BAR_ID)).getButtons().get(calque.getName() + Constantes.IS_USED_CALQUE)).setIcon(new ImageIcon(toChange.getImage().getScaledInstance(Constantes.WIDTH_ICON, Constantes.HEIGHT_ICON, Image.SCALE_DEFAULT)));
+        CalqueToolBar calqueToolBar = (CalqueToolBar) this.menus.get(Constantes.CALQUE_TOOL_BAR_ID);
+        ((JButton) calqueToolBar.getButtons().get(calque.getName() + Constantes.IS_USED_CALQUE)).setIcon(new ImageIcon(toChange.getImage().getScaledInstance(Constantes.WIDTH_ICON, Constantes.HEIGHT_ICON, Image.SCALE_DEFAULT)));
     }
 }
